@@ -1,0 +1,34 @@
+version: '3.1'
+
+services:
+############################
+# Setup the Joomla container
+############################
+  joomla:
+    container_name: docker_joomla_0
+    image: joomla
+    #restart: always
+    links:
+      - joomladb:joomladb
+    ports:
+      - 80:80
+    volumes:
+      - ./docker/joomla:/var/www/html
+    environment:
+      JOOMLA_DB_HOST: joomladb
+      JOOMLA_DB_PASSWORD: 12345678
+      JOOMLA_DB_NAME: operation_cetace
+
+
+######################################
+# Setup the Database (Mysql) container
+######################################
+  joomladb:
+    container_name: docker_mysql_0
+    image: mysql:5.6
+    restart: always
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: operation_cetace
