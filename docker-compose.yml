@@ -32,3 +32,15 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 12345678
       MYSQL_DATABASE: operation_cetace
+
+########################################
+# Setup the Geoserver container
+#######################################
+  geoserver:
+    container_name: docker_geoserver
+    #links:
+      #- joomladb
+    build: .
+    volumes:
+      - ./docker/geoserver:/usr/local/tomcat/webapps/geoserver
+      #- /var/run/docker.sock:/var/run/docker.sock
