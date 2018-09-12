@@ -1,0 +1,3044 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<form>
+	
+	<fieldset name="form.details"
+			multilanguage="true"
+			addfieldpath="/libraries/jdom/jform/fields"
+			label="JFORMS_JFORM_DETAILS">
+
+		<field name="language_file"
+				alias="language_file"
+				label="JFORMS_FIELD_LANGUAGE_FILE"
+				description="JFORMS_FIELD_LANGUAGE_FILE_DESC"
+				filter="STRING"
+				class="validate[custom[file]]"
+				validate="file"
+				indirect="true"
+				target="download"
+				editable="true"
+				editor="codemirror"
+				params='{"syntax":"ini"}'
+				root="[DIR_FORMS_LANGUAGE_FILE]"
+				type="ckfile"
+				view="form"
+				actions="delete"
+				rename="language/{LANG}/{LANG}.{ID}_{RAND}_{ALIAS}.{EXT}"
+				allowedExtensions="ini"/>
+				
+		<field name="name"
+				alias="name"
+				label="JFORMS_FIELD_NAME"
+				filter="STRING"
+				required="true"
+				class="validate[required]"
+				type="cktext"/>
+
+		<field name="description"
+				alias="description"
+				label="JFORMS_FIELD_DESCRIPTION"
+				description="JFORMS_FIELD_DESCRIPTION_DESC"
+				filter="RAW"
+				type="ckeditor"/>
+
+		<field name="message_after_submit"
+				alias="message_after_submit"
+				label="JFORMS_FIELD_MESSAGE_AFTER_SUBMIT"
+				description="JFORMS_FIELD_MESSAGE_AFTER_SUBMIT_DESC"
+				filter="RAW"
+				type="ckeditor"/>
+	</fieldset>
+
+	<fieldset name="form.extra"
+		addfieldpath="/libraries/jdom/jform/fields"
+		>
+		<field name="emails"
+				alias="emails"
+				fieldsToRender="ordering,mirror,name,from,to,subject,language,enabled"
+				label=""
+				isMaster="true"
+				showId="true"
+				showCounter="true"
+				fieldsetName="emails"
+				type="ckfieldset"/>
+				
+		<field name="events"
+				alias="events"
+				fieldsToRender="ordering,mirror,name,event,file,script,enabled"
+				label=""
+				showId="true"
+				showCounter="true"
+				isMaster="true"
+				fieldsetName="form.events2"
+				type="ckfieldset"/>
+				
+		<field name="fieldsets"
+				alias="fieldsets"
+				fieldsToRender="ordering,mirror,name,form_file,enabled"
+				label=""
+				showId="true"
+				showCounter="true"
+				isMaster="true"
+				fieldsetName="form.fieldsets"
+				type="ckfieldset"/>
+				
+		<field name="fields"
+				alias="fields"
+				fieldsToRender="ordering,fieldset,name,label,type,required,enabled"
+				label=""
+				showId="true"
+				showCounter="true"
+				autoFilter="true"
+				isMaster="true"
+				fieldsetName="form.fields"
+				type="ckfieldset">
+
+				<fset name="form.fields"
+					repeatable="true"
+					editable="true"
+					label="JFORMS_JFORM_FIELDS"
+					description="JFORMS_JFORM_FIELDS_DESC"
+				>						
+						<fi name="enabled"
+								alias="enabled"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_BASIC"
+								label="JFORMS_FIELD_ENABLED"
+								filter="BOOL"
+								listKey="value"
+								default="0"
+								type="ckradio"
+								viewType="both">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>
+						
+						<fi name="ordering"
+								alias="ordering"
+								label="JFORMS_FIELD_ORDERING"
+								description="JFORMS_FIELD_ORDERING_DESC"
+								filter="INT"
+								type="ckordering"/>
+								
+						<fi name="fieldset"
+								alias="fieldset"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_BASIC"
+								label="JFORMS_FIELD_FIELDS_FIELDSET"
+								description="JFORMS_FIELD_FIELDS_FIELDSET_DESC"
+								filter="STRING"
+								listKey="value"
+								type="cklist"
+								size="1"
+								default=""
+								nullLabel="JFORMS_FIELD_FIELDSET_NULL"
+								/>
+							
+						<fi name="name"
+								alias="name"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_BASIC"
+								class="validate[required]"
+								label="JFORMS_FIELD_FIELDS_NAME"
+								description="JFORMS_FIELD_FIELDS_NAME_DESC"
+								filter="STRING"
+								type="cktext"/>
+								
+						<fi name="label"
+								alias="label"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_BASIC"
+								multilanguage="true"
+								multilanguageLayout="tabs"
+								label="JFORMS_FIELD_FIELDS_LABEL"
+								description="JFORMS_FIELD_FIELDS_LABEL_DESC"
+								filter="RAW"
+								type="cktext"/>
+								
+						<fi name="description"
+								alias="description"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_BASIC"
+								multilanguage="true"
+								multilanguageLayout="tabs"
+								label="JFORMS_FIELD_DESCRIPTION"
+								description="JFORMS_FIELD_FIELDSET_DESCRIPTION_DESC"
+								filter="RAW"
+								type="cktextarea"/>
+								
+						<fi name="type"
+								alias="type"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_TYPE"
+								description="JFORMS_FIELD_FIELDS_TYPE_DESC"
+								filter="STRING"
+								type="cklist"
+								size="1"
+								class="validate[required] jform_fields_type"
+								nullLabel="JFORMS_FIELD_FIELDS_TYPE_NULL">
+							<option value="ckaddresspicker" description="JFORMS_OPT_CKADDRESSPICKER_DESC">JFORMS_OPT_CKADDRESSPICKER</option>
+							<option value="ckcalendar" description="JFORMS_OPT_CKCALENDAR_DESC">JFORMS_OPT_CKCALENDAR</option>
+							<option value="ckcaptcha" description="JFORMS_OPT_CKCAPTCHA_DESC">JFORMS_OPT_CKCAPTCHA</option>
+							<option value="ckcheckbox" description="JFORMS_OPT_CKCHECKBOX_DESC">JFORMS_OPT_CKCHECKBOX</option>
+							<option value="ckcheckboxes" description="JFORMS_OPT_CKCHECKBOXES_DESC">JFORMS_OPT_CKCHECKBOXES</option>
+							<option value="ckcolor" description="JFORMS_OPT_CKCOLOR_DESC">JFORMS_OPT_CKCOLOR</option>
+							<option value="ckcontentlanguage" description="JFORMS_OPT_CKCONTENTLANGUAGE_DESC">JFORMS_OPT_CKCONTENTLANGUAGE</option>
+							<option value="ckdatetimepicker" description="JFORMS_OPT_CKDATETIMEPICKER_DESC">JFORMS_OPT_CKDATETIMEPICKER</option>
+							<option value="ckeditor" description="JFORMS_OPT_CKEDITOR_DESC">JFORMS_OPT_CKEDITOR</option>
+							<option value="ckfile" description="JFORMS_OPT_CKFILE_DESC">JFORMS_OPT_CKFILE</option>
+							<option value="ckfilelist" description="JFORMS_OPT_CKFILELIST_DESC">JFORMS_OPT_CKFILELIST</option>
+							<option value="ckhidden" description="JFORMS_OPT_CKHIDDEN_DESC">JFORMS_OPT_CKHIDDEN</option>
+							<option value="cklist" description="JFORMS_OPT_CKLIST_DESC">JFORMS_OPT_CKLIST</option>
+							<option value="ckmedia" description="JFORMS_OPT_CKMEDIA_DESC">JFORMS_OPT_CKMEDIA</option>
+							<option value="ckmeter" description="JFORMS_OPT_CKMETER_DESC">JFORMS_OPT_CKMETER</option>
+							<option value="cknumber" description="JFORMS_OPT_CKNUMBER_DESC">JFORMS_OPT_CKNUMBER</option>
+							<option value="ckradio" description="JFORMS_OPT_CKRADIO_DESC">JFORMS_OPT_CKRADIO</option>
+							<option value="ckrange" description="JFORMS_OPT_CKRANGE_DESC">JFORMS_OPT_CKRANGE</option>
+							<option value="ckrepeatable" description="JFORMS_OPT_CKREPEATABLE_DESC">JFORMS_OPT_CKREPEATABLE</option>
+							<option value="ckspacer" description="JFORMS_OPT_CKSPACER_DESC">JFORMS_OPT_CKSPACER</option>
+							<option value="ckstate" description="JFORMS_OPT_CKSTATE_DESC">JFORMS_OPT_CKSTATE</option>
+							<option value="cksql" description="JFORMS_OPT_CKSQL_DESC">JFORMS_OPT_CKSQL</option>
+							<option value="cktags" description="JFORMS_OPT_CKTAGS_DESC">JFORMS_OPT_CKTAGS</option>
+							<option value="cktext" description="JFORMS_OPT_CKTEXT_DESC">JFORMS_OPT_CKTEXT</option>
+							<option value="cktextarea" description="JFORMS_OPT_CKTEXTAREA_DESC">JFORMS_OPT_CKTEXTAREA</option>
+							<option value="cktimepicker" description="JFORMS_OPT_CKTIMEPICKER_DESC">JFORMS_OPT_CKTIMEPICKER</option>
+							<option value="ckusergrouplist" description="JFORMS_OPT_CKUSERGROUPLIST_DESC">JFORMS_OPT_CKUSERGROUPLIST</option>
+						</fi>
+
+						<fi name="active"
+								alias="active"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_ACTIVE"
+								description="JFORMS_FIELD_FIELDS_ACTIVE_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="1"
+								type="ckradio"
+								class="condRule[show,.jform_fields_type,ckmeter]">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>
+								
+						<fi name="afterinput"
+								alias="afterinput"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_BASIC"
+								label="JFORMS_FIELD_FIELDS_AFTERINPUT"
+								description="JFORMS_FIELD_FIELDS_AFTERINPUT_DESC"
+								multilanguage="true"
+								multilanguageLayout="tabs"
+								filter="RAW"
+								type="cktext"/>
+
+						<fi name="animated"
+								alias="animated"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_ANIMATED"
+								description="JFORMS_FIELD_FIELDS_ANIMATED_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="1"
+								type="ckradio"
+								class="condRule[show,.jform_fields_type,ckmeter]">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>
+
+						<fi name="autoclose"
+								alias="autoclose"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_AUTOCLOSE"
+								description="JFORMS_FIELD_FIELDS_AUTOCLOSE_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="1"
+								type="ckradio"
+								class="condRule[show,.jform_fields_type,ckdatetimepicker]">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>
+						
+						<fi name="canEdit"
+								alias="canEdit"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_ACCESS"
+								label="JFORMS_FIELD_FIELDS_CAN_EDIT"
+								description="JFORMS_FIELD_FIELDS_CAN_EDIT_DESC"
+								multiple="true"
+								containerClass="span6"
+								type="ckusergrouplist"/>
+								
+						<fi name="canView"
+								alias="canView"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_ACCESS"
+								label="JFORMS_FIELD_FIELDS_CAN_VIEW"
+								description="JFORMS_FIELD_FIELDS_CAN_VIEW_DESC"
+								multiple="true"
+								containerClass="span6"
+								type="ckusergrouplist"/>
+								
+						<fi name="class"
+								alias="class"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_BASIC"
+								label="JFORMS_FIELD_FIELDS_CLASS"
+								description="JFORMS_FIELD_FIELDS_CLASS_DESC"
+								type="cktext"/>
+								
+						<fi name="containerClass"
+								alias="containerClass"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_BASIC"
+								label="JFORMS_FIELD_FIELDS_CONTAINERCLASS"
+								description="JFORMS_FIELD_FIELDS_CONTAINERCLASS_DESC"
+								type="cktext"/>
+								
+						<fi name="cols"
+								alias="cols"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_COLS"
+								description="JFORMS_FIELD_FIELDS_COLS_DESC"
+								class="condRule[show,.jform_fields_type,ckcheckboxes]"
+								type="cktext"/>
+								
+						<fi name="color"
+								alias="color"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_COLOR"
+								description="JFORMS_FIELD_FIELDS_COLOR_DESC"
+								containerClass="condRule[show,.jform_fields_type,ckmeter]"
+								type="ckcolor"/>
+
+						<fi name="layout_ckcolor"
+								alias="layout_ckcolor"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_LAYOUT_COLORPICKER"
+								description="JFORMS_FIELD_FIELDS_LAYOUT_COLORPICKER_DESC"
+								default="full"
+								class="condRule[show,.jform_fields_type,ckcolor]"
+								type="cklist">
+							<option value="full" >JFORMS_OPT_FULL</option>
+							<option value="rgbhex" >JFORMS_OPT_MEDIUM</option>
+							<option value="hex" >JFORMS_OPT_SIMPLE</option>
+						</fi>
+						
+						<fi name="default"
+								alias="default"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_BASIC"
+								label="JFORMS_FIELD_FIELDS_DEFAULT"
+								description="JFORMS_FIELD_FIELDS_DEFAULT_DESC"
+								type="cktext"/>
+																
+						<fi name="directory"
+								alias="directory"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_DIRECTORY"
+								description="JFORMS_FIELD_FIELDS_DIRECTORY_DESC"
+								class="condRule[show,.jform_fields_type,ckfilelist|ckmedia]"
+								type="cktext"/>
+
+						<fi name="display"
+								alias="display"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_DISPLAY"
+								description="JFORMS_FIELD_FIELDS_DISPLAY_DESC"
+								default="radio"
+								class="condRule[show,.jform_fields_type,ckstate]"
+								type="cklist">
+							<option value="radio">JFORMS_OPT_RADIO</option>
+							<option value="combo">JFORMS_OPT_COMBO</option>
+						</fi>								
+								
+						<fi name="distanceWidget"
+								alias="distanceWidget"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_DISTANCEWIDGET"
+								description="JFORMS_FIELD_FIELDS_DISTANCEWIDGET_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="0"
+								type="ckradio"
+								class="condRule[show,.jform_fields_type,ckaddresspicker]">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>
+
+						<fi name="distanceWidgetRadius"
+								alias="distanceWidgetRadius"
+								filter="INT"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_DISTANCEWIDGETRADIUS"
+								description="JFORMS_FIELD_FIELDS_DISTANCEWIDGETRADIUS_DESC"
+								class="condRule[show,.jform_fields_type,ckaddresspicker]"
+								type="cktext"/>
+
+						<fi name="fileFilter"
+								alias="fileFilter"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_FILEFILTER"
+								description="JFORMS_FIELD_FIELDS_FILEFILTER_DESC"
+								class="condRule[show,.jform_fields_type,ckfilelist]"
+								filter="STRING"
+								type="cktext"/>
+								
+						<fi name="exclude"
+								alias="exclude"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_EXCLUDE"
+								description="JFORMS_FIELD_FIELDS_EXCLUDE_DESC"
+								afterInput="JFORMS_FIELD_FIELDS_EXCLUDE_INFO"
+								class="condRule[show,.jform_fields_type,ckfilelist]"
+								filter="STRING"
+								type="cktext"/>
+								
+						<fi name="start"
+								alias="start"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_START"
+								description="JFORMS_FIELD_FIELDS_START_END_DESC"
+								class="condRule[show,.jform_fields_type,cktimepicker]"
+								format="U"
+								uiFormat="H:i"
+								type="cktimepicker"/>
+								
+						<fi name="end"
+								alias="end"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_END"
+								description="JFORMS_FIELD_FIELDS_START_END_DESC"
+								class="condRule[show,.jform_fields_type,cktimepicker]"
+								format="U"
+								uiFormat="H:i"
+								type="cktimepicker"/>
+				
+								
+					<!-- CKADDRESSPICKER -->
+						<fi name="addresspicker_center"
+								alias="addresspicker_center"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_ADDRESSPICKER_CENTER"
+								description="JFORMS_FIELD_FIELDS_ADDRESSPICKER_CENTER_DESC"
+								filter="STRING"
+								default="Palermo, italy"
+								class="input-xlarge condRule[show,.jform_fields_type,ckaddresspicker]"
+								cssSelectorTarget=".modal-body .adr_picker"
+								mode="plain"
+								type="ckaddresspicker"/>
+								
+						<fi name="latitude"
+								alias="latitude"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								filter="FLOAT"
+								class="adr_picker latitude"
+								type="ckhidden"/>
+								
+						<fi name="longitude"
+								alias="longitude"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								filter="FLOAT"
+								class="adr_picker longitude"
+								type="ckhidden"/>								
+								
+						<fi name="cssSelectorTarget"
+								alias="cssSelectorTarget"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_CSSSELECTORTARGET"
+								description="JFORMS_FIELD_FIELDS_CSSSELECTORTARGET_DESC"
+								filter="STRING"
+								class="condRule[show,.jform_fields_type,ckaddresspicker]"
+								type="cktext"/>			
+
+						<fi name="mapType"
+								alias="mapType"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_MAPTYPE"
+								description="JFORMS_FIELD_FIELDS_MAPTYPE_DESC"
+								default="ROADMAP"
+								class="condRule[show,.jform_fields_type,ckaddresspicker]"
+								type="cklist">
+							<option value="ROADMAP">JFORMS_OPT_ROADMAP</option>
+							<option value="TERRAIN">JFORMS_OPT_TERRAIN</option>
+							<option value="SATELLITE">JFORMS_OPT_SATELLITE</option>
+							<option value="HYBRID">JFORMS_OPT_HYBRID</option>
+						</fi>
+						
+						<fi name="zoom"
+								alias="zoom"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_ZOOM"
+								description="JFORMS_FIELD_FIELDS_ZOOM_DESC"
+								default="3"
+								class="input-mini condRule[show,.jform_fields_type,ckaddresspicker]"
+								type="cklist">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+						</fi>	
+					<!-- CKADDRESSPICKER -->
+					
+					<!-- CKDATETIMEPICKER -->
+						<fi name="mode_ckdatetimepicker"
+								alias="mode_ckdatetimepicker"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_MODE_DATETIMEPICKER"
+								description="JFORMS_FIELD_FIELDS_MODE_DATETIMEPICKER_DESC"
+								default="single"
+								class="condRule[show,.jform_fields_type,ckdatetimepicker]"
+								type="cklist">
+							<option value="single" description="JFORMS_OPT_SINGLE_DESC">JFORMS_OPT_SINGLE</option>
+							<option value="multiple"  description="JFORMS_OPT_MULTIPLE_DESC">JFORMS_OPT_MULTIPLE</option>
+							<option value="range" description="JFORMS_OPT_RANGE_DESC">JFORMS_OPT_RANGE</option>
+						</fi>
+
+						<fi name="calendars"
+								alias="calendars"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_CALENDARS"
+								description="JFORMS_FIELD_FIELDS_CALENDARS_DESC"
+								default="1"
+								class="condRule[show,.jform_fields_type,ckdatetimepicker]"
+								type="cklist">
+							<option value="1" >1</option>
+							<option value="2" >2</option>
+							<option value="3" >3</option>
+							<option value="4" >4</option>
+						</fi>
+						
+						<fi name="startDate_type"
+								alias="startDate_type"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_STARTDATE_TYPE"
+								description="JFORMS_FIELD_FIELDS_STARTDATE_TYPE_DESC"
+								class="ckdatetimepircker_startdate_type condRule[show,.jform_fields_type,ckdatetimepicker] input-medium"
+								default=""
+								nullLabel="JFORMS_OPT_NONE"
+								type="cklist">
+							<option value="fixed" >JFORMS_OPT_FIXED</option>
+							<option value="dynamic" >JFORMS_OPT_DYNAMIC</option>
+						</fi>
+								
+						<fi name="startDate_fixed"
+								alias="startDate_fixed"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_STARTDATE_FIXED"
+								description="JFORMS_FIELD_FIELDS_STARTDATE_FIXED_DESC"
+								class="condRule[show,.jform_fields_type,ckdatetimepicker] condRule[show,.ckdatetimepircker_startdate_type,fixed] input-medium"
+								minView="days"
+								default=""
+								format="U"
+								uiFormat="d M Y"								
+								type="ckdatetimepicker"/>
+
+						<fi name="startDate_dynamic"
+								alias="startDate_dynamic"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_STARTDATE_DYNAMIC"
+								description="JFORMS_FIELD_FIELDS_STARTDATE_DYNAMIC_DESC"
+								default=""
+								placeholder="-1 year +1 month +2 days +10 hours +25 mins"
+								class="input-xlarge condRule[show,.jform_fields_type,ckdatetimepicker] condRule[show,.ckdatetimepircker_startdate_type,dynamic] input-medium"
+								type="cktext"/>
+								
+						<fi name="endDate_type"
+								alias="endDate_type"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_ENDDATE_TYPE"
+								description="JFORMS_FIELD_FIELDS_ENDDATE_TYPE_DESC"
+								class="ckdatetimepircker_enddate_type condRule[show,.jform_fields_type,ckdatetimepicker] input-medium"
+								default=""
+								nullLabel="JFORMS_OPT_NONE"
+								type="cklist">
+							<option value="fixed" >JFORMS_OPT_FIXED</option>
+							<option value="dynamic" >JFORMS_OPT_DYNAMIC</option>
+						</fi>
+						
+						<fi name="endDate_fixed"
+								alias="endDate_fixed"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_ENDDATE_FIXED"
+								description="JFORMS_FIELD_FIELDS_ENDDATE_FIXED_DESC"
+								class="condRule[show,.jform_fields_type,ckdatetimepicker] condRule[show,.ckdatetimepircker_enddate_type,fixed] input-medium"
+								minView="days"
+								default=""
+								format="U"
+								uiFormat="d M Y"
+								type="ckdatetimepicker"/>
+
+						<fi name="endDate_dynamic"
+								alias="endDate_dynamic"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_ENDDATE_FIXED"
+								description="JFORMS_FIELD_FIELDS_ENDDATE_FIXED_DESC"
+								default=""
+								placeholder="-1 year +1 month +2 days +10 hours +25 mins"
+								class="input-xxlarge condRule[show,.jform_fields_type,ckdatetimepicker] condRule[show,.ckdatetimepircker_enddate_type,dynamic] input-medium"							
+								type="cktext"/>
+								
+						<fi name="firstDay"
+								alias="firstDay"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_FIRSTDAY"
+								description="JFORMS_FIELD_FIELDS_FIRSTDAY_DESC"
+								default="1"
+								class="condRule[show,.jform_fields_type,ckdatetimepicker]"
+								type="cklist">
+							<option value="0" >SUNDAY</option>
+							<option value="1" >MONDAY</option>
+							<option value="2" >TUESDAY</option>
+							<option value="3" >WEDNESDAY</option>
+							<option value="4" >THURSDAY</option>
+							<option value="5" >FRIDAY</option>
+							<option value="6" >SATURDAY</option>
+						</fi>			
+
+						<fi name="format"
+								alias="format"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_FORMAT"
+								description="JFORMS_FIELD_FIELDS_FORMAT_DESC"
+								default="Y-m-d H:i"
+								class="condRule[show,.jform_fields_type,ckdatetimepicker|cktimepicker|ckcalendar]"
+								type="cktext"/>								
+
+						<fi name="uiFormat"
+								alias="uiFormat"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_UIFORMAT"
+								description="JFORMS_FIELD_FIELDS_UIFORMAT_DESC"
+								filter="STRING"
+								class="condRule[show,.jform_fields_type,ckdatetimepicker|cktimepicker]"
+								type="cktext"/>
+																
+						<fi name="minView"
+								alias="minView"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_MINVIEW"
+								description="JFORMS_FIELD_FIELDS_MINVIEW_DESC"
+								default="times"
+								class="condRule[show,.jform_fields_type,ckdatetimepicker]"
+								type="cklist">
+							<option value="times" description="JFORMS_OPT_TIMES_DESC">JFORMS_OPT_TIMES</option>
+							<option value="days"  description="JFORMS_OPT_DAYS_DESC">JFORMS_OPT_DAYS</option>
+							<option value="months" description="JFORMS_OPT_MONTHS_DESC">JFORMS_OPT_MONTHS</option>
+							<option value="years" description="JFORMS_OPT_YEARS_DESC">JFORMS_OPT_YEARS</option>
+						</fi>
+						
+						<fi name="maxView"
+								alias="maxView"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_MAXVIEW"
+								description="JFORMS_FIELD_FIELDS_MAXVIEW_DESC"
+								default="years"
+								class="condRule[show,.jform_fields_type,ckdatetimepicker]"
+								type="cklist">
+							<option value="times" description="JFORMS_OPT_TIMES_DESC">JFORMS_OPT_TIMES</option>
+							<option value="days"  description="JFORMS_OPT_DAYS_DESC">JFORMS_OPT_DAYS</option>
+							<option value="months" description="JFORMS_OPT_MONTHS_DESC">JFORMS_OPT_MONTHS</option>
+							<option value="years" description="JFORMS_OPT_YEARS_DESC">JFORMS_OPT_YEARS</option>
+						</fi>								
+								
+						<fi name="startView"
+								alias="startView"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_STARTVIEW"
+								description="JFORMS_FIELD_FIELDS_STARTVIEW_DESC"
+								default="days"
+								class="condRule[show,.jform_fields_type,ckdatetimepicker]"
+								type="cklist">
+							<option value="times" description="JFORMS_OPT_TIMES_DESC">JFORMS_OPT_TIMES</option>
+							<option value="days"  description="JFORMS_OPT_DAYS_DESC">JFORMS_OPT_DAYS</option>
+							<option value="months" description="JFORMS_OPT_MONTHS_DESC">JFORMS_OPT_MONTHS</option>
+							<option value="years" description="JFORMS_OPT_YEARS_DESC">JFORMS_OPT_YEARS</option>
+						</fi>
+						
+						<fi name="specialDates"
+								alias="specialDates"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_SPECIALDATES"
+								description="JFORMS_FIELD_FIELDS_SPECIALDATES_DESC"
+								filter="STRING"
+								fieldsToRender="selectable,date,repeatYear,repeatMonth,repeatWeek"
+								cloneable="true"
+								sortable="true"
+								containerClass="condRule[show,.jform_fields_type,ckdatetimepicker]"
+								type="ckrepeatable">
+								
+							<fset name="fields.specialDate">
+								<fi name="selectable"
+										alias="selectable"
+										label="JFORMS_FIELD_FIELDS_SPECIALDATES_SELECTABLE"
+										description="JFORMS_FIELD_FIELDS_SPECIALDATES_SELECTABLE_DESC"
+										filter="BOOL"
+										listKey="value"
+										default="0"
+										type="ckradio">
+									<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+									<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+								</fi>								
+							
+								<fi name="date"
+										alias="date"
+										label="JFORMS_FIELD_FIELDS_SPECIALDATES_DATE"
+										description="JFORMS_FIELD_FIELDS_SPECIALDATES_DATE_DESC"
+										class="input-medium"
+										minView="days"
+										default=""
+										format="Y-m-d"
+										uiFormat="d M Y"
+										autoclose="true"
+										type="ckdatetimepicker"/>
+
+								<fi name="repeatYear"
+										alias="repeatYear"
+										label="JFORMS_FIELD_FIELDS_SPECIALDATES_REPEATYEAR"
+										description="JFORMS_FIELD_FIELDS_SPECIALDATES_REPEATYEAR_DESC"
+										filter="BOOL"
+										listKey="value"
+										default="0"
+										type="ckradio">
+									<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+									<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+								</fi>	
+								
+								<fi name="repeatMonth"
+										alias="repeatMonth"
+										label="JFORMS_FIELD_FIELDS_SPECIALDATES_REPEATMONTH"
+										description="JFORMS_FIELD_FIELDS_SPECIALDATES_REPEATMONTH_DESC"
+										filter="BOOL"
+										listKey="value"
+										default="0"
+										type="ckradio"
+										>
+									<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+									<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+								</fi>	
+								
+								<fi name="repeatWeek"
+										alias="repeatWeek"
+										label="JFORMS_FIELD_FIELDS_SPECIALDATES_REPEATWEEK"
+										description="JFORMS_FIELD_FIELDS_SPECIALDATES_REPEATWEEK_DESC"
+										filter="BOOL"
+										listKey="value"
+										default="0"
+										type="ckradio"
+										>
+									<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+									<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+								</fi>											
+										
+								<fi name="selectableTimes"
+										alias="selectableTimes"
+										label="JFORMS_FIELD_FIELDS_SPECIALDATES_TIMES"
+										description="JFORMS_FIELD_FIELDS_SPECIALDATES_TIMES_DESC"
+										filter="STRING"
+										cloneable="true"
+										sortable="true"
+										layout="plain"
+										type="ckrepeatable">
+
+									<fset name="fields.selectableTime">
+										<fi name="start"
+												alias="start"
+												label="JFORMS_FIELD_FIELDS_SPECIALDATES_TIMES_START"
+												description="JFORMS_FIELD_FIELDS_SPECIALDATES_TIMES_START_END_DESC"
+												format="H:i"
+												type="cktimepicker"/>
+												
+										<fi name="end"
+												alias="end"
+												label="JFORMS_FIELD_FIELDS_SPECIALDATES_TIMES_END"
+												description="JFORMS_FIELD_FIELDS_SPECIALDATES_TIMES_START_END_DESC"
+												format="H:i"
+												type="cktimepicker"/>											
+									</fset>
+									
+								</fi>
+								
+								<fi name="selectors"
+										alias="selectors"
+										label="JFORMS_FIELD_FIELDS_SELECTORS"
+										description="JFORMS_FIELD_FIELDS_SELECTORS_DESC"
+										filter="STRING"
+										fieldsToRender="attribute,value"
+										cloneable="true"
+										sortable="true"
+										layout="plain"
+										type="ckrepeatable">
+										
+									<fset name="fields.selectableDay_selector">										
+										<fi name="attribute"
+												alias="attribute"
+												label="JFORMS_FIELD_FIELDS_ATTRIBUTE"
+												description="JFORMS_FIELD_FIELDS_ATTRIBUTE_DESC"
+												filter="STRING"
+												class="input-medium"
+												type="cktext"/>
+												
+										<fi name="value"
+												alias="value"
+												label="JFORMS_FIELD_FIELDS_VALUE"
+												description="JFORMS_FIELD_FIELDS_VALUE_DESC"
+												filter="STRING"
+												class="input-xxlarge"
+												type="cktext"/>
+									</fset>
+								</fi>
+
+								<fi name="message"
+										alias="message"
+										label="JFORMS_FIELD_FIELDS_SPECIALDATES_MESSAGE"
+										description="JFORMS_FIELD_FIELDS_SPECIALDATES_MESSAGE_DESC"
+										filter="STRING"
+										multilanguage="true"
+										multilanguageLayout="tabs"
+										type="cktextarea"/>
+							</fset>						
+						</fi>						
+						
+					<!-- CKDATETIMEPICKER -->
+					
+					
+					<!-- CKFILE -->
+								
+						<fi name="maxSize"
+								alias="maxSize"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_MAXSIZE"
+								description="JFORMS_FIELD_FIELDS_MAXSIZE_DESC"
+								afterinput="JFORMS_FIELD_FIELDS_MAXSIZE_INFO"
+								filter="STRING"
+								class="input-mini condRule[show,.jform_fields_type,ckfile]"
+								default="2"
+								type="cktext"/>
+								
+						<fi name="allowedExtensions"
+								alias="allowedExtensions"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_ALLOWED_EXTENSIONS"
+								description="JFORMS_FIELD_FIELDS_ALLOWED_EXTENSIONS_DESC"
+								filter="STRING"
+								class="input-xxlarge condRule[show,.jform_fields_type,ckfile]"
+								default="txt,rar,zip,doc,docx,xls,xlsx,jpg,jpeg,png,gif"
+								capitalizeFirstLetter="false"
+								type="cktags"/>				
+
+						<fi name="rename"
+								alias="rename"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_RENAME"
+								description="JFORMS_FIELD_FIELDS_RENAME_DESC"
+								filter="STRING"
+								default="{ID}_{RAND}_{BASE}.{EXT}"
+								class="condRule[show,.jform_fields_type,ckfile]"
+								type="cktext"/>					
+
+						<fi name="indirect"
+								alias="indirect"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_INDIRECT"
+								description="JFORMS_FIELD_FIELDS_INDIRECT_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="1"
+								type="ckradio"
+								class="condRule[show,.jform_fields_type,ckfile]">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>								
+
+						<fi name="target"
+								alias="target"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_TARGET"
+								description="JFORMS_FIELD_FIELDS_TARGET_DESC"
+								nullLabel="JFORMS_FIELD_FIELDS_TARGET_NULL"
+								default="_self"
+								class="condRule[show,.jform_fields_type,ckfile|ckmedia]"
+								type="cklist">
+							<option value="download" description="JFORMS_OPT_DOWNLOAD_DESC">JFORMS_OPT_DOWNLOAD</option>
+							<option value="modal" description="JFORMS_OPT_MODAL_DESC">JFORMS_OPT_MODAL</option>
+							<option value="_blank"  description="JFORMS_OPT_BLANK_DESC">JFORMS_OPT_BLANK</option>
+							<option value="_self" description="JFORMS_OPT_SELF_DESC">JFORMS_OPT_SELF</option>
+							<option value="_parent" description="JFORMS_OPT_PARENT_DESC">JFORMS_OPT_PARENT</option>
+							<option value="_top" description="JFORMS_OPT_TOP_DESC">JFORMS_OPT_TOP</option>
+						</fi>
+						
+						<fi name="actions"
+								alias="actions"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_ACTIONS"
+								description="JFORMS_FIELD_FIELDS_ACTIONS_DESC"
+								class="condRule[show,.jform_fields_type,ckfile]"
+								type="ckcheckboxes">
+							<option value="delete" >JFORMS_OPT_DELETE</option>
+							<option value="remove" >JFORMS_OPT_REMOVE</option>
+							<option value="thumbs" >JFORMS_OPT_THUMBS_ONLY</option>
+							<option value="trash" >JFORMS_OPT_TRASH</option>
+						</fi>
+						
+						<fi name="preview"
+								alias="preview"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_PREVIEW"
+								description="JFORMS_FIELD_FIELDS_PREVIEW_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="1"
+								type="ckradio"
+								class="condRule[show,.jform_fields_type,ckfile|ckmedia]">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>
+
+						<fi name="width"
+								alias="width"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_WIDTH"
+								description="JFORMS_FIELD_FIELDS_WIDTH_DESC"
+								class="condRule[show,.jform_fields_type,ckeditor|cktextarea|ckfile|ckmedia]"
+								type="cktext"/>
+								
+						<fi name="height"
+								alias="height"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_HEIGHT"
+								description="JFORMS_FIELD_FIELDS_HEIGHT_DESC"
+								class="condRule[show,.jform_fields_type,ckeditor|cktextarea|ckfile|ckmedia]"
+								type="cktext"/>
+								
+						<fi name="thumbnails_processing"
+							alias="thumbnails_processing"
+							groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+							label="JFORMS_FIELD_FIELDS_THUMBNAILS_PROCESSING"
+							class="condRule[show,.jform_fields_type,ckfile]"
+							type="ckspacer"/>
+
+						<fi name="thumbnails"
+								alias="thumbnails"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_THUMBNAILS"
+								description="JFORMS_FIELD_FIELDS_THUMBNAILS_DESC"
+								filter="STRING"
+								containerClass="condRule[show,.jform_fields_type,ckfile]"
+								fieldsToRender="width,height"
+								cloneable="true"
+								sortable="true"
+								layout="plain"
+								type="ckrepeatable">
+								
+							<fset name="fields.thumbnails">
+								
+								<fi name="width"
+										alias="width"
+										groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+										label="JFORMS_FIELD_FIELDS_WIDTH"
+										description="JFORMS_FIELD_FIELDS_WIDTH_DESC"
+										type="cktext"/>
+										
+								<fi name="height"
+										alias="height"
+										groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+										label="JFORMS_FIELD_FIELDS_HEIGHT"
+										description="JFORMS_FIELD_FIELDS_HEIGHT_DESC"
+										type="cktext"/>
+							</fset>
+						</fi>					
+						<!-- CKFILE -->
+						
+						<fi name="hide_none"
+								alias="hide_none"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_HIDE_NONE"
+								description="JFORMS_FIELD_FIELDS_HIDE_NONE_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="1"
+								type="ckradio"
+								class="condRule[show,.jform_fields_type,ckfilelist]">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>	
+						
+						<fi name="hide_default"
+								alias="hide_default"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_HIDE_DEFAULT"
+								description="JFORMS_FIELD_FIELDS_HIDE_DEFAULT_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="1"
+								type="ckradio"
+								class="condRule[show,.jform_fields_type,ckfilelist]">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>									
+
+						<fi name="layout"
+								alias="layout"
+								label="JFORMS_FIELD_FIELDS_LAYOUT"
+								description="JFORMS_FIELD_FIELDS_LAYOUT_DESC"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								default="horizontal"
+								class="condRule[show,.jform_fields_type,ckcheckboxes]"
+								type="cklist">
+							<option value="horizontal">JFORMS_OPT_HORIZONTAL</option>
+							<option value="vertical">JFORMS_OPT_VERTICAL</option>
+						</fi>
+						
+						<fi name="markerType"
+								alias="markerType"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_MARKERTYPE"
+								description="JFORMS_FIELD_FIELDS_MARKERTYPE_DESC"
+								default="default"
+								class="condRule[show,.jform_fields_type,ckaddresspicker]"
+								type="cklist">
+							<option value="default">JFORMS_OPT_DEFAULT</option>
+							<option value="labeled">JFORMS_OPT_LABELED</option>
+							<option value="styled">JFORMS_OPT_STYLED</option>
+						</fi>
+								
+						<fi name="minuteStep"
+								alias="minuteStep"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_MINUTESTEP"
+								description="JFORMS_FIELD_FIELDS_MINUTESTEP_DESC"
+								filter="INT"
+								default="5"
+								class="input-mini condRule[show,.jform_fields_type,ckdatetimepicker|cktimepicker] validate[custom[numeric]]"
+								type="cktext"/>
+								
+						<fi name="min"
+								alias="min"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_MIN"
+								description="JFORMS_FIELD_FIELDS_MIN_DESC"
+								filter="INT"
+								class="condRule[show,.jform_fields_type,cknumber|cktags|ckrange] validate[custom[numeric]]"
+								type="cktext"/>
+								
+						<fi name="max"
+								alias="max"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_MAX"
+								description="JFORMS_FIELD_FIELDS_MAX_DESC"
+								filter="INT"
+								class="condRule[show,.jform_fields_type,cknumber|cktags|ckrange] validate[custom[numeric]]"
+								type="cktext"/>
+												
+						<fi name="mode_ckaddresspicker"
+								alias="mode_ckaddresspicker"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_MODE_ADDRESSPICKER"
+								description="JFORMS_FIELD_FIELDS_MODE_ADDRESSPICKER_DESC"
+								default="modal"
+								class="condRule[show,.jform_fields_type,ckaddresspicker]"
+								type="cklist">
+							<option value="modal" description="JFORMS_OPT_MODAL_DESC">JFORMS_OPT_MODAL</option>
+							<option value="plain"  description="JFORMS_OPT_PLAIN_DESC">JFORMS_OPT_PLAIN</option>
+						</fi>
+						
+						<fi name="multiple"
+								alias="multiple"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_MULTIPLE"
+								description="JFORMS_FIELD_FIELDS_MULTIPLE_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="0"
+								type="ckradio"
+								class="condRule[show,.jform_fields_type,ckcontentlanguage|ckusergrouplist|ckcombo|cklist]">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>
+							
+						<fi name="nullLabel"
+								alias="nullLabel"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								multilanguage="true"
+								multilanguageLayout="tabs"
+								label="JFORMS_FIELD_FIELDS_NULLLABEL"
+								description="JFORMS_FIELD_FIELDS_NULLLABEL_DESC"
+								containerClass="condRule[show,.jform_fields_type,ckcombo|cklist]"
+								filter="STRING"
+								type="cktext"/>
+								
+						<fi name="placeholder"
+								alias="placeholder"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_BASIC"
+								multilanguage="true"
+								multilanguageLayout="tabs"
+								label="JFORMS_FIELD_FIELDS_PLACEHOLDER"
+								description="JFORMS_FIELD_FIELDS_PLACEHOLDER_DESC"
+								filter="STRING"
+								type="cktext"/>
+						
+						<fi name="printable"
+								alias="printable"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_BASIC"
+								label="JFORMS_FIELD_FIELDS_PRINTABLE"
+								description="JFORMS_FIELD_FIELDS_PRINTABLE_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="1"
+								type="ckradio">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>
+
+						<fi name="pubkey"
+								alias="pubkey"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_PUBKEY"
+								description="JFORMS_FIELD_FIELDS_PUBKEY_DESC"
+								filter="STRING"
+								class="condRule[show,.jform_fields_type,ckcaptcha] input-xxlarge"
+								type="cktext"/>
+								
+						<fi name="privkey"
+								alias="pubkey"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_PRIVKEY"
+								description="JFORMS_FIELD_FIELDS_PRIVKEY_DESC"
+								filter="STRING"
+								class="condRule[show,.jform_fields_type,ckcaptcha] input-xxlarge"
+								type="cktext"/>	
+						
+						<fi name="query"
+								alias="query"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_QUERY"
+								description="JFORMS_FIELD_FIELDS_QUERY_DESC"
+								class="input-xxlarge condRule[show,.jform_fields_type,cksql]"
+								filter="RAW"
+								type="cktext"/>					
+						
+						<fi name="readonly"
+								alias="readonly"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_BASIC"
+								label="JFORMS_FIELD_FIELDS_READONLY"
+								description="JFORMS_FIELD_FIELDS_READONLY_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="0"
+								type="ckradio">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>	
+						
+						<fi name="disabled"
+								alias="disabled"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_BASIC"
+								label="JFORMS_FIELD_FIELDS_DISABLED"
+								description="JFORMS_FIELD_FIELDS_DISABLED_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="0"
+								type="ckradio">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>			
+						
+						<fi name="required"
+								alias="required"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_BASIC"
+								label="JFORMS_FIELD_FIELDS_REQUIRED"
+								description="JFORMS_FIELD_FIELDS_REQUIRED_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="0"
+								type="ckradio">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>
+
+						<fi name="newRequired"
+								alias="newRequired"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_ACCESS"
+								label="JFORMS_FIELD_FIELDS_NEWREQUIRED"
+								description="JFORMS_FIELD_FIELDS_NEWREQUIRED_DESC"
+								multiple="true"
+								containerClass="span6"
+								type="ckusergrouplist"/>
+								
+						<fi name="editRequired"
+								alias="editRequired"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_ACCESS"
+								label="JFORMS_FIELD_FIELDS_EDITREQUIRED"
+								description="JFORMS_FIELD_FIELDS_EDITREQUIRED_DESC"
+								multiple="true"
+								containerClass="span6"
+								type="ckusergrouplist"/>					
+
+						<fi name="limit"
+								alias="limit"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_LIMIT"
+								description="JFORMS_FIELD_FIELDS_LIMIT_DESC"
+								filter="INT"
+								default="10"
+								class="condRule[show,.jform_fields_type,ckrepeatable] input-mini"
+								type="cktext"/>
+								
+						<fi name="repeatable_fields"
+								alias="repeatable_fields"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_REPEATABLE_FIELDS"
+								description="JFORMS_FIELD_FIELDS_REPEATABLE_FIELDS_DESC"
+								type="cklist"
+								size="1"
+								filter="STRING"
+								ui="multiselect"
+								class="condRule[show,.jform_fields_type,ckrepeatable]" 
+								nullLabel="JFORMS_FIELD_FIELDSET_NULL"
+								/>
+								
+						<fi name="separator"
+								alias="separator"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_SEPARATOR"
+								description="JFORMS_FIELD_FIELDS_SEPARATOR_DESC"
+								filter="STRING"
+								default=" | "
+								class="condRule[show,.jform_fields_type,ckdatetimepicker] input-mini"
+								type="cktext"/>
+								
+						<fi name="separator_cktags"
+								alias="separator_cktags"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_SEPARATOR_CKTAGS"
+								description="JFORMS_FIELD_FIELDS_SEPARATOR_CKTAGS_DESC"
+								filter="STRING"
+								default=","
+								class="condRule[show,.jform_fields_type,cktags] input-mini"
+								type="cktext"/>
+								
+						<fi name="capitalizeFirstLetter"
+								alias="capitalizeFirstLetter"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_CAPITALIZEFIRSTLETTER"
+								description="JFORMS_FIELD_FIELDS_CAPITALIZEFIRSTLETTER_DESC"
+								class="condRule[show,.jform_fields_type,cktags] input-mini"
+								filter="BOOL"
+								listKey="value"
+								default="1"
+								type="ckradio">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>	
+		
+						<fi name="spacer_content"
+								alias="spacer_content"
+								label="JFORMS_FIELD_FIELDS_SPACER_CONTENT"
+								description="JFORMS_FIELD_FIELDS_SPACER_CONTENT_DESC"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								filter="RAW"
+								containerClass="condRule[show,.jform_fields_type,ckspacer]"
+								width=" "
+								multilanguage="true"
+								multilanguageLayout="tabs"
+								type="ckeditor"/>
+				
+						<fi name="step"
+								alias="step"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_STEP"
+								description="JFORMS_FIELD_FIELDS_STEP_DESC"
+								filter="INT"
+								class="condRule[show,.jform_fields_type,cknumber|ckrange] validate[custom[numeric]]"
+								type="cktext"/>
+								
+						<fi name="selectors"
+								alias="selectors"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_BASIC"
+								label="JFORMS_FIELD_FIELDS_SELECTORS"
+								description="JFORMS_FIELD_FIELDS_SELECTORS_DESC"
+								filter="STRING"
+								fieldsToRender="attribute,value"
+								cloneable="true"
+								sortable="true"
+								layout="plain"
+								type="ckrepeatable">
+								
+							<fset name="fields.selector">
+								
+								<fi name="attribute"
+										alias="attribute"
+										label="JFORMS_FIELD_FIELDS_ATTRIBUTE"
+										description="JFORMS_FIELD_FIELDS_ATTRIBUTE_DESC"
+										filter="STRING"
+										type="cktext"/>
+										
+								<fi name="value"
+										alias="value"
+										label="JFORMS_FIELD_FIELDS_VALUE"
+										description="JFORMS_FIELD_FIELDS_VALUE_DESC"
+										filter="STRING"
+										class="input-xxlarge"
+										type="cktext"/>
+							</fset>
+						</fi>						
+						
+						<fi name="showDaysNotInMonth"
+								alias="showDaysNotInMonth"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_SHOWDAYSNOTINMONTH"
+								description="JFORMS_FIELD_FIELDS_SHOWDAYSNOTINMONTH_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="0"
+								class="condRule[show,.jform_fields_type,ckdatetimepicker]"
+								type="ckradio">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>
+						
+						<fi name="showDisabledTimes"
+								alias="showDisabledTimes"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_SHOWDISABLEDTIMES"
+								description="JFORMS_FIELD_FIELDS_SHOWDISABLEDTIMES_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="0"
+								class="condRule[show,.jform_fields_type,ckdatetimepicker]"
+								type="ckradio">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>					
+
+						<fi name="size"
+								alias="size"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_SIZE"
+								description="JFORMS_FIELD_FIELDS_SIZE_DESC"
+								class="condRule[show,.jform_fields_type,ckcombo|cklist|ckusergrouplist]"
+								filter="STRING"
+								type="cktext"/>
+						
+						<fi name="stripext"
+								alias="stripext"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_STRIPEXT"
+								description="JFORMS_FIELD_FIELDS_STRIPEXT_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="1"
+								type="ckradio"
+								class="condRule[show,.jform_fields_type,ckfilelist]">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>						
+						
+						<fi name="style"
+								alias="style"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_BASIC"
+								label="JFORMS_FIELD_FIELDS_STYLE"
+								description="JFORMS_FIELD_FIELDS_STYLE_DESC"
+								filter="STRING"
+								class="input-xxlarge"
+								type="cktext"/>
+
+						<fi name="theme"
+								alias="theme"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_THEME"
+								description="JFORMS_FIELD_FIELDS_THEME_DESC"
+								default="red"
+								class="condRule[show,.jform_fields_type,ckcaptcha]"
+								nullLabel="JFORMS_FIELD_FIELDS_THEME_NULL"
+								type="cklist">
+							<option value="red">JFORMS_OPT_RED</option>
+							<option value="white">JFORMS_OPT_WHITE</option>
+							<option value="clean">JFORMS_OPT_CLEAN</option>
+							<option value="blackglass">JFORMS_OPT_BLACKGLASS</option>
+						</fi>								
+								
+						<fi name="time"
+								alias="time"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_TIME"
+								description="JFORMS_FIELD_FIELDS_TIME_DESC"
+								class="condRule[show,.jform_fields_type,cktimepicker]"
+								format="U"
+								uiFormat="H:i"
+								type="cktimepicker"/>
+								
+						<fi name="ui"
+								alias="ui"
+								label="JFORMS_FIELD_FIELDS_UI"
+								description="JFORMS_FIELD_FIELDS_UI_DESC"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								default="default"
+								class="ui_select condRule[show,.jform_fields_type,ckcombo|cklist]"
+								type="cklist">
+							<option value="default" color="">JFORMS_OPT_DEFAULT</option>
+							<option value="chosen">JFORMS_OPT_CHOSEN</option>
+							<option value="multiselect">JFORMS_OPT_MULTISELECT</option>
+						</fi>
+						
+						<fi name="ui_direction"
+								alias="ui_direction"
+								label="JFORMS_FIELD_FIELDS_UI_DIRECTION"
+								description="JFORMS_FIELD_FIELDS_UI_DIRECTION_DESC"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								default="horizontal"
+								class="condRule[show,.jform_fields_type,ckcombo|cklist] condRule[show,.ui_select,multiselect]"
+								type="cklist">
+							<option value="horizontal">JFORMS_OPT_HORIZONTAL</option>
+							<option value="vertical">JFORMS_OPT_VERTICAL</option>
+						</fi>
+
+						<fi name="ui_allowCustomValues"
+								alias="ui_allowCustomValues"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_UI_ALLOWCUSTOMVALUES"
+								description="JFORMS_FIELD_FIELDS_UI_ALLOWCUSTOMVALUES_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="0"
+								class="condRule[show,.jform_fields_type,ckcombo|cklist] condRule[show,.ui_select,multiselect]"
+								type="ckradio">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>
+						
+						<fi name="ui_hideSelect"
+								alias="ui_hideSelect"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_UI_HIDESELECT"
+								description="JFORMS_FIELD_FIELDS_UI_HIDESELECT_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="0"
+								class="condRule[show,.jform_fields_type,ckcombo|cklist] condRule[show,.ui_select,multiselect]"
+								type="ckradio">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>
+						
+						<fi name="value"
+								alias="value"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_VALUE"
+								description="JFORMS_FIELD_FIELDS_VALUE_DESC"
+								filter="STRING"
+								class="condRule[show,.jform_fields_type,ckcheckbox|ckmeter]"
+								type="cktext"/>
+	
+						<fi name="key_field"
+								alias="key_field"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_KEY_FIELD"
+								description="JFORMS_FIELD_FIELDS_KEY_FIELD_DESC"
+								class="condRule[show,.jform_fields_type,cksql]"
+								type="cktext"/>								
+								
+						<fi name="value_field"
+								alias="value_field"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_VALUE_FIELD"
+								description="JFORMS_FIELD_FIELDS_VALUE_FIELD_DESC"
+								filter="STRING"
+								class="condRule[show,.jform_fields_type,cksql]"
+								type="cktext"/>
+								
+						<fi name="translate"
+								alias="translate"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_TRANSLATE"
+								description="JFORMS_FIELD_FIELDS_TRANSLATE_DESC"
+								filter="BOOL"
+								listKey="value"
+								default="0"
+								class="condRule[show,.jform_fields_type,cksql]"
+								type="ckradio">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>								
+								
+						<fi name="options"
+								alias="options"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_OPTIONS"
+								label="JFORMS_FIELD_FIELDS_OPTIONS"
+								description="JFORMS_FIELD_FIELDS_OPTIONS_DESC"
+								filter="STRING"
+								fieldsToRender="label,value"
+								cloneable="true"
+								sortable="true"
+								containerClass="condRule[show,.jform_fields_type,cklist|ckcombo|ckcheckboxes|ckradio]"
+								type="ckrepeatable">
+								
+							<fset name="fields.option">
+								
+									<fi name="label"
+											alias="label"
+											label="JFORMS_FIELD_FIELDS_LABEL"
+											description="JFORMS_FIELD_FIELDS_LABEL_DESC"
+											multilanguage="true"
+											multilanguageLayout="tabs"
+											filter="STRING"
+											type="cktext"/>
+											
+									<fi name="value"
+											alias="value"
+											label="JFORMS_FIELD_FIELDS_VALUE"
+											description="JFORMS_FIELD_FIELDS_VALUE_DESC"
+											filter="STRING"
+											type="cktext"/>											
+
+									<fi name="groupBy"
+											alias="groupBy"
+											label="JFORMS_FIELD_GROUPBY"
+											description="JFORMS_FIELD_FIELDS_GROUPBY_DESC"
+											multilanguage="true"
+											multilanguageLayout="tabs"
+											filter="STRING"
+											type="cktext"/>
+											
+									<fi name="class"
+											alias="class"
+											label="JFORMS_FIELD_FIELDS_CLASS"
+											description="JFORMS_FIELD_FIELDS_CLASS_DESC"
+											filter="STRING"
+											type="cktext"/>
+
+									<fi name="description"
+											alias="description"
+											label="JFORMS_FIELD_FIELDS_DESCRIPTION"
+											description="JFORMS_FIELD_FIELDS_DESCRIPTION_DESC"
+											filter="RAW"
+											type="cktextarea"/>
+											
+									<fi name="disabled"
+											alias="disabled"
+											label="JFORMS_FIELD_FIELDS_DISABLED"
+											description="JFORMS_FIELD_FIELDS_DISABLED_DESC"
+											filter="BOOL"
+											listKey="value"
+											default="0"
+											type="ckradio">
+										<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+										<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+									</fi>
+									
+									<fi name="color"
+											alias="color"
+											label="JFORMS_FIELD_FIELDS_COLOR"
+											description="JFORMS_FIELD_FIELDS_COLOR_DESC"
+											default="default"
+											class="condRule[show,.jform_fields_type,ckradio]"
+											type="ckradio">
+										<option value="default" color="">JFORMS_OPT_DEFAULT</option>
+										<option value="primary" color="primary">JFORMS_OPT_PRIMARY</option>
+										<option value="success" color="success">JFORMS_OPT_SUCCESS</option>
+										<option value="warning" color="warning">JFORMS_OPT_WARNING</option>
+										<option value="danger" color="danger">JFORMS_OPT_DANGER</option>
+										<option value="info" color="info">JFORMS_OPT_INFO</option>
+										<option value="inverse" color="inverse">JFORMS_OPT_INVERSE</option>
+									</fi>
+									
+									<fi name="icon"
+											alias="icon"
+											label="JFORMS_FIELD_FIELDS_ICON"
+											description="JFORMS_FIELD_FIELDS_ICON_DESC"
+											default="default"
+											nullLabel="JFORMS_FIELD_FIELDS_ICON_NULL"
+											type="cklist">
+										<option value="icon-address" icon="icon-address">icon-address</option>
+										<option value="icon-arrow-down" icon="icon-arrow-down">icon-arrow-down</option>
+										<option value="icon-arrow-down-2" icon="icon-arrow-down-2">icon-arrow-down-2</option>
+										<option value="icon-arrow-down-3" icon="icon-arrow-down-3">icon-arrow-down-3</option>
+										<option value="icon-arrow-first" icon="icon-arrow-first">icon-arrow-first</option>
+										<option value="icon-arrow-last" icon="icon-arrow-last">icon-arrow-last</option>
+										<option value="icon-arrow-left" icon="icon-arrow-left">icon-arrow-left</option>
+										<option value="icon-arrow-left-2" icon="icon-arrow-left-2">icon-arrow-left-2</option>
+										<option value="icon-arrow-left-3" icon="icon-arrow-left-3">icon-arrow-left-3</option>
+										<option value="icon-arrow-right" icon="icon-arrow-right">icon-arrow-right</option>
+										<option value="icon-arrow-right-2" icon="icon-arrow-right-2">icon-arrow-right-2</option>
+										<option value="icon-arrow-right-3" icon="icon-arrow-right-3">icon-arrow-right-3</option>
+										<option value="icon-arrow-up" icon="icon-arrow-up">icon-arrow-up</option>
+										<option value="icon-arrow-up-2" icon="icon-arrow-up-2">icon-arrow-up-2</option>
+										<option value="icon-arrow-up-3" icon="icon-arrow-up-3">icon-arrow-up-3</option>
+										<option value="icon-bars" icon="icon-bars">icon-bars</option>
+										<option value="icon-basket" icon="icon-basket">icon-basket</option>
+										<option value="icon-bookmark" icon="icon-bookmark">icon-bookmark</option>
+										<option value="icon-box-add" icon="icon-box-add">icon-box-add</option>
+										<option value="icon-box-remove" icon="icon-box-remove">icon-box-remove</option>
+										<option value="icon-briefcase" icon="icon-briefcase">icon-briefcase</option>
+										<option value="icon-broadcast" icon="icon-broadcast">icon-broadcast</option>
+										<option value="icon-brush" icon="icon-brush">icon-brush</option>
+										<option value="icon-calendar" icon="icon-calendar">icon-calendar</option>
+										<option value="icon-calendar-2" icon="icon-calendar-2">icon-calendar-2</option>
+										<option value="icon-camera" icon="icon-camera">icon-camera</option>
+										<option value="icon-camera-2" icon="icon-camera-2">icon-camera-2</option>
+										<option value="icon-cancel" icon="icon-cancel">icon-cancel</option>
+										<option value="icon-cancel-2" icon="icon-cancel-2">icon-cancel-2</option>
+										<option value="icon-cart" icon="icon-cart">icon-cart</option>
+										<option value="icon-chart" icon="icon-chart">icon-chart</option>
+										<option value="icon-checkbox" icon="icon-checkbox">icon-checkbox</option>
+										<option value="icon-checkbox-partial" icon="icon-checkbox-partial">icon-checkbox-partial</option>
+										<option value="icon-checkbox-unchecked" icon="icon-checkbox-unchecked">icon-checkbox-unchecked</option>
+										<option value="icon-checkmark" icon="icon-checkmark">icon-checkmark</option>
+										<option value="icon-clock" icon="icon-clock">icon-clock</option>
+										<option value="icon-cog" icon="icon-cog">icon-cog</option>
+										<option value="icon-cogs" icon="icon-cogs">icon-cogs</option>
+										<option value="icon-color-palette" icon="icon-color-palette">icon-color-palette</option>
+										<option value="icon-comments" icon="icon-comments">icon-comments</option>
+										<option value="icon-comments-2" icon="icon-comments-2">icon-comments-2</option>
+										<option value="icon-compass" icon="icon-compass">icon-compass</option>
+										<option value="icon-contract" icon="icon-contract">icon-contract</option>
+										<option value="icon-contract-2" icon="icon-contract-2">icon-contract-2</option>
+										<option value="icon-copy" icon="icon-copy">icon-copy</option>
+										<option value="icon-cube" icon="icon-cube">icon-cube</option>
+										<option value="icon-dashboard" icon="icon-dashboard">icon-dashboard</option>
+										<option value="icon-database" icon="icon-database">icon-database</option>
+										<option value="icon-download" icon="icon-download">icon-download</option>
+										<option value="icon-drawer" icon="icon-drawer">icon-drawer</option>
+										<option value="icon-drawer-2" icon="icon-drawer-2">icon-drawer-2</option>
+										<option value="icon-equalizer" icon="icon-equalizer">icon-equalizer</option>
+										<option value="icon-expand" icon="icon-expand">icon-expand</option>
+										<option value="icon-expand-2" icon="icon-expand-2">icon-expand-2</option>
+										<option value="icon-eye" icon="icon-eye">icon-eye</option>
+										<option value="icon-feed" icon="icon-feed">icon-feed</option>
+										<option value="icon-file" icon="icon-file">icon-file</option>
+										<option value="icon-file-add" icon="icon-file-add">icon-file-add</option>
+										<option value="icon-file-remove" icon="icon-file-remove">icon-file-remove</option>
+										<option value="icon-filter" icon="icon-filter">icon-filter</option>
+										<option value="icon-first" icon="icon-first">icon-first</option>
+										<option value="icon-flag" icon="icon-flag">icon-flag</option>
+										<option value="icon-flag-2" icon="icon-flag-2">icon-flag-2</option>
+										<option value="icon-folder-close" icon="icon-folder-close">icon-folder-close</option>
+										<option value="icon-folder-open" icon="icon-folder-open">icon-folder-open</option>
+										<option value="icon-grid-view" icon="icon-grid-view">icon-grid-view</option>
+										<option value="icon-grid-view-2" icon="icon-grid-view-2">icon-grid-view-2</option>
+										<option value="icon-health" icon="icon-health">icon-health</option>
+										<option value="icon-home" icon="icon-home">icon-home</option>
+										<option value="icon-key" icon="icon-key">icon-key</option>
+										<option value="icon-lamp" icon="icon-lamp">icon-lamp</option>
+										<option value="icon-last" icon="icon-last">icon-last</option>
+										<option value="icon-lightning" icon="icon-lightning">icon-lightning</option>
+										<option value="icon-list" icon="icon-list">icon-list</option>
+										<option value="icon-location" icon="icon-location">icon-location</option>
+										<option value="icon-lock" icon="icon-lock">icon-lock</option>
+										<option value="icon-loop" icon="icon-loop">icon-loop</option>
+										<option value="icon-mail" icon="icon-mail">icon-mail</option>
+										<option value="icon-mail-2" icon="icon-mail-2">icon-mail-2</option>
+										<option value="icon-menu" icon="icon-menu">icon-menu</option>
+										<option value="icon-menu-2" icon="icon-menu-2">icon-menu-2</option>
+										<option value="icon-minus" icon="icon-minus">icon-minus</option>
+										<option value="icon-minus-2" icon="icon-minus-2">icon-minus-2</option>
+										<option value="icon-mobile" icon="icon-mobile">icon-mobile</option>
+										<option value="icon-move" icon="icon-move">icon-move</option>
+										<option value="icon-music" icon="icon-music">icon-music</option>
+										<option value="icon-next" icon="icon-next">icon-next</option>
+										<option value="icon-out" icon="icon-out">icon-out</option>
+										<option value="icon-out-2" icon="icon-out-2">icon-out-2</option>
+										<option value="icon-pencil" icon="icon-pencil">icon-pencil</option>
+										<option value="icon-pencil-2" icon="icon-pencil-2">icon-pencil-2</option>
+										<option value="icon-picture" icon="icon-picture">icon-picture</option>
+										<option value="icon-pictures" icon="icon-pictures">icon-pictures</option>
+										<option value="icon-pie" icon="icon-pie">icon-pie</option>
+										<option value="icon-pin" icon="icon-pin">icon-pin</option>
+										<option value="icon-play" icon="icon-play">icon-play</option>
+										<option value="icon-play-2" icon="icon-play-2">icon-play-2</option>
+										<option value="icon-plus" icon="icon-plus">icon-plus</option>
+										<option value="icon-plus-2" icon="icon-plus-2">icon-plus-2</option>
+										<option value="icon-power-cord" icon="icon-power-cord">icon-power-cord</option>
+										<option value="icon-previous" icon="icon-previous">icon-previous</option>
+										<option value="icon-printer" icon="icon-printer">icon-printer</option>
+										<option value="icon-puzzle" icon="icon-puzzle">icon-puzzle</option>
+										<option value="icon-question-sign" icon="icon-question-sign">icon-question-sign</option>
+										<option value="icon-quote" icon="icon-quote">icon-quote</option>
+										<option value="icon-quote-2" icon="icon-quote-2">icon-quote-2</option>
+										<option value="icon-redo" icon="icon-redo">icon-redo</option>
+										<option value="icon-refresh" icon="icon-refresh">icon-refresh</option>
+										<option value="icon-screen" icon="icon-screen">icon-screen</option>
+										<option value="icon-search" icon="icon-search">icon-search</option>
+										<option value="icon-shuffle" icon="icon-shuffle">icon-shuffle</option>
+										<option value="icon-star" icon="icon-star">icon-star</option>
+										<option value="icon-star-2" icon="icon-star-2">icon-star-2</option>
+										<option value="icon-star-empty" icon="icon-star-empty">icon-star-empty</option>
+										<option value="icon-support" icon="icon-support">icon-support</option>
+										<option value="icon-tablet" icon="icon-tablet">icon-tablet</option>
+										<option value="icon-thumbs-down" icon="icon-thumbs-down">icon-thumbs-down</option>
+										<option value="icon-thumbs-up" icon="icon-thumbs-up">icon-thumbs-up</option>
+										<option value="icon-tools" icon="icon-tools">icon-tools</option>
+										<option value="icon-trash" icon="icon-trash">icon-trash</option>
+										<option value="icon-undo" icon="icon-undo">icon-undo</option>
+										<option value="icon-upload" icon="icon-upload">icon-upload</option>
+										<option value="icon-user" icon="icon-user">icon-user</option>
+										<option value="icon-users" icon="icon-users">icon-users</option>
+										<option value="icon-vcard" icon="icon-vcard">icon-vcard</option>
+										<option value="icon-wand" icon="icon-wand">icon-wand</option>
+										<option value="icon-warning" icon="icon-warning">icon-warning</option>
+										<option value="icon-wrench" icon="icon-wrench">icon-wrench</option>
+										<option value="icon-zoom-in" icon="icon-zoom-in">icon-zoom-in</option>
+										<option value="icon-zoom-out" icon="icon-zoom-out">icon-zoom-out</option>
+									</fi>
+							</fset>
+						</fi>
+						
+						<!-- VALIDATIONS FIELD -->
+						<fi name="client_side"
+								alias="client_side"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_VALIDATIONS"
+								label="JFORMS_FIELD_FIELDS_CLIENT_SIDE"
+								type="ckspacer"/>
+
+						<fi name="validate_js"
+								alias="validate_js"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_VALIDATIONS"
+								label="JFORMS_FIELD_FIELDS_VALIDATE_JS"
+								description="JFORMS_FIELD_FIELDS_VALIDATE_JS_DESC"
+								filter="STRING"
+								class="jform_fields_validate_js"
+								nullLabel="JFORMS_FIELD_FIELDS_VALIDATE_JS_NULL"
+								type="ckcombo">
+							<option value="colorcode" description="JFORMS_OPT_COLORCODE_DESC">colorcode</option>
+							<option value="creditcard" description="JFORMS_OPT_CREDITCARD_DESC">creditcard</option>
+							<option value="decimal2" description="JFORMS_OPT_DECIMAL2_DESC">decimal2</option>
+							<option value="decimal3to1" description="JFORMS_OPT_DECIMAL3TO1_DESC">decimal3to1</option>
+							<option value="decimal5to2" description="JFORMS_OPT_DECIMAL5TO2_DESC">decimal5to2</option>
+							<option value="decimal7to2" description="JFORMS_OPT_DECIMAL7TO2_DESC">decimal7to2</option>
+							<option value="decimal11to8" description="JFORMS_OPT_DECIMAL11TO8_DESC">decimal11to8</option>
+							<option value="decimal15to5" description="JFORMS_OPT_DECIMAL15TO5_DESC">decimal15to5</option>
+							<option value="decimalcomma" description="JFORMS_OPT_DECIMALCOMMA_DESC">decimalcomma</option>
+							<option value="digit" description="JFORMS_OPT_DIGIT_DESC">digit</option>
+							<option value="domain" description="JFORMS_OPT_DOMAIN_DESC">domain</option>
+							<option value="doublequote" description="JFORMS_OPT_DOUBLEQUOTE_DESC">doublequote</option>
+							<option value="email" description="JFORMS_OPT_EMAIL_DESC">email</option>
+							<option value="file" description="JFORMS_OPT_FILE_DESC">file</option>
+							<option value="ip" description="JFORMS_OPT_IP_DESC">ip</option>
+							<option value="length2" description="JFORMS_OPT_LENGTH2_DESC">length2</option>
+							<option value="length4" description="JFORMS_OPT_LENGTH4_DESC">length4</option>
+							<option value="length8" description="JFORMS_OPT_LENGTH8_DESC">length8</option>
+							<option value="length16" description="JFORMS_OPT_LENGTH16_DESC">length16</option>
+							<option value="length32" description="JFORMS_OPT_LENGTH32_DESC">length32</option>
+							<option value="length64" description="JFORMS_OPT_LENGTH64_DESC">length64</option>
+							<option value="numeric" description="JFORMS_OPT_NUMERIC_DESC">numeric</option>
+							<option value="password" description="JFORMS_OPT_PASSWORD_DESC">password</option>
+							<option value="percent" description="JFORMS_OPT_PERCENT_DESC">percent</option>
+							<option value="phone" description="JFORMS_OPT_PHONE_DESC">phone</option>
+							<option value="positivedecimal" description="JFORMS_OPT_POSITIVEDECIMAL_DESC">positivedecimal</option>
+							<option value="quote" description="JFORMS_OPT_QUOTE_DESC">quote</option>
+							<option value="regexp" description="JFORMS_OPT_REGEXP_DESC">regexp</option>
+							<option value="time" description="JFORMS_OPT_TIME_DESC">time</option>
+							<option value="username" description="JFORMS_OPT_USERNAME_DESC">username</option>
+						</fi>
+								
+						<fi name="server_side"
+								alias="server_side"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_VALIDATIONS"
+								label="JFORMS_FIELD_FIELDS_SERVER_SIDE"
+								type="ckspacer"/>
+								
+						<fi name="filter"
+								alias="filter"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_VALIDATIONS"
+								label="JFORMS_FIELD_FIELDS_FILTER"
+								description="JFORMS_FIELD_FIELDS_FILTER_DESC"
+								default="STRING"
+								filter="STRING"
+								class="jform_fields_filter"
+								nullLabel="JFORMS_FIELD_FIELDS_FILTER_NULL"
+								type="ckcombo">
+							<option value="ALNUM" description="JFORMS_OPT_ALNUM_DESC">JFORMS_OPT_ALNUM</option>
+							<option value="ARRAY" description="JFORMS_OPT_ARRAY_DESC">JFORMS_OPT_ARRAY</option>
+							<option value="BASE64" description="JFORMS_OPT_BASE64_DESC">JFORMS_OPT_BASE64</option>
+							<option value="BOOLEAN" description="JFORMS_OPT_BOOLEAN_DESC">JFORMS_OPT_BOOLEAN</option>
+							<option value="CMD" description="JFORMS_OPT_CMD_DESC">JFORMS_OPT_CMD</option>
+				<!--		<option value="CUSTOM" description="JFORMS_OPT_CUSTOM_DESC">JFORMS_OPT_CUSTOM</option> -->
+							<option value="FLOAT" description="JFORMS_OPT_FLOAT_DESC">JFORMS_OPT_FLOAT</option>
+							<option value="INT" description="JFORMS_OPT_INT_DESC">JFORMS_OPT_INT</option>
+							<option value="PATH" description="JFORMS_OPT_PATH_DESC">JFORMS_OPT_PATH</option>
+							<option value="RAW" description="JFORMS_OPT_RAW_DESC">JFORMS_OPT_RAW</option>
+							<option value="SAFEHTML" description="JFORMS_OPT_SAFEHTML_DESC">JFORMS_OPT_SAFEHTML</option>
+							<option value="STRING" description="JFORMS_OPT_STRING_DESC">JFORMS_OPT_STRING</option>
+							<option value="TEL" description="JFORMS_OPT_TEL_DESC">JFORMS_OPT_TEL</option>
+							<option value="TRIM" description="JFORMS_OPT_TRIM_DESC">JFORMS_OPT_TRIM</option>
+							<option value="UINT" description="JFORMS_OPT_UINT_DESC">JFORMS_OPT_UINT</option>
+							<option value="UNKNOWN" description="JFORMS_OPT_UNKNOWN_DESC">JFORMS_OPT_UNKNOWN</option>
+							<option value="UNSET" description="JFORMS_OPT_UNSET_DESC">JFORMS_OPT_UNSET</option>
+							<option value="URL" description="JFORMS_OPT_URL_DESC">JFORMS_OPT_URL</option>
+							<option value="WORD" description="JFORMS_OPT_WORD_DESC">JFORMS_OPT_WORD</option>
+						</fi>
+						
+						<fi name="custom_filter"
+								alias="custom_filter"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_VALIDATIONS"
+								label="JFORMS_FIELD_FIELDS_CUSTOM_FILTER"
+								description="JFORMS_FIELD_FIELDS_CUSTOM_FILTER_DESC"
+								filter="RAW"
+								class="condRule[show,.jform_fields_filter,CUSTOM]"
+								type="cktextarea"/>						
+						
+						<fi name="validate"
+								alias="validate"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_VALIDATIONS"
+								label="JFORMS_FIELD_FIELDS_VALIDATE"
+								description="JFORMS_FIELD_FIELDS_VALIDATE_DESC"
+								filter="STRING"
+								class="jform_fields_validate condRule[select(colorcode),.jform_fields_type,ckcolor]"
+								nullLabel="JFORMS_FIELD_FIELDS_VALIDATE_NULL"
+								type="ckcombo">
+							<option value="colorcode" description="JFORMS_OPT_COLORCODE_DESC">colorcode</option>
+							<option value="creditcard" description="JFORMS_OPT_CREDITCARD_DESC">creditcard</option>
+							<option value="decimal2" description="JFORMS_OPT_DECIMAL2_DESC">decimal2</option>
+							<option value="decimal3to1" description="JFORMS_OPT_DECIMAL3TO1_DESC">decimal3to1</option>
+							<option value="decimal5to2" description="JFORMS_OPT_DECIMAL5TO2_DESC">decimal5to2</option>
+							<option value="decimal7to2" description="JFORMS_OPT_DECIMAL7TO2_DESC">decimal7to2</option>
+							<option value="decimal11to8" description="JFORMS_OPT_DECIMAL11TO8_DESC">decimal11to8</option>
+							<option value="decimal15to5" description="JFORMS_OPT_DECIMAL15TO5_DESC">decimal15to5</option>
+							<option value="decimalcomma" description="JFORMS_OPT_DECIMALCOMMA_DESC">decimalcomma</option>
+							<option value="digit" description="JFORMS_OPT_DIGIT_DESC">digit</option>
+							<option value="domain" description="JFORMS_OPT_DOMAIN_DESC">domain</option>
+							<option value="doublequote" description="JFORMS_OPT_DOUBLEQUOTE_DESC">doublequote</option>
+							<option value="email" description="JFORMS_OPT_EMAIL_DESC">email</option>
+							<option value="file" description="JFORMS_OPT_FILE_DESC">file</option>
+							<option value="ip" description="JFORMS_OPT_IP_DESC">ip</option>
+							<option value="length2" description="JFORMS_OPT_LENGTH2_DESC">length2</option>
+							<option value="length4" description="JFORMS_OPT_LENGTH4_DESC">length4</option>
+							<option value="length8" description="JFORMS_OPT_LENGTH8_DESC">length8</option>
+							<option value="length16" description="JFORMS_OPT_LENGTH16_DESC">length16</option>
+							<option value="length32" description="JFORMS_OPT_LENGTH32_DESC">length32</option>
+							<option value="length64" description="JFORMS_OPT_LENGTH64_DESC">length64</option>
+							<option value="numeric" description="JFORMS_OPT_NUMERIC_DESC">numeric</option>
+							<option value="password" description="JFORMS_OPT_PASSWORD_DESC">password</option>
+							<option value="percent" description="JFORMS_OPT_PERCENT_DESC">percent</option>
+							<option value="phone" description="JFORMS_OPT_PHONE_DESC">phone</option>
+							<option value="positivedecimal" description="JFORMS_OPT_POSITIVEDECIMAL_DESC">positivedecimal</option>
+							<option value="quote" description="JFORMS_OPT_QUOTE_DESC">quote</option>
+							<option value="regexp" description="JFORMS_OPT_REGEXP_DESC">regexp</option>
+							<option value="time" description="JFORMS_OPT_TIME_DESC">time</option>
+							<option value="username" description="JFORMS_OPT_USERNAME_DESC">username</option>
+						</fi>
+						
+						<fi name="regexp"
+								alias="regexp"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_VALIDATIONS"
+								label="JFORMS_FIELD_FIELDS_REGEXP"
+								description="JFORMS_FIELD_FIELDS_REGEXP_DESC"
+								filter="STRING"
+								class="condRule[show,.jform_fields_validate,regexp] condRule[show,.jform_fields_validate_js,regexp] span4"
+								type="cktext"/>
+								
+						<fi name="regexpModifiers"
+								alias="regexpModifiers"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_VALIDATIONS"
+								label="JFORMS_FIELD_FIELDS_REGEXPMODIFIERS"
+								description="JFORMS_FIELD_FIELDS_REGEXPMODIFIERS_DESC"
+								filter="STRING"
+								class="condRule[show,.jform_fields_validate,regexp] condRule[show,.jform_fields_validate_js,regexp] span4"
+								type="cktext"/>
+						
+						<fi name="regexpInvert"
+								alias="regexpInvert"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_VALIDATIONS"
+								label="JFORMS_FIELD_FIELDS_REGEXPINVERT"
+								description="JFORMS_FIELD_FIELDS_REGEXPINVERT_DESC"
+								filter="BOOL"
+								listKey="value"
+								class="condRule[show,.jform_fields_validate,regexp] condRule[show,.jform_fields_validate_js,regexp] span4"
+								default="0"
+								type="ckradio">
+							<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+							<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+						</fi>						
+						<!-- VALIDATIONS FIELD -->
+						
+						
+						<!-- CONDITIONAL RULES -->								
+						<fi name="condRules"
+								alias="condRules"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_CONDITIONAL_RULES"
+								label="JFORMS_FIELD_FIELDS_RULES"
+								description="JFORMS_FIELD_FIELDS_RULES_DESC"
+								filter="STRING"
+								layout="plain"
+								cloneable="true"
+								sortable="true"
+								type="ckrepeatable">
+								
+							<fset name="fields.rule">
+								
+								<fi name="task"
+										alias="task"
+										label="JFORMS_FIELD_FIELDS_CONDRULE_TASK"
+										description="JFORMS_FIELD_FIELDS_CONDRULE_TASK_DESC"
+										default="show"
+										class="input-medium"
+										type="cklist">
+									<option value="show">JFORMS_OPT_SHOW</option>
+									<option value="hide">JFORMS_OPT_HIDE</option>
+									<option value="slideUp">JFORMS_OPT_SLIDEUP</option>
+									<option value="slideDown">JFORMS_OPT_SLIDEDOWN</option>
+									<option value="select">JFORMS_OPT_SELECT</option>
+									<option value="deselect">JFORMS_OPT_DESELECT</option>
+								</fi>
+	
+							<fi name="task_values"
+									alias="task_values"
+									label="JFORMS_FIELD_FIELDS_CONDRULE_TASK_VALUES"
+									description="JFORMS_FIELD_FIELDS_CONDRULE_TASK_VALUES_DESC"
+									filter="STRING"
+									separator="|"
+									capitalizeFirstLetter="false"
+									type="cktags"/>
+
+							<fi name="trigger"
+									alias="trigger"
+									label="JFORMS_FIELD_FIELDS_TRIGGER"
+									description="JFORMS_FIELD_FIELDS_TRIGGER_DESC"
+									type="cklist"
+									size="1"
+									filter="STRING"
+									ui="multiselect"
+									ui_allowCustomValues="true"
+									nullLabel="JFORMS_FIELD_TRIGGER_NULL"
+								/>
+
+							<fi name="values"
+									alias="values"
+									label="JFORMS_FIELD_FIELDS_CONDRULE_VALUES"
+									description="JFORMS_FIELD_FIELDS_CONDRULE_VALUES_DESC"
+									filter="STRING"
+									separator="|"
+									capitalizeFirstLetter="false"
+									type="cktags"/>
+									
+								<fi name="behaviour"
+										alias="behaviour"
+										label="JFORMS_FIELD_FIELDS_CONDRULE_BEHAVIOUR"
+										description="JFORMS_FIELD_FIELDS_CONDRULE_BEHAVIOUR_DESC"
+										filter="BOOL"
+										default="1"
+										type="ckradio">
+									<option value="0">JFORMS_FIELDS_AND</option>
+									<option value="1">JFORMS_FIELDS_OR</option>
+								</fi>
+							</fset>	
+						</fi>						
+						<!-- CONDITIONAL RULE -->						
+						
+						<!-- PRICE -->
+						<fi name="price_info"
+								alias="price_info"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_PRICE_RULES"
+								label="JFORMS_FIELD_FIELDS_PRICE_INFO"
+								type="ckspacer"/>
+								
+						<fi name="priceRules"
+								alias="priceRules"
+								groupName="JFORMS_FIELD_FIELDS_GROUP_PRICE_RULES"
+								label="JFORMS_FIELD_FIELDS_PRICE_RULES"
+								description="JFORMS_FIELD_FIELDS_PRICE_RULES_DESC"
+								filter="STRING"
+								layout="plain"
+								cloneable="true"
+								sortable="true"
+								type="ckrepeatable">
+								
+							<fset name="fields.price">
+								
+							<fi name="values"
+									alias="values"
+									label="JFORMS_FIELD_FIELDS_PRICERULE_VALUES"
+									description="JFORMS_FIELD_FIELDS_PRICERULE_VALUES_DESC"
+									filter="STRING"
+									default="*"
+									separator="|"
+									capitalizeFirstLetter="false"
+									type="cktags"/>
+									
+							<fi name="variation"
+									alias="variation"
+									label="JFORMS_FIELD_FIELDS_PRICE_VARIATION"
+									description="JFORMS_FIELD_FIELDS_PRICE_VARIATION_DESC"
+									default="+"
+									class="input-medium"
+									type="cklist">
+								<option value="+">JFORMS_OPT_ADDITION</option>
+								<option value="-">JFORMS_OPT_SUBTRACTION</option>
+								<option value="*">JFORMS_OPT_MULTIPLICATION</option>
+								<option value="/">JFORMS_OPT_DIVISION</option>
+							</fi>
+								
+							<fi name="type"
+									alias="type"
+									label="JFORMS_FIELD_FIELDS_PRICE_TYPE"
+									description="JFORMS_FIELD_FIELDS_PRICE_TYPE_DESC"
+									default="value"
+									class="input-medium"
+									type="cklist">
+								<option value="value">JFORMS_OPT_VALUE</option>
+								<option value="percentage">JFORMS_OPT_PERCENTAGE</option>
+							</fi>
+							
+							<fi name="price"
+									alias="price"
+									label="JFORMS_FIELD_FIELDS_PRICERULE_PRICE"
+									description="JFORMS_FIELD_FIELDS_PRICERULE_PRICE_DESC"
+									filter="FLOAT"
+									class="input-mini"
+									type="cktext"/>									
+									
+								<fi name="behaviour"
+										alias="behaviour"
+										label="JFORMS_FIELD_FIELDS_CONDRULE_BEHAVIOUR"
+										description="JFORMS_FIELD_FIELDS_CONDRULE_BEHAVIOUR_PRICE_DESC"
+										filter="BOOL"
+										default="0"
+										type="ckradio">
+									<option value="0">JFORMS_FIELDS_AND</option>
+									<option value="1">JFORMS_FIELDS_OR</option>
+								</fi>
+							</fset>
+						</fi>
+						<!-- PRICE -->						
+				</fset>				
+				
+		</field>
+				
+		<field name="layouts"
+				alias="layouts"
+				fieldsToRender="mirror,name,note,type,enabled"
+				label=""
+				showId="true"
+				showCounter="true"
+				isMaster="true"
+				fieldsetName="form.layouts"
+				type="ckfieldset"/>
+				
+		<field name="integrations"
+				alias="integrations"
+				fieldsToRender="name,enabled"
+				label=""
+				showId="true"
+				showCounter="true"
+				isMaster="true"
+				fieldsetName="form.integrations"
+				type="ckfieldset"/>
+				
+	</fieldset>
+	
+	<fieldset name="form.fieldsets"
+		addfieldpath="/libraries/jdom/jform/fields"
+		label="JFORMS_JFORM_FIELDSETS"
+		description="JFORMS_JFORM_FIELDSETS_DESC"
+		repeatable="true"
+		editable="true"
+			>						
+			<field name="enabled"
+					alias="enabled"
+					label="JFORMS_FIELD_ENABLED"
+					filter="BOOL"
+					listKey="value"
+					default="0"
+					type="ckradio"
+					viewType="both">
+				<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+				<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+			</field>
+			
+			<field name="ordering"
+					alias="ordering"
+					label="JFORMS_FIELD_ORDERING"
+					description="JFORMS_FIELD_ORDERING_DESC"
+					filter="INT"
+					type="ckordering"/>
+				
+			<field name="mirror"
+					alias="mirror"
+					label="JFORMS_FIELD_MIRROR_FIELDSET"
+					description="JFORMS_FIELD_MIRROR_FIELDSET_DESC"
+					filter="STRING"
+					listKey="value"
+					type="cklist"
+					size="1"
+					groupBy="form_id:form_name"
+					default=""
+					nullLabel="JFORMS_FIELD_MIRROR_NULL"
+					/>
+					
+			<field name="name"
+					alias="name"
+					class="validate[required]"
+					multilanguage="true"
+					multilanguageLayout="tabs"
+					label="JFORMS_FIELD_NAME"
+					description="JFORMS_FIELD_FIELDSET_NAME_DESC"
+					filter="STRING"
+					type="cktext"/>
+					
+			<field name="description"
+					alias="description"
+					multilanguage="true"
+					multilanguageLayout="tabs"
+					label="JFORMS_FIELD_DESCRIPTION"
+					description="JFORMS_FIELD_FIELDSET_DESCRIPTION_DESC"
+					filter="RAW"
+					type="cktextarea"/>
+
+			<field name="class"
+					alias="class"
+					label="JFORMS_FIELDSET_CLASS"
+					description="JFORMS_FIELD_FIELDSET_CLASS_DESC"
+					filter="STRING"
+					class="input-xxlarge"
+					default="form-horizontal"
+					type="cktext"/>
+		
+			<field name="form_file"
+					alias="form_file"
+					label="JFORMS_FIELD_FORM_FILE"
+					description="JFORMS_FIELD_FORM_FILE_DESC"
+					filter="STRING"
+					class="validate[custom[file]] condRule[hide,#jform_fieldsets_mirror,*]"
+					validate="file"
+					indirect="true"
+					target="download"
+					editable="true"
+					editor="codemirror"
+					downloadable="true"
+					params='{"syntax":"xml"}'
+					root="[DIR_FORMS_FIELDSETS]"
+					type="ckfile"
+					view="form"
+					actions="delete"
+					rename="{ID}_{RAND}_{BASE}.{EXT}"
+					allowedExtensions="*.xml"/>						
+	</fieldset>
+	
+	<fieldset name="form.integrations"
+		addfieldpath="/libraries/jdom/jform/fields"
+		label="JFORMS_JFORM_INTEGRATIONS"
+		description="JFORMS_JFORM_INTEGRATIONS_DESC"
+		repeatable="true"
+		editable="true"
+			>						
+			<field name="enabled"
+					alias="enabled"
+					label="JFORMS_FIELD_ENABLED"
+					filter="BOOL"
+					listKey="value"
+					default="0"
+					type="ckradio"
+					viewType="both">
+				<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+				<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+			</field>
+			
+			<field name="ordering"
+					alias="ordering"
+					label="JFORMS_FIELD_ORDERING"
+					description="JFORMS_FIELD_ORDERING_DESC"
+					filter="INT"
+					type="ckordering"/>
+					
+			<field name="name"
+					alias="name"
+					class="validate[required]"
+					label="JFORMS_FIELD_NAME"
+					description="JFORMS_FIELD_FIELDSET_NAME_DESC"
+					filter="STRING"
+					type="cktext"/>
+					
+	</fieldset>
+
+	<fieldset name="form.events"
+			addfieldpath="/libraries/jdom/jform/fields"
+			label="JFORMS_JFORM_EVENTS"
+			description="JFORMS_JFORM_EVENTS_DESC">
+
+		<field name="redirect_after_submit"
+				alias="redirect_after_submit"
+				label="JFORMS_FIELD_REDIRECT_AFTER_SUBMIT"
+				description="JFORMS_FIELD_REDIRECT_AFTER_SUBMIT_DESC"
+				class="input-xxlarge condRule[show,#jform_options_redirect,custom]"
+				filter="STRING"
+				type="cktext"/>
+	</fieldset>
+
+
+	<fieldset name="form.events2"
+		repeatable="true"
+		editable="true"
+		label="JFORMS_JFORM_EVENTS"
+		description="JFORMS_JFORM_EVENTS_DESC">
+	
+			<field name="enabled"
+					alias="enabled"
+					label="JFORMS_FIELD_ENABLED"
+					filter="BOOL"
+					listKey="value"
+					default="0"
+					type="ckradio"
+					viewType="both">
+				<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+				<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+			</field>
+			
+		<field name="ordering"
+				alias="ordering"
+				label="JFORMS_FIELD_ORDERING"
+				description="JFORMS_FIELD_ORDERING_DESC"
+				filter="INT"
+				type="ckordering"/>
+				
+		<field name="mirror"
+				alias="mirror"
+				label="JFORMS_FIELD_MIRROR_EVENT"
+				description="JFORMS_FIELD_MIRROR_EVENT_DESC"
+				filter="STRING"
+				listKey="value"
+				type="cklist"
+				size="1"
+				groupBy="form_id:form_name"
+				default=""
+				nullLabel="JFORMS_FIELD_MIRROR_NULL"
+				/>
+				
+		<field name="name"
+				alias="name"
+				label="JFORMS_FIELD_NAME"
+				description="JFORMS_FIELD_EVENTS_NAME_DESC"
+				filter="STRING"
+				type="cktext"/>
+
+		<field name="event"
+				alias="event"
+				label="JFORMS_FIELD_EVENTS_EVENT"
+				description="JFORMS_FIELD_EVENTS_EVENT_DESC"
+				filter="STRING"
+				listKey="value"
+				default="0"
+				type="cklist"
+				size="1"
+				nullLabel="JFORMS_FIELDS_EVENTS_EVENT_NULL"
+				viewType="both">
+			<option value="on_before_display" >JFORMS_FIELDS_ON_BEFORE_DISPLAY</option>
+			<option value="on_after_display" >JFORMS_FIELDS_ON_AFTER_DISPLAY</option>
+			<option value="on_before_save" >JFORMS_FIELDS_ON_BEFORE_SAVE</option>
+			<option value="on_after_save" >JFORMS_FIELDS_ON_AFTER_SAVE</option>
+			<option value="on_before_edit" >JFORMS_FIELDS_ON_BEFORE_EDIT</option>
+			<option value="on_after_edit" >JFORMS_FIELDS_ON_AFTER_EDIT</option>
+			<option value="on_before_delete" >JFORMS_FIELDS_ON_BEFORE_DELETE</option>
+			<option value="on_after_delete" >JFORMS_FIELDS_ON_AFTER_DELETE</option>
+			<option value="on_successfull_payment" >JFORMS_FIELDS_ON_SUCCESSFULL_PAYMENT</option>
+			<option value="on_failed_payment" >JFORMS_FIELDS_ON_FAILED_PAYMENT</option>
+			<option value="on_payment_status_changed" >JFORMS_FIELDS_ON_PAYMENT_STATUS_CHANGED</option>
+		</field>
+					
+		<field name="file"
+				alias="file"
+				label="JFORMS_FIELD_EVENTS_FILE"
+				description="JFORMS_FIELD_EVENTS_FILE_DESC"
+				filter="STRING"
+				class="validate[custom[file]]"
+				validate="file"
+				indirect="true"
+				editable="true"
+				editor="codemirror"
+				downloadable="true"
+				root="[DIR_FORMS_EVENTS]"
+				type="ckfile"
+				view="form"
+				actions="delete"
+				rename="{ID}_{RAND}_{BASE}.{EXT}"
+				allowedExtensions="html,php,txt,jpg,png,gif,js"/>						
+
+		<field name="script"
+				alias="script"
+				label="JFORMS_FIELD_EVENTS_SCRIPT"
+				description="JFORMS_FIELD_EVENTS_SCRIPT_DESC"
+				filter="RAW"
+				width=" "
+				type="ckeditor"/>						
+	</fieldset>
+
+	<fieldset name="form.layouts"
+		repeatable="true"
+		editable="true"
+		label="JFORMS_JFORM_LAYOUTS"
+		description="JFORMS_JFORM_LAYOUTS_DESC">
+
+		<field name="mirror"
+				alias="mirror"
+				label="JFORMS_FIELD_MIRROR_LAYOUT"
+				description="JFORMS_FIELD_MIRROR_LAYOUT_DESC"
+				filter="STRING"
+				listKey="value"
+				type="cklist"
+				size="1"
+				groupBy="form_id:form_name"
+				default=""
+				nullLabel="JFORMS_FIELD_MIRROR_NULL"
+				/>		
+		
+		<field name="name"
+				alias="name"
+				label="JFORMS_FIELD_NAME"
+				description="JFORMS_FIELD_LAYOUTS_NAME_DESC"
+				filter="STRING"
+				type="cktext"/>
+
+		<field name="note"
+				alias="note"
+				label="JFORMS_FIELD_LAYOUTS_NOTE"
+				description="JFORMS_FIELD_LAYOUTS_NOTE_DESC"
+				filter="RAW"
+				width=" "
+				type="cktext"/>	
+				
+		<field name="type"
+				alias="type"
+				label="JFORMS_FIELD_LAYOUTS_TYPE"
+				description="JFORMS_FIELD_LAYOUTS_TYPE_DESC"
+				filter="STRING"
+				listKey="value"
+				default="0"
+				type="cklist"
+				size="1"
+				nullLabel="JFORMS_FIELDS_LAYOUTS_TYPE_NULL"
+				viewType="both">
+			<option value="form" >JFORMS_FIELDS_LAYOUTS_FORM</option>
+			<option value="edit_form" >JFORMS_FIELDS_LAYOUTS_EDIT_FORM</option>
+			<option value="pre_form" >JFORMS_FIELDS_LAYOUTS_PRE_FORM</option>
+			<option value="pdf" >JFORMS_FIELDS_LAYOUTS_PDF</option>
+			<option value="fly" >JFORMS_FIELDS_LAYOUTS_FLY</option>
+		</field>
+
+		<field name="template"
+				alias="template"
+				label="JFORMS_FIELD_LAYOUTS_TEMPLATE"
+				description="JFORMS_FIELD_LAYOUTS_TEMPLATE_DESC"
+				filter="RAW"
+				width=" "
+				type="ckeditor"/>						
+	</fieldset>
+		
+	<fieldset name="emails"
+		repeatable="true"
+		editable="true"
+		label="JFORMS_JFORM_EMAILS"
+		description="JFORMS_JFORM_EMAILS_DESC">
+	
+		<field name="enabled"
+				alias="enabled"
+				label="JFORMS_FIELD_ENABLED"
+				filter="BOOL"
+				listKey="value"
+				default="0"
+				type="ckradio"
+				viewType="both">
+			<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+			<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+		</field>
+		
+		<field name="mirror"
+				alias="mirror"
+				label="JFORMS_FIELD_MIRROR_EMAIL"
+				description="JFORMS_FIELD_MIRROR_EMAIL_DESC"
+				filter="STRING"
+				listKey="value"
+				type="cklist"
+				size="1"
+				groupBy="form_id:form_name"
+				default=""
+				nullLabel="JFORMS_FIELD_MIRROR_NULL"
+				/>		
+		
+		<field
+			name="language"
+			type="ckcontentlanguage"
+			label="JFORMS_FIELD_LANGUAGE"
+			description="JFORMS_FIELD_LANGUAGE_DESC"
+			filter="STRING"
+			listKey="value"
+			labelKey="text"
+			size="1"
+			default="*"
+			/>
+
+		<field name="event"
+				alias="event"
+				label="JFORMS_FIELD_EVENTS_EVENT"
+				description="JFORMS_FIELD_EVENTS_EVENT_DESC"
+				filter="STRING"
+				listKey="value"
+				default="on_after_save"
+				type="cklist"
+				size="1"
+				viewType="both">
+			<option value="on_after_save" >JFORMS_FIELDS_ON_AFTER_SAVE</option>
+			<option value="on_after_edit" >JFORMS_FIELDS_ON_AFTER_EDIT</option>
+			<option value="on_after_delete" >JFORMS_FIELDS_ON_AFTER_DELETE</option>
+			<option value="on_successfull_payment" >JFORMS_FIELDS_ON_SUCCESSFULL_PAYMENT</option>
+			<option value="on_failed_payment" >JFORMS_FIELDS_ON_FAILED_PAYMENT</option>
+			<option value="on_payment_status_changed" >JFORMS_FIELDS_ON_PAYMENT_STATUS_CHANGED</option>
+			<option value="on_submission_status_changed" >JFORMS_FIELDS_ON_SUBMISSION_STATUS_CHANGED</option>
+		</field>
+
+		<field name="ordering"
+				alias="ordering"
+				label="JFORMS_FIELD_ORDERING"
+				description="JFORMS_FIELD_ORDERING_DESC"
+				filter="INT"
+				type="ckordering"/>					
+			
+		<field name="html"
+				alias="html"
+				label="JFORMS_FIELD_HTML"
+				description="JFORMS_FIELD_HTML_DESC"
+				filter="BOOL"
+				listKey="value"
+				default="1"
+				type="ckradio"
+				viewType="both">
+			<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+			<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+		</field>
+
+		<field name="to"
+				alias="to"
+				label="JFORMS_FIELD_TO"
+				filter="STRING"
+				class="input-xlarge"
+				description="JFORMS_FIELD_TO_DESC"
+				type="cktext"/>
+				
+		<field name="from"
+				alias="from"
+				label="JFORMS_FIELD_FROM"
+				filter="STRING"
+				class="input-xlarge"
+				description="JFORMS_FIELD_FROM_DESC"
+				type="cktext"/>
+
+		<field name="reply_to"
+				alias="reply_to"
+				label="JFORMS_FIELD_REPLY_TO"
+				filter="STRING"
+				class="input-xlarge"
+				description="JFORMS_FIELD_REPLY_TO_DESC"
+				type="cktext"/>
+
+		<field name="cc"
+				alias="cc"
+				label="JFORMS_FIELD_CC"
+				filter="STRING"
+				class="input-xlarge"
+				description="JFORMS_FIELD_CC_DESC"
+				type="cktext"/>
+				
+		<field name="bcc"
+				alias="bcc"
+				label="JFORMS_FIELD_BCC"
+				filter="STRING"
+				class="input-xlarge"
+				description="JFORMS_FIELD_BCC_DESC"
+				type="cktext"/>
+
+		<field name="attach_pdf_submitted_form"
+				alias="attach_pdf_submitted_form"
+				label="JFORMS_FIELD_ATTACH_PDF_SUBMITTED_FORM"
+				description="JFORMS_FIELD_ATTACH_PDF_SUBMITTED_FORM_DESC"
+				filter="BOOL"
+				listKey="value"
+				default="1"
+				type="ckradio"
+				viewType="both">
+			<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+			<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+		</field>
+		
+		<field name="attachment_file"
+				alias="attachment_file"
+				label="JFORMS_FIELD_ATTACHMENT_FILE"
+				description="JFORMS_FIELD_ATTACHMENT_FILE_DESC"
+				filter="STRING"
+				class="validate[custom[file]]"
+				validate="file"
+				indirect="true"
+				root="[DIR_FORMS_EMAILS]"
+				type="ckfile"
+				view="form"
+				actions="delete"
+				rename="{ID}_{RAND}_{BASE}.{EXT}"
+				allowedExtensions="txt,rar,zip,jpg,png,gif"/>
+	
+		<field name="subject"
+				alias="subject"
+				label="JFORMS_FIELD_SUBJECT"
+				description="JFORMS_FIELD_SUBJECT_DESC"
+				filter="STRING"
+				class="input-xlarge"
+				type="cktext"/>
+				
+		<field name="body"
+				alias="body"
+				label="JFORMS_FIELD_BODY"
+				description="JFORMS_FIELD_BODY_DESC"
+				filter="RAW"
+				width=" "
+				type="ckeditor"/>
+	</fieldset>
+
+	<fieldset name="form.options"
+			addfieldpath="/libraries/jdom/jform/fields"
+			label="JFORMS_JFORM_OPTIONS">
+
+		<field name="save_data_in_db"
+				alias="save_data_in_db"
+				label="JFORMS_FIELD_SAVE_DATA_IN_DB"
+				description="JFORMS_FIELD_SAVE_DATA_IN_DB_DESC"
+				filter="BOOL"
+				listKey="value"
+				type="ckradio"
+				viewType="both">
+			<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+			<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+		</field>
+
+		<field name="generate_pdf"
+				alias="generate_pdf"
+				class="span6 form-vertical"
+				label="JFORMS_FIELD_GENERATE_PDF"
+				description="JFORMS_FIELD_GENERATE_PDF_DESC"
+				filter="BOOL"
+				listKey="value"
+				type="ckradio"
+				viewType="both">
+			<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+			<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+		</field>
+		
+		<field name="layout_type"
+				alias="layout_type"
+				label="JFORMS_FIELD_LAYOUT_TYPE"
+				description="JFORMS_FIELD_LAYOUT_TYPE_DESC"
+				filter="STRING"
+				listKey="value"
+				labelKey="text"
+				type="ckcombo"
+				nullLabel="JFORMS_JSEARCH_SELECT_LAYOUT_TYPE"/>
+	</fieldset>
+
+
+	<fieldset name="form.permissions"
+			addfieldpath="/administrator/components/com_jforms/models/fields"
+			label="JFORMS_JFORM_PERMISSIONS">
+
+		<field name="published"
+				alias="published"
+				label="JFORMS_FIELD_PUBLISHED"
+				filter="INT"
+				class="validate[custom[numeric]]"
+				validate="numeric"
+				access="core.edit.state"
+				type="ckstate"/>
+				
+		<field name="access"
+				alias="_access_title"
+				label="JFORMS_FIELD_ACCESS_TITLE"
+				filter="STRING"
+				access="core.edit"
+				multiple="true"
+				type="ckusergrouplist"/>
+
+		<field name="acl"
+				alias="acl"
+				label="JFORMS_FIELD_PERMISSIONS"
+				description="JFORMS_FIELD_PERMISSIONS_DESC"
+				filter="STRING"
+				type="ckconfig"
+				access="core.edit">								
+							<fset name="fields.acl"
+								label="JFORMS_CONFIGURATION"
+							>
+								
+								<fi name="max_submissions"
+										alias="max_submissions"
+										label="JFORMS_FIELD_MAX_SUBMISSIONS"
+										description="JFORMS_FIELD_MAX_SUBMISSIONS_DESC"
+										default="0"
+										class="input-mini"
+										type="cktext"/>
+
+							</fset>
+				
+		</field>
+	</fieldset>
+
+	<fields name="options">
+		<fieldset name="form.payments"
+				addfieldpath="/libraries/jdom/jform/fields"
+				label="JFORMS_JFORM_PAYMENTS">
+		
+		<field name="payment"
+				alias="payment"
+				label="JFORMS_FIELD_ENABLE_PAYMENT"
+				description="JFORMS_FIELD_ENABLE_PAYMENT_DESC"
+				filter="BOOL"
+				listKey="value"
+				type="ckradio"
+				default="0"
+				viewType="both">
+			<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+			<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+		</field>
+		
+		<field name="show_price_list"
+				alias="show_price_list"
+				label="JFORMS_FIELD_SHOW_PRICE_LIST"
+				description="JFORMS_FIELD_SHOW_PRICE_LIST_DESC"
+				filter="BOOL"
+				listKey="value"
+				type="ckradio"
+				default="0"
+				viewType="both">
+			<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+			<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+		</field>
+		
+		<field name="show_price_item"
+				alias="show_price_item"
+				label="JFORMS_FIELD_SHOW_PRICE_ITEM"
+				description="JFORMS_FIELD_SHOW_PRICE_ITEM_DESC"
+				filter="BOOL"
+				listKey="value"
+				type="ckradio"
+				default="0"
+				viewType="both">
+			<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+			<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+		</field>
+				
+		<field name="amount_type"
+				alias="amount_type"
+				label="JFORMS_FIELD_AMOUNT_TYPE"
+				description="JFORMS_FIELD_AMOUNT_TYPE_DESC"
+				filter="STRING"
+				listKey="value"
+				default="fixed"
+				type="cklist"
+				size="1"
+				class="input-medium"
+				viewType="both">
+			<option value="fixed" >JFORMS_FIELDS_AMOUNT_OPT_FIXED</option>
+			<option value="dynamic" >JFORMS_FIELDS_AMOUNT_OPT_DYNAMIC</option>
+		</field>
+		
+		<field name="price"
+				alias="price"
+				label="JFORMS_FIELD_PRICE"
+				description="JFORMS_FIELD_EVENTS_PRICE_DESC"
+				class="input-mini"
+				filter="STRING"
+				type="cktext"/>
+				
+		<field name="tax"
+				alias="tax"
+				label="JFORMS_FIELD_TAX"
+				description="JFORMS_FIELD_EVENTS_TAX_DESC"
+				afterinput="%"
+				class="input-mini"
+				filter="STRING"
+				type="cktext"/>				
+				
+		<field name="payment_instructions"
+				alias="payment_instructions"
+				label="JFORMS_FIELD_PAYMENT_INSTRUCTIONS_LABEL"
+				description="JFORMS_FIELD_PAYMENT_INSTRUCTIONS_DESC"
+				multilanguage="true"
+				multilanguageLayout="tabs"
+				filter="RAW"
+				type="ckeditor"/>
+
+		<field name="thank_you"
+				alias="thank_you"
+				label="JFORMS_FIELD_THANK_YOU_LABEL"
+				description="JFORMS_FIELD_THANK_YOU_DESC"
+				multilanguage="true"
+				multilanguageLayout="tabs"
+				filter="RAW"
+				type="ckeditor"/>
+				
+		<field name="failed_payment"
+				alias="failed_payment"
+				label="JFORMS_FIELD_FAILED_PAYMENT_LABEL"
+				description="JFORMS_FIELD_FAILED_PAYMENT_DESC"
+				multilanguage="true"
+				multilanguageLayout="tabs"
+				filter="RAW"
+				type="ckeditor"/>				
+				
+		<field name="client_name"
+				alias="client_name"
+				label="JFORMS_FIELD_PAYMENT_CLIENT_NAME"
+				description="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_DESC"
+				filter="STRING"
+				type="cklist"
+				size="1"
+				default=""
+				nullLabel="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_NULL"
+				/>
+				
+		<field name="client_lastname"
+				alias="client_lastname"
+				label="JFORMS_FIELD_PAYMENT_CLIENT_LASTNAME"
+				description="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_DESC"
+				filter="STRING"
+				type="cklist"
+				size="1"
+				default=""
+				nullLabel="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_NULL"
+				/>
+				
+		<field name="client_address"
+				alias="client_address"
+				label="JFORMS_FIELD_PAYMENT_CLIENT_ADDRESS"
+				description="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_DESC"
+				filter="STRING"
+				type="cklist"
+				size="1"
+				default=""
+				nullLabel="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_NULL"
+				/>
+				
+		<field name="client_zip"
+				alias="client_zip"
+				label="JFORMS_FIELD_PAYMENT_CLIENT_ZIP"
+				description="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_DESC"
+				filter="STRING"
+				type="cklist"
+				size="1"
+				default=""
+				nullLabel="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_NULL"
+				/>
+				
+		<field name="client_city"
+				alias="client_city"
+				label="JFORMS_FIELD_PAYMENT_CLIENT_CITY"
+				description="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_DESC"
+				filter="STRING"
+				type="cklist"
+				size="1"
+				default=""
+				nullLabel="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_NULL"
+				/>
+				
+		<field name="client_state"
+				alias="client_state"
+				label="JFORMS_FIELD_PAYMENT_CLIENT_STATE"
+				description="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_DESC"
+				filter="STRING"
+				type="cklist"
+				size="1"
+				default=""
+				nullLabel="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_NULL"
+				/>
+				
+		<field name="client_country"
+				alias="client_country"
+				label="JFORMS_FIELD_PAYMENT_CLIENT_COUNTRY"
+				description="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_DESC"
+				filter="STRING"
+				type="cklist"
+				size="1"
+				default=""
+				nullLabel="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_NULL"
+				/>
+				
+		<field name="client_phone_number"
+				alias="client_phone_number"
+				label="JFORMS_FIELD_PAYMENT_CLIENT_PHONE_NUMBER"
+				description="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_DESC"
+				filter="STRING"
+				type="cklist"
+				size="1"
+				default=""
+				nullLabel="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_NULL"
+				/>
+				
+		<field name="client_mobile_number"
+				alias="client_mobile_number"
+				label="JFORMS_FIELD_PAYMENT_CLIENT_MOBILE_NUMBER"
+				description="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_DESC"
+				filter="STRING"
+				type="cklist"
+				size="1"
+				default=""
+				nullLabel="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_NULL"
+				/>
+				
+		<field name="client_email"
+				alias="client_email"
+				label="JFORMS_FIELD_PAYMENT_CLIENT_EMAIL"
+				description="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_DESC"
+				filter="STRING"
+				type="cklist"
+				size="1"
+				default=""
+				nullLabel="JFORMS_FIELD_PAYMENT_CLIENT_FIELD_NULL"
+				/>
+				
+		</fieldset>
+	</fields>
+
+	<fields name="options">
+		<fieldset name="form.other_options"
+				addfieldpath="/libraries/jdom/jform/fields"
+				label="JFORMS_JFORM_OPTIONS">
+<!--
+		<field name="passphrase"
+				alias="passphrase"
+				label="JFORMS_FIELD_PASSPHRASE"
+				description="JFORMS_FIELD_PASSPHRASE_DESC"
+				filter="INT"
+				listKey="value"
+				default="0"
+				type="ckradio"
+				viewType="both">
+			<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+			<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+		</field>
+
+		<field name="autosave"
+				alias="autosave"
+				label="JFORMS_FIELD_AUTOSAVE"
+				description="JFORMS_FIELD_AUTOSAVE_DESC"
+				filter="INT"
+				default="0"
+				class="input-mini"
+				type="cktext"/>
+-->
+		<field name="layout_pdf"
+				alias="layout_pdf"
+				label="JFORMS_FIELD_LAYOUT_PDF"
+				description="JFORMS_FIELD_LAYOUT_PDF_DESC"
+				filter="STRING"
+				listKey="value"
+				type="cklist"
+				size="1"
+				default=""
+				nullLabel="JFORMS_FIELD_LAYOUT_PDF_NULL"
+				/>
+
+		<field name="show_title"
+				alias="show_title"
+				label="JFORMS_FIELD_SHOW_TITLE"
+				description="JFORMS_FIELD_SHOW_TITLE_DESC"
+				filter="BOOL"
+				listKey="value"
+				type="ckradio"
+				default="1"
+				viewType="both">
+			<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+			<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+		</field>
+
+		<field name="show_wizard_nav"
+				alias="show_wizard_nav"
+				label="JFORMS_FIELD_SHOW_WIZARD_NAV"
+				description="JFORMS_FIELD_SHOW_WIZARD_NAV_DESC"
+				filter="BOOL"
+				listKey="value"
+				class="condRule[show,#jform_layout_type,wizard]"
+				type="ckradio"
+				default="1"
+				viewType="both">
+			<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+			<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+		</field>
+				
+		<field name="layout_pre_form"
+				alias="layout_pre_form"
+				label="JFORMS_FIELD_LAYOUT_PRE_FORM"
+				description="JFORMS_FIELD_LAYOUT_PRE_FORM_DESC"
+				filter="STRING"
+				listKey="value"
+				type="cklist"
+				size="1"
+				default=""
+				nullLabel="JFORMS_FIELD_LAYOUT_PRE_FORM_NULL"
+				/>
+				
+		<field name="layout_form"
+				alias="layout_form"
+				label="JFORMS_FIELD_LAYOUT_FORM"
+				description="JFORMS_FIELD_LAYOUT_FORM_DESC"
+				filter="STRING"
+				listKey="value"
+				type="cklist"
+				size="1"
+				default=""
+				nullLabel="JFORMS_FIELD_LAYOUT_FORM_NULL"
+				/>
+				
+		<field name="layout_edit_form"
+				alias="layout_edit_form"
+				label="JFORMS_FIELD_LAYOUT_EDIT_FORM"
+				description="JFORMS_FIELD_LAYOUT_EDIT_FORM_DESC"
+				filter="STRING"
+				listKey="value"
+				type="cklist"
+				size="1"
+				default=""
+				nullLabel="JFORMS_FIELD_LAYOUT_EDIT_FORM_NULL"
+				/>
+				
+		<field name="layout_fly"
+				alias="layout_fly"
+				label="JFORMS_FIELD_LAYOUT_FLY"
+				description="JFORMS_FIELD_LAYOUT_FLY_DESC"
+				filter="STRING"
+				listKey="value"
+				type="cklist"
+				size="1"
+				default=""
+				nullLabel="JFORMS_FIELD_LAYOUT_FLY_NULL"
+				/>
+				
+
+		<field name="redirect"
+				alias="redirect"
+				label="JFORMS_FIELD_REDIRECT"
+				description="JFORMS_FIELD_REDIRECT_DESC"
+				filter="STRING"
+				default="custom"
+				type="cklist"
+				size="1"
+				nullLabel="JFORMS_FILTER_NULL_REDIRECT"
+				viewType="both">
+			<option value="submissions" >JFORMS_OPT_REDIRECT_SUBMISSIONS</option>
+			<option value="submitted_data" >JFORMS_OPT_REDIRECT_SUBMITTED_DATA</option>
+			<option value="form" >JFORMS_OPT_REDIRECT_FORM</option>		
+			<option value="custom" >JFORMS_OPT_REDIRECT_CUSTOM</option>
+		</field>
+		</fieldset>	
+	</fields>
+
+	
+	<fieldset name="default.filters" addfieldpath="/libraries/jdom/jform/fields">
+
+		<field name="filter_published"
+				type="ckstate"
+				access="core.edit.state"
+				submit="true"
+				nullLabel="JFORMS_FILTER_NULL_SELECT_STATE"
+				display="combo"
+				label="State"
+				class="element-filter span-2"
+				/>
+
+		<field name="search_search"
+				type="cksearch"
+				placeholder="JFORMS_FILTER_NULL_NAME_ALIAS"
+				label="JFORMS_JSEARCH_NAME_ALIAS"
+				class="element-search search-query"
+				/>
+
+		<field name="filter_save_data_in_db"
+				listKey="value"
+				type="ckcombo"
+				submit="true"
+				nullLabel="JFORMS_FILTER_NULL_SAVE_DATA_IN_DB"
+				class="span-2 element-filter"
+				label="JFORMS_JSEARCH_SAVE_DATA_IN_DB"
+				>
+			<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+			<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+		</field>
+
+		<field name="filter_layout_type"
+				listKey="value"
+				labelKey="text"
+				type="ckcombo"
+				submit="true"
+				nullLabel="JFORMS_FILTER_NULL_LAYOUT_TYPE"
+				class="span-2 element-filter"
+				label="JFORMS_JSEARCH_LAYOUT_TYPE"
+				/>
+
+		<field name="sortTable"
+				type="cksort"
+				responsive="hidden-phone"
+				nullLabel="JGLOBAL_SORT_BY"
+				class="span-2 element-filter"
+				label="Sort by"
+				/>
+
+		<field name="directionTable"
+				type="ckdirection"
+				responsive="hidden-phone"
+				nullLabel="JFIELD_ORDERING_DESC"
+				class="span-2 element-filter"
+				label="Direction"
+				/>
+
+		<field name="limit"
+				type="cklimit"
+				submit="true"
+				class="span-2 element-filter"
+				label="Limit"
+				/>
+	</fieldset>
+
+	<fieldset name="modal.filters" addfieldpath="/libraries/jdom/jform/fields">
+
+		<field name="filter_published"
+				type="ckstate"
+				access="core.edit.state"
+				submit="true"
+				nullLabel="JFORMS_FILTER_NULL_SELECT_STATE"
+				display="combo"
+				label="State"
+				class="element-filter span-2"
+				/>
+
+		<field name="search_search_1"
+				type="cksearch"
+				placeholder="JFORMS_FILTER_NULL_NAME_ALIAS"
+				label="JFORMS_JSEARCH_NAME_ALIAS"
+				class="element-search search-query"
+				/>
+
+		<field name="filter_save_data_in_db"
+				listKey="value"
+				type="ckcombo"
+				submit="true"
+				nullLabel="JFORMS_FILTER_NULL_SAVE_DATA_IN_DB"
+				class="span-2 element-filter"
+				label="JFORMS_JSEARCH_SAVE_DATA_IN_DB"
+				>
+			<option value="0" icon="icomoon-cancel" color="danger">JFORMS_FIELDS_BOOL_NO</option>
+			<option value="1" icon="icomoon-ok" color="success">JFORMS_FIELDS_BOOL_YES</option>
+		</field>
+
+		<field name="filter_layout_type"
+				listKey="value"
+				labelKey="text"
+				type="ckcombo"
+				submit="true"
+				nullLabel="JFORMS_FILTER_NULL_LAYOUT_TYPE"
+				class="span-2 element-filter"
+				label="JFORMS_JSEARCH_LAYOUT_TYPE"
+				/>
+
+		<field name="limit"
+				type="cklimit"
+				submit="true"
+				class="span-2 element-filter"
+				label="Limit"
+				/>
+	</fieldset>
+
+</form>

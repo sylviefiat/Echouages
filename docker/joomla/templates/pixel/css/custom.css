@@ -1,0 +1,48 @@
+
+#sp-top-bar {
+    border-bottom: 1px solid #ebebeb;
+    padding: 0;
+}
+#sp-top-bar ul.social-icons li {
+    margin: 0;
+    padding: 0 10px;
+    line-height: 41px;
+    border-right: 1px solid #ddd;	
+}
+
+@media (max-width: 480px) {
+.sppb-addon-timeline .sppb-addon-timeline-wrapper .timeline-badge::before {display:none;}
+ .timeline-movement.even::before {background: #7ed321 !important;}
+.timeline-movement.even::after {border-color:#7ed321 !important;}
+}
+.sppb-addon-timeline .sppb-addon-timeline-wrapper:before {
+ background-color: #7ed321; 
+}
+.sppb-addon-timeline .sppb-addon-timeline-wrapper .timeline-badge:before {
+border: 3px solid #7ed321;  
+}
+.sppb-addon-timeline .sppb-addon-timeline-wrapper .timeline-badge:after {
+background: #7ed321 none repeat scroll 0 0;
+}
+
+.acymailing_module .acymailing_module_form .acymailing_form {
+ width: 80%;
+}
+.acymailing_module .acymailing_module_form .acymailing_form tbody tr {
+ float: left;
+ width: 40%;
+}
+.acymailing_module .acymailing_module_form .acymailing_form tbody tr td.acy_requiredField {
+ width: 340px;
+}
+.acymailing_module .acymailing_module_form .acymailing_form tbody tr td.acy_requiredField input {
+ background: #fff;
+ border: 1px solid #eee;
+ border-radius: 40px;
+ height: 45px;
+ width: 100%;
+}
+.acymailing_module .acymailing_module_form .acymailing_form tbody tr:last-child {
+ width: auto;
+}
+

@@ -1,0 +1,725 @@
+div.whizzardWrap{
+	display:block;
+	width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	
+	background-color: #eee;	
+	
+	counter-reset:section;
+}
+
+div.responsiveWhizzard{
+	position: relative;
+	display:block;
+	width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	
+	min-height: 400px;
+	padding:0; margin:0;
+	margin-bottom: 20px;
+	
+}
+
+div.responsiveWhizzard div.pattern{
+	position: absolute;
+	top:0; left:0;
+	display:block;
+	width: 100%; height: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border: none;
+	padding:0; margin:0;
+	background-color: #eee;
+	
+}
+
+div.responsiveWhizzard div.pattern div.light{
+	position: absolute;;
+	display:inline-block;
+	float:left;
+	width: 2.43478260869%;
+	height: 100%;
+	background-color: #fff;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	top: 0; right:0;
+}
+
+
+div.responsiveWhizzard div.pattern div.dark{
+	position: relative;
+	float: left;
+	width: 2.690217391%; height: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border: none;
+	padding:0; margin:0;
+	margin-right:   1.43478260869%;
+	background-color: #ddd;	
+}
+
+div.responsiveWhizzard div.layoutContainer{
+	position: relative;
+	display:block;
+	width: 100%; 
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border: none;
+	padding:0; margin:0;
+	background-color: transparent;
+	z-index: 10;
+	padding-bottom: 80px;
+}
+
+div.responsiveWhizzard div.layoutContainer div._row{ 
+	position: relative;
+	display: block;
+	min-height: 80px;
+	background-color: transparent;
+	border: none;
+	margin:0; padding:0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	clear:both;
+	margin-bottom: 32px;
+	
+    border-top: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s
+}
+
+div.responsiveWhizzard div.layoutContainer div._row:hover{
+   border-top-color: rgba(82, 168, 236, 0.8);
+   border-bottom-color: rgba(82, 168, 236, 0.8);
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.075);
+    outline: 0 none;
+}
+
+
+div.responsiveWhizzard div.layoutContainer div._row div._rowButtons{
+	position: absolute;
+	display:block;
+	width: 32px;
+	height: 100%;
+	top:0; right: -32px;
+	border: 1px solid #ccc;
+	background-color: #eee;
+	/* margin-right: 3.896956521738%; */
+	margin-right: 2.690217391%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	text-align: center;
+}
+
+div.responsiveWhizzard div.layoutContainer div._row div._rowButtons img{
+	cursor: pointer;
+	clear: both;
+	
+}
+
+
+div.responsiveWhizzard div.layoutContainer div._row:after{ 
+	
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+
+div.responsiveWhizzard div.layoutContainer div.section{
+	position: relative;
+	display: block;
+	min-height: 130px;
+	background-color: #aaa;
+	border: 1px solid #888;
+	margin:0; padding:0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	transition: border 0.2s linear 0s, background 0.2s linear 0s;
+	float:left;
+	margin-right:   1.43478260869%;
+	cursor: pointer;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+div.responsiveWhizzard div.layoutContainer div.section:hover{
+	background-color: #0088CC;
+	border-color: #194071;
+}
+
+
+
+
+
+div.responsiveWhizzard div.layoutContainer div.section[data-span='1']{ width: 2.690217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='2']{ width: 6.815217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='3']{ width: 10.940217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='4']{ width: 15.065217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='5']{ width: 19.190217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='6']{ width: 23.315217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='7']{ width: 27.440217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='8']{ width: 31.565217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='9']{ width: 35.690217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='10']{ width: 39.815217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='11']{ width: 43.940217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='12']{ width: 48.065217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='13']{ width: 52.190217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='14']{ width: 56.315217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='15']{ width: 60.440217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='16']{ width: 64.565217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='17']{ width: 68.690217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='18']{ width: 72.815217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='19']{ width: 76.940217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='20']{ width: 81.065217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='21']{ width: 85.190217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='22']{ width: 89.315217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='23']{ width: 93.440217391%; }
+div.responsiveWhizzard div.layoutContainer div.section[data-span='24']{ width: 97.565217391%; margin-right:0; }
+
+div.responsiveWhizzard div.layoutContainer div.last{
+	margin-right: 0;
+}
+
+
+#m4jMain div.responsiveWhizzard div.layoutContainer div.section fieldset{
+	position: absolute;
+	display:block;
+	border-color: #000;
+	width: 100%; height: 100%;
+	margin:0; padding:4px;
+	min-height: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border-color: #0088CC;
+}
+
+#m4jMain div.responsiveWhizzard div.layoutContainer div.section legend{
+	color: #004466;
+	font-style: italic;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	background-color: transparent;
+	border: none;
+	margin: 0; padding: 0 2%;
+	line-height: 24px;
+	height: 24px;
+	margin-left: 2%;
+	
+}
+
+#m4jMain div.responsiveWhizzard div.layoutContainer div.section:hover fieldset, #m4jMain div.responsiveWhizzard div.layoutContainer div.section:hover legend{
+	color: #fff;
+	border-color: #fff;
+} 
+
+body {
+  counter-reset: section;           /* Set the section counter to 0 */
+}
+
+
+div.responsiveWhizzard  div.layoutContainer div.section span.count{
+
+	position: absolute;
+	display:block;
+	width: 20px; height: 20px;
+	-moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
+    border: 3px solid #444;
+    background-color: #fff;
+    line-height: 20px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 14px;
+    font-weight:normal;
+    color: #000;
+	left:-10px; top: -18px;
+	z-index: 10;
+	
+	transition: border 0.2s linear 0s, background 0.2s linear 0s;
+
+
+}
+
+div.responsiveWhizzard div.layoutContainer div.section:hover span.count{
+    background-color: #ffff00;
+    border-color: #000;
+}
+
+div.responsiveWhizzard div.layoutContainer div.section span.count:before{
+
+	counter-increment:section;
+	content:counter(section) ;
+
+}
+
+div.responsiveWhizzard  div.layoutContainer div.section span.ruler{
+	position: absolute;
+	top: -24px; right: 0;
+	width: 32px; height: 24px;
+	display:block;
+	font-size: 16px;	
+	border: 1px solid #888;
+	margin:0; padding: 2px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border-bottom: none;
+	
+	-moz-border-top-left-radius:: 20px;
+    -webkit-border-top-left-radius:: 20px;
+    -khtml-border-top-left-radius:: 20px;
+    border-top-left-radius: 20px;
+	
+	-moz-border-top-right-radius:: 20px;
+    -webkit-border-top-right-radius:: 20px;
+    -khtml-border-top-right-radius:: 20px;
+    border-top-right-radius: 20px; 
+    background-color: #aaa;  
+	transition: border 0.2s linear 0s, background 0.2s linear 0s; 
+	text-align: center;
+	
+	 -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: col-resize;
+}
+
+div.responsiveWhizzard  div.layoutContainer div.section:hover span.ruler{
+	background-color: #0088CC;
+	border-color: #194071;
+}
+
+
+div.responsiveWhizzard  div.layoutContainer div.section:hover span.ruler:hover{
+	background-color: #00cc88;
+	border-color: #194071;
+	border-bottom: 1px solid #0088CC;
+}
+
+
+
+
+div.responsiveWhizzard div.layoutContainer div.section div.division{
+	display:block;
+	height: 100%; width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	margin-top: 24px;
+		
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  -moz-opacity: 0.8;
+  -khtml-opacity: 0.8;
+  opacity: 0.8;
+	
+}
+
+div.responsiveWhizzard div.layoutContainer div.section fieldset div.division{
+	margin-top: 0;
+}
+
+div.responsiveWhizzard div.layoutContainer div.section div.division div{
+	display:block;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	float:left;
+	margin:0; padding: 0;
+	color: #000;
+	padding: 4px 0;
+	text-align: center;
+	line-height: 50px;
+	height: 60px;
+	text-overflow:ellipsis;
+	overflow: hidden;
+	
+	
+}
+
+
+div.responsiveWhizzard div.layoutContainer div.section div.question{
+	background-color: #efefef;
+}
+
+div.responsiveWhizzard div.layoutContainer div.section div.field{
+	background-color: #ddd;
+}
+
+div.responsiveWhizzard div.layoutContainer div.section div.floating{
+	position: absolute;
+	top:24px; left:0;
+	display:block;
+	height: 81px; width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+		
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  -moz-opacity: 0.8;
+  -khtml-opacity: 0.8;
+  opacity: 0.8;
+  overflow: hidden;
+	text-overflow:ellipsis;
+}
+div.responsiveWhizzard div.layoutContainer div.section div.floating span{
+	display:inline-block;
+	width: 80px; height: 80px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border: 2px solid #ddd;
+	margin-left: 10px;
+}
+
+
+div.responsiveWhizzard div.layoutContainer div.section  div.arrowRight{
+		position: absolute;
+		display:block;
+		bottom:0; right:0;
+		height: 80px;
+		
+		color: #888;
+		font-size: 60px;
+		transition: color 0.2s linear 0s, text-shadow 0.2s linear 0s;
+		text-shadow: 1px 0 0 #444, 0 -1px 0 #444, 0 1px 0 #444, -1px 0 0 #444;
+}
+div.responsiveWhizzard div.layoutContainer div.section:hover div.arrowRight{
+	color: #194678;
+	text-shadow: 1px 0 0 #fff, 0 -1px 0 #fff, 0 1px 0 #fff, -1px 0 0 #fff;
+}
+
+
+div.responsiveWhizzard div.layoutContainer div.section  div.arrowDown{
+		position: absolute;
+		display:block;
+		top:0; right:-10px;
+		line-height:140px;
+		color: #888;
+		font-size: 120px;
+		transition: color 0.2s linear 0s;
+		transition: color 0.2s linear 0s, text-shadow 0.2s linear 0s;
+		text-shadow: 1px 0 0 #444, 0 -1px 0 #444, 0 1px 0 #444, -1px 0 0 #444;
+		overflow: hidden;
+}
+div.responsiveWhizzard div.layoutContainer div.section:hover div.arrowDown{
+	color: #194678;
+	text-shadow: 1px 0 0 #fff, 0 -1px 0 #fff, 0 1px 0 #fff, -1px 0 0 #fff;
+}
+
+div.responsiveWhizzard div.layoutContainer div.section  div.arrowDown span {
+	display:block;
+	margin-top: -20px;
+}
+
+div.responsiveWhizzard div.layoutContainer div.section div.slotTitle{
+	position: absolute; display:block;
+	left: 10px; bottom: -10px;
+	height: 28px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	font-size: 14px;
+	max-width: 60%;
+	border: 1px solid #888;
+	background-color: #BFDAE8;
+	padding: 4px;
+	text-overflow:ellipsis;
+	overflow: hidden;
+	-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+	
+}
+
+div.responsiveWhizzard div.layoutContainer div.section div.countButton{
+	position: absolute; display:block;
+	left: 14px; bottom: 20px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	height: 20px;
+	text-align: center;
+	font-size: 12px;
+	border: none;
+	font-weight: bold;
+	background-color: #444;
+	padding: 4px;
+	line-height: 100%;
+	color: #ddd;
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+	
+}
+
+div.responsiveWhizzard div.layoutContainer div.section div.height, div.responsiveWhizzard div.layoutContainer div.section div.minHeight{
+	position: absolute; display:none;
+	left:0; width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	height: 1px;
+	border-top: 1px dashed #f00;
+	margin-top: -1px;
+}
+
+div.responsiveWhizzard div.layoutContainer div.section div.minHeight{
+	border-color: #4BBA49;
+}
+
+
+ul#spanSelect{
+	display:inline-block;
+	list-style: none;
+	margin:0; padding:0;
+	margin-bottom: 10px;
+	text-shadow: 0 -1px #444;
+}
+ul#spanSelect span{
+	display:inline-block;
+	margin:0; padding: 4px;
+	-moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #BB4C42;
+    color: #fff;
+    font-weight: bold;
+    cursor: default;
+    
+	
+}
+ul#spanSelect ul{
+	position: absolute;
+	display:block;
+    background-color: #BB4C42;
+	color: #fff;
+	list-style: none;
+	margin:0; padding:0;
+	margin-top: -4px;
+	-moz-border-radius: 3x;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+	z-index: 100;
+	left: -9999em;
+}
+
+ul#spanSelect:hover ul{
+	left: auto;
+}
+
+
+ul#spanSelect ul li{
+	display:block;
+	margin:0; padding: 4px;
+	cursor: pointer;
+}
+
+
+ul#spanSelect ul li:hover{
+	text-decoration: underline;
+}
+
+div#hidePane{
+	position: fixed;
+	display:block;
+	margin:0; padding:0;
+	width:100%; height: 100%;
+	top:0; left:-9999em;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  -moz-opacity: 0.8;
+  -khtml-opacity: 0.8;
+  opacity: 0.8;
+  background-color: #fff;
+  z-index: 10000;
+}
+
+div#editAnimPane{
+	position: fixed;
+	display:block;
+	margin:0; padding:0;
+	top:0; left:-9999em;
+  background-color: #0088cc;
+   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  opacity: 0;
+  z-index: 10001;
+}
+
+
+
+div#editPane{
+	position: fixed;
+	display:block;
+	margin:0; padding:10px;
+	width:800px; height: 600px;
+	top:0; left:-9999em;
+  background-color: #0088cc;
+   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+  opacity: 1;
+  -moz-box-shadow: 0 0 5px #666;
+-webkit-box-shadow: 0 0 5px#666;
+box-shadow: 0 0 5px #666;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+  z-index: 10002;
+  color: #fff;
+}
+
+div#editPane div.editRow{
+	position: relative;
+	display:block;
+	width:100%;
+	margin-bottom: 15px;
+		
+}
+
+div#editPane div.editRow div.hide{
+	position: absolute; display:block;
+	left:0; top:0;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
+    -moz-opacity: 0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+    margin:0; padding:0; border: none;
+}
+
+
+div#editPane div.editRow:after{ 	
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+div#editPane h1{
+	font-size: 24px; 
+	font-weight: bold;
+	margin:0; padding:0;
+	margin-bottom: 5px;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+div#editPane label{
+	display:inline-block;
+	font-size: 12px;
+     height: 20px;
+    line-height: 20px;
+    margin: 0 3px 0 0;
+    padding: 2px;
+    cursor: default;
+    min-width: 250px;
+}
+
+div#editPane label img{
+	display:inline;
+	line-height: 20px;
+	margin-right: 10px;
+}
+
+div#editPane div.special , div#editPane div.wrap {
+	display: inline-block;
+	line-height: 20px;
+}
+div#editPane div.special div{
+	margin-bottom: -3px;
+}
+div#editPane textarea, div#editPane input{
+	display:inline-block;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    font-size: 12px;
+     height: 20px;
+    line-height: 20px;
+    margin: 0 3px 0 0;
+    padding: 2px;
+}
+div#editPane textarea:focus, div#editPane input:focus{
+    border-color: rgba(82, 168, 236, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+    outline: 0 none;
+}
+
+
+div#editPane div.content{
+	-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+    display: block; 
+    width: 100%;
+    background-color: #fff;
+    color: #000;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	padding: 10px;
+	min-height: 500px;
+}
+
+.m4jToggleArrangement {
+    background: url("./../images/toggle_layout_align.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: medium none;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 17px;
+    margin: 2px 0 0;
+    padding: 0;
+    text-align: left;
+    vertical-align: top;
+    width: 77px;
+}
+
+
+#right.m4jToggleArrangement{
+    background-position: 0 -17px;
+}
+
+
+div.setValues{
+	position: absolute;
+	bottom: 34px; right: 20px;
+	display:inline-block;
+	text-shadow: 0 -1px #00692C;
+	margin:0; padding: 4px;
+	-moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #0088cc;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s linear 0s;
+}
+
+div.setValues:hover{
+	
+    background-color: #00aa66;
+}
+

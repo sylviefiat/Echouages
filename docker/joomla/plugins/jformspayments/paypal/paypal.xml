@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="jformspayments" method="upgrade">
+	<name>jForms Payment Gateway - Paypal</name>
+	<version>0.0.1</version>
+	<creationDate>21 June 2014</creationDate>
+	<author>Girolamo Tomaselli</author>
+	<authorEmail>girotomaselli@gmail.com</authorEmail>
+	<authorUrl>http://bygiro.com</authorUrl>
+	<copyright>Copyright © 2014 G. Tomaselli All Rights Reserved</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<description>PLG_JFORMSPAYMENTS_PAYPAL_DESCRIPTION</description>
+	<files>
+		<filename>index.html</filename>
+		<filename plugin="paypal">paypal.php</filename>
+		<folder>language</folder>
+		<folder>form</folder>
+		<folder>fields</folder>
+	</files>
+	<languages folder="language/en-GB">
+		<language tag="en-GB">en-GB.plg_jformspayments_paypal.ini</language>
+		<language tag="en-GB">en-GB.plg_jformspayments_paypal.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic"
+				addfieldpath="/plugins/jformspayments/paypal/fields">
+				<field
+					name="title"
+					type="text"
+					size="50"
+					default=""
+					label="PLG_JFORMSPAYMENTS_PAYPAL_TITLE_LABEL"
+					description="PLG_JFORMSPAYMENTS_PAYPAL_TITLE_DESC"/>
+				
+				<field
+					name="ppimage"
+					type="media"
+					size="50"
+					default=""
+					label="PLG_JFORMSPAYMENTS_PAYPAL_PPIMAGE_LABEL"
+					description="PLG_JFORMSPAYMENTS_PAYPAL_PPIMAGE_DESC" />
+					
+				<field type="spacer" />
+				
+				<field 
+					name="client_desc" 
+					type="editor" 
+					filter="SAFEHTML" 
+					label="PLG_JFORMSPAYMENTS_PAYPAL_CLIENT_DESC_LABEL" 
+					description="PLG_JFORMSPAYMENTS_PAYPAL_CLIENT_DESC_DESC"				
+					/>
+
+				<field type="spacer" />
+				<field name="merchant" type="text" size="50" default="" label="PLG_JFORMSPAYMENTS_PAYPAL_MERCHANT_LABEL" description="PLG_JFORMSPAYMENTS_PAYPAL_MERCHANT_DESC"/>
+				
+				<field 
+					name="currency"
+					type="list"
+					required="true"
+					default=""
+					label="PLG_JFORMSPAYMENTS_PAYPAL_CURRENCY_LABEL"
+					description="PLG_JFORMSPAYMENTS_PAYPAL_CURRENCY_DESC">
+					<option value="AUD">JFORMS_AUD</option>
+					<option value="CAD">JFORMS_CAD</option>
+					<option value="CHF">JFORMS_CHF</option>
+					<option value="CZK">JFORMS_CZK</option>
+					<option value="DKK">JFORMS_DKK</option>
+					<option value="EUR">JFORMS_EUR</option>
+					<option value="GBP">JFORMS_GBP</option>
+					<option value="HKD">JFORMS_HKD</option>
+					<option value="ILS">JFORMS_ILS</option>
+					<option value="MXN">JFORMS_MXN</option>
+					<option value="NOK">JFORMS_NOK</option>
+					<option value="NZD">JFORMS_NZD</option>
+					<option value="PHP">JFORMS_PHP</option>
+					<option value="PLN">JFORMS_PLN</option>
+					<option value="SEK">JFORMS_SEK</option>
+					<option value="SGD">JFORMS_SGD</option>
+					<option value="THB">JFORMS_THB</option>
+					<option value="USD">JFORMS_USD</option>
+				</field>
+				
+				<field type="spacer" />
+				<field name="sandbox" type="radio" default="0" label="PLG_JFORMSPAYMENTS_PAYPAL_SANDBOX_LABEL" description="PLG_JFORMSPAYMENTS_PAYPAL_SANDBOX_DESC">
+				  <option value="0">JNo</option>
+				  <option value="1">JYes</option>
+				</field>
+				<field name="sandbox_merchant" type="text" size="50" default="" label="PLG_JFORMSPAYMENTS_PAYPAL_SANDBOX_MERCHANT_LABEL" description="PLG_JFORMSPAYMENTS_PAYPAL_SANDBOX_MERCHANT_LABEL"/>
+				<field type="spacer" />
+				<field name="cbt" type="text" size="50" default="" label="PLG_JFORMSPAYMENTS_PAYPAL_CBT_LABEL" description="PLG_JFORMSPAYMENTS_PAYPAL_CBT_DESC" />
+				<field name="cpp_header_image" type="media" size="50" default="" label="PLG_JFORMSPAYMENTS_PAYPAL_HEADER_LABEL" description="PLG_JFORMSPAYMENTS_PAYPAL_HEADER_DESC" />
+				<field name="cpp_headerback_color" type="colorpicker" size="50" default="" label="PLG_JFORMSPAYMENTS_PAYPAL_HEADERBACK_LABEL" description="PLG_JFORMSPAYMENTS_PAYPAL_HEADERBACK_DESC" />
+				<field name="cpp_headerborder_color" type="colorpicker" size="50" default="" label="PLG_JFORMSPAYMENTS_PAYPAL_HEADERBORDER_LABEL" description="PLG_JFORMSPAYMENTS_PAYPAL_HEADERBORDER_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

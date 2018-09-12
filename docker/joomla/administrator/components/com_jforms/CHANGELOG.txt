@@ -1,0 +1,90 @@
+
+jForms 0.3.9
+================================================================================
++ improved BG framework
++ improved Print PDF feature
++ Added PRE-form functionality
++ Added Edit submitted data functionality (frontend / backend)
++ Added layout feature. This will allow custom layouts for the pages: Form, Pre-form, Edit-form, PDF, submission details.
+# Improved grapic and layout of jForms
+# fixed layout and graphics compatibility from j1.6 to j3.3.x
+# fixed compatibility for old joomla versions. Now jForms works from j1.6 to latest j3.3.x
++ Added jForms plugin, to allow Forms anywhere in the website
+
+jForms 0.3.7
+================================================================================
++ improved repeatable fields library
+# small layout bug fixed on modal addresspicker field
++ Added file field with file editor integrated
++ Added emails sending feature based on events
++ Added new events on emails and forms
+# small bug fixes "here and there"
+# code cleaning
++ ByGiro framework improvements
+
+jForms 0.3.6
+================================================================================
++ Added sample forms
++ Added "allowed images sizes" configuration option
++ Added "print pdf" buttons in backend for submission
++ Added automatic detection file type for form event file
+# small bug fixes "here and there"
+# code cleaning (remove some warnings and notices)
++ added new field types
+# fixed some server side validations
+# improved some JS libraries in JDOM
+# improved PDF creation script using the dompdf library instead of mPDF
+
+jForms 0.3.8
+================================================================================
+# small bug fixes on languages integration
+
+jForms 0.3.4
+================================================================================
+# small bug fixes
+
+jForms 0.3.3
+================================================================================
++ added ACL support for fieldsets and single field
++ added many improvements in the framework
+# [LOW] small bug fix for texteditors other than JCE /TinyMCE
+
+jForms 0.3.2
+================================================================================
+# [LOW] little bug fix on the "download" file task
+
+jForms 0.3.1
+================================================================================
++ added many other improvements not listable
++ added ordering on emails and events
++ added ordering with drag'n'drop sortable functionality
++ added editor buttons option to wysiwyg editors
++ added "security lock delete"
++ added copy functionality in emails, fieldsets, events
++ added variables for emails (page_url, page_title, creation_date)
+# [HIGH] fixed few bugs with wysiwyg editors (JCE, TinyMCE)
+# [LOW] improved few layout details
+# [LOW] code cleaning
+
+jForms 0.3.0
+================================================================================
+# [HIGH] bug fix on repeatable.js
+# [LOW] added ordering in form->fieldsets view (ordering ASC)
+
+jForms 0.2.9
+================================================================================
++ [HIGH] Import / export tool to backup and restore the forms
++ [HIGH] frontend submission details layout
++ [HIGH] frontend submissions list layout (filtered by logged user)
+~ [LOW] improved jForms backend User Interface
+
+jForms 0.2.8
+================================================================================
++ update servers for "one-click" updating system
++ Multi export formats for submissions (XLS,XLSX,CSV,PDF,XML)
++ blockUI on forms submit to enhance the user experience
++ recaptcha form field
++ default joomla form fields (15 new fields)
++ multi recaptcha jQuery plugin (to manage automatically many recaptcha instances in a page)
+# [HIGH] forms server side validation not performing correctly
+# [LOW] import jForms not performing correctly

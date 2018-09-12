@@ -1,0 +1,14 @@
+.icon-32-download {
+    background-image: url(../images/1.6/icon-32-download.png);
+}
+
+.btn-mini .icomoon[class^="icon-"], .btn-mini .icomoon[class*=" icon-"] {
+    font-size: 9.5px !important;
+    height: 9.5px !important;
+    line-height: 9.5px !important;
+    width: 9.5px !important;
+}
+
+.btn-group > .btn-mini {
+	padding: 2px 6px;
+}

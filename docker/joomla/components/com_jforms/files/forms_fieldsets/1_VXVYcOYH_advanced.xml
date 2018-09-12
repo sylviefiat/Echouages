@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<form>
+
+	<fieldset name="advanced"
+		label="MY_DEMO1_ADVANCED"
+		printable="true"
+		>
+		
+		<field name="color"
+				alias="color"
+				label="MY_DEMO1_COLOR"
+				filter="STRING"
+				placeholder="MY_DEMO1_COLOR_PLACEHOLDER"
+				description="MY_DEMO1_DESC"
+				type="ckcolor"/>
+				
+		<field name="number"
+				alias="number"
+				label="MY_DEMO1_NUMBER"
+				description="MY_DEMO1_DESC"
+				type="number"/>	
+				
+		<field name="password"
+				alias="password"
+				label="MY_DEMO1_PASSWORD"
+				description="MY_DEMO1_DESC"
+				type="password"/>
+				
+		<field name="tel"
+				alias="tel"
+				label="MY_DEMO1_TEL"
+				description="MY_DEMO1_DESC"
+				type="tel"/>
+				
+		<field name="email"
+				alias="email"
+				label="MY_DEMO1_EMAIL"
+				description="MY_DEMO1_DESC"
+				type="email"/>
+				
+		<field name="url"
+				alias="url"
+				label="MY_DEMO1_URL"
+				description="MY_DEMO1_DESC"
+				type="url"/>
+		
+		<field name="integer"
+				alias="integer"
+				label="MY_DEMO1_INTEGER"
+				description="MY_DEMO1_DESC"
+				first="1"
+				last="256"
+				step="3"
+				type="integer"/>
+
+		<field name="filelist"
+				alias="filelist"
+				label="MY_DEMO1_FILELIST"
+				directory="images" 
+				description="MY_DEMO1_DESC"
+				type="ckfilelist"/>				
+
+		<field 
+			type="ckspacer" 
+			name="spacer"
+			printable="false"
+			label="MY_DEMO1_SPACER"/>
+	</fieldset>
+</form>

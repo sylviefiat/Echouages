@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<metadata>
+	<layout title="JFORMS_LAYOUT_MY_SUBMISSIONS">
+		<message>
+			<![CDATA[JFORMS_LAYOUT_SHOW_MY_SUBMISSIONS_LAYOUT]]>
+		</message>
+	</layout>
+	
+	<fields name="params">
+		<fieldset
+			name="basic"
+			label="JFORMS_SUBMISSIONS_LAYOUT_OPTIONS"
+			addfieldpath="/libraries/jdom/jform/fields">
+
+				<field name="mode"
+						type="list"
+						label="JFORMS_SUBMISSIONS_LAYOUT_OPTIONS_MODE"
+						>
+						<option value="own">JFORMS_SUBMISSIONS_LAYOUT_OPT_OWN</option>
+						<option value="usergroups">JFORMS_SUBMISSIONS_LAYOUT_OPT_BY_USERGROUPS</option>
+				</field>
+
+				<field name="usergroups"
+						label="JFORMS_SUBMISSIONS_LAYOUT_OPTIONS_USERGROUPS"
+						type="ckusergrouplist"
+						multiple="true"/>
+				
+				<field name="filters"
+						alias="filters"
+						label="JFORMS_SUBMISSIONS_LAYOUT_OPTIONS_FILTERS"
+						description="JFORMS_SUBMISSIONS_LAYOUT_OPTIONS_FILTERS_DESC"
+						default=""
+						multiple="true"
+						type="ckcheckboxes">
+					<option value="status" >JFORMS_SUBMISSIONS_LAYOUT_OPT_STATUS</option>
+					<option value="payment_status" >JFORMS_SUBMISSIONS_LAYOUT_OPT_PAYMENT_STATUS</option>
+					<option value="creation_date" >JFORMS_SUBMISSIONS_LAYOUT_OPT_CREATION_DATE</option>
+					<option value="form" >JFORMS_SUBMISSIONS_LAYOUT_OPT_FORM</option>
+					<option value="search" >JFORMS_SUBMISSIONS_LAYOUT_OPT_SEARCH</option>
+				</field>
+				
+				<field name="show_columns"
+						alias="show_columns"
+						label="JFORMS_SUBMISSIONS_LAYOUT_OPTIONS_SHOW_COLUMNS"
+						description="JFORMS_SUBMISSIONS_LAYOUT_OPTIONS_SHOW_COLUMNS_DESC"
+						default="status,pdf,creation_date"
+						multiple="true"
+						type="ckcheckboxes">
+					<option value="status" >JFORMS_SUBMISSIONS_LAYOUT_OPT_STATUS</option>
+					<option value="payment_status" >JFORMS_SUBMISSIONS_LAYOUT_OPT_PAYMENT_STATUS</option>
+					<option value="creation_date" >JFORMS_SUBMISSIONS_LAYOUT_OPT_CREATION_DATE</option>
+					<option value="ip_address" >JFORMS_SUBMISSIONS_LAYOUT_OPT_IP_ADDRESS</option>
+					<option value="pdf" >JFORMS_SUBMISSIONS_LAYOUT_OPT_PDF</option>
+					<option value="form" >JFORMS_SUBMISSIONS_LAYOUT_OPT_FORM</option>
+					<option value="username" >JFORMS_SUBMISSIONS_LAYOUT_OPT_USERNAME</option>
+				</field>
+		</fieldset>
+	</fields>
+</metadata>

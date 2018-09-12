@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<form>
+
+	<fieldset name="joomla"
+		label="MY_DEMO1_JOOMLA"
+		printable="true"
+		>
+				
+		<field name="joomla_radio"
+				alias="joomla_radio"
+				label="MY_DEMO1_JOOMLARADIO"
+				description="MY_DEMO1_DESC"
+				type="radio">
+			<option value="0">1</option>
+			<option value="1">2</option>
+			<option value="3">3</option>
+		</field>
+		
+		<field name="joomla_list"
+				alias="joomla_list"
+				label="MY_DEMO1_JOOMLALIST"
+				description="MY_DEMO1_DESC"
+				type="list">
+			<option value="0">1</option>
+			<option value="1">2</option>
+			<option value="3">3</option>
+		</field>
+		
+		<field name="joomla_listmultiple"
+				alias="joomla_listmultiple"
+				label="MY_DEMO1_JOOMLALISTMULTIPLE"
+				description="MY_DEMO1_DESC"
+				multiple="true"
+				size="3"
+				type="list">
+			<option value="0">1</option>
+			<option value="1">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+		</field>
+
+		<field name="joomla_groupedlist"
+			alias="joomla_groupedlist"
+			default="5"
+			label="MY_DEMO1_JOOMLAGROUPEDLIST"
+			description="MY_DEMO1_DESC"
+			type="groupedlist">
+			
+			<group label="Group 1">
+				<option value="0">Option 1</option>
+				<option value="1">Option 2</option>
+			</group>
+			<group label="Group 2">
+				<option value="3">Option 3</option>
+				<option value="4">Option 4</option>
+			</group>
+			<option value="5">Option 5</option>
+			<option value="6">Option 6</option>
+		</field>
+
+		<field name="joomla_checkbox"
+				alias="joomla_checkbox"
+				label="MY_DEMO1_JOOMLACHECKBOX"
+				printable="true"
+				description="MY_DEMO1_DESC"
+				filter="BOOL"
+				value="1"
+				type="checkbox"/>
+		
+		<field name="joomla_checkboxes"
+				alias="joomla_checkboxes"
+				label="MY_DEMO1_JOOMLACHECKBOXES"
+				filter="STRING"
+				printable="true"
+				description="MY_DEMO1_DESC"
+				cols="2"
+				default="a,d,h"
+				type="checkboxes">
+			<option value="a">MY_DEMO1_VAL_A</option>
+			<option value="b">MY_DEMO1_VAL_B</option>
+			<option value="c">MY_DEMO1_VAL_C</option>
+			<option value="d">MY_DEMO1_VAL_D</option>
+			<option value="e">MY_DEMO1_VAL_E</option>
+			<option value="f">MY_DEMO1_VAL_F</option>
+			<option value="g">MY_DEMO1_VAL_G</option>
+			<option value="h">MY_DEMO1_VAL_H</option>
+		</field>		
+
+		<field name="joomla_calendar"
+				alias="joomla_calendar"
+				label="MY_DEMO1_JOOMLACALENDAR"
+				printable="true"
+				description="MY_DEMO1_DESC"
+				format="%d-%m-%Y"
+				type="calendar"/>				
+
+		<field name="imagelist"
+				alias="imagelist"
+				label="MY_DEMO1_JOOMLAIMAGELIST"
+				description="MY_DEMO1_DESC"
+				directory="images"
+				type="imagelist"/>
+				
+				
+		<field name="joomla_text"
+				alias="joomla_text"
+				label="MY_DEMO1_JOOMLATEXT"
+				description="MY_DEMO1_DESC"
+				type="text"/>
+				
+		<field name="joomla_textarea"
+				alias="joomla_textarea"
+				label="MY_DEMO1_JOOMLATEXTAREA"
+				description="MY_DEMO1_DESC"
+				type="textarea"/>
+				
+		<field name="joomla_spacer"
+				alias="joomla_spacer"
+				label="MY_DEMO1_JOOMLASPACER"
+				description="MY_DEMO1_DESC"
+				hr="true"
+				type="spacer"/>
+				
+		<field name="sql"
+				alias="sql"
+				label="MY_DEMO1_JOOMLASQL"
+				description="MY_DEMO1_DESC"
+				default="10"
+				key_field="value"
+				value_field="text"
+				query="SELECT id AS value, title as text FROM #__content"
+				type="sql"/>
+
+				
+		<field name="joomla_color"
+				alias="joomla_color"
+				label="MY_DEMO1_COLOR"
+				description="MY_DEMO1_DESC"
+				type="color"/>
+				
+		<field name="joomla_folderlist"
+				alias="joomla_folderlist"
+				label="MY_DEMO1_JOOMLAFOLDERLIST"
+				directory="images" 
+				description="MY_DEMO1_DESC"
+				type="folderlist"/>
+				
+		<field name="joomla_filelist"
+				alias="joomla_filelist"
+				label="MY_DEMO1_JOOMLAFILELIST"
+				directory="images" 
+				description="MY_DEMO1_DESC"
+				type="filelist"/>
+
+		<field name="joomla_accesslevel"
+				alias="joomla_accesslevel"
+				label="MY_DEMO1_JOOMLAACCESSLEVEL"
+				description="MY_DEMO1_DESC"
+				type="accesslevel"/>
+				
+		<field name="joomla_language"
+				alias="joomla_language"
+				label="MY_DEMO1_JOOMLALANGUAGE"
+				description="MY_DEMO1_DESC"
+				type="language"/>
+				
+		<field
+			name="editors"
+			type="plugins"
+			folder="editors"
+			default="tinymce"
+			label="MY_DEMO1_JOOMLAEDITORS"
+			description="MY_DEMO1_DESC"
+			filter="cmd" />
+			
+	</fieldset>
+</form>

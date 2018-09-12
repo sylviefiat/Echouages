@@ -1,0 +1,113 @@
+@CHARSET "UTF-8";
+
+@media screen and (max-width: 960px) {
+	.pfmTemplate, .pfmRow, .pfmSlot, .pfmElement{
+		float: left;
+		width: 100%;
+		clear: both;
+	}
+	
+	body div.proformsFormWrap div.pfmTemplate fieldset{
+		display: block;
+		float:none;
+		clear: both;
+	}
+	
+	
+}
+
+
+@media screen and (max-width: 480px) {
+
+	.pfmElement{
+		margin-bottom: 16px;
+	}
+	
+	body div.proformsFormWrap div.pfmTemplate fieldset{
+		border: none; outline: none;
+		background: transparent;
+		padding: 0; margin:0;
+	}
+	
+	body div.proformsFormWrap div.pfmTemplate div.pfmInfoImage, body div.proformsFormWrap div.pfmTemplate label.pfmCLR div.pfmInfoImage{
+		position: relative;
+		display: block;
+		font-style: italic;
+		float:none;
+		margin: 0; padding:0;
+		width: 100%; height: auto;
+		line-height: 16px;
+		font-size: 12px;
+		overflow: visible;
+		padding-left: 20px;
+		clear: both;
+		margin-top: 5px;
+		margin-bottom: 10px;
+		background-position: left top;
+	}
+	
+	
+
+	.pfmRequiredSingleNoQuestion, .pfmRequired{
+		top: 0; right: 0; position: absolute;
+		float:none;
+		padding:0; 
+		margin-top: 16px;
+	}
+
+	#proforms_proforms div.pfmTemplate legend, body div.proformsFormWrap div.pfmTemplate legend{
+		padding: 0; margin:0;
+		padding-right: 5px;
+		display:block;
+		border: none; outline: none;
+		background: transparent;
+		width: 100%;
+		clear: both; 
+		border-bottom: 1px solid;
+		margin-bottom: 10px;
+		color: inherit;
+	}
+
+
+	.pfmQuestion, .pfmField{	
+		display: block;
+		float:left;
+		clear: both;
+		
+	}
+	
+	.pfmQuestion{
+		min-width: 90%;
+		max-width: 90%;
+	}
+	
+	.pfmDate, .pfmDate .pfmTR, .pfmDate .pfmTD{
+		display:block;
+		float:left;
+	}
+	 .pfmDate .pfmTD{
+	 	max-width: 80%;
+	 }
+	
+	 .pfmDate .pfmDateTD{
+	 	max-width: 20px;
+	 }
+	
+	
+	.pfmField{
+		max-width: 98%;
+	}
+	
+	body div.proformsFormWrap div.pfmTemplate input, body div.proformsFormWrap div.pfmTemplate textarea, body div.proformsFormWrap div.pfmTemplate select{
+		display: inline-block;
+		max-width: 100%;
+	}
+
+	.pfmSelectItem{
+		min-width: 100%;
+		max-width: 100%;
+		clear: both;
+	}
+
+}
+

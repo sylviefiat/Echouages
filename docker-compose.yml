@@ -38,9 +38,11 @@ services:
 #######################################
   geoserver:
     container_name: docker_geoserver
-    #links:
-      #- joomladb
-    build: .
+    image: sylviefiat/docker-geoserver
+    ports:
+      - 8080:8080
+    links:
+      - joomladb
     volumes:
       - ./docker/geoserver:/usr/local/tomcat/webapps/geoserver
       #- /var/run/docker.sock:/var/run/docker.sock

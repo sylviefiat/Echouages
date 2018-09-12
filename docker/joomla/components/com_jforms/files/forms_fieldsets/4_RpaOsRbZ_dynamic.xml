@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<form>
+
+	<fieldset name="basic"
+		label="MY_DEMO1_BASIC"
+		printable="true"
+		>
+
+		<field name="list"
+				alias="list"
+				label="MY_DEMO1_LIST"
+				filter="STRING"
+				size="1"
+				description="MY_DEMO1_DESC"
+				type="cklist"
+				autocomplete="off"
+				nullLabel="MY_DEMO1_LIST_NULL"
+				>
+			<option value="a">MY_DEMO1_VAL_A</option>
+			<option value="b">MY_DEMO1_VAL_B</option>
+			<option value="c">MY_DEMO1_VAL_C</option>
+			<option value="d">MY_DEMO1_VAL_D</option>
+			<option value="e">MY_DEMO1_VAL_E</option>
+			<option value="f">MY_DEMO1_VAL_F</option>
+			<option value="g">MY_DEMO1_VAL_G</option>
+			<option value="h">MY_DEMO1_VAL_H</option>		
+		</field>
+		
+		<field name="text"
+				alias="text"
+				label="MY_DEMO1_TEXT"
+				filter="STRING"
+				placeholder="MY_DEMO1_TEXT_PLACEHOLDER"
+				class="condRule[show,#jform_list,a]"
+				description="MY_DEMO1_DESC"
+				type="cktext"/>
+				
+		<field name="textarea"
+				alias="textarea"
+				label="MY_DEMO1_TEXTAREA"
+				filter="STRING"
+				placeholder="MY_DEMO1_TEXTAREA_PLACEHOLDER"
+				class="condRule[show,#jform_list,b]"
+				description="MY_DEMO1_DESC"
+				type="cktextarea"/>
+				
+		<field name="editor"
+				alias="editor"
+				label="MY_DEMO1_EDITOR"
+				filter="STRING"
+				class="condRule[show,#jform_list,c]"
+				description="MY_DEMO1_DESC"
+				type="ckeditor"/>
+
+		<field name="checkbox"
+				alias="checkbox"
+				label="MY_DEMO1_CHECKBOX"
+				description="MY_DEMO1_DESC"
+				filter="BOOL"
+				class="condRule[show,#jform_list,d]"
+				value="1"
+				type="ckcheckbox"/>
+		
+		<field name="checkboxes"
+				alias="checkboxes"
+				label="MY_DEMO1_CHECKBOXES"
+				filter="STRING"
+				description="MY_DEMO1_DESC"
+				cols="2"
+				default="a,d,h"
+				class="condRule[show,#jform_list,e]"
+				type="ckcheckboxes">
+			<option value="a">MY_DEMO1_VAL_A</option>
+			<option value="b">MY_DEMO1_VAL_B</option>
+			<option value="c">MY_DEMO1_VAL_C</option>
+			<option value="d">MY_DEMO1_VAL_D</option>
+			<option value="e">MY_DEMO1_VAL_E</option>
+			<option value="f">MY_DEMO1_VAL_F</option>
+			<option value="g">MY_DEMO1_VAL_G</option>
+			<option value="h">MY_DEMO1_VAL_H</option>
+		</field>
+		
+		<field name="radio"
+				alias="radio"
+				label="MY_DEMO1_RADIO"
+				filter="INT"
+				default="0"
+				class="condRule[show,#jform_list,f]"
+				description="MY_DEMO1_DESC"
+				type="ckradio">
+			<option value="0" icon="icomoon-cancel" color="danger">JNO</option>
+			<option value="1" icon="icomoon-ok" color="success">JYES</option>
+		</field>
+		
+		<field name="radiogroup"
+				alias="radiogroup"
+				label="MY_DEMO1_RADIOGROUP"
+				filter="STRING"
+				class="condRule[show,#jform_list,g]"
+				description="MY_DEMO1_DESC"
+				default="3"
+				type="ckradio">		
+			<option value="0" icon="icomoon-database" color="default">MY_DEMO1_VAL_A</option>
+			<option value="1" icon="icomoon-key" color="success">MY_DEMO1_VAL_B</option>
+			<option value="2" icon="icomoon-wand" color="info">MY_DEMO1_VAL_C</option>
+			<option value="3" icon="icomoon-chart" color="warning">MY_DEMO1_VAL_D</option>
+			<option value="4" icon="icomoon-loop" color="primary">MY_DEMO1_VAL_E</option>
+			<option value="5" icon="icomoon-briefcase" color="inverse">MY_DEMO1_VAL_F</option>
+			<option value="6" icon="icomoon-compass" color="danger">MY_DEMO1_VAL_G</option>
+		</field>
+		
+		<field name="file"
+				alias="file"
+				label="MY_DEMO1_FILE"
+				filter="STRING"
+				class="validate[custom[file]] condRule[show,#jform_list,h]"
+				validate="file"
+				indirect="true"
+				root="[DIR_SUBMISSIONS_ATTACHED_FILES]"
+				type="ckfile"
+				view="form"
+				preview="true"
+				width="50"
+				height="50"
+				description="MY_DEMO1_DESC"
+				actions="delete"
+				rename="{ID}_{RAND}_{BASE}.{EXT}"
+				allowedExtensions="txt,rar,zip,jpg,png,gif"/>		
+	</fieldset>
+</form>

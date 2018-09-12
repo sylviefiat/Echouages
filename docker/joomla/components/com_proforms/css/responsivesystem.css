@@ -1,0 +1,321 @@
+@CHARSET "UTF-8";
+
+div.proformsInnerFormWrap{
+	display:inline-block;
+	max-width: 100%;
+	float:none;
+	clear:both;
+	text-align: left;
+}
+
+body div.proformsFormWrap div.pfmTemplate input,
+body div.proformsFormWrap div.pfmTemplate textarea,
+body div.proformsFormWrap div.pfmTemplate select{
+	width: auto;
+	position: relative;
+	
+}
+
+body div.proformsFormWrap div.pfmTemplate textarea{
+	height: auto;
+}
+
+body div.proformsFormWrap div.pfmTemplate input:focus,
+body div.proformsFormWrap div.pfmTemplate textarea:focus,
+body div.proformsFormWrap div.pfmTemplate select:focus{
+	outline: auto;
+}
+
+body div.proformsFormWrap div.pfmTemplate div{
+	position: relative;
+}
+
+body div.proformsFormWrap{
+	overflow: visible;
+}
+
+body div.proformsFormWrap div.pfmTemplate fieldset{
+	
+	-moz-box-sizing:    border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing:        border-box;
+    display: block;
+    margin:0;
+    overflow:hidden;
+    width: 100%;
+	max-width: 100%;
+	height: 100%; 
+	max-height: 100%;
+	vertical-align: top;
+	float: left;
+}
+
+
+.pfmCLR:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.pfmCLR {
+	display: inline-block;
+}
+ 
+html[xmlns] .pfmCLR {
+	display: block;
+}
+ 
+* html .pfmCLR {
+	height: 1%;
+}
+
+.pfmTemplate, .pfmRow, .pfmSlot, .pfmElement, .pfmQuestion, .pfmField, .pfmDiv, .pfmHTML{
+	display: block;
+	-moz-box-sizing:    border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing:        border-box;
+	margin:  0; padding:0; border: none; outline: none;
+	transition: none;
+    background: transparent;
+    float:left;
+}
+
+body div.proformsFormWrap, body div.pfmTemplate{
+	max-width: 100%;
+	display: inline-block;
+	float: none;
+}
+.pfmRow{
+	width: 100%;
+	margin-bottom: 20px;
+	vertical-align: top;
+}
+
+.pfmSlot{
+	margin: 0 1.43478% 0 0;
+	vertical-align: top;
+	text-align: left;
+}
+
+.pfmPin{
+	float:left; 
+}
+
+
+.pfmPadding{
+	padding-right: 5px;
+}
+
+.pfmFullRange, .pfmTemplate .pfmHTML{
+	width: 100%;
+	max-width: 100%;
+}
+.pfmQuestion{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display:inline-block;
+	min-height: 28px;
+	vertical-align: middle;
+	text-align: left;
+	line-height: 100%;
+	position: relative;
+	padding-top: 6px;
+	max-width: 100%;
+}
+
+.pfmBoxed{
+	-moz-box-sizing:    border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing:        border-box;
+}
+
+.pfmElement{
+	margin-bottom: 5px;
+}
+
+.pfmTemplate input, .pfmTemplate textarea, .pfmTemplate select{
+	-moz-box-sizing:    border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing:        border-box;
+    min-height: 28px;
+    max-width: 100%;
+}
+
+
+.pfmTemplate img{
+	max-width: 100%;
+	display: inline-block;
+}
+
+.pfmMargin{
+	
+	margin-right:1.43478%;
+}
+
+.pfmTBL, pfmTR, pfmTD{
+	margin:0; padding:0;
+	border: none;
+	background: transparent;
+}
+
+.pfmTBL{
+	display: table;
+}
+
+.pfmTR{
+	display: table-row;
+}
+.pfmTD{
+	display: table-cell;
+	text-align: left;
+}
+
+.pfmDateTD{
+	width: 20px;
+	text-align: right;
+	vertical-align: top;
+}
+.pfmDateTD img{
+	display: inline-block;
+	margin: 0; padding:0;
+	vertical-align: middle;
+	margin-left: 4px;
+	cursor: pointer;
+	margin-top: 4px;
+}
+
+.pfmDate{
+	max-width: 100%;	
+}
+
+.pfmDateInput{
+	min-width: 100%;
+	max-width: 100%;
+}
+
+.pfmHidden{
+	display: none;
+}
+
+.pfmRequiredNoQuestion{
+	right: 25px; position: absolute;
+}
+
+.pfmRequiredSingleNoQuestion{
+	right: auto; position: relative;
+	float:left;
+}
+
+
+body div.proformsFormWrap div.pfmTemplate div.pfmInfoImage{
+	position: absolute;
+	display: block;
+	-moz-box-sizing:    border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing:        border-box;
+	background-repeat: no-repeat;
+	background-position: left center;
+	width: 16px; height: 16px;
+	vertical-align: middle;
+	margin:0; padding:0; 
+	padding-left: 16px;
+	border: none;
+	overflow: hidden;
+	margin-left: 0; margin-right: 5px;
+	top:6px ; right: 0;
+	cursor: help;
+}
+
+
+
+body div.proformsFormWrap div.pfmTemplate label.pfmCLR div.pfmInfoImage, body div.proformsFormWrap div.pfmTemplate  div.pfmSingle  div.pfmInfoImage{
+	position: relative;
+	display: inline-block;
+	float: none;
+	margin-left: 5px; margin-right: 0;
+	top:0;
+}
+
+body div.proformsFormWrap div.pfmTemplate .m4jFormElementWrap{
+	display:inline-block;
+}
+
+body div.proformsFormWrap div.pfmTemplate div.m4jCheckboxWrap, body div.proformsFormWrap div.pfmTemplate div.m4jRadioWrap{
+
+	margin: 0 ; padding: 6px 0 0 0;
+	border: none;
+	background: transparent;
+	width: 100%;
+}
+
+body div.proformsFormWrap div.pfmTemplate label.pfmSelectItem{
+	display: block;
+	margin:0; padding:0;
+	float:left;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	overflow: visible;
+	border: none;
+	background: transparent;
+	line-height: 100%;
+	height:auto;
+	
+	
+}
+
+
+
+body div.proformsFormWrap div.pfmTemplate label.pfmSelBreak{
+	display:block; 
+	width: 100%; 
+	clear: both;
+}
+
+body div.proformsFormWrap div.pfmTemplate input[type="checkbox"], body div.proformsFormWrap div.pfmTemplate input[type="radio"]{
+	display: inline-block;
+	margin:0; padding:0; 
+	margin-right: 5px;
+	height: auto;
+	line-height: 100%;
+	float: left;
+	min-height: 0px;
+}
+
+body div.proformsFormWrap div.pfmTemplate input[type="file"]{
+	height: auto;
+	width: auto;
+	vertical-align: middle;
+	text-align: left;
+}
+
+.pfmSpan1{ width: 2.690217391%; }
+.pfmSpan2{ width: 6.815217391%; }
+.pfmSpan3{ width: 10.940217391%; }
+.pfmSpan4{ width: 15.065217391%; }
+.pfmSpan5{ width: 19.190217391%; }
+.pfmSpan6{ width: 23.315217391%; }
+.pfmSpan7{ width: 27.440217391%; }
+.pfmSpan8{ width: 31.565217391%; }
+.pfmSpan9{ width: 35.690217391%; }
+.pfmSpan10{ width: 39.815217391%; }
+.pfmSpan11{ width: 43.940217391%; }
+.pfmSpan12{ width: 48.065217391%; }
+.pfmSpan13{ width: 52.190217391%; }
+.pfmSpan14{ width: 56.315217391%; }
+.pfmSpan15{ width: 60.440217391%; }
+.pfmSpan16{ width: 64.565217391%; }
+.pfmSpan17{ width: 68.690217391%; }
+.pfmSpan18{ width: 72.815217391%; }
+.pfmSpan19{ width: 76.940217391%; }
+.pfmSpan20{ width: 81.065217391%; }
+.pfmSpan21{ width: 85.190217391%; }
+.pfmSpan22{ width: 89.315217391%; }
+.pfmSpan23{ width: 93.440217391%; }
+.pfmSpan24{ width: 97.565217391%; margin-right:0; }
+
+.pfmLast{
+	margin-right: 0;
+}

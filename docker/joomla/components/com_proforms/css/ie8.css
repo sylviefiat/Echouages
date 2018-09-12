@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+
+body table.m4jSystemTable input,
+body table.m4jSystemTable textarea,
+body table.m4jSystemTable select,
+#proforms_proforms input,
+#proforms_proforms  textarea,
+#proforms_proforms select
+{
+    min-height/*\**/: 0px\9;
+    min-width/*\**/: 0px\9;
+    height/*\**/: auto\9;
+	line-height: /*\**/: 150%\9;
+	box-sizing /*\**/: border-box\9;
+	vertical-align /*\**/: middle\9;
+}
+
+
+body table.m4jSystemTable select,
+#proforms_proforms select{
+	padding /*\**/: 0px\9;
+	margin-top /*\**/: 5px\9;
+}
+
+body div.proformsFormWrap table tr td div.m4jSelectItem,
+#proforms_proforms div.m4jSelectItem{
+	padding-right /*\**/: 20px\9;
+}
+
+body  div.proformsFormWrap div.pfmTemplate input,
+body  div.proformsFormWrap div.pfmTemplate textarea,
+body  div.proformsFormWrap div.pfmTemplate select{
+    min-height/*\**/: 0px\9;
+    min-width/*\**/: 0px\9;
+    height/*\**/: auto\9;
+	line-height: /*\**/: 150%\9;
+	box-sizing /*\**/: border-box\9;
+	vertical-align /*\**/: middle\9;
+}
+
+body  div.proformsFormWrap div.pfmTemplate select{
+	padding /*\**/: 0px\9;
+	margin-top /*\**/: 5px\9;
+}
+
+
+.pfmTemplate input, .pfmTemplate textarea, .pfmTemplate select{
+    min-height/*\**/: none\9;
+	padding /*\**/: 3px\9;
+}
+
+body  div.proformsFormWrap div.pfmTemplate label.pfmSelectItem{
+	padding-right /*\**/: 20px\9;
+}
+	

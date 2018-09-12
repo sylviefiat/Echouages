@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<form>
+
+	<fieldset name="address"
+		label="MY_DEMO1_ADDRESS_PICKER"
+		printable="true"
+		>
+		<field name="formatted_address"
+				alias="formatted_address"
+				label="MY_DEMO1_FORMATTED_ADDRESS"
+				filter="STRING"
+				mode="modal"
+				placeholder="focus me, please! :-)"
+				targets_prefix="aPicker_"
+				class="aPicker_formatted_address"
+				type="ckaddresspicker"/>
+
+		<field name="street_number"
+				alias="street_number"
+				label="MY_DEMO1_STREET_NUMBER"
+				filter="STRING"
+				readonly="true"
+				class="aPicker_street_number"
+				type="cktext"/>
+
+		<field name="street"
+				alias="street"
+				label="MY_DEMO1_STREET"
+				filter="STRING"
+				readonly="true"
+				class="aPicker_street"
+				type="cktext"/>
+
+		<field name="zip"
+				alias="zip"
+				label="MY_DEMO1_ZIP"
+				filter="STRING"
+				readonly="true"
+				class="aPicker_zip"
+				type="cktext"/>
+
+		<field name="city"
+				alias="city"
+				label="MY_DEMO1_CITY"
+				filter="STRING"
+				readonly="true"
+				class="aPicker_city"
+				type="cktext"/>
+
+		<field name="city_district"
+				alias="city_district"
+				label="MY_DEMO1_CITY_DISTRICT"
+				filter="STRING"
+				readonly="true"
+				class="aPicker_city_district"
+				type="cktext"/>
+
+		<field name="county"
+				alias="county"
+				label="MY_DEMO1_COUNTY"
+				filter="STRING"
+				readonly="true"
+				class="aPicker_county"
+				type="cktext"/>
+
+		<field name="county_code"
+				alias="county_code"
+				label="MY_DEMO1_COUNTY_CODE"
+				filter="STRING"
+				readonly="true"
+				class="aPicker_county_code"
+				type="cktext"/>
+
+		<field name="region"
+				alias="region"
+				label="MY_DEMO1_REGION"
+				filter="STRING"
+				readonly="true"
+				class="aPicker_region"
+				type="cktext"/>
+
+		<field name="region_code"
+				alias="region_code"
+				label="MY_DEMO1_REGION_CODE"
+				filter="STRING"
+				readonly="true"
+				class="aPicker_region_code"
+				type="cktext"/>
+
+		<field name="country"
+				alias="country"
+				label="MY_DEMO1_COUNTRY"
+				filter="STRING"
+				readonly="true"
+				class="aPicker_country"
+				type="cktext"/>
+
+		<field name="country_code"
+				alias="country_code"
+				label="MY_DEMO1_COUNTRY_CODE"
+				filter="STRING"
+				readonly="true"
+				class="aPicker_country_code"
+				type="cktext"
+				/>
+
+		<field name="latitude"
+				alias="latitude"
+				label="MY_DEMO1_LATITUDE"
+				filter="FLOAT"
+				readonly="true"
+				class="aPicker_latitude"
+				type="cktext"/>
+
+		<field name="longitude"
+				alias="longitude"
+				label="MY_DEMO1_LONGITUDE"
+				filter="FLOAT"
+				readonly="true"
+				class="aPicker_longitude"
+				type="cktext"/>
+			
+	</fieldset>
+</form>

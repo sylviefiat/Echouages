@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<metadata>
+	<layout title="JFORMS_LAYOUT_EDIT_SUBMISSION">
+	<message>
+		<![CDATA[JFORMS_LAYOUT_SHOW_EDIT_SUBMISSION_LAYOUT]]>
+	</message></layout>
+
+	<fields name="request">
+
+		<fieldset name="request" addfieldpath="/administrator/components/com_jforms/models/fields">
+
+			<field name="cid"
+					type="modal_submission"
+					label="JFORMS_JSEARCH_SELECT_SUBMISSION"
+					required="false"
+					default=""
+					description="JFORMS_JSEARCH_SELECT_SUBMISSION_DESC"/>
+		</fieldset>
+	</fields>
+</metadata>

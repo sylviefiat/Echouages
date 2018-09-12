@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<form>
+
+	<fieldset name="system"
+		label="MY_DEMO1_SYSTEM"
+		printable="true"
+		>
+				
+		<field name="status"
+				alias="status"
+				label="MY_DEMO1_STATUS"
+				description="MY_DEMO1_DESC"
+				type="status"/>	
+								
+		<field name="templatestyle"
+				alias="templatestyle"
+				label="MY_DEMO1_TEMPLATESTYLE"
+				description="MY_DEMO1_DESC"
+				type="templatestyle"/>
+				
+				
+		<field name="menu"
+				alias="menu"
+				label="MY_DEMO1_MENU"
+				description="MY_DEMO1_DESC"
+				type="menu"/>
+				
+		<field name="menuitem"
+				alias="menuitem"
+				label="MY_DEMO1_MENUITEM"
+				description="MY_DEMO1_DESC"
+				type="menuitem"/>
+				
+		<field name="moduletag"
+				alias="moduletag"
+				label="MY_DEMO1_MODULETAG"
+				description="MY_DEMO1_DESC"
+				type="moduletag"/>
+				
+		<field name="plugins"
+				alias="plugins"
+				label="MY_DEMO1_PLUGINS"
+				description="MY_DEMO1_DESC"
+				folder="system"
+				type="plugins"/>
+
+				
+		<field name="joomla_cachehandler"
+				alias="joomla_cachehandler"
+				label="MY_DEMO1_CACHEHANDLER"
+				description="MY_DEMO1_DESC"
+				type="cachehandler"/>
+				
+		<field name="joomla_chromestyle"
+				alias="joomla_chromestyle"
+				label="MY_DEMO1_CHROMESTYLE"
+				description="MY_DEMO1_DESC"
+				type="chromestyle"/>
+				
+		<field name="joomla_databaseconnection"
+				alias="joomla_databaseconnection"
+				label="MY_DEMO1_DATABASECONNECTION"
+				description="MY_DEMO1_DESC"
+				type="databaseconnection"/>
+				
+		<field name="joomla_headertag"
+				alias="joomla_headertag"
+				label="MY_DEMO1_HEADERTAG"
+				description="MY_DEMO1_DESC"
+				type="headertag"/>
+				
+				
+		<field name="joomla_sessionhandler"
+				alias="joomla_sessionhandler"
+				label="MY_DEMO1_SESSIONHANDLER"
+				description="MY_DEMO1_DESC"
+				type="sessionhandler"/>
+				
+		<field name="joomla_registrationdaterange"
+				alias="joomla_registrationdaterange"
+				label="MY_DEMO1_REGISTRATIONDATERANGE"
+				description="MY_DEMO1_DESC"
+				type="registrationdaterange"/>
+		
+	</fieldset>
+</form>

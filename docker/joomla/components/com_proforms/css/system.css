@@ -1,0 +1,279 @@
+@CHARSET "UTF-8";
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* Next are some system classes which may not removed or changed if you want that proforms works propper */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+/*Don't delete or change this */
+div.proforms_system_error{
+	display:block;
+	width:100%;
+	-moz-box-sizing:    border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing:        border-box;
+    margin:0; padding:0;
+    border: 1px solid #aa3333;
+    background-color: #ffeeee;
+}
+div.proforms_system_error span{
+	display: inline-block;
+	margin: 10px;
+	color: #aa0000;
+}
+
+/*Don't delete or change this */
+.m4jFormElementWrap{
+	margin: 0px;
+	padding:0px;
+	border: none;
+	border: 1px solid transparent;
+}
+
+
+* html .m4jFormElementWrap{
+	border: 1px solid none;
+}
+
+/*Don't delete or change this */
+.m4jRadioWrap, .m4jCheckboxWrap{
+	margin: 0px;
+	padding:0px;
+	border: none;
+	float: left;
+	border: 1px solid transparent;
+}
+* html .m4jRadioWrap, * html .m4jCheckboxWrap {
+	border: 1px solid none;
+}
+
+/* clr */
+.m4jCLR{
+	clear:both;	
+}
+
+/*Don't delete this. It hides the spam trap */
+div.m4j-email{
+	display:none;
+}
+
+
+/*This is the class for the JS function scroll down to confirm reading. More information at the helpdesk */
+
+.m4jScrollConfirm{
+	display:block;
+	overflow-x: hidden; 
+	overflow-y: scroll;
+	border: 1px solid #ababab;
+}
+
+.m4jOff{
+	display: none;
+}
+
+div.proformsInnerFormWrap{
+	display:inline-block;
+	max-width: 100%;
+	float:none;
+	clear:both;
+	text-align: left;
+}
+
+
+div.proformsFormWrap table tr td fieldset legend, #proforms_proforms table tr td fieldset legend, #proforms_proforms fieldset legend{
+	display:block\0;
+}
+
+
+#proforms_proforms table.m4j_form_table, #proforms_proforms table.m4j_form_table tr, 
+#proforms_proforms table.m4j_form_table tr:hover, #proforms_proforms table.m4j_form_table tr td, 
+#proforms_proforms table.m4j_form_table tr:hover td, #proforms_proforms table.m4j_form_table tr td div table {
+	background: transparent;
+	border: none;
+}
+
+
+#proforms_proforms table.m4jSystemTable, #proforms_proforms table.m4jSystemTable tr, 
+#proforms_proforms table.m4jSystemTable tr:hover, #proforms_proforms table.m4jSystemTable tr td, 
+#proforms_proforms table.m4jSystemTable tr:hover td, #proforms_proforms table.m4jSystemTable tr td div table{
+	background: transparent;
+	border: none;
+	text-align: left;
+}
+
+
+
+#proforms_proforms textarea:focus, #proforms_proforms input[type=submit]:focus, #proforms_proforms input[type=reset]:focus{
+	outline: none;
+}
+
+table.m4jSystemTable tr td.proformsQuestions, table.m4jSystemTable tr td.proformsInfoImage img{
+	cursor: help;	
+}
+
+table.nopad , table.nopad tr, table.nopad tr:hover, table.nopad tr td, table.nopad tr:hover td{
+	background: transparent;
+	border: none;
+}
+
+#proforms_proforms div.pfmTAMaxChars{
+	display:block;
+	width:100%;
+	background: transparaent;
+	clear:both;
+	font-size: 10px;
+	border: none; outline: none;
+	padding:0; margin:0; 
+	
+}
+
+#m4jAsk2Confirm input[type="checkbox"]:checked + label:before{
+	content: none;
+	background: transparent;
+}
+
+
+#proforms_proforms select[multiple], #proforms_proforms select[size] {
+    height: auto;
+}
+
+#proforms_proforms input[name=mailcopy]{
+	margin-right: 5px;
+}
+
+div.m4jRequiredWrapSystem{
+	display: inline-block;
+	margin-bottom: 10px;
+	max-width: 100%;
+	text-align: left;
+}
+
+body table.m4jSystemTable tr td input, 
+body table.m4jSystemTable tr td textarea,
+body table.m4jSystemTable tr td select{
+		-moz-box-sizing:    border-box;
+	    -webkit-box-sizing: border-box;
+	    box-sizing:        border-box;
+	    max-width: 100%;
+    	min-height: 28px;
+}  
+
+body table.m4jSystemTable tr td input[type="radio"],
+body table.m4jSystemTable tr td input[type="checkbox"]{
+	
+    	min-height: 1px;
+}
+
+
+@media screen and (max-width: 960px) {
+	
+	table.m4jFormTable , 
+	table.m4jFormTable tr,
+	table.m4jFormTable td,   
+	table.m4jSystemTable , 
+	table.m4jSystemTable tr, 
+	table.m4jSystemTable tr td,
+	table.m4jSystemTable table,
+	table.m4jSystemTable table tr,
+	table.m4jSystemTable table td{
+		display:block;
+		float:left;
+		clear:both;
+		width: 99%;
+		max-width: 100%;
+		min-width: 100%;
+		-moz-box-sizing:    border-box;
+	    -webkit-box-sizing: border-box;
+	    box-sizing:        border-box;
+	    position: relative;
+		overflow-x: hidden;
+	}
+	
+	table.m4jSystemTable tr td.proformsQuestions, table.m4jSystemTable tr td.proformsInfoImage{
+		display:block; 
+		width: 100%;
+		min-width: 16px;
+		float:left;
+	}
+
+	table.m4jSystemTable tbody{
+		display:block;
+		width: 100%;
+		padding:0;
+		margin:0;
+	}
+
+	table.m4jSystemTable tr td.proformsQuestions{
+		margin-top: 10px;
+	}
+	table.m4jSystemTable tr td span.rspInfo{
+		display:block;
+		font-size: 12px;
+		font-style: italic;
+		width: 100%;
+		margin-bottom: 5px;
+	}
+
+	table.m4jSystemTable tr td div{
+		display:block;
+		min-width: 100%;
+		overflow: visible;
+	}
+	
+	
+	
+
+	table.m4jSystemTable input, table.m4jSystemTable textarea, table.m4jSystemTable select {
+		max-width: 70%;
+		margin-right:0; 
+		margin-left:0;
+	}
+	
+}
+
+
+@media screen and (max-width: 480px) {
+
+	div.proformsFormWrap form{
+		width: 100%;
+	}
+	
+	table.m4jSystemTable tr td{
+		padding-left:0; margin-left: 0;
+		padding-right:0; margin-right: 0;
+	}
+	
+
+	table.m4jSystemTable tr td fieldset{
+		border: none; outline: none;
+		background: transparent;
+		padding: 0; margin:0;
+		width: 90%;
+		max-width: 100%;
+		min-width: 100%;
+		border:none;
+	}
+	
+
+	#proforms_proforms table tr td fieldset legend, body table.m4jSystemTable tr td fieldset legend{
+		padding: 0; margin:0;
+		padding-right: 5px;
+		display:block;
+		border: none; outline: none;
+		background: transparent;
+		width: 100%;
+		clear: both; 
+		border-bottom: 1px solid;
+		margin-bottom: 10px;
+		color: inherit;
+	}
+
+	body table.m4j_form_table{
+		width: 100%;
+	}
+
+}
+
+
+
+

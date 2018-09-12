@@ -1,0 +1,460 @@
+/**
+* (¯`·.¸¸.-> °º★ вүgιяσ.cσм ★º° <-.¸¸.·´¯)
+* @version		0.4.4
+* @package		jForms
+* @subpackage	
+* @copyright	G. Tomaselli
+* @author		Girolamo Tomaselli - http://bygiro.com - girotomaselli@gmail.com
+* @MVC			basic MVC generated with Cook Self Service  V2.6.4 - www.j-cook.pro
+* @license		GNU GPL v3 or later
+*
+*/
+
+/**
+* JForms
+**/
+.fieldsform, .fieldsfly {
+	background-color:#fff;
+}
+.fly-horizontal .control-group {
+	clear:both;
+	margin-bottom:10px;
+}
+.fly-horizontal .control-group:before, .fly-horizontal .control-group:after {
+	content:"";
+	display:table;
+	line-height:0;
+}
+.fly-horizontal .control-label {
+	float:left;
+	text-align:right;
+	width:140px;
+}
+.fly-horizontal .controls {
+	margin-left:160px;
+}
+.btn-group input, .inputfix {
+	float:none;
+	margin:0;
+}
+.form-horizontal .control-group:after {
+	clear:both;
+}
+.form-horizontal .control-group {
+	margin-bottom:20px;
+}
+
+.component_container input,
+.component_container label.btn,
+.component_container input[type="text"],
+.component_container input[type="password"],
+.component_container input[type="datetime"],
+.component_container input[type="datetime-local"],
+.component_container input[type="date"],
+.component_container input[type="month"],
+.component_container input[type="time"],
+.component_container input[type="week"],
+.component_container input[type="number"],
+.component_container input[type="email"],
+.component_container input[type="url"],
+.component_container input[type="search"],
+.component_container input[type="tel"],
+.component_container input[type="color"],
+.component_container .uneditable-input,
+.component_container .input-append .add-on,
+.component_container .input-prepend .add-on,
+.component_container .input-append a.btn,
+.component_container .input-prepend a.btn {
+	height: initial;
+}
+
+.input-tiny {
+	width:30px;
+}
+.fieldsform select {
+	font-size:1.1em;
+}
+fieldset .btn-group label {
+	clear:none;
+}
+
+/**
+* Formvalidator
+**/
+.field-validator .message {
+	margin-left:100px;
+	padding:20px;
+	padding-left:70px;
+	width:250px;
+	border:1px solid #ccc;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	background-position:10px center;
+	background-repeat:no-repeat;
+	font-style:italic;
+}
+.field-validator .msg-info {
+	color:#006600;
+	background-image:url(../images/icon-48-sys-information.png);
+}
+.field-validator .msg-incorrect {
+	color:#FF0000;
+	background-image:url(../images/icon-48-sys-incorrect.png);
+}
+.field-validator .msg-required {
+	color:#FF6600;
+	background-image:url(../images/icon-48-sys-warning.png);
+}
+.validator-icon {
+	width:16px;
+	height:16px;
+	background-position:center;
+	background-repeat:no-repeat;
+}
+.validatoricon_incorrect {
+	background-image:url(../images/icon-16-sys-incorrect.png);
+}
+.validatoricon_valid {
+	background-image:url(../images/icon-16-sys-valid.png);
+}
+
+/**
+* Filters
+**/
+.filter_buttons {
+	float:right;
+}
+fieldset.filters label.filter {
+	display:block;
+	background-color:#F6F6F6;
+	font-weight:bold;
+	font-style:italic;
+	color:#333;
+	border-left:solid 2px #444;
+	padding-left:5px;
+	margin:2px;
+}
+fieldset.filters {
+	background-color:#F6F6F6;
+	padding:5px;
+	margin:5px;
+}
+
+/**
+* Grid
+**/
+tr .row1 {
+	background-color:#F9F9F9;
+}
+table tr.pickable-row:hover {
+	background-color:#2A62BC;
+	color:#FFF;
+}
+th.grid-group {
+	text-align:left;
+	font-weight:bold;
+}
+
+/**
+* Ajax
+**/
+div.ajaxchain-filter div.separator {
+	padding:0;
+	margin:0;
+	padding-left:10px;
+	background-image:url(../images/breadcrumb_separator.png);
+	background-position:left;
+	background-repeat:no-repeat;
+}
+.ajax-required select {
+	border-left:3px red solid;
+}
+
+/**
+* Colors
+**/
+.color-primary {
+	color:#006dcc;
+}
+.color-warning {
+	color:#faa732;
+}
+.color-danger {
+	color:#da4f49;
+}
+.color-info {
+	color:#49afcd;
+}
+.color-success {
+	color:#51a351;
+}
+
+
+.fieldsform {
+	padding: 5px;
+	margin-top: 10px;
+}
+
+.component_container {
+	background-color: #fff;
+	padding: 15px;
+}
+
+.component_container .submitted_data th{
+	width: 30%;
+}
+
+.checkboxes li {
+	list-style-type: none;
+}
+
+.checkboxes li label{
+	display: inline-block;
+	position: relative;
+    top: 4px;
+	margin-left: 5px;
+}
+
+#grid-submissions .form_details h4 {
+	margin: 0 0 5px;
+}
+
+.radio.btn-group label.btn.btn-danger,
+.radio.btn-group label.btn.btn-success,
+.radio.btn-group label.btn.btn-warning,
+.radio.btn-group label.btn.btn-info,
+.radio.btn-group label.btn.btn-inverse,
+.radio.btn-group label.btn.btn-default,
+.radio.btn-group label.btn.btn-primary {
+	line-height: 20px;
+}
+
+.radio.btn-group label.btn.btn-danger {
+	background-color: #BD362F;
+	border-color: #BD362F;
+	
+}
+
+.radio.btn-group label.btn.btn-success {
+	background-color: #51A351;
+	border-color: #51A351;
+}
+
+.radio.btn-group label.btn.btn-info {
+	background-color: #2F96B4;
+	border-color: #2F96B4;
+}
+
+.radio.btn-group label.btn.btn-warning {
+	background-color: #F89406;
+	border-color: #F89406;
+}
+
+.radio.btn-group label.btn.btn-primary {
+	background-color: #0044CC;
+	border-color: #0044CC;
+}
+
+.radio.btn-group label.btn.btn-inverse {
+	background-color: #222222;
+	border-color: #222222;
+}
+
+.radio.btn-group label.btn.btn-default {
+	background-color: #F5F5F5;
+	border-color: #F5F5F5;
+}
+
+.radio.btn-group label.btn.btn-default.active i.icomoon[class*=" icon-"]:before,
+.radio.btn-group label.btn.btn-default.active i.icomoon[class^="icon-"]:before{
+	color: #4F5054 !important;
+}
+
+.controls .radio input[type="radio"],.controls .checkbox input[type="checkbox"] {
+	margin-left: 0px;
+	margin-right: 5px;
+	margin-top: 2px;
+}
+
+legend.jforms {
+	font-size: 15px;
+}
+
+.item_info {
+	margin: 0;
+	width: 100%;
+}
+
+.item_info td{
+	font-size: 10px;
+}
+
+.item_info .info_label {
+	white-space: nowrap;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.item_info td:not(:first-child){
+	padding-left: 25px;
+}
+
+.fieldset_table > tbody th {
+	width: 25%;
+}
+
+.sorting_btn {
+	margin-bottom: 10px;
+}
+
+.sorting_btn img {
+    margin-left: 5px;
+    position: relative;
+    top: -2px;
+}
+
+table td.it_main {
+	width: 90%;
+}
+
+.it_main h5.form_name {
+	margin: 0;
+}
+
+table td.it_actions {
+	vertical-align: middle;
+	text-align: right;
+}
+
+a.btn:link:not(.btn-link):not(.btn-micro):not(.modal){
+	color: #fff;
+}
+
+.input-prepend.input-append a.btn:link,
+.input-prepend.input-append a.btn:link:not(.btn-link):not(.btn-micro):not(.modal),
+.toggle-editor a.btn:not(.btn-link):not(.btn-micro):link {
+	color: initial;
+}
+
+/* fix joomla breaking the select list on mouseover */
+.jmoddiv {
+	position: static !important;
+}
+
+/* fix empty cell not showing border */
+table.table {
+	empty-cells: show;
+}
+
+.com_jforms .tooltip {
+	position: fixed;
+}
+
+/* fix J2.5 bootstrap */
+.control-group label,
+li label {
+	display: inline-block;
+}
+
+/* exception for radio labels */
+.radio label:not(.btn) {
+	display: block;
+}
+
+.btn-printpdf {
+	white-space: nowrap;
+}
+
+
+.footer_actions {
+	display: table;
+	width: 100%;
+	margin-bottom: 2px;
+}
+
+.action_left,
+.action_right {
+	display: table-cell;
+}
+
+.action_left {	
+	text-align: left;
+}
+
+.action_right {
+	text-align: right;
+}
+
+.pt_payment{
+	display: table-row;
+}
+
+.pt_payment > * {
+	display: table-cell;
+	padding: 5px;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+.payment_info_content {
+	display: none;
+}
+
+.hsmall {
+	margin-bottom: 0;
+}
+
+.payment_chooser {
+	display: none;
+}
+
+.payment_summary .summary_label {
+	font-weight: bold;
+	text-align: right;
+}
+
+.table td.price {
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+
+.payment_summary .summary_price {
+	text-align: right;
+	white-space: nowrap;
+}
+
+.no_payment_gateways {
+	font-style: italic;
+	font-weight: bold;
+	color: red;
+	text-align: center;
+}
+
+.component_container .input-append .btn {
+
+}
+
+.payment_summary .summary_label label {
+	display: inline-block;
+}
+
+.small {
+	font-size: 75%;
+	font-style: italic;
+}
+
+.component_container select#limit {
+	width: 60px;
+	margin-bottom: 0;
+}
+
+.forms_list {
+	margin-top: 5px;
+}
+
+.element-search.search-query {
+	height: initial;
+}

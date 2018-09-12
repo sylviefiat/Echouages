@@ -1,0 +1,86 @@
+@CHARSET "ISO-8859-1";
+
+#proforms_proforms div.clr{
+	clear:both;
+}
+
+#captchaWrap, #captchaWrapButtons{
+	position: relative;
+	display:block;
+	margin: 0px; padding:0px;
+	border:none;
+	background: transparent;
+	outline: none;
+	clear:both;
+	width: 100%;
+}
+
+#proformsReCaptcha{
+	position: realtive;
+	display:inline-block;
+	border: none;
+	width: 320px;
+	margin: 0px; padding: 0px;
+	background: transparent;
+}
+
+#proformsCaptcha{
+	position: realtive;
+	display:inline-block;
+	border: none;
+	width: 191px;
+	height: 109px;
+	margin: 0px; padding: 0px;
+	background-image: url("../images/captchaback.png");
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+}
+#proformsCaptcha .alignImage{
+	display:block;
+	margin:0; padding:0; border: none;
+	margin-left: 16px;
+	margin-top: 15px;
+	width: 160px;
+	height: 32px;
+	border: 1px solid #9a9a9a;
+}
+
+#proformsCaptcha .alignInput{
+	display:block;
+	margin:0; padding:0; border: none;
+	width: 191px;
+	margin-top: 12px;
+}
+
+#proformsCaptcha .alignInput input{
+	display:block;
+	margin:0; padding:0 5px; border: 1px solid #9a9a9a;
+	width: 100px; height: 24px; 
+	background-color: #fff;
+	color: #0000;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 24px;
+	margin-left: 35px;
+ 	-moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -khtml-border-radius: 0px;
+    border-radius: 0px;
+    outline: none;
+	float:left;
+	background-image: url("../images/inputback.png");
+	background-position: 0px 0px;
+	background-repeat: repeat-x;
+}
+
+#proformsCaptcha .alignInput input:focus{
+    outline: none;
+}
+
+#proformsCaptcha .alignInput img{
+	float:left;
+	margin-left: 3px;
+	cursor: pointer;
+}
+
+

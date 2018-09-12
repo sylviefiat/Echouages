@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<form>
+
+	<fieldset name="system2"
+		label="MY_DEMO1_SYSTEM2"
+		printable="true"
+		>
+		
+		<field name="joomla_timezone"
+				alias="joomla_timezone"
+				label="MY_DEMO1_TIMEZONE"
+				description="MY_DEMO1_DESC"
+				type="timezone"/>
+				
+		<field name="joomla_useractive"
+				alias="joomla_useractive"
+				label="MY_DEMO1_USERACTIVE"
+				description="MY_DEMO1_DESC"
+				type="useractive"/>
+				
+		<field name="usergroup"
+				alias="usergroup"
+				label="MY_DEMO1_USERGROUP"
+				description="MY_DEMO1_DESC"
+				type="usergroup"/>
+				
+		<field name="usergrouplist"
+				alias="usergrouplist"
+				label="MY_DEMO1_USERGROUPLIST"
+				description="MY_DEMO1_DESC"
+				type="usergrouplist"/>
+				
+		<field name="userstate"
+				alias="userstate"
+				label="MY_DEMO1_USERSTATE"
+				description="MY_DEMO1_DESC"
+				type="userstate"/>
+		
+
+		<field 
+			name="state"
+			alias="state"
+			label="MY_DEMO1_STATE"
+			filter="INT"
+			default="1"
+			description="MY_DEMO1_DESC"
+			type="ckstate"/>
+			
+
+			<field
+				name="language"
+				alias="language"
+				type="ckcontentlanguage"
+				label="MY_DEMO1_LANGUAGE"
+				description="MY_DEMO1_DESC"
+				filter="STRING"
+				size="1"
+				default="*"					
+				/>
+				
+			<field
+				name="language2"
+				alias="language2"
+				type="ckcontentlanguage"
+				label="MY_DEMO1_LANGUAGE2"
+				description="MY_DEMO1_DESC"
+				filter="STRING"
+				multiple="true"
+				default="*,en-GB"					
+				/>
+			
+			<field 
+				name="usergroups"
+				alias="usergroups"
+				label="MY_DEMO1_USERGROUPS"
+				type="ckusergrouplist"
+				size="1"
+				description="MY_DEMO1_DESC"
+				nullLabel="MY_DEMO1_USERGROUPS_NULL"/>
+				
+			<field 
+				name="usergroups2"
+				alias="usergroups2"
+				label="MY_DEMO1_USERGROUPS2"
+				type="ckusergrouplist"
+				multiple="true"
+				default="Registered,Publisher,13"
+				description="MY_DEMO1_DESC"/>
+								
+		<field name="author"
+				alias="author"
+				label="MY_DEMO1_AUTHOR"
+				description="MY_DEMO1_DESC"
+				type="author"/>
+
+
+		<field name="ckaccesslevel"
+				alias="ckaccesslevel"
+				label="MY_DEMO1_ACCESS_LEVEL"
+				filter="STRING"
+				description="MY_DEMO1_DESC"
+				display="list"
+				default="1"
+				type="ckaccesslevel"/>
+				
+		<field name="ckaccesslevel2"
+				alias="ckaccesslevel2"
+				label="MY_DEMO1_ACCESS_LEVEL2"
+				filter="STRING"
+				description="MY_DEMO1_DESC"
+				display="radio"
+				default="1"
+				type="ckaccesslevel"/>	
+				
+		<field name="ckaccesslevel3"
+				alias="ckaccesslevel3"
+				label="MY_DEMO1_ACCESS_LEVEL3"
+				filter="STRING"
+				default="1"
+				description="MY_DEMO1_DESC"
+				display="combo"
+				type="ckaccesslevel"/>			
+
+		</fieldset>
+</form>

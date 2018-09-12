@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EnquiryImport>
+	<Header>
+		<DocumentName>Enquiry Import File</DocumentName>
+		<Version>1.0</Version>
+		<DateTime>{{DateTime}}</DateTime>
+		<DestSchool>
+			<SchoolID>4321823</SchoolID>
+		</DestSchool>
+	</Header>
+	<EnquiryCollection>
+		{{#items}}
+		<Enquiry>
+			<EnquiryID>{{id}}</EnquiryID>
+			<Comments></Comments>
+			<Enquirer>
+				<Title>{{parentguardian_1_title_and_surname}}</Title>{{! this is a comment and will not be rendered, message for PAUL: you should have a title value instead of title-surname }}
+				<Surname>{{parentguardian_1_title_and_surname}}</Surname>
+				<Forename>{{parentguardian_1_first_name_in_full}}</Forename>
+				<Address>
+					<HouseName>{{house_name}}</HouseName>
+					<HouseNumber>{{house_number}}</HouseNumber>
+					<StreetDescription>{{street}}</StreetDescription>
+					<Town>{{town}}</Town>
+					<Postcode>{{postcode}}</PostCode>
+					<Country>{{country}}</Country>
+				</Address>
+				<Relationship>{{relationship_to_pupil}}</Relationship>
+				<Contact>
+					<HomeEmailAddress>{{parentguardian_2_email_address}}</HomeEmailAddress>{{! for PAUL: missing the parentguardian_1_email_address}}
+					<HomeTelephoneNumber>{{parentguardian_1_home_number}}</HomeTelephoneNumber>
+					<WorkTelephoneNumber>{{parentguardian_1_work_number}}</WorkTelephoneNumber>
+					<MobileTelephoneNumber>{{parentguardian_1_mobile_number}}</MobileTelephoneNumber>
+				</Contact>
+			</Enquirer>
+			<ProspectivePupilCollection>
+				<ProspectivePupil>
+					<Title>{{pupils_title_in_full}}</Title>{{! for PAUL: this field is missing }}
+					<Surname>{{pupils_surname_in_full}}</Surname>
+					<Forename>{{pupils_first_name_in_full}}<Forname>
+					<Middlename>{{pupils_middle_name_in_full}}</Middlename>
+					<Gender>{{pupils_gender}}</Gender>{{! missing}}
+					<DOB>{{pupils_date_of_birth}}</DOB>
+					<CurrentSchool>{{current_school}}</CurrentSchool>
+					<ProposedYearOfEntry>2015</ProposedYearOfEntry>
+					<ProposedSeasonOfEntry>Autumn</ProposedSeasonOfEntry>
+					<ProposedYearGroup>7</ProposedYearGroup>
+				</ProspectivePupil>
+				<ProspectivePupil>
+					<Title>Miss</Title>
+					<Surname>Weasly</Surname>
+					<Forename>Katie<Forname>
+					<Middlename></Middlename>
+					<Gender>F</Gender>
+					<DOB>2003-04-28</DOB>
+					<CurrentSchool>Waters Edge</CurrentSchool>
+					<ProposedYearOfEntry>2015</ProposedYearOfEntry>
+					<ProposedSeasonOfEntry>Autumn</ProposedSeasonOfEntry>
+					<ProposedYearGroup>7</ProposedYearGroup>
+				</ProspectivePupil>				
+			</ProposedPupilCollection>
+		</Enquiry>
+		{{/items}}
+	</EnquiryCollection>
+</EnquiryImport>

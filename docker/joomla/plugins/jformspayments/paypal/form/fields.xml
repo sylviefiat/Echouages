@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="payment_methods">
+		<fieldset name="vendor.payment_methods"
+				addfieldpath="/libraries/jdom/jform/fields">				
+				<field name="merchant"
+						label="PLG_JFORMSPAYMENTS_PAYPAL_MERCHANT_LABEL"
+						description="PLG_JFORMSPAYMENTS_PAYPAL_MERCHANT_DESC"
+						alias="merchant"
+						filter="STRING"
+						class="validate[required] pay condRule[show,.payment_methods_type,paypal]"
+						type="cktext"/>			
+		</fieldset>
+	</fields>
+</form>

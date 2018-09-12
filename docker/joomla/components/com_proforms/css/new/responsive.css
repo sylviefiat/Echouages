@@ -1,0 +1,120 @@
+@CHARSET "UTF-8";
+/*
+*	This is the CSS file for customizing the RESPONSIVE! view of Proforms.
+*	There is another system-responsive CSS file which is loaded before this one.
+* 	The system CSS does contain all necessary and required rules so that the form is responsive.
+*   If you are not a CSS expert don't change the CSS here.
+*   If you are intermediate we strongly suggest not applying following rules to the CSS:
+*
+*   - Don't set any `width`, `min-width` or `max-width`. 
+*     Width adjustment goes by form element adjustment in Proforms' backend.
+*   - Don't set any `display` rules just as display:inline , display: block etc. 
+*     If you set the wrong values Proforms' responsive functionallity can be broken.
+*   - Don't set any `box-sizing`, `-webkit-box-sizing` or `-moz-box-sizing rules`.
+*   - Never set any `float` or `clear` rules!
+*   - Never set any `position` rules!
+*/
+
+/* This is the class for the `form` tag of Proforms. 
+*  Please be careful here because it also affects non-responsive form tags*/
+
+form.ProformsForm{
+	/* START YOUR RULES HERE */
+	
+}
+
+/* This is the class for the `label` tag of Proforms' questions. */
+
+form.ProformsForm label.pfmQuestion{
+	/* START YOUR RULES HERE */
+	
+}
+
+/* This is the class for the wrapping `div` tag of Proforms' form elements.*/
+
+form.ProformsForm div.pfmField{
+	/* START YOUR RULES HERE */
+	
+}
+
+/* This is the class for the `input` tag of Proforms' `TEXT FIELDS`. */
+
+form.ProformsForm div.pfmField input[type="text"]{
+	/* START YOUR RULES HERE */
+	
+}
+
+/* This is the class for the `input` tag of Proforms' `CHECKBOXES`. */
+
+form.ProformsForm div.pfmField input[type="checkbox"]{
+	/* START YOUR RULES HERE */
+	
+}
+
+/* This is the class for the `input` tag of Proforms' `RADIO BUTTONS`. */
+
+form.ProformsForm div.pfmField input[type="radio"]{
+	/* START YOUR RULES HERE */
+	
+}
+
+/* This is the class for the `input` tag of Proforms' `DATE FIELDS`. */
+
+form.ProformsForm div.pfmField input[type="date"]{
+	/* START YOUR RULES HERE */
+	
+}
+
+/* This is the class for the `input` tag of Proforms' `FILE/UPLOAD FIELDS`. */
+
+form.ProformsForm div.pfmField input[type="file"]{
+	/* START YOUR RULES HERE */
+	
+}
+
+/* This is the class for the `input` tag of Proforms' `PASSWORD FIELDS`. */
+
+form.ProformsForm div.pfmField input[type="password"]{
+	/* START YOUR RULES HERE */
+	
+}
+
+/* This is the class for the `textarea` tag of Proforms. */
+
+form.ProformsForm div.pfmField textarea{
+	/* START YOUR RULES HERE */
+	
+}
+
+/* This is the class for the `select` tag of Proforms'
+* `DROPDOWN FIELDS AND SELECTION LISTS`. */
+
+form.ProformsForm div.pfmField select{
+	/* START YOUR RULES HERE */
+	
+}
+
+/* This is the class for the `option` tag of Proforms' 
+*  which represent the `OPTIONS OF DROPDOWN FIELDS AND SELECTION LISTS`.*/
+
+form.ProformsForm div.pfmField option{
+	/* START YOUR RULES HERE */
+	
+}
+
+/* This is the class for the `fieldset` tag of Proforms' 
+*  `FENCING BORDERS WITH WHICH YOU CAN BORDER GROUPS OF FORM FIELDS`. */
+
+form.ProformsForm div.pfmRow fieldset{
+	/* START YOUR RULES HERE */
+	
+}
+
+/* This is the class for the `legend` tag of Proforms' `FIELDSET LEGENDS`.*/
+
+form.ProformsForm div.pfmRow legend{
+	/* START YOUR RULES HERE */
+	
+}
+
+

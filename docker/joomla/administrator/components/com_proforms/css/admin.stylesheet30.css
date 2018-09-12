@@ -1,0 +1,116 @@
+
+
+#m4jMain legend{
+	display: inline-block;
+	margin:5px; padding: 0px 10px;
+	width: auto;
+	height: auto;
+	border: none;
+	line-height: 100%;
+}
+
+#m4jMain fieldset{
+	padding: 5px;
+}
+
+#m4jMain input{
+	display: inline-block;
+	margin:0; padding: 2px;
+	height: 20px;
+	font-size: 12px;
+	line-height: 20px; 
+	color: black;
+	margin-right: 3px;
+}
+
+#dbPagination{
+	display:block; 
+	width:100%; 
+	text-align: center;
+}
+#dbPagination div.pagination-toolbar{
+	display:inline-block;
+}
+#dbPagination #limit_chzn a{
+	padding-bottom: 3px;
+}
+
+
+#m4jRecordTable tr td{
+	padding: 2px;
+}
+
+#m4jRecordTable tr td{
+	font-size: 12px;
+}
+
+#mWindowContainer center form table{
+	padding: 0px;
+	margin: 0px;
+	margin-top: -10px;
+}
+
+#m4jForm{
+	margin:0;
+}
+#m4jMainSetting tr{
+	height: auto;
+}
+
+#m4jMainSetting tr td{
+	font-size: 14px;
+	padding:0;
+	margin:0;
+	height: auto;
+	line-height: normal;
+}
+
+#m4jMainSetting tr td img {
+	height: 5px;
+	padding:0; margin:0;
+}
+
+body.component{
+	padding:0;
+}
+
+#m4jExportWrap{
+	border-color: #000;
+}
+
+#m4jMain a.m4jApps{
+	margin-top: 2px;
+}
+
+
+* html #m4jMain, *+html  #m4jMain{
+	margin-top: 50px;
+}
+
+
+#m4jMain table tr td.topCorner img{
+	position: relative;
+	display:block;
+	width: 18px;
+	height: 64px;
+	border: none;
+	max-width: none;
+}
+	
+	
+#m4jMain table tr.even td span, #m4jMain table tr.odd td span, #m4jMain table tr.highlight td span {
+	display: block;
+	margin-bottom:0px;
+	}
+#sqlWrap pre.examples{
+	text-align: left;
+	padding:5px;
+	margin: 5px 0px;
+	
+	font-size: 12px;
+	line-height: 14px;
+}
+
+.icon-proforms:before {
+    content: "";
+}

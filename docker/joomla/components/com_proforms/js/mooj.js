@@ -1,0 +1,5 @@
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// @license: Mad4Media Javascipt License - copyright Mad4Media - Fahrettin Kutyol - All rights reserved    ++
+// (re-) publishing or forking for any purpose of commercial or non-commercial use is not allowed.		   ++
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+var originalImageSRC=undefined;function m4jReloadCaptcha(_1){_1=_1||0;var _2=dojo.byId("m4jCIM"+_1);if(originalImageSRC==undefined){originalImageSRC=_2.src;}var _3="&add"+Math.random(10,100)+"="+Math.random(10000,999999999);_2.src=originalImageSRC+_3;return false;};function _byName(_4){var n=document.getElementsByName(_4)[0];return ((n!==undefined)&&dojo.isObject(n))?n:null;};dojo.addOnLoad(function(){dojo.query("DIV.m4j-email").style({display:"none"});});

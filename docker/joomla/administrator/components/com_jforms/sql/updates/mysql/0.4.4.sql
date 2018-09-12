@@ -1,0 +1,1 @@
+ALTER TABLE `#__jforms_submissions`  ADD `session_id` VARCHAR(255) AFTER `ip_address`;

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="payment_methods">
+		<fieldset name="vendor.payment_methods"
+				addfieldpath="/libraries/jdom/jform/fields">		
+				<field name="instructions"
+						label="PLG_JFORMSPAYMENTS_OFFLINE_INSTRUCTIONS_LABEL"
+						description="PLG_JFORMSPAYMENTS_OFFLINE_INSTRUCTIONS_DESC"
+						alias="instructions"
+						filter="STRING"
+						class="validate[required] pay condRule[show,.payment_methods_type,offline]"
+						type="ckeditor"/>
+		</fieldset>
+	</fields>
+</form>

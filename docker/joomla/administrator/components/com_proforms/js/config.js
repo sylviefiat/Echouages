@@ -1,0 +1,5 @@
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// @license: Mad4Media Javascipt License - copyright Mad4Media - Fahrettin Kutyol - All rights reserved    ++
+// (re-) publishing or forking for any purpose of commercial or non-commercial use is not allowed.		   ++
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+console.log("config.js");var ProformsConfig={activeCSSTab:null,init:function(){dojo.query("#cssTabs a").forEach(dojo.hitch(this,function(a){var _1=a.getAttribute("data-assoc");a.assoc=_1;if(activeCSSTab==_1){a.className="active";this.activeCSSTab=a;}a.onclick=function(){ProformsConfig.cssTab(this);};}));this.cssContents();},cssTab:function(_2){this.activeCSSTab.className="";_2.className="active";this.activeCSSTab=_2;this.cssContents();},cssContents:function(){dojo.byId("responsiveTabField").value=this.activeCSSTab.assoc;dojo.query("#assoc .cssAssoc").style({display:"none"});dojo.query("#assoc .cssAssoc[data-css='"+this.activeCSSTab.assoc+"']").style({display:"block"});}};dojo.addOnLoad(function(){ProformsConfig.init();});

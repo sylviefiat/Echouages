@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<form>
+
+	<fieldset name="basic"
+		label="MY_DEMO1_BASIC"
+		printable="true"
+		>
+
+		<field name="required"
+				alias="required"
+				label="MY_DEMO1_REQUIRED"
+				placeholder="MY_DEMO1_PLACEHOLDER_REQUIRED"
+				required="true"
+				filter="STRING"
+				type="cktext"/>
+
+		<field name="color"
+				alias="color"
+				label="MY_DEMO1_COLOR"
+				placeholder="MY_DEMO1_PLACEHOLDER_COLOR"
+				filter="STRING"
+				validate="colorcode"
+				type="cktext"/>
+				
+		<field name="creditcard"
+				alias="creditcard"
+				label="MY_DEMO1_CREDITCARD"
+				placeholder="MY_DEMO1_PLACEHOLDER_CREDITCARD"
+				filter="STRING"
+				validate="creditcard"
+				type="cktext"/>
+				
+		<field name="decimal2"
+				alias="decimal2"
+				label="MY_DEMO1_DECIMAL2"
+				placeholder="MY_DEMO1_PLACEHOLDER_DECIMAL2"				
+				type="cktext"/>
+				
+		<field name="decimal3to1"
+				alias="decimal3to1"
+				label="MY_DEMO1_DECIMAL3TO1"
+				placeholder="MY_DEMO1_PLACEHOLDER_DECIMAL3TO1"
+				type="cktext"/>
+				
+		<field name="decimal5to2"
+				alias="decimal5to2"
+				label="MY_DEMO1_DECIMAL5TO2"
+				placeholder="MY_DEMO1_PLACEHOLDER_DECIMAL5TO2"
+				type="cktext"/>
+					
+		<field name="decimal7to2"
+				alias="decimal7to2"
+				label="MY_DEMO1_DECIMAL7TO2"
+				placeholder="MY_DEMO1_PLACEHOLDER_DECIMAL7TO2"
+				type="cktext"/>
+					
+		<field name="decimal11to8"
+				alias="decimal11to8"
+				label="MY_DEMO1_DECIMAL11TO8"
+				placeholder="MY_DEMO1_PLACEHOLDER_DECIMAL11TO8"
+				type="cktext"/>
+					
+		<field name="decimal15to5"
+				alias="decimal15to5"
+				label="MY_DEMO1_DECIMAL15TO5"
+				placeholder="MY_DEMO1_PLACEHOLDER_DECIMAL15TO5"
+				type="cktext"/>
+					
+		<field name="decimalcomma"
+				alias="decimalcomma"
+				label="MY_DEMO1_DECIMALCOMMA"
+				placeholder="MY_DEMO1_PLACEHOLDER_DECIMALCOMMA"
+				type="cktext"/>
+					
+		<field name="digit"
+				alias="digit"
+				label="MY_DEMO1_DIGIT"
+				placeholder="MY_DEMO1_PLACEHOLDER_DIGIT"
+				type="cktext"/>
+					
+		<field name="domain"
+				alias="domain"
+				label="MY_DEMO1_DOMAIN"
+				placeholder="MY_DEMO1_PLACEHOLDER_DOMAIN"				
+				type="cktext"/>
+
+		<field name="doublequote"
+				alias="doublequote"
+				label="MY_DEMO1_DOUBLEQUOTE"
+				placeholder="MY_DEMO1_PLACEHOLDER_DOUBLEQUOTE"				
+				type="cktext"/>
+
+		<field name="quote"
+				alias="quote"
+				label="MY_DEMO1_QUOTE"
+				placeholder="MY_DEMO1_PLACEHOLDER_QUOTE"				
+				type="cktext"/>
+				
+		<field name="email"
+				alias="email"
+				label="MY_DEMO1_EMAIL"
+				placeholder="MY_DEMO1_PLACEHOLDER_EMAIL"
+				type="cktext"/>
+					
+		<field name="ip"
+				alias="ip"
+				label="MY_DEMO1_IP"
+				placeholder="MY_DEMO1_PLACEHOLDER_IP"
+				type="cktext"/>
+					
+		<field name="length2"
+				alias="length2"
+				label="MY_DEMO1_LENGTH2"
+				placeholder="MY_DEMO1_PLACEHOLDER_LENGTH2"
+				type="cktext"/>
+					
+		<field name="length4"
+				alias="length4"
+				label="MY_DEMO1_LENGTH4"
+				placeholder="MY_DEMO1_PLACEHOLDER_LENGTH4"
+				type="cktext"/>
+					
+		<field name="length8"
+				alias="length8"
+				label="MY_DEMO1_LENGTH8"
+				placeholder="MY_DEMO1_PLACEHOLDER_LENGTH8"
+				type="cktext"/>
+					
+		<field name="length16"
+				alias="length16"
+				label="MY_DEMO1_LENGTH16"
+				placeholder="MY_DEMO1_PLACEHOLDER_LENGTH16"
+				type="cktext"/>
+					
+		<field name="length32"
+				alias="length32"
+				label="MY_DEMO1_LENGTH32"
+				placeholder="MY_DEMO1_PLACEHOLDER_LENGTH32"
+				type="cktext"/>
+					
+		<field name="length64"
+				alias="length64"
+				label="MY_DEMO1_LENGTH64"
+				placeholder="MY_DEMO1_PLACEHOLDER_LENGTH64"
+				type="cktext"/>
+					
+		<field name="numeric"
+				alias="numeric"
+				label="MY_DEMO1_NUMERIC"
+				placeholder="MY_DEMO1_PLACEHOLDER_NUMERIC"
+				type="cktext"/>
+
+		<field name="username"
+				alias="username"
+				label="MY_DEMO1_USERNAME"
+				placeholder="MY_DEMO1_PLACEHOLDER_USERNAME"
+				type="cktext"/>
+				
+		<field name="password"
+				alias="password"
+				label="MY_DEMO1_PASSWORD"
+				placeholder="MY_DEMO1_PLACEHOLDER_PASSWORD"
+				type="cktext"/>
+					
+		<field name="percent"
+				alias="percent"
+				label="MY_DEMO1_PERCENT"
+				placeholder="MY_DEMO1_PLACEHOLDER_PERCENT"
+				type="cktext"/>
+					
+		<field name="phone"
+				alias="phone"
+				label="MY_DEMO1_PHONE"
+				placeholder="MY_DEMO1_PLACEHOLDER_PHONE"
+				type="cktext"/>
+					
+		<field name="positivedecimal"
+				alias="positivedecimal"
+				label="MY_DEMO1_POSITIVEDECIMAL"
+				placeholder="MY_DEMO1_PLACEHOLDER_POSITIVEDECIMAL"
+				type="cktext"/>
+					
+		<field name="regexp"
+				alias="regexp"
+				label="MY_DEMO1_REGEXP"
+				placeholder="MY_DEMO1_PLACEHOLDER_REGEXP"
+				regexp="^\d$"
+				regexpModifiers="i"
+				regexpInvert="true"
+				type="cktext"/>
+				
+		<field name="file"
+				alias="file"
+				label="MY_DEMO1_FILE"
+				filter="STRING"
+				validate="file"
+				indirect="true"
+				root="[DIR_SUBMISSIONS_ATTACHED_FILES]"
+				type="ckfile"
+				view="form"
+				actions="delete"
+				rename="{ID}_{RAND}_{BASE}.{EXT}"
+				allowedExtensions="txt,rar,zip,jpg,png,gif"/>	
+	</fieldset>
+</form>

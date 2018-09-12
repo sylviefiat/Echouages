@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<extension type="component" version="1.5.0" method="upgrade">
+	<name>com_proforms</name>
+	<author>Mad4Media - Fahrettin Kutyol</author>
+	<creationDate>2016-08-31</creationDate>
+	<copyright>Copyright(C) Mad4Media - All rights reserved!</copyright>
+	<license>This component is released under the GNU/GPL License http://www.gnu.org/copyleft/gpl.html</license>
+	<authorEmail>joomla@mad4media.com</authorEmail>
+	<authorUrl>http://www.mad4media.de</authorUrl>
+	<version>1.6.0</version>
+  	<description></description>
+	<scriptfile>proforms.script.php</scriptfile>
+	<install>
+		<sql>
+			<file driver="mysql">installation/install.sql</file>
+			<file driver="mysql" charset="utf8">installation/install.sql</file>
+		</sql>
+	</install>
+
+	<uninstall>
+		<sql>
+			<file driver="mysql">installation/uninstall.sql</file>
+			<file driver="mysql" charset="utf8">installation/uninstall.sql</file>
+		</sql>
+	</uninstall>
+	
+		<files folder="components/com_proforms">
+				<folder>apps</folder>
+				<folder>css</folder>
+				<folder>formlib</folder>
+				<folder>images</folder>
+				<folder>includes</folder>
+				<folder>js</folder>
+				<folder>language</folder>
+				<folder>models</folder>
+				<folder>sec</folder>
+				<folder>tmp</folder>
+				<folder>views</folder>
+				<filename>frontend.defines.proforms.php</filename>
+				<filename>index.html</filename>
+				<filename>proforms.php</filename>
+				<filename>router.php</filename>
+		</files>	
+		
+		
+	
+	<administration>
+		<menu img="components/com_proforms/images/love.png" >COM_PROFORMS</menu>
+		<files folder="administrator/components/com_proforms">
+				<folder>css</folder>
+				<folder>installation</folder>
+				<folder>images</folder>
+				<folder>includes</folder>
+				<folder>js</folder>
+				<folder>language</folder>
+				<folder>layout</folder>
+				<folder>models</folder>
+				<folder>templates</folder>
+				<folder>xhr</folder>
+				<filename>proforms.php</filename>
+				<filename>admin.proforms.php</filename>
+				<filename>admin.proforms.html.php</filename>
+				<filename>config.proforms.php</filename>
+				<filename>defines.proforms.php</filename>
+				<filename>index.html</filename>
+		</files>	
+		
+		<files>
+				<filename>install.proforms.php</filename>
+				<filename>uninstall.proforms.php</filename>
+		</files>
+		
+		<languages folder="administrator/components/com_proforms/language">
+			<language tag="en-GB">en-GB.com_proforms.ini</language>          
+			<language tag="en-GB">en-GB.com_proforms.sys.ini</language>    
+			<language tag="de-DE">de-DE.com_proforms.ini</language>          
+			<language tag="de-DE">de-DE.com_proforms.sys.ini</language>     
+			<language tag="nl-NL">nl-NL.com_proforms.ini</language>          
+			<language tag="nl-NL">nl-NL.com_proforms.sys.ini</language>    
+			<language tag="fr-FR">fr-FR.com_proforms.ini</language>          
+			<language tag="fr-FR">fr-FR.com_proforms.sys.ini</language>     
+			<language tag="pt-PT">pt-PT.com_proforms.ini</language>          
+			<language tag="pt-PT">pt-PT.com_proforms.sys.ini</language>    			
+        </languages>
+	</administration>
+</extension>
+

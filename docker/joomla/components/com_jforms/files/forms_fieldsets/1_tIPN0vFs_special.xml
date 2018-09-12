@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<form>
+
+	<fieldset name="special"
+		label="MY_DEMO1_SPECIAL"
+		printable="true"
+		>
+			<field name="timepicker"
+					alias="timepicker"
+					label="MY_DEMO1_TIMEPICKER"
+					filter="STRING"
+					time="8:00"
+					start="6:20"
+					end="21:35"
+					step="5"
+					description="MY_DEMO1_DESC"
+					type="cktimepicker"/>
+					
+		<field 
+			name="datetimepicker"
+			alias="datetimepicker"
+			label="MY_DEMO1_DATETIMEPICKER"
+			filter="STRING"
+			default="16-11-2014 12:02:32"
+			type="ckdatetimepicker"
+			uiFormat="d F Y H:i:s"
+			format="Y-m-d H:i:s"
+			/>
+
+		<field name="date"
+				alias="date"
+				label="MY_DEMO1_DATE"
+				filter="STRING"
+				type="ckcalendar"
+				format="d-m-Y"/>
+
+		<field name="date_time"
+				alias="date_time"
+				label="MY_DEMO1_DATE_TIME"
+				filter="STRING"
+				type="ckcalendar"
+				format="Y-m-d H:i"/>
+								
+		<field name="meter"
+				alias="meter"
+				label="MY_DEMO1_METER"
+				default="68"
+				animated="true"
+				active="true"
+				description="MY_DEMO1_DESC"
+				type="meter"/>
+				
+		<field name="range"
+				alias="range"
+				label="MY_DEMO1_RANGE"
+				default="34"
+				description="MY_DEMO1_DESC"
+				type="range"/>
+
+			<field 
+				name="tags"
+				alias="tags"
+				label="MY_DEMO1_TAGS"
+				filter="STRING"
+				printable="true"
+				description="MY_DEMO1_DESC"
+				mintags="1"
+				maxtags="5"
+				default="Hot,Spicy,Sweet"
+				type="cktags"/>
+				
+		<field name="joomla_repeatable"
+				alias="joomla_repeatable"
+				label="MY_DEMO1_REPEATABLE"
+				description="MY_DEMO1_REPEATABLE_DESC"
+				type="repeatable">
+			
+			<fields name="repeatable">
+				<fieldset name="joomla_repeatable_modal">
+					<field name="txt"
+							alias="txt"
+							label="MY_DEMO1_JOOMLATEXT"
+							description="MY_DEMO1_DESC"
+							type="text"/>
+
+					<field name="txtar"
+							alias="txtar"
+							label="MY_DEMO1_JOOMLATEXTAREA"
+							description="MY_DEMO1_DESC"
+							type="textarea"/>
+							
+					<field name="list"
+							alias="list"
+							label="MY_DEMO1_LIST"
+							filter="STRING"
+							size="1"
+							description="MY_DEMO1_DESC"
+							type="cklist"
+							autocomplete="off"
+							nullLabel="MY_DEMO1_LIST_NULL"
+							>
+						<option value="a">MY_DEMO1_VAL_A</option>
+						<option value="b">MY_DEMO1_VAL_B</option>
+						<option value="c">MY_DEMO1_VAL_C</option>
+						<option value="d">MY_DEMO1_VAL_D</option>
+						<option value="e">MY_DEMO1_VAL_E</option>
+						<option value="f">MY_DEMO1_VAL_F</option>
+						<option value="g">MY_DEMO1_VAL_G</option>
+						<option value="h">MY_DEMO1_VAL_H</option>		
+					</field>
+					
+				</fieldset>
+			</fields>
+		</field>		
+				
+		<field name="captcha"
+				alias="captcha"
+				label="MY_DEMO1_CAPTCHA"
+				description="MY_DEMO1_DESC"
+				type="ckcaptcha"/>		
+
+		</fieldset>
+</form>

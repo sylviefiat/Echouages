@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<config>
+
+	<fieldset name="configuration"
+			label="JFORMS_CONFIG_COMPONENT_CONFIGURATION">
+				
+		<field name="writeFullXmlInLog"
+				type="radio"
+				class="btn-group btn-group-yesno"
+				default="0"
+				label="JFORMS_FIELD_WRITE_FULL_XML_IN_LOG"
+				description="JFORMS_FIELD_WRITE_FULL_XML_IN_LOG_DESC">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		
+		<field name="emptyXmlLogOnScriptExecution"
+				type="radio"
+				class="btn-group btn-group-yesno"
+				default="1"
+				label="JFORMS_FIELD_EMPTY_XML_LOG_ON_SCRIPT_EXECUTION"
+				description="JFORMS_FIELD_EMPTY_XML_LOG_ON_SCRIPT_EXECUTION_DESC">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+			
+		<field 
+			name="default_new_submission_status"
+			type="list"
+			default="confirmed"
+			label="JFORMS_FIELD_DEFAULT_NEW_SUBMISSION_STATUS_LABEL"
+			description="JFORMS_FIELD_DEFAULT_NEW_SUBMISSION_STATUS_DESC">					
+				<option value="na">JFORMS_ENUM_SUBMISSIONS_STATUS_NA</option>
+				<option value="pending">JFORMS_ENUM_SUBMISSIONS_STATUS_PENDING</option>
+				<option value="confirmed">JFORMS_ENUM_SUBMISSIONS_STATUS_CONFIRMED</option>
+				<option value="completed">JFORMS_ENUM_SUBMISSIONS_STATUS_COMPLETED</option>
+		</field>
+				
+		<field name="upload_maxsize"
+				label="JFORMS_FIELD_UPLOAD_MAX_SIZE"
+				filter="STRING"
+				description="JFORMS_FIELD_UPLOAD_MAX_SIZE_INFORMATION"
+				type="text"/>
+				
+		<field name="allowed_images_size"
+				label="JFORMS_FIELD_ALLOWED_IMAGES_SIZES"
+				filter="STRING"
+				default="50x50,200x200"
+				placeholder="50x50,200x200"
+				class="input-xxlarge"
+				description="JFORMS_FIELD_ALLOWED_IMAGES_SIZES_INFORMATION"
+				type="text"/>
+				
+		<field name="tag_step_open"
+				label="JFORMS_FIELD_TAG_STEP_OPEN"
+				filter="STRING"
+				default="step"
+				placeholder="step"
+				description="JFORMS_FIELD_TAG_STEP_OPEN_DESC"
+				type="text"/>
+				
+		<field name="tag_step_close"
+				label="JFORMS_FIELD_TAG_STEP_CLOSE"
+				filter="STRING"
+				default="/step"
+				placeholder="/step"
+				description="JFORMS_FIELD_TAG_STEP_CLOSE_DESC"
+				type="text"/>
+				
+		<field name="tag_fset_open"
+				label="JFORMS_FIELD_TAG_FSET_OPEN"
+				filter="STRING"
+				default="fset"
+				placeholder="fset"
+				description="JFORMS_FIELD_TAG_FSET_OPEN_DESC"
+				type="text"/>
+				
+		<field name="tag_fset_close"
+				label="JFORMS_FIELD_TAG_FSET_CLOSE"
+				filter="STRING"
+				default="/fset"
+				placeholder="/fset"
+				description="JFORMS_FIELD_TAG_FSET_CLOSE_DESC"
+				type="text"/>
+	</fieldset>
+
+	<fieldset name="payment"
+			label="JFORMS_CONFIG_PAYMENT_FEATURES">
+				<field 
+					name="currency"
+					type="list"
+					default=""
+					label="JFORMS_FIELD_CURRENCY_LABEL"
+					description="JFORMS_FIELD_CURRENCY_DESC">					
+						<option value="AED">JFORMS_AED</option>
+						<option value="AFN">JFORMS_AFN</option>
+						<option value="ALL">JFORMS_ALL</option>
+						<option value="ANG">JFORMS_ANG</option>
+						<option value="ARS">JFORMS_ARS</option>
+						<option value="AUD">JFORMS_AUD</option>
+						<option value="AWG">JFORMS_AWG</option>
+						<option value="AZN">JFORMS_AZN</option>
+						<option value="BAM">JFORMS_BAM</option>
+						<option value="BBD">JFORMS_BBD</option>
+						<option value="BGN">JFORMS_BGN</option>
+						<option value="BMD">JFORMS_BMD</option>
+						<option value="BND">JFORMS_BND</option>
+						<option value="BOB">JFORMS_BOB</option>
+						<option value="BRL">JFORMS_BRL</option>
+						<option value="BSD">JFORMS_BSD</option>
+						<option value="BWP">JFORMS_BWP</option>
+						<option value="BYR">JFORMS_BYR</option>
+						<option value="BZD">JFORMS_BZD</option>
+						<option value="CAD">JFORMS_CAD</option>
+						<option value="CHF">JFORMS_CHF</option>
+						<option value="CLP">JFORMS_CLP</option>
+						<option value="CNY">JFORMS_CNY</option>
+						<option value="COP">JFORMS_COP</option>
+						<option value="CRC">JFORMS_CRC</option>
+						<option value="CUP">JFORMS_CUP</option>
+						<option value="CZK">JFORMS_CZK</option>
+						<option value="DKK">JFORMS_DKK</option>
+						<option value="DOP">JFORMS_DOP</option>
+						<option value="EGP">JFORMS_EGP</option>
+						<option value="EUR">JFORMS_EUR</option>
+						<option value="FJD">JFORMS_FJD</option>
+						<option value="FKP">JFORMS_FKP</option>
+						<option value="GBP">JFORMS_GBP</option>
+						<option value="GIP">JFORMS_GIP</option>
+						<option value="GTQ">JFORMS_GTQ</option>
+						<option value="GYD">JFORMS_GYD</option>
+						<option value="HKD">JFORMS_HKD</option>
+						<option value="HNL">JFORMS_HNL</option>
+						<option value="HRK">JFORMS_HRK</option>
+						<option value="HUF">JFORMS_HUF</option>
+						<option value="IDR">JFORMS_IDR</option>
+						<option value="ILS">JFORMS_ILS</option>
+						<option value="INR">JFORMS_INR</option>
+						<option value="IRR">JFORMS_IRR</option>
+						<option value="ISK">JFORMS_ISK</option>
+						<option value="JMD">JFORMS_JMD</option>
+						<option value="JPY">JFORMS_JPY</option>
+						<option value="KGS">JFORMS_KGS</option>
+						<option value="KHR">JFORMS_KHR</option>
+						<option value="KPW">JFORMS_KPW</option>
+						<option value="KRW">JFORMS_KRW</option>
+						<option value="KYD">JFORMS_KYD</option>
+						<option value="KZT">JFORMS_KZT</option>
+						<option value="LAK">JFORMS_LAK</option>
+						<option value="LBP">JFORMS_LBP</option>
+						<option value="LKR">JFORMS_LKR</option>
+						<option value="LRD">JFORMS_LRD</option>
+						<option value="LTL">JFORMS_LTL</option>
+						<option value="LVL">JFORMS_LVL</option>
+						<option value="MKD">JFORMS_MKD</option>
+						<option value="MNT">JFORMS_MNT</option>
+						<option value="MUR">JFORMS_MUR</option>
+						<option value="MXN">JFORMS_MXN</option>
+						<option value="MYR">JFORMS_MYR</option>
+						<option value="MZN">JFORMS_MZN</option>
+						<option value="NAD">JFORMS_NAD</option>
+						<option value="NGN">JFORMS_NGN</option>
+						<option value="NIO">JFORMS_NIO</option>
+						<option value="NOK">JFORMS_NOK</option>
+						<option value="NPR">JFORMS_NPR</option>
+						<option value="NZD">JFORMS_NZD</option>
+						<option value="OMR">JFORMS_OMR</option>
+						<option value="PAB">JFORMS_PAB</option>
+						<option value="PEN">JFORMS_PEN</option>
+						<option value="PHP">JFORMS_PHP</option>
+						<option value="PKR">JFORMS_PKR</option>
+						<option value="PLN">JFORMS_PLN</option>
+						<option value="PYG">JFORMS_PYG</option>
+						<option value="QAR">JFORMS_QAR</option>
+						<option value="RON">JFORMS_RON</option>
+						<option value="RSD">JFORMS_RSD</option>
+						<option value="RUB">JFORMS_RUB</option>
+						<option value="SAR">JFORMS_SAR</option>
+						<option value="SBD">JFORMS_SBD</option>
+						<option value="SCR">JFORMS_SCR</option>
+						<option value="SEK">JFORMS_SEK</option>
+						<option value="SGD">JFORMS_SGD</option>
+						<option value="SHP">JFORMS_SHP</option>
+						<option value="SOS">JFORMS_SOS</option>
+						<option value="SRD">JFORMS_SRD</option>
+						<option value="SVC">JFORMS_SVC</option>
+						<option value="SYP">JFORMS_SYP</option>
+						<option value="THB">JFORMS_THB</option>
+						<option value="TRY">JFORMS_TRY</option>
+						<option value="TTD">JFORMS_TTD</option>
+						<option value="TWD">JFORMS_TWD</option>
+						<option value="UAH">JFORMS_UAH</option>
+						<option value="USD">JFORMS_USD</option>
+						<option value="UYU">JFORMS_UYU</option>
+						<option value="UZS">JFORMS_UZS</option>
+						<option value="VEF">JFORMS_VEF</option>
+						<option value="VND">JFORMS_VND</option>
+						<option value="XCD">JFORMS_XCD</option>
+						<option value="YER">JFORMS_YER</option>
+						<option value="ZAR">JFORMS_ZAR</option>					
+				</field>
+				
+				<field 
+					name="currency_display_format"
+					type="list"
+					default="{s} {n}"
+					label="JFORMS_FIELD_CURRENCY_DISPLAY_FORMAT_LABEL"
+					description="JFORMS_FIELD_CURRENCY_DISPLAY_FORMAT_DESC">					
+						<option value="{s} {n}">JFORMS_ENUM_SYMBOL_FIRST</option>
+						<option value="{n} {s}">JFORMS_ENUM_AMOUNT_FIRST</option>						
+				</field>
+				
+				<field 
+					name="currency_display_type"
+					type="list"
+					default="symbol"
+					label="JFORMS_FIELD_CURRENCY_DISPLAY_TYPE_LABEL"
+					description="JFORMS_FIELD_CURRENCY_DISPLAY_TYPE_DESC">					
+						<option value="symbol">JFORMS_ENUM_SYMBOL</option>
+						<option value="value">JFORMS_ENUM_CURRENCY_CODE</option>						
+				</field>
+
+			
+	</fieldset>
+	
+	<fieldset name="folders"
+			label="JFORMS_CONFIG_COMPONENT_FOLDERS">
+			
+		<field name="trash_dir"
+				label="JFORMS_FIELD_TRASH_DIR"
+				filter="STRING"
+				default="images/trash"
+				placeholder="images/trash"
+				class="input-xlarge"
+				description="JFORMS_FIELD_TRASH_DIR_INFORMATION"
+				type="text"/>
+
+		<field name="upload_dir_forms_language_file"
+				label="JFORMS_FIELD_UPLOAD_DIR_FORMS_LANGUAGE_FILE"
+				filter="STRING"
+				default="[COM_SITE]/files/forms_language_file"
+				placeholder="[COM_SITE]/files/forms_language_file"
+				class="input-xlarge"
+				description="JFORMS_FIELD_UPLOAD_DIR_INFORMATION"
+				type="text"/>
+				
+		<field name="upload_dir_forms_fieldsets"
+				label="JFORMS_FIELD_UPLOAD_DIR_FORMS_FIELDSETS"
+				filter="STRING"
+				default="[COM_SITE]/files/forms_fieldsets"
+				placeholder="[COM_SITE]/files/forms_fieldsets"
+				class="input-xlarge"
+				description="JFORMS_FIELD_UPLOAD_DIR_INFORMATION"
+				type="text"/>
+				
+		<field name="upload_dir_forms_emails"
+				label="JFORMS_FIELD_UPLOAD_DIR_FORMS_EMAILS"
+				filter="STRING"
+				default="[COM_SITE]/files/forms_emails"
+				placeholder="[COM_SITE]/files/forms_emails"
+				class="input-xlarge"
+				description="JFORMS_FIELD_UPLOAD_DIR_INFORMATION"
+				type="text"/>
+				
+		<field name="upload_dir_forms_events"
+				label="JFORMS_FIELD_UPLOAD_DIR_FORMS_EVENTS"
+				filter="STRING"
+				default="[COM_SITE]/files/forms_events"
+				placeholder="[COM_SITE]/files/forms_events"
+				class="input-xlarge"
+				description="JFORMS_FIELD_UPLOAD_DIR_INFORMATION"
+				type="text"/>
+
+		<field name="upload_dir_submissions_pdf"
+				label="JFORMS_FIELD_UPLOAD_DIR_SUBMISSIONS_PDF"
+				filter="STRING"
+				default="[COM_SITE]/files/submissions_pdf"
+				placeholder="[COM_SITE]/files/submissions_pdf"
+				class="input-xlarge"
+				description="JFORMS_FIELD_UPLOAD_DIR_INFORMATION"
+				type="text"/>
+				
+		<field name="upload_dir_submissions_attached_files"
+				label="JFORMS_FIELD_UPLOAD_DIR_SUBMISSIONS_ATTACHED_FILES"
+				filter="STRING"
+				default="[COM_SITE]/files/submissions_attached_files"
+				placeholder="[COM_SITE]/files/submissions_attached_files"
+				class="input-xlarge"
+				description="JFORMS_FIELD_UPLOAD_DIR_INFORMATION"
+				type="text"/>
+				
+	</fieldset>
+	
+	<fieldset name="permissions"
+			label="JFORMS_CONFIG_PERMISSIONS"
+			description="JFORMS_CONFIG_DEFAULT_PERMISSIONS_USED_FOR_ALL_CONTENT_IN_THIS_COMPONENT"
+			addfieldpath="/libraries/joomla/form/fields">
+
+		<field name="rules"
+				label="JFORMS_FIELD_PERMISSIONS"
+				filter="rules"
+				type="rules"
+				validate="rules"
+				section="component"
+				component="com_jforms"/>
+	</fieldset>
+</config>
