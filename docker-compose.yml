@@ -5,11 +5,11 @@ services:
 # Setup the Joomla container
 ############################
   joomla:
-    container_name: docker_joomla_0
+    container_name: docker_joomla
     image: joomla
     #restart: always
     links:
-      - joomladb:joomladb
+      - joomladb:mysql
     ports:
       - 80:80
     volumes:
@@ -24,9 +24,9 @@ services:
 # Setup the Database (Mysql) container
 ######################################
   joomladb:
-    container_name: docker_mysql_0
+    container_name: docker_mysql
     image: mysql:5.6
-    restart: always
+    #restart: always
     volumes:
       - ./docker/mysql:/var/lib/mysql
     environment:
