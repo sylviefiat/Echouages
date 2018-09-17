@@ -27,11 +27,7 @@ class JDomHtmlFormInputCheckboxes extends JDomHtmlFormInput
 	var $selectors;
 
 	protected $list;
-
-	protected $listKey;
-	protected $labelKey;
-
-
+	
 	/*
 	 * Constuctor
 	 * 	@namespace 	: requested class
@@ -49,61 +45,16 @@ class JDomHtmlFormInputCheckboxes extends JDomHtmlFormInput
 		parent::__construct($args);
 		
 		$this->arg('cols'		, 1, $args);
-		$this->arg('layout'		, null, $args,'vertical');
 		$this->arg('list'		, array(), $args);
 		$this->arg('domClass'	, null, $args);
 		$this->arg('selectors'	, null, $args);
 		
-
-		$this->arg('listKey'	, null, $args, 'value');
-		$this->arg('labelKey'	, null, $args, 'text');
-
-
-		$this->domId = $this->getInputId();
-		$this->domName = $this->getInputName();
-		
-		static $loaded;
-		
-		if(!$loaded){
-		
-		$doc = JFactory::getDocument();
-			$style = "
-ul.checkboxes {
-	list-style: none;
-}
-
-ul.checkboxes:not(.horizontal_layout) {
-	display: inline-block;
-}
-
-ul.checkboxes.horizontal_layout li{
-	display: inline-block;
-}
-
-ul.checkboxes.horizontal_layout li:not(:first-child){
-	margin-left: 15px;
-}
-
-ul.checkboxes li label{
-	display: inline;
-	margin: 3px 0 0 5px;
-	float: none;
-}
-
-ul.checkboxes li input{
-	display: inline;
-	margin: 0;
-	height: auto;
-}";
-			$doc->addStyleDeclaration($style);
-			$loaded = true;
-		}
 	}
 
 	function build()
 	{
-
 		$output = '';
+
 		switch(gettype($this->dataValue)){
 			case'object':
 				$dataValues = (array)$this->dataValue;
@@ -122,37 +73,22 @@ ul.checkboxes li input{
 			break;
 		}
 		
-		$listKey = $this->listKey;
-		$labelKey = $this->labelKey;
-
 		$checkboxes = array();
 		foreach($this->list as $key => $opt){
-			if(!is_array($opt)){
-				$opt = (array)$opt;
-			}
 			$value = null;
-			if(isset($opt[$listKey]) AND in_array($opt[$listKey], $dataValues)){
-				$value = $opt[$listKey];
+			if(in_array($opt->value, $dataValues)){
+				$value = $opt->value;
 			}
+
+			$checkOptions = array_merge($this->options, array(
+				'dataValue' => $value,
+				'domId' => $this->domId .'_'. $key,
+				'domName' => $this->domName .'[]',
+				'inputValue' => $opt->value,
+				'inputLabel' => $opt->text
+			));
 			
-			$inputVal = null;
-			if(isset($opt[$listKey])){
-				$inputVal = $opt[$listKey];
-			}
-			
-			$inputLabel = null;
-			if(isset($opt[$labelKey])){
-				$inputLabel = $opt[$labelKey];
-			}
-	
-			$checkboxes[] = JDom::_('html.form.input.checkbox', array_merge($this->options, array(
-					'dataValue' => $value,
-					'domId' => $this->domId .'_'. $key,
-					'domName' => $this->domName .'[]',
-					'inputValue' => $inputVal,
-					'inputLabel' => $inputLabel
-				))
-			);
+			$checkboxes[] = JDom::_('html.form.input.checkbox', $checkOptions);
 		}
 		
 		
@@ -169,21 +105,20 @@ ul.checkboxes li input{
 			$cols = 1;
 			$itemsXcol = $count_checkboxes;
 		}
-		
-		$layout = (!empty($this->layout) AND $this->layout == 'horizontal') ? 'horizontal_layout' : '';
+	
 		$output = '';
-		$output .= '<ul class="checkboxes '. $layout .'">';
+		$output .= '<ul id="<%DOM_ID%>" class="checkboxes">';
 		$k=1;
 		foreach($checkboxes as $checkbox){
 			$output .= '<li>'. $checkbox .'</li>';
 			
 			if ($k % $itemsXcol == 0 AND $k < $count_checkboxes){
-				$output .= '</ul><ul class="checkboxes '. $layout .'">';
+				$output .= '</ul><ul class="checkboxes">';
 			}
 			$k++;
 		}
 		$output .= '</ul>';
 			
-		return '<div id="<%DOM_ID%>" class="input-container">'. $output .'</div>';
+		return $output;
 	}
 }

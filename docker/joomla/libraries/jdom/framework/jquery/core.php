@@ -47,22 +47,16 @@ class JDomFrameworkJqueryCore extends JDomFrameworkJquery
 			return;
 		}
 
-
-			
-		$app = JFactory::getApplication();
-		if($app->get('jquery') !== true) {
-			$app->set('jquery',1);
-			
-			if ($this->live){
-				$this->addScript($this->hostedSource);
-			} else {
-				$this->attachJs[] = 'jquery.min.js';
-			}
-
-			if (!$this->isAjax()){
-				$jQueryNoConflict = 'jQuery.noConflict();';
-				$this->addScriptInline($jQueryNoConflict);			
-			}
+		if ($this->live)
+			$this->addScript($this->hostedSource);
+		else
+			$this->attachJs[] = 'jquery.min.js';
+		
+				
+		if (!$this->isAjax())
+		{
+			$jQueryNoConflict = 'jQuery.noConflict();';
+			$this->addScriptInline($jQueryNoConflict);			
 		}
 
 	}

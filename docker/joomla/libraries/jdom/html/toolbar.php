@@ -4,7 +4,7 @@
 *                 (((((  o      <     JDom Class - Cook Self Service library    |
 *                ( o o )         |______________________________________________|
 * --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
-* @version		2.6.4
+* @version		2.5
 * @package		Cook Self Service
 * @subpackage	JDom
 * @license		GNU General Public License
@@ -67,9 +67,6 @@ class JDomHtmlToolbar extends JDomHtml
 			$items = $this->bar;
 
 		$this->items = $items;
-
-		//Require the Joomla native javascript class
-		JHtml::_('behavior.framework');
 	}
 
 
@@ -101,7 +98,7 @@ class JDomHtmlToolbar extends JDomHtml
 
 		foreach($this->items as $item)
 		{
-			if (!count($item) OR strtolower($item[0]) == 'link')  // missing the LINK button, for example: "options"
+			if (!count($item))
 				continue;
 
 			$itemNameSpace = 'html.link.button.toolbar.' . strtolower($item[0]);

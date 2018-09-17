@@ -56,7 +56,6 @@ class JDomHtmlFormLabel extends JDomHtmlForm
 		$this->arg('formControl', null, $args);
 		$this->arg('formGroup', null, $args);
 		$this->arg('markup', null, $args, 'label');
-		$this->arg('prefix_id', null, $args, '');
 
 		if (!$this->domId)
 			$this->domId = $this->getInputId();
@@ -67,7 +66,7 @@ class JDomHtmlFormLabel extends JDomHtmlForm
 			return;
 		}
 		
-		$script = 'jQuery(".hasTooltip").tooltip({"html": true});';
+		$script = 'jQuery(".hasTooltip").tooltip({"html": true,"placement":"right"});';
 		$this->addScriptInline($script, true);		
 		
 		
@@ -84,18 +83,17 @@ class JDomHtmlFormLabel extends JDomHtmlForm
 		
 		if($this->description != ''){
 			$this->domClass .= ' hasTooltip';
+		//	$description = htmlspecialchars(JText::_($this->description));
 			$description = JText::_($this->description);
 
-			$this->addSelector('title',$description);
-			$this->addSelector('data-container','body');
+			if(is_string($this->selectors)){
+				$this->selectors = ' title="'. $description . '"';
+			} else {
+				$this->selectors['title'] = $description;
+			}
 		}
 		
-		$for = '';
-		if($this->markup == 'label'){
-			$for = 'for="<%DOM_ID%>"';
-		}
-		
-		$html = '<'. $this->markup .' id="<%DOM_ID%>_label" '. $for .' <%CLASS%><%SELECTORS%>>'
+		$html = '<'. $this->markup .' id="<%DOM_ID%>_label" for="<%DOM_ID%>" <%CLASS%><%SELECTORS%>>'
 			.	$this->JText($this->label) . $required
 			.	'</'. $this->markup .'>';
 		return $html;

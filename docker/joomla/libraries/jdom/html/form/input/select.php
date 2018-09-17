@@ -61,7 +61,7 @@ class JDomHtmlFormInputSelect extends JDomHtmlFormInput
 		parent::__construct($args);
 
 		$this->arg('list'		, null, $args);
-		$this->arg('listKey'	, null, $args, 'value');
+		$this->arg('listKey'	, null, $args, 'id');
 		$this->arg('labelKey'	, null, $args, 'text');
 		$this->arg('colorKey'	, null, $args);
 		$this->arg('iconKey'	, null, $args);

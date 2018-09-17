@@ -1,6 +1,9 @@
 <?php
-/**
-* (¯`·.¸¸.-> °º★ вүgιяσ.cσм ★º° <-.¸¸.·´¯)
+/**                               ______________________________________________
+*                          o O   |                                              |
+*                 (((((  o      <    Generated with Cook Self Service  V2.6.2   |
+*                ( o o )         |______________________________________________|
+* --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
 * @version		2.5
 * @package		Cook Self Service
 * @subpackage	JDom
@@ -46,21 +49,29 @@ class JFormFieldCkcalendar extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-		$this->setCommonProperties();
-		
-		$thisOpts = array(
-				'format' => $this->getOption('format'),
+
+		$this->input = JDom::_('html.form.input.calendar', array_merge(array(
+				'dataKey' => $this->getOption('name'),
+				'formGroup' => $this->group,
+				'formControl' => $this->formControl,
+				'domClass' => $this->getOption('class'),
+				'dataValue' => $this->value,
+				'dateFormat' => $this->getOption('format'),
 				'filter' => $this->getOption('filter'),
 				'selectors' => $this->getOption('selectors'),
-				'submitEventName' => ($this->getOption('submit') === 'true'?'onchange':null)
-			);
-		$this->fieldOptions = array_merge($this->fieldOptions,$thisOpts, $this->jdomOptions);
-		
-		$this->input = JDom::_('html.form.input.calendar', $this->fieldOptions);
+				'placeholder' => $this->getOption('placeholder'),
+				'responsive' => $this->getOption('responsive'),
+				'size' => $this->getOption('size'),
+				'submitEventName' => ($this->getOption('submit') == 'true'?'onchange':null)
+			), $this->jdomOptions));
 
 		return parent::getInput();
 	}
 
+	public function getLabel()
+	{
+		return parent::getLabel();
+	}
 
 
 }

@@ -28,68 +28,30 @@ class JDomHtmlListItem extends JDomHtmlList
 {
 	var $markup;
 	var $dataObject;
-	var $enumList;
 	
 	function __construct($args)
 	{
 		parent::__construct($args);
 
-		$this->arg('dataObject'		, null, $args);
-		$this->arg('enumList'		, null, $args, array());
 	}
 	
 	function build()
 	{
-		$cels = array();
+		$cels = array();		
 		foreach($this->fieldset as &$field){
 			$fieldName = $field->fieldname;
 			if(count($this->fieldsToRender) > 0 AND !in_array($fieldName,$this->fieldsToRender)){
 				continue;
 			}
-	
+			
 			if(isset($this->dataObject->$fieldName)){
 				$rp = new ReflectionProperty($field,'value');
 				if($rp->isProtected() AND $this->form instanceof JForm){
-					try{
-						@$this->form->setValue($fieldName,$field->group,$this->dataObject->$fieldName);
-						$field = $this->form->getField($fieldName,$field->group,$this->dataObject->$fieldName);
-					} catch (Exception $e){
-						$error = $e->getMessage();
-					}
+					$this->form->setValue($fieldName,$field->group,$this->dataObject->$fieldName);
+					$field = $this->form->getField($fieldName,$field->group,$this->dataObject->$fieldName);
 				} else if($rp->isPublic()){
 					$field->value = $this->dataObject->$fieldName;
 				}
-			}
-			
-			if($this->dataObject AND isset($this->dataObject->$fieldName)){
-				$field->jdomOptions = array_merge($field->jdomOptions, array(
-						'dataValue' => $this->dataObject->$fieldName,
-							));
-			}
-
-			if(count($this->enumList) AND isset($this->enumList[$fieldName])){
-				$field->jdomOptions = array_merge($field->jdomOptions, array(
-						'list' => $this->enumList[$fieldName],
-							));
-			}			
-			
-			$field->jdomOptions = array_merge($field->jdomOptions, array(
-					'formControl' => $this->formControl,
-					'formGroup' => $this->formGroup
-						));
-			
-			switch($field->type){				
-				case 'ckfieldset':				
-					// modify the {{=it.id}} -> {{=it.pid}}
-					/* fix the parent id doT placeholder */
-					$customGroup = $this->moveLevel($this->formGroup,1);
-					
-					
-					$field->jdomOptions = array_merge($field->jdomOptions, array(
-							'formGroup' => trim($customGroup .'.'. $field->fieldname)
-							));
-
-					break;
 			}
 			
 			// check method getOutput exists
@@ -99,10 +61,10 @@ class JDomHtmlListItem extends JDomHtmlList
 				$fake_field = new JdomClassFormField();
 				$field_output = $fake_field->getOutput($this->tmplEngine);
 			}
-	
+
 			$cels[$fieldName] = '<'. $this->markup .' class="'. $this->domClass .' '. $fieldName .'_cln">'. $field_output .'</'. $this->markup .'>';
 		}
-		
+
 		// sort based on fieldsToRender
 		if(count($this->fieldsToRender) > 0){
 			$newOrder = array();
@@ -114,9 +76,8 @@ class JDomHtmlListItem extends JDomHtmlList
 			$cels = $newOrder;
 		}
 	
-		$buttons = '';
 		if(count($this->actions) > 0){
-			$buttons = '<div class="btn-toolbar"><div class="btn-group">';
+			$buttons = '<'. $this->markup .' class="actions_cln"><div class="btn-toolbar"><div class="btn-group">';
 			foreach($this->actions as $act){
 				$buttons .= JDom::_('html.fly.bootstrap.button', array(
 						'domClass' => $act->domClass,
@@ -125,9 +86,9 @@ class JDomHtmlListItem extends JDomHtmlList
 						'label' => $act->label
 					));
 			}
-			$buttons .= '</div></div>';			
+			$buttons .= '</div></div></'. $this->markup .'>';
+			$cels[] = $buttons;
 		}
-		$cels[] = '<'. $this->markup .' class="actions_cln">'. $buttons .'</'. $this->markup .'>';
 		
 		return implode('',$cels);
 	}

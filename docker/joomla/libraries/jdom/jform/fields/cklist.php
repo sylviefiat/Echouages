@@ -1,6 +1,9 @@
 <?php
-/**
-* (¯`·.¸¸.-> °º★ вүgιяσ.cσм ★º° <-.¸¸.·´¯)
+/**                               ______________________________________________
+*                          o O   |                                              |
+*                 (((((  o      <    Generated with Cook Self Service  V2.6.2   |
+*                ( o o )         |______________________________________________|
+* --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
 * @version		0.0.1
 * @package		Cook Self Service
 * @subpackage	JDom
@@ -46,35 +49,42 @@ class JFormFieldCklist extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-		$this->setCommonProperties();
+		$options = array();
+		if (!isset($this->jdomOptions['list']))
+		{
+			//Get the options from XML
+			foreach ($this->element->children() as $option)
+			{
+				$opt = new stdClass();
+				foreach($option->attributes() as $attr => $value)
+					$opt->$attr = (string)$value;
 		
-		$groupByFields = explode(',',$this->getOption('groupBy'));
-		$groupBy = array();
-		foreach($groupByFields as $gFi){
-			if(empty($gFi)){
-				continue;
+				$opt->text = JText::_(trim((string) $option));
+				$options[] = $opt;
 			}
-			list($key,$val) = explode(':',$gFi,2);
-			$groupBy[$key] = $val;
 		}
-
-		$thisOpts = array(
-				'multiple' => $this->getOption('multiple') ? true : false,
-				'groupBy' => $groupBy,
-				'size' => $this->getOption('size', 1, 'int'),
-				'submitEventName' => ($this->getOption('submit') === 'true'?'onchange':null),
-				'ui' => $this->getOption('ui'),
-				'ui_allowCustomValues' => $this->getOption('ui_allowCustomValues') === 'true' ? true : false,				
-				'ui_hideSelect' => $this->getOption('ui_hideSelect') === 'true' ? true : false,				
-				'ui_direction' => $this->getOption('ui_direction')
-			);
-		$this->fieldOptions = array_merge($this->fieldOptions,$thisOpts,$this->jdomOptions);
-		
-		$this->input = JDom::_('html.form.input.select', $this->fieldOptions);
+		$this->input = JDom::_('html.form.input.select', array_merge(array(
+				'dataKey' => $this->getOption('name'),
+				'formGroup' => $this->group,
+				'formControl' => $this->formControl,
+				'domClass' => $this->getOption('class'),
+				'dataValue' => (string)$this->value,
+				'labelKey' => $this->getOption('labelKey'),
+				'list' => $options,
+				'listKey' => $this->getOption('listKey'),
+				'nullLabel' => $this->getOption('nullLabel'),
+				'responsive' => $this->getOption('responsive'),
+				'size' => $this->getOption('size', 3, 'int'),
+				'submitEventName' => ($this->getOption('submit') == 'true'?'onchange':null)
+			), $this->jdomOptions));
 
 		return parent::getInput();
 	}
 
+	public function getLabel()
+	{
+		return parent::getLabel();
+	}
 
 
 }

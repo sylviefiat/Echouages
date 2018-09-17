@@ -53,9 +53,9 @@ class JDomHtmlLinkButtonIcon extends JDomHtmlLinkButton
 		$htmlIcon = JDom::_('html.icon', array(
 			'icon' => $this->icon
 		));
-		
-		@$this->options['domClass'] .= ' btn hasTooltip';
+	
 		$html = JDom::_('html.link.button', array_merge($this->options, array(
+			'domClass' => 'btn hasTooltip',
 			'content' => $htmlIcon
 		)));
 		

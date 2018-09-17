@@ -68,19 +68,15 @@ class JDomHtmlGridCheckedout extends JDomHtmlGrid
 		if (property_exists($this->dataObject, $keyChecked))
 			$this->dataValue = $this->dataObject->$keyChecked;
 
-		$html .= '<span class="checkout-container">';	
-			
 		$isLocked = (!empty($this->dataValue) && ($this->dataValue != JFactory::getUser()->get('id')));
+		if ($isLocked)
+			$html .= $this->checkedOut();
+		
 		$listKey = $this->listKey;
 		if (!$isLocked || $this->allow)
 			$html .= JHtml::_('grid.id', $this->num, $this->dataObject->$listKey, ($isLocked && !$this->allow), $dataKey);
 
-		if ($isLocked)
-			$html .= $this->checkedOut();
-		
 
-		$html .= '</span>';	
-		
 		return $html;
 	}
 
@@ -109,12 +105,7 @@ class JDomHtmlGridCheckedout extends JDomHtmlGrid
 				. $time . '">';
 		}
 
-		$img = JHtml::_('image', 'admin/checked_out.png', null, null, true);
-		if($this->allow){
-			$img = '<span><a href="#" onclick="return listItemTask(\'cb'. $this->num .'\',\''. $this->ctrl .'.checkin\')" class="btn btn-micro jgrid">'. $img .'</a></span>';
-		}
-		
-		$checked = $hover . $img . '</span>';
+		$checked = $hover . JHtml::_('image', 'admin/checked_out.png', null, null, true) . '</span>';
 
 		return $checked;
 	}

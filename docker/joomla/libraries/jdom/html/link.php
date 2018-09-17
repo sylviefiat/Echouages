@@ -76,7 +76,7 @@ class JDomHtmlLink extends JDomHtml
 		$this->arg('modal_width'	, null, $args);
 		$this->arg('modal_height'	, null, $args);
 		$this->arg('alertConfirm'	, null, $args);
-		
+
 	}
 
 	function buildLink()
@@ -171,9 +171,9 @@ class JDomHtmlLink extends JDomHtml
 	protected function parseVars($vars)
 	{
 		return parent::parseVars(array_merge(array(
-			'TITLE' 	=> ($this->link_title?" title=\"".htmlspecialchars($this->link_title, ENT_COMPAT, 'UTF-8')."\"":""),
-			'HREF' 		=> ($this->href?" href=\"" .htmlspecialchars($this->href, ENT_COMPAT, 'UTF-8') . "\"":""),
-			'JS' 		=> ($this->link_js?" onclick=\"" .htmlspecialchars($this->link_js, ENT_COMPAT, 'UTF-8') . "\"":""),
+			'TITLE' 	=> ($this->link_title?" title=\"".htmlspecialchars($this->link_title)."\"":""),
+			'HREF' 		=> ($this->href?" href=\"" .htmlspecialchars($this->href) . "\"":""),
+			'JS' 		=> ($this->link_js?" onclick=\"" .htmlspecialchars($this->link_js) . "\"":""),
 			'TARGET' 	=> ($this->target?" target='" . $this->target . "'":""),
 			'SELECTORS'	=> $this->buildSelectors(),
 			'CLASS'		=> $this->buildDomClass(),

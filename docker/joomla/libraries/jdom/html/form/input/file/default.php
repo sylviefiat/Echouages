@@ -22,19 +22,9 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 {
 	protected $size;
-	protected $maxSize;
+	protected $uploadMaxSize;
 	protected $actions;
 	protected $allowedExtensions;
-	protected $editable;
-	protected $preview;
-	protected $editor;
-	protected $dataValue_changed;
-	protected $dataValue_editor;
-	protected $buttons;
-	protected $params;
-	protected $editorHeight;
-	protected $editorWidth;
-	protected $rows;
 
 	/*
 	 * Constuctor
@@ -55,88 +45,15 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 	{
 
 		parent::__construct($args);
-		$this->arg('size'				, null, $args, '32');
-		$this->arg('maxSize'		, null, $args);
+		$this->arg('size'			, null, $args, '32');
+		$this->arg('uploadMaxSize'	, null, $args);
 		$this->arg('allowedExtensions'	, null, $args);
-		$this->arg('editor'				, null, $args); 
-		$this->arg('dataValue_changed'	, null, $args,0); 
-		$this->arg('dataValue_editor'	, null, $args,''); 
-		$this->arg('buttons'			, null, $args); 
-		$this->arg('params'				, null, $args); 
-		$this->arg('editorHeight'		, null, $args); 
-		$this->arg('editorWidth'		, null, $args); 
-		$this->arg('rows'				, null, $args); 
-		$this->arg('editable'			, null, $args, false); 
-		$this->arg('preview'			, null, $args, false); 
-		
 
-		// Only load once
-		static $loadedEditableJS;
-		if ($this->editable AND empty($loadedEditableJS)){
-			$doc = JFactory::getDocument();
-			$script = "
-				function loadFileToTextarea(Obj, rawEditorContainer){
-					var inputFileId = jQuery(Obj).attr('data-target'),
-						textareaId = inputFileId +'-raw_editor',
-						textareaContainer = jQuery(Obj).closest('.control, fieldset, form').find('#'+ inputFileId +'-raw_editor_container').first(),					
-						textarea = textareaContainer.find('textarea'),
-						dataFile = textarea.attr('data-file');
-					
-					if(typeof window['dataFiles_loaded'] == 'undefined'){
-						window['dataFiles_loaded'] = {};
-					}
-					var dataFile = textarea.attr('data-file');
-					if(dataFile != ''){
-						if(typeof window['dataFiles_loaded'][textareaId] == 'undefined'){
-							// load data
-							jQuery.ajax({
-								type: 'GET',
-								url: dataFile,
-								beforeSend: function(){
-									jQuery(Obj).after('<span class=\"loading\"><img src=\"". JURI::root( true ) ."/libraries/jdom/assets/ajax/images/spinner.gif\"/> ". JText::_("PLG_JDOM_LOADING") ."</span>');
-								},
-								complete: function(){
-									jQuery(Obj).parent().find('.loading').remove();
-								},
-								success: function(response){
-									textarea.val(response);
-									textarea.html(response);
-									window['dataFiles_loaded'][textareaId] = response;
-									textareaContainer.collapse('toggle');
-								},
-								error: function(response){
-									textarea.val('');
-									textarea.html('');
-									textareaContainer.collapse('toggle');								
-								}
-							});
-
-							textarea.one('change keyup',function(e){
-								textarea.closest('fieldset').find('#'+ inputFileId +'-raw_changed').val(1);
-								textarea.off('change keyup');								
-							});
-						} else {
-							textarea.val(window['dataFiles_loaded'][textareaId]);
-							textarea.html(window['dataFiles_loaded'][textareaId]);
-							textareaContainer.collapse('toggle');
-						}
-					} else {
-						textareaContainer.collapse('toggle');
-					}
-				}
-			";
-			$doc->addScriptDeclaration($script);
-			
-			$loadedEditableJS = true;
-		}
-	
-		
 	}
 	function build()
 	{
-		if ($this->useFramework('bootstrap')){
+		if ($this->useFramework('bootstrap'))
 			return $this->buildBootstrap();
-		}
 		
 		return $this->buildLegacy();
 	}
@@ -148,12 +65,17 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 		
 		$html = '';
 		
+		//Create the preview icon
+		$htmlIconPreview = JDom::_('html.icon', array(
+			'icon' => 'eye-open',
+		));
+
 		//Create the input
 		$htmlInput = $this->buildControlBootstrap();
 			
 		
 		$htmlPreview = '';
-		if(!$isNew){ 
+		if(!$isNew){
 			//Create the preview	
 			$pickerStyle = "";
 			if ($this->thumb)
@@ -162,7 +84,8 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 			$htmlPreview = "<div style='" . $pickerStyle . "'>";
 			$htmlPreview .= JDom::_("html.fly.file", $this->options);
 			$htmlPreview .= "</div>";
-		} 
+		//	$htmlPreview .= '<div class="clearfix"></div>';
+		}
 		
 		//Current value is important for the removing features features ()
 		$htmlHiddenCurrent = JDom::_('html.form.input.hidden', array(
@@ -188,13 +111,17 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 		$html .= '<div class="btn-group">';
 		$html .= '<div class="input-prepend input-append">' .LN;	
 		
-		//Prepend		
+		//Prepend
+		$html .= '<span class="add-on">'
+			.	$htmlIconPreview
+			.	'</span>';
+		
 		$htmlIconRemove = JDom::_('html.icon', array('icon' => 'icomoon-delete',));
 		$idRemoveBtn = $this->getInputId('deletebtn');
 
 		$removeList = $this->removeList();
 		// Create the remove actions list	
-		if (count($removeList) > 0 AND !empty($this->dataValue))
+		if (count($removeList) > 0)
 		{			
 			$html .= '<a class="btn dropdown-toggle" id="' . $idRemoveBtn . '" data-toggle="dropdown">';
 			$html .= $htmlIconRemove;
@@ -221,6 +148,8 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 			$html .= '</ul>' .LN;
 			
 		}
+
+
 	
 		//File input
 		$html .= $htmlInput .LN;	
@@ -229,7 +158,7 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 		$html .= $htmlHiddenRemove .LN;
 		
 		//Close the control		
-		$html .= '</div>' .LN;		
+		$html .= '</div>' .LN;
 		$html .= '</div>' .LN;
 		
 		//MaxSize
@@ -237,36 +166,7 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 		
 		//Extensions
 		$html .= $this->buildFileExtensions();
-
-		if($this->editable){
 		
-			$html .= JDom::_('html.form.input.hidden', array(
-				'dataValue' => $this->dataValue_changed,
-				'dataKey' => $this->dataKey . '-raw_changed',
-				'formControl' => $this->formControl,
-				'formGroup' => $this->formGroup
-			));
-
-			$defaults = array(
-					'editor' => 'codemirror',
-					'buttons' => false
-				);
-			
-			$thisOpts = array_merge($defaults,$this->options);
-			$thisOpts['dataKey'] = $this->dataKey . '-raw_editor';
-			$thisOpts['height'] = $thisOpts['editorHeight'];
-			$thisOpts['width'] = $thisOpts['editorWidth'];
-			$thisOpts['domClass'] = '';
-			$thisOpts['dataValue'] = $this->dataValue_editor;
-			$thisOpts['dataFile'] = $this->dataValue;
-			$thisOpts['repeatable'] = true;
-			$thisOpts['selectors'] = array('data-editor' => $defaults['editor']);
-		
-			$textarea = JDom::_('html.form.input.editor', $thisOpts) .LN;
-			
-			$html .= '<div id="'. $this->domId . '-raw_editor_container" class="collapse">'. $textarea .'</div>';
-		}
-
 		return $html;
 	}
 
@@ -275,7 +175,12 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 	{
 		
 		$html = '';
-			
+		
+		//Create the preview icon
+		$htmlIconPreview = JDom::_('html.icon', array(
+			'icon' => 'eye',
+		));
+		
 
 		//Create the input
 		$htmlInput = $this->buildControlLegacy();
@@ -289,10 +194,12 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 		$isNew = (empty($this->dataValue));
 
 	$htmlPreview = '';
-	if(!$isNew){ 
+	if(!$isNew){
 		$htmlPreview .= "<div style='" . $pickerStyle . "'>";
 		$htmlPreview .= JDom::_("html.fly.file", $this->options);
 		$htmlPreview .= "</div>";
+		
+	//	$htmlPreview .= '<div class="clearfix"></div>';
 	}	
 
 		$removeList = $this->removeList();
@@ -396,33 +303,6 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 	
 		//Close the control
 		$html .= '</div>' .LN;
-
-		if($this->editable){		
-			$html .= JDom::_('html.form.input.hidden', array(
-				'dataValue' => $this->dataValue_changed,
-				'dataKey' => $this->dataKey . '-raw_changed',
-				'formControl' => $this->formControl,
-				'formGroup' => $this->formGroup
-			));
-
-			$defaults = array(
-					'editor' => 'codemirror',
-					'buttons' => false
-				);
-			
-			$thisOpts = array_merge($defaults,$this->options);
-			$thisOpts['dataKey'] = $this->dataKey . '-raw_editor';
-			$thisOpts['height'] = $thisOpts['editorHeight'];
-			$thisOpts['width'] = $thisOpts['editorWidth'];
-			$thisOpts['domClass'] = '';
-			$thisOpts['dataValue'] = $this->dataValue_editor;
-			$thisOpts['dataFile'] = $this->dataValue;
-			$thisOpts['repeatable'] = true;
-		
-			$textarea = JDom::_('html.form.input.editor', $thisOpts) .LN;
-			
-			$html .= '<div id="'. $this->domId . '-raw_editor_container" class="collapse">'. $textarea .'</div>';
-		}
 		
 		return $html;
 	}
@@ -431,9 +311,9 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 	{
 		$html = '';
 		
-		if (isset($this->maxSize))
+		if (isset($this->uploadMaxSize))
 		{
-			$html .= '<span class="maxupload_info">Max '. $this->maxSize .' MB</span>';
+			$html .= $this->uploadMaxSize;
 		}
 		return $html;
 		
@@ -458,7 +338,7 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 		$idView = $this->getInputId('view');
 		
 		//Create hidden input (file)
-		$onchange = "jQuery(this).closest('div').find('#" . $idView . "').val(jQuery(this).val()); if(typeof jQuery.fn.validationEngine != 'undefined'){jQuery(this).closest('div').find('#" . $idView . "').validationEngine('validate');}";
+		$onchange = "jQuery(this).closest('div').find('#" . $idView . "').val(jQuery(this).val());";
 		$htmlInputHidden = '<input onChange="'. $onchange .'" type="file" id="<%DOM_ID%>" name="<%INPUT_NAME%>" ' 
 			. ' style="display:none;"'
 			.	' value="<%VALUE%>"'
@@ -475,7 +355,6 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 		));
 
 		$dom->addClass('input-large');
-		$dom->addClass($this->domClass);
 
 		//for cross compatibility (remove margin and float)
 		$dom->addClass('inputfix');
@@ -498,23 +377,6 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 			
 		));
 		
-		$htmlButtonEdit = '';
-		if($this->editable){
-			// Create the upload button
-			$htmlIconEdit = JDom::_('html.icon', array(
-				'icon' => 'iconmoon icon-pencil',
-			));
-
-			$js = "loadFileToTextarea(this,'". $id ."-raw_editor_container');";
-			//Create the button to trigger the input
-			$htmlButtonEdit = JDom::_('html.link.button', array(
-				'content' => $htmlIconEdit,
-				'domClass' => 'btn buttonfix loadFile',
-				'selectors' => array('data-target'=> $id),
-				'link_js' => $js,
-			));
-		}
-		
 		// Original file input is hidden
 		$html .= $htmlInputHidden;
 
@@ -523,9 +385,6 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 
 		//Browse button
 		$html .= $htmlButtonBrowse;
-		
-		//Edit button
-		$html .= $htmlButtonEdit;
 
 		return $html;
 	}
@@ -535,12 +394,7 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 		$html = '<input type="file" id="<%DOM_ID%>" name="<%INPUT_NAME%>" ' 
 			.	' value="<%VALUE%>"'
 			.	'/>' .LN;	
-
-		if($this->editable){
-			$js = "loadFileToTextarea(this);";
-			$html .= '<span data-target="'. $id .'" class="loadFile" onclick="'. $js .'">'. JText::_("PLG_JDOM_EDIT") .'</span>';
-		}
-		
+			
 		return $html;
 	}
 

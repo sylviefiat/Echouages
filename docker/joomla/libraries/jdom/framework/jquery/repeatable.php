@@ -1,7 +1,6 @@
 <?php
 /**
 * @author		Girolamo Tomaselli http://bygiro.com - girotomaselli@gmail.com
-* @license		GNU General Public License
 */
 
 // no direct access
@@ -42,10 +41,10 @@ class JDomFrameworkJqueryRepeatable extends JDomFrameworkJquery
 			return;
 		}
 		$doc = JFactory::getDocument();
-		JDom::_('framework.jquery.extrajs');
+
 		// addresspicker manager files needed
 		$this->attachJs[] = 'jquery.repeatable.js';
-		$this->attachCss[] = 'repeatable.css';
+	//	$this->attachCss[] = 'repeatable.css';
 			
 		static::$loaded[__METHOD__] = true;
 	}

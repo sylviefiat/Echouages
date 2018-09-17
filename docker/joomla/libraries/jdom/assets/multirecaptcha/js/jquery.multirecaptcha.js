@@ -109,8 +109,6 @@
 		// remove anything inside the container
 		//obj.empty();
 		
-		if(typeof Recaptcha == 'undefined') return false;
-		
 		Recaptcha.create( pubkey, id, {
 									theme: theme,
 									lang: this.options.lang,

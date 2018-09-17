@@ -1,6 +1,9 @@
 <?php
-/**
-* (¯`·.¸¸.-> °º★ вүgιяσ.cσм ★º° <-.¸¸.·´¯)
+/**                               ______________________________________________
+*                          o O   |                                              |
+*                 (((((  o      <    Generated with Cook Self Service  V2.6.2   |
+*                ( o o )         |______________________________________________|
+* --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
 * @version		2.5
 * @package		Cook Self Service
 * @subpackage	JDom
@@ -52,12 +55,18 @@ class JdomClassFormFieldModal extends JFormField
 	*
 	* @since	11.1
 	*/
-	public function getInput()
+	protected function getInput()
 	{
 		//When Bootstrap is used in native, modal picker is instancied with JDom
 		$version = new JVersion();
 		if ($version->isCompatible('3.0'))
-		{			
+		{
+			$dom = JDom::getInstance();
+			
+			// ?!?!? TO DO: check
+		//	$dom->set('extension', 'com_jforms');
+
+
 			$html =  JDom::_('html.form.input.select.modalpicker', array(
 				'dataKey' => $this->id,
 				'domName' => $this->name,

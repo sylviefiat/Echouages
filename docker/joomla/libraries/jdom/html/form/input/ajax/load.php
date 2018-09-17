@@ -41,7 +41,7 @@ class JDomHtmlFormInputAjaxLoad extends JDomHtmlFormInputAjax
 	 * 	@dataValue	: value  default = dataObject->dataKey
 	 * 	@domID		: HTML id (DOM)  default=dataKey
 	 *	@ajaxContext: Ajax context (extension.view.layout.render) extension without 'com_'
-	 * 	@ajaxWrapper: Ajax Dom div which will be filled with the result
+	 * 	@ajaxWrapper: Ajax Dom div wich will be filled with the result
 	 * 	@ajaxVars	: Extends of override the ajax query
 	 *
 	 *

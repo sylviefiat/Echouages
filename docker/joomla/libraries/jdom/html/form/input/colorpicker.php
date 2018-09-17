@@ -22,9 +22,8 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 class JDomHtmlFormInputColorpicker extends JDomHtmlFormInput
 {
+	var $fallback = 'eyecon';		//Used for default
 
-	var $layout;
-	
 	/*
 	 * Constuctor
 	 * 	@namespace 	: requested class
@@ -41,39 +40,41 @@ class JDomHtmlFormInputColorpicker extends JDomHtmlFormInput
 	function __construct($args)
 	{
 		parent::__construct($args);
-		
-		$this->arg('layout'		, 6, $args, 'full');
 	}
 
-	function build()
-	{
-		JDom::_('framework.jquery.colorpicker');
-		
-		$html = $this->buildControl();
-		return $html;
-	}
-	
 	function buildControl()
 	{
 		$id = $this->getInputId();
+
 		$html = '';
 
 		//Create the input
 		$dom = JDom::getInstance('html.form.input.text', array_merge($this->options, array(
-			'selectors' => array(
-				'data-layout' => $this->layout
-			)
 		)));
 
-		$dom->addClass('input-mini colorPicker-input');
+		$dom->addClass('input-mini');
 		$htmlInput = $dom->output();
-	
+		
 		//Create the color
 		$htmlColor = JDom::_('html.fly.color', array_merge($this->options, array(
-			'width' => 18,
-			'height' => 18,
+			'width' => 12,
+			'height' => 12,
+			'selectors' => array(
+				'id' => $id . '-pick'
+			)
 		)));
 		
+		//Create the icon
+		$htmlIcon = JDom::_('html.icon', array(
+			'icon' => 'glyphicon-tint',
+		));
+
+		//Create the button (suffix -btn is to trigger the calendar)
+		$htmlButton = JDom::_('html.link.button', array(
+			'content' => $htmlIcon,
+			'domClass' => 'btn',
+			'domId' => $id . '-btn',
+		));
 
 		$html = '';
 
@@ -82,16 +83,21 @@ class JDomHtmlFormInputColorpicker extends JDomHtmlFormInput
 			$html .= $htmlInput .LN; //Place the hidden input out of the control
 
 			
-		$html .= '<div class="btn-group colorPicker">' .LN;					
+		$html .= '<div class="btn-group">' .LN;					
 		$html .= '<div class="input-prepend input-append">' .LN;
-
-		$html .= '<span class="add-on">' . $htmlColor . '</span>' .LN;
-		
+			
 		if (!$this->hidden)
-		{			
+		{
+			//Prepend
+			$html .= '<span class="add-on">#</span>';
+			
 			//Input mini
 			$html .= $htmlInput .LN;	
 		}
+			
+		//Append
+		$html .= '<span class="add-on">' . $htmlColor . '</span>' .LN;
+		$html .= $htmlButton .LN;
 		
 		//Close the control		
 		$html .= '</div>' .LN;

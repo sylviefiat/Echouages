@@ -1,6 +1,9 @@
 <?php
-/**
-* (¯`·.¸¸.-> °º★ вүgιяσ.cσм ★º° <-.¸¸.·´¯)
+/**                               ______________________________________________
+*                          o O   |                                              |
+*                 (((((  o      <    Generated with Cook Self Service  V2.6.2   |
+*                ( o o )         |______________________________________________|
+* --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
 * @version		2.5
 * @package		Cook Self Service
 * @subpackage	JDom
@@ -64,8 +67,11 @@ class JFormRuleRecaptcha extends JdomClassFormRule
 	*
 	* @since	11.1
 	*/
-	public function test(SimpleXMLElement &$element, &$value, $group = null, JRegistry $input = null, JForm &$form = null)
-	{		
+	public function test(SimpleXMLElement $element, $value, $group = null, JRegistry $input = null, JForm $form = null)
+	{	
+		// TO DO: load just the language string, instead of the multicaptchaplugin
+		JDom::loadLanguageFiles(true,'multirecaptcha');
+		
 		$jinput = JFactory::getApplication()->input;
 		$value = $jinput->get('recaptcha_response_field', null, 'STRING');
 		
@@ -73,8 +79,7 @@ class JFormRuleRecaptcha extends JdomClassFormRule
 		$plugin = JPluginHelper::getPlugin('captcha', 'recaptcha');
 		
 		// Joomla! 1.6 - 1.7 - 2.5
-		if (version_compare($version->RELEASE, '2.5', '<=')){
-			jimport( 'joomla.html.parameter' );
+		if (version_compare($version->RELEASE, '2.5', '<=')){	
 			$params = new JParameter($plugin->params);
 		} else {
 			$params = new JRegistry($plugin->params);
@@ -150,7 +155,7 @@ class JFormRuleRecaptcha extends JdomClassFormRule
 
 		$answers = explode("\n", $response[1]);
 
-		if (trim($answers[0]) === 'true'){
+		if (trim($answers[0]) == 'true'){
 			return true;
 		} else {
 			// @todo use exceptions here

@@ -1,14 +1,20 @@
 <?php
-/**
-* (¯`·.¸¸.-> °º★ вүgιяσ.cσм ★º° <-.¸¸.·´¯)
-* @version		0.3.8
+/**                               ______________________________________________
+*                          o O   |                                              |
+*                 (((((  o      <    Generated with Cook Self Service  V2.6.2   |
+*                ( o o )         |______________________________________________|
+* --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
+* @version		0.2.9
 * @package		jForms
 * @subpackage	
 * @copyright	G. Tomaselli
 * @author		Girolamo Tomaselli - http://bygiro.com - girotomaselli@gmail.com
-* @MVC			basic MVC generated with Cook Self Service  V2.6.4 - www.j-cook.pro
 * @license		GNU GPL v3 or later
 *
+*             .oooO  Oooo.
+*             (   )  (   )
+* -------------\ (----) /----------------------------------------------------------- +
+*               \_)  (_/
 */
 
 // no direct access
@@ -90,8 +96,6 @@ class JdomHtmlValidator
 				//Do not require quotes
 				$key = substr($key, 1);
 				$q = "";
-			} else if($key == 'func'){
-				$q = "";
 			}
 
 			$entries[] = '"'. $key. '" : '. $q. $value. $q;
@@ -111,12 +115,6 @@ class JdomHtmlValidator
 	*/
 	public static function loadLanguageScript()
 	{
-		static $loaded;
-		
-		if(!empty($loaded)){
-			return;
-		}
-		
 		$script = '(function($){' .
 				'jQuery.fn.validationEngineLanguage = function(){' .
 				'};' .
@@ -149,8 +147,8 @@ class JdomHtmlValidator
 
 
 		$baseRules["username"] = array(
-			"#regex"	=> '/^[A-Za-z0-9 ]{3,20}$/i',
-			"alertText" => LI_PREFIX . addslashes(JText::_("PLG_JDOM_FORMVALIDATOR_THIS_IS_NOT_A_VALID_USERNAME") .' (min: 3, max: 20)'),
+			"#regex"	=> '/![\<|\>|\"|\'|\%|\;|\(|\)|\&]/i',
+			"alertText" => LI_PREFIX . addslashes(JText::_("PLG_JDOM_FORMVALIDATOR_THIS_IS_NOT_A_VALID_USERNAME")),
 		);
 
 
@@ -169,7 +167,7 @@ class JdomHtmlValidator
 		 * These rules are executed ONLY in client side (javascript)
 		 * If you want both JS and PHP validation, create a rule file
 		 */
-		
+
 		$script .= self::jsonFromArray($baseRules);
 
 		$script .= LN. '};}};' .
@@ -179,8 +177,6 @@ class JdomHtmlValidator
 
 		$doc = JFactory::getDocument();
 		$doc->addScriptDeclaration($script);
-		
-		$loaded = true;
 	}
 
 	/**
@@ -215,15 +211,9 @@ class JdomHtmlValidator
 	*/
 	public static function loadScripts($fieldNode, $rule)
 	{
-		static $rulesLoaded;	
-		if(!is_array($rulesLoaded)){
-			$rulesLoaded = array();
-		}
-		
-		if (empty($rule) OR !property_exists($rule, 'handler') OR !$rule->handler){
+		if (!$rule->handler)
 			return;
-		}
-	
+
 		if ($rule->regex){
 			$jsRule = self::getJsonRule($fieldNode, $rule);
 		}
@@ -237,25 +227,18 @@ class JdomHtmlValidator
 				return;
 			}
 		}
-	
+
 		if (!$jsRule)
 			return;
 
 		$handler = $rule->handler;
+		if (isset($fieldNode['ruleInstance']))
+			$handler = (string)$fieldNode['ruleInstance'];
+
 		$script = 'jQuery.validationEngineLanguage.allRules.' . $handler . ' = ' . $jsRule;
 
-		$hash = md5($jsRule);
-		// avoid duplicates rules loaded
-		if(isset($rulesLoaded[$hash])){
-			return $rulesLoaded[$hash];
-		}
-		
-		$rulesLoaded[$hash] = $handler;		
-		
 		$doc = JFactory::getDocument();
 		$doc->addScriptDeclaration($script);
-		
-		return $handler;
 	}
 
 	/**
@@ -276,6 +259,7 @@ class JdomHtmlValidator
 			return;
 
 		$class = $element['class'];
+		$instanceIt = false;
 
 		preg_match_all('/validate\[(.+)\]\s?/', $class, $matches);
 
@@ -284,46 +268,34 @@ class JdomHtmlValidator
 			$validates = explode(",", $matches[1][0]);
 
 		$required = (isset($element['required'])?$element['required']:in_array('required', $validates));
+		if ($required != false)
+			$instanceIt = true;
 
 		//TODO : Test it in PHP + JS (When required comes from class)
-		if($required)
+		else
 			$element['required'] = true;
 
 
 
 		$rules = array();
-		if (isset($validates)){
-			foreach($validates as $ruleType)
-			{
-				$ruleType = trim($ruleType);
-				if($ruleType == ''){
-					continue;
-				}
-				preg_match_all("/custom\[([a-zA-Z0-9]+)(_.+)?\]/", $ruleType, $matchesCustom);
+		if (isset($validates))
+		foreach($validates as $ruleType)
+		{
+			preg_match_all("/custom\[([a-zA-Z0-9]+)(_.+)?\]/", $ruleType, $matchesCustom);
 
-				$mainrule = '';
-				if (count($matchesCustom[1])){
-					$mainrule = $matchesCustom[1][0];
-				}
-				
-				$rule = JFormHelper::loadRuleType($mainrule);				
-				$rules[$ruleType] = $rule;
+			if (count($matchesCustom[1]))
+				$ruleType = $matchesCustom[1][0];
+
+			if ($rule = JFormHelper::loadRuleType($ruleType))
+			if ($rule->extended)
+			{
+				$rules[] = $rule;
+				$instanceIt = true;
 			}
 		}
 
-		$newRules = self::render($element, $id, $rules);
-
-		// get rule types
-		$types = array_keys($newRules);
-
-		// build the new field Class
-		$validateClass = 'validate['. implode(',',$types) .'] ';
-		
-		if(isset($matches[0][0])){
-			$class = str_replace($matches[0][0],$validateClass,$class);
-		}
-		
-		return $class;
+		if ($instanceIt)
+			return self::render($element, $id, $rules);
 	}
 
 	/**
@@ -338,21 +310,18 @@ class JdomHtmlValidator
 	*/
 	public static function render($fieldNode, $id, $rules = null)
 	{
-		if (!is_array($rules)){
-			$rules = array($rules);
+		if (is_array($rules) && (count($rules) > 0))
+		{
+			foreach($rules as $rule)
+				self::loadScripts($fieldNode, $rule);
 		}
-		
-		$rulesCleaned = array();
-		foreach($rules as $key => $rule){
-			$newKey = self::loadScripts($fieldNode, $rule);		
-			if($newKey){
-				preg_match_all("/custom\[(.*?)\]/", $key, $matchesCustom);
-				$key = str_replace($matchesCustom[0][0],'custom['. $newKey .']',$key);
-			}
-			$rulesCleaned[$key] = $rule;
+		else if (isset($rules->extended))
+		{
+			self::loadScripts($fieldNode, $rules);
 		}
-		
-		return $rulesCleaned;
+
+		$html = '';
+		return $html;
 	}
 
 

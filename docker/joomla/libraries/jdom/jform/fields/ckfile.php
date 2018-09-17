@@ -1,6 +1,9 @@
 <?php
-/**
-* (¯`·.¸¸.-> °º★ вүgιяσ.cσм ★º° <-.¸¸.·´¯)
+/**                               ______________________________________________
+*                          o O   |                                              |
+*                 (((((  o      <    Generated with Cook Self Service  V2.6.2   |
+*                ( o o )         |______________________________________________|
+* --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
 * @version		2.5
 * @package		Cook Self Service
 * @subpackage	JDom
@@ -46,37 +49,31 @@ class JFormFieldCkfile extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-		$this->setCommonProperties();
 
-		$thisOpts = array(
+		$this->input = JDom::_('html.form.input.file', array_merge(array(
+				'dataKey' => $this->getOption('name'),
+				'formGroup' => $this->group,
+				'formControl' => $this->formControl,
+				'domClass' => $this->getOption('class'),
+				'dataValue' => $this->value,
 				'height' => $this->getOption('height'),
-				'indirect' => ($this->getOption('indirect','') === 'true') ? true : false,
-				'attrs' => $this->getOption('attrs'), // it's a string like this 'fit,crop,center,quality:80,color:ffffff,format:jpg,opacity:100'
+				'indirect' => $this->getOption('indirect', null, 'bool'),
 				'actions' => explode(',',$this->getOption('actions', null)),
-				'preview' => (($this->getOption('preview') === 'true') ? true : false),
-				'target' => $this->getOption('target'),
-				'editable' => $this->getOption('editable'),
-				'maxSize' => $this->getOption('maxSize'),
+				'responsive' => $this->getOption('responsive'),
+				'preview' => $this->getOption('preview'),
 				'root' => $this->getOption('root'),
+				'ruleInstance' => $this->getOption('ruleInstance'),
 				'view' => $this->getOption('view'),
-				'width' => $this->getOption('width'),
-				'comAlias' => $this->getOption('comAlias'),
-				
-				// editor attributes
-				'editorHeight' => $this->getOption('editorHeight'),
-				'editorWidth' => $this->getOption('editorWidth'),
-				'rows' => $this->getOption('rows'),
-				'editor' => $this->getOption('editor'),
-				'params' => $this->getOption('params'),
-				'buttons' => $this->getOption('buttons')
-			);
-		$this->fieldOptions = array_merge($this->fieldOptions,$thisOpts,$this->jdomOptions);
-		
-		$this->input = JDom::_('html.form.input.file', $this->fieldOptions);
+				'width' => $this->getOption('width')
+			), $this->jdomOptions));
 
 		return parent::getInput();
 	}
 
+	public function getLabel()
+	{
+		return parent::getLabel();
+	}
 
 
 }

@@ -1,0 +1,183 @@
+<div class="container contenu">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="container front-end-edit">
+              <h1 class="fe">
+                Signaler des Echouages
+            	</h1>
+            	<p class=lead>
+                En remplissant ce formulaire vous nous aidez à perserver
+                les mammifères marins de Nouvelle-Calédonie.
+            	</p>
+
+              <form class="form-validate" action=" " method="post"  id="data_form" >
+
+                <!--Début Informateur-->
+                <div class="row">
+
+                <!--Field Name-->
+                <div class="col-xs-12">
+                  <label id="informant_name_label" for="informant_name" class="hasTooltip"
+                  title data-original-title="Merci de renseigner les informations">
+                    Informateur
+                    <span class="star">*</span>
+                 </label>
+                </div>
+
+                <!--Text Input-->
+                <div class="col-lg-4 col-md-6 col-xs-12">
+                  <div class="input-group">
+                    <span class="input-group-addon exergue">
+                      <span class="fa fa-user"></span>
+                    </span>
+                    <input class="form-control required" type="text" name="form[informant_name]" id="informant_name"
+                    placeholder="Nom de l'informateur" required="required" aria-required="true">
+                    <span style="display:none;">
+                      <input type="text" id="form_id" name="form[id]" class="form-control"
+                      readonly="readonly" value size="32">
+                    </span>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-xs-12">
+                  <div class="input-group">
+                    <span class="input-group-addon exergue">
+                      <span class="fa fa-phone"></span>
+                    </span>
+                    <input class="form-control required" type="text" name="form[informant_phone]" id="informant_phone"
+                    placeholder="Numéro de téléphone de l'informateur" required="required" aria-required="true">
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-xs-12">
+                  <div class="input-group">
+                    <span class="input-group-addon exergue">
+                      <span class="fa fa-envelope"></span>
+                    </span>
+                    <input class="form-control required" type="email" name="form[informant_mail]" id="informant_mail"
+                    placeholder="Mail de l'informateur" required="required" aria-required="true">
+                  </div>
+                </div>
+              </div>
+              <!--Fin Informateur-->
+
+              <!--Début Observateur-->
+              <div class="row">
+
+              <!--Field Name-->
+              <div class="col-xs-12">
+                <label id="observer_name_label" for="observer_name" class="hasTooltip"
+                title data-original-title="Merci de renseigner les informations">
+                  Observateur
+                  <span class="star">*</span>
+               </label>
+              </div>
+
+              <!--Text Input-->
+              <div class="col-lg-4 col-md-6 col-xs-12">
+                <div class="input-group">
+                  <span class="input-group-addon exergue">
+                    <span class="fa fa-user"></span>
+                  </span>
+                  <input class="form-control required" type="text" name="form[observer_name]" id="observer_name"
+                  placeholder="Nom de l'observateur" required="required" aria-required="true">
+                  <span style="display:none;">
+                    <input type="text" id="form_id" name="form[id]" class="form-control"
+                    readonly="readonly" value size="32">
+                  </span>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 col-xs-12">
+                <div class="input-group">
+                  <span class="input-group-addon exergue">
+                    <span class="fa fa-phone"></span>
+                  </span>
+                  <input class="form-control required" type="text" name="form[observer_phone]" id="observer_phone"
+                  placeholder="Numéro de téléphone de l'observateur" required="required" aria-required="true">
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 col-xs-12">
+                <div class="input-group">
+                  <span class="input-group-addon exergue">
+                    <span class="fa fa-envelope"></span>
+                  </span>
+                  <input class="form-control required" type="email" name="form[observer_mail]" id="observer_mail"
+                  placeholder="Mail de l'observateur" required="required" aria-required="true">
+                </div>
+              </div>
+            </div>
+            <!--Fin Observateur-->
+
+            <!--Début Date-->
+            <div class="row">
+
+            <!--Field Name-->
+            <div class="col-xs-12">
+              <label id="observation_datetime_label" for="observation_datetime" class="hasTooltip"
+              title data-original-title="Date où l'observation a été faite" style="display:none;">
+                Date de l'observation
+             </label>
+            </div>
+
+            <!--Text Input-->
+            <div class="col-lg-4 col-md-6 col-xs-12">
+              <div class="input-group">
+                <span class="input-group-addon exergue">
+                  <span class="fa fa-calendar"></span>
+                </span>
+                <div class="btn-group">
+                  <div class="input-append">
+                    <input class="input-medium form-control form-calendar" type="text" name="form[observation_datetime]"
+                    id="observer_datetime" value=" " size="32">
+                    <a id="form_observation_datetime-btn" class="btn" style="cursor:pointer;" type="button">
+                      <i class="icon-calendar icomoon"><i/>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Fin Date-->
+
+          <!--Début Nombre animaux échouer-->
+          <div class="row">
+
+          <!--Field Name-->
+          <div class="col-xs-12">
+            <label id="mammal_number_label" for="mammal_number" class="hasTooltip"
+            title data-original-title="Nombre de mammifères sur le lieu d'échouge" style="display:none;">
+              Nombre d'animaux échouer
+              <span class="star">*</span>
+           </label>
+          </div>
+
+          <!--Text Input-->
+          <div class="col-lg-4 col-md-6 col-xs-12">
+            <div class="input-group">
+              <span class="input-group-addon exergue">
+                <span class="fa fa-tachometer"></span>
+              </span>
+                  <input class="form-control required" type="number" name="form[mammal_number]" id="mammal_number"
+                  required="required" aria-required="true" placeholder="Nombre de mammifères échouer">
+            </div>
+          </div>
+        </div>
+        <!--Fin Nombre animaux échouer-->
+
+        <!-- Success message -->
+        <div class="alert alert-success" role="alert" id="success_message">Succès <i class="glyphicon glyphicon-thumbs-up"></i> Merci de votre participation.</div>
+
+                  <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label"></label>
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-warning" >Envoyer <span class="fa fa-send"></span></button>
+            </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

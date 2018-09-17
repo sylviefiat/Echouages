@@ -81,8 +81,8 @@ class JDomHtmlIcon extends JDomHtml
 	
 	public function getIconClass()
 	{
-		$iconClass = strpos($this->icon,'icon-') !== false ? $this->icon : 'icon-' . $this->icon; 
-		return $iconClass . ($this->library?' ' . $this->library:'');
+
+		return 'icon-' . $this->icon . ($this->library?' ' . $this->library:'');
 	}
 	
 	protected function buildFont()

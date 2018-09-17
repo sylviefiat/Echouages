@@ -4,11 +4,11 @@
     <author>Jocelyn HUARD - Girolamo Tomaselli</author>
     <creationDate>October 2013</creationDate>
     <copyright>Copyright (C) 2013 - Cook Self Service. All rights reserved.</copyright>
-    <license>MIT License (MIT) AND GNU GPL v3 or later</license>
+    <license>MIT License (MIT)</license>
     <authorEmail>support@j-cook.pro</authorEmail>
     <authorUrl>http://www.j-cook.pro</authorUrl>
-    <version>0.0.2</version>
-    <jdomversion>2.6.4</jdomversion>
+    <version>0.0.1</version>
+    <jdomversion>2.6.3</jdomversion>
     <description>JDom Library for Joomla.</description>
  
     <files>
@@ -42,15 +42,6 @@
 					description="PLG_JDOM_FIELD_JDOM_VERSION_DESC"
 					label="PLG_JDOM_FIELD_JDOM_VERSION_LABEL"
 				/>
-				
-				<field name="mode" type="list"
-					default="production"
-					description="PLG_JDOM_FIELD_MODE_DESC"
-					label="PLG_JDOM_FIELD_MODE_LABEL"
-				>
-					<option value="development">PLG_JDOM_FIELD_VALUE_DEVELOPMENT</option>
-					<option value="production">PLG_JDOM_FIELD_VALUE_PRODUCTION</option>
-				</field>				
 			</fieldset>
 		</fields>
 	</config>

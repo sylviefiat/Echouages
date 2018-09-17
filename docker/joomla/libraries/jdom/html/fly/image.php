@@ -135,12 +135,10 @@ class JDomHtmlFlyImage extends JDomHtmlFly
 			if (!empty($this->url))
 				$path = $this->url;
 			
-			if (!preg_match("/\[.+\]/", $path) AND !preg_match("/\{\{.+\}\}/", $path)){
-				$path = $this->root . $path;				
-			}
-			$path = trim(preg_replace("#/+#", "/", str_replace('\\','/',$path)),'/');
-				
-			$indirectUrl = JURI::root() . "index.php?option=" . $this->getExtension() 
+			if (!preg_match("/\[.+\]/", $this->dataValue))
+				$path = $this->root . $path;
+
+			$indirectUrl = JURI::base(true) . "/index.php?option=" . $this->getExtension()
 						. "&task=file&path=" . $path;
 
 			if ($this->width && $this->height)
@@ -148,7 +146,7 @@ class JDomHtmlFlyImage extends JDomHtmlFly
 	
 		}
 		
-		return JRoute::_($indirectUrl, false);
+		return $indirectUrl;
 	
 	}
 

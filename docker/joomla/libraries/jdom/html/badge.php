@@ -49,15 +49,14 @@ class JDomHtmlBadge extends JDomHtml
 
 	function build()
 	{
-		$this->content = (string)$this->content;
-		if ($this->content == '' OR $this->content === null)
+		if (empty($this->content))
 			return '';
 				
 		$this->addClass('badge');
 		
 		if ($this->color)
 			$this->addClass('badge-' . $this->color);
-	
+		
 		$html = '<span <%STYLE%><%CLASS%><%SELECTORS%>>'
 			.	$this->content
 			.	'</span>';

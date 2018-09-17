@@ -31,10 +31,7 @@ class JDomHtmlFormInput extends JDomHtmlForm
 	protected $domName;
 	protected $formControl;
 	protected $formGroup;
-	protected $prefix_id;
 	protected $required;
-	protected $readonly;
-	protected $disabled;
 	protected $hidden;
 	protected $validatorHandler;
 	protected $dateFormat;
@@ -88,10 +85,7 @@ class JDomHtmlFormInput extends JDomHtmlForm
 		$this->arg('domName'	, null, $args);
 		$this->arg('formControl', null, $args);
 		$this->arg('formGroup', null, $args);
-		$this->arg('prefix_id', null, $args);
 		$this->arg('required' 				, null, $args, false);
-		$this->arg('readonly' 				, null, $args, false);	
-		$this->arg('disabled' 				, null, $args, false);	
 		$this->arg('validatorHandler' 		, null, $args);
 		$this->arg('dateFormat' 			, null, $args);
 		$this->arg('validatorRegex' 		, null, $args);
@@ -133,13 +127,11 @@ class JDomHtmlFormInput extends JDomHtmlForm
 		if ($this->validatorHandler)
 			$this->addClass('validate-' . $this->validatorHandler);
 
-/*
 		if ($this->placeholder)
 			$this->addSelector('placeholder', $this->JText($this->placeholder));
 	
 		if ($this->title)
 			$this->addSelector('title', $this->title);
-*/		
 			
 		if (!$this->domId OR $this->domId == '')
 			$this->domId = $this->getInputId();
@@ -156,7 +148,7 @@ class JDomHtmlFormInput extends JDomHtmlForm
 		if (!$jsRule = self::getJsonRule())
 			return;
 
-		$script = 'jQuery.validationEngineLanguage.allRules.' . $this->validatorHandler . ' = ' . $jsRule .';';
+		$script = 'jQuery.validationEngineLanguage.allRules.' . $this->validatorHandler . ' = ' . $jsRule;
 		
 		$doc = JFactory::getDocument();
 		$doc->addScriptDeclaration($script);
@@ -192,7 +184,7 @@ class JDomHtmlFormInput extends JDomHtmlForm
 		
 		return parent::parseVars(array_merge(array(
 			'DOM_ID'		=> $this->domId,
-			'INPUT_NAME'		=> $this->domName,
+			'INPUT_NAME'	=> $this->domName,
 			'STYLE'			=> $this->buildDomStyles(),
 			'CLASS'			=> $this->buildDomClass(),		//With attrib name
 			'CLASSES'		=> $this->getDomClass(),		// Only classes

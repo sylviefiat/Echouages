@@ -58,26 +58,14 @@ class JDomHtmlFlyBootstrapModal extends JDomHtmlFlyBootstrap
 	{
 		$this->domClass .= ' modal hide fade';
 		
-		$header = '';
-		if(!empty($this->title)){
-			$header = '
+		$html =
+		'<div id="'. $this->domId .'" <%CLASS%><%SELECTORS%> tabindex="-1" role="dialog" aria-hidden="true">
 		  <div class="modal-header">
 			<a href="#" class="close" onclick="return false;" data-dismiss="modal" aria-hidden="true">&times;</a>
-			<h3 id="'. $this->domId .'_label">'. $this->title .'</h3>
-		  </div>			
-			';
-		}
-		
-		$footer = '';
-		if(!empty($this->footer)){
-			$footer = '<div class="modal-footer">'. $this->footer .'</div>';
-		}
-		
-		$html =
-		'<div id="'. $this->domId .'" <%CLASS%> <%SELECTORS%> tabindex="-1" aria-labelledby="'. $this->domId .'_label" role="dialog" aria-hidden="true">
-		  '. $header .'
+			<h3>'. $this->title .'</h3>
+		  </div>
 		  <div style="height: 80%; overflow-y: auto;" class="modal-body">'. $this->body .'</div>  
-		  '. $footer .'
+		  <div class="modal-footer">'. $this->footer .'</div>
 		</div>';
 		
 		return $html;

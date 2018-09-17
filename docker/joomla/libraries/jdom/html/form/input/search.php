@@ -56,13 +56,10 @@ class JDomHtmlFormInputSearch extends JDomHtmlFormInput
 
 	function build()
 	{
-
 		$htmlInput = JDom::_('html.form.input', array_merge($this->options, array(
-			'placeholder' => $this->placeholder,
-			'title' => $this->label,
+			'placeholder' => $this->placeholder
 		)));
-		
-		
+			
 		$html = '<div class=" form-search btn-group">';
 		
 			//Button group

@@ -1,6 +1,9 @@
 <?php
-/**
-* (¯`·.¸¸.-> °º★ вүgιяσ.cσм ★º° <-.¸¸.·´¯)
+/**                               ______________________________________________
+*                          o O   |                                              |
+*                 (((((  o      <    Generated with Cook Self Service  V2.6.2   |
+*                ( o o )         |______________________________________________|
+* --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
 * @version		2.5
 * @package		Cook Self Service
 * @subpackage	JDom
@@ -46,19 +49,43 @@ class JFormFieldCkstate extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-		$this->setCommonProperties();
+		$options = array();
+		if (!isset($this->jdomOptions['list']))
+		{
+			//Get the options from XML
+			foreach ($this->element->children() as $option)
+			{
+				$opt = new stdClass();
+				foreach($option->attributes() as $attr => $value)
+					$opt->$attr = (string)$value;
 		
-		$thisOpts = array(
+				$opt->text = JText::_(trim((string) $option));
+				$options[] = $opt;
+			}
+		}
+		$this->input = JDom::_('html.form.input.select.state', array_merge(array(
+				'dataKey' => $this->getOption('name'),
+				'formGroup' => $this->group,
+				'formControl' => $this->formControl,
+				'domClass' => $this->getOption('class'),
+				'dataValue' => $this->value,
 				'display' => $this->getOption('display'),
+				'list' => $options,
+				'nullLabel' => $this->getOption('nullLabel'),
+				'responsive' => $this->getOption('responsive'),
 				'size' => $this->getOption('size', 1, 'int'),
 				'submitEventName' => ($this->getOption('submit') == 'true'?'onchange':null),
-				'ui' => $this->getOption('ui')
-			);
-		
-		$this->fieldOptions = array_merge($this->fieldOptions,$thisOpts, $this->jdomOptions);
-		
-		$this->input = JDom::_('html.form.input.select.state', $this->fieldOptions);
+				'ui' => $this->getOption('ui'),
+				'viewType' => $this->getOption('viewType')
+			), $this->jdomOptions));
 
 		return parent::getInput();
 	}
+
+	public function getLabel()
+	{
+		return parent::getLabel();
+	}
+
+
 }

@@ -48,19 +48,11 @@ class JDomHtmlFlyFilePath extends JDomHtmlFlyFile
 
 
 	function build()
-	{	
-		$html = $this->dataValue;
-		
-		if($this->href != ''){
-			$options = array(
-				'content' => $this->dataValue,
-				'domClass' => '',
-				'href' => $this->href
-			);
-			$options = array_merge($this->options, $options);		
-			$html = JDom::_('html.link', $options);		
-		}
-		
+	{
+
+		$path = preg_replace("/\[.+\]/", "", $this->dataValue);
+		$html = JDom::_("html.fly", array('dataValue' => $path));
+
 		return $html;
 	}
 

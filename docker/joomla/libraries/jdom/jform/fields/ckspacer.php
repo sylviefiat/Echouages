@@ -1,6 +1,9 @@
 <?php
-/**
-* (¯`·.¸¸.-> °º★ вүgιяσ.cσм ★º° <-.¸¸.·´¯)
+/**                               ______________________________________________
+*                          o O   |                                              |
+*                 (((((  o      <    Generated with Cook Self Service  V2.6.2   |
+*                ( o o )         |______________________________________________|
+* --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
 * @version		2.5
 * @package		Cook Self Service
 * @subpackage	JDom
@@ -46,19 +49,14 @@ class JFormFieldCkspacer extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-		$this->setCommonProperties();
-		
+
 		$this->input = '';
 
 		return parent::getInput();
 	}
-	
+
 	public function getLabel()
 	{
-		$this->markup = 'span';
-		$this->labelclass = $this->labelclass .' ckspacer';
-		
 		return parent::getLabel();
 	}
-
 }

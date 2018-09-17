@@ -1,6 +1,9 @@
 <?php
-/**
-* (¯`·.¸¸.-> °º★ вүgιяσ.cσм ★º° <-.¸¸.·´¯)
+/**                               ______________________________________________
+*                          o O   |                                              |
+*                 (((((  o      <    Generated with Cook Self Service  V2.6.2   |
+*                ( o o )         |______________________________________________|
+* --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
 * @version		0.0.1
 * @package		Cook Self Service
 * @subpackage	JDom
@@ -46,15 +49,25 @@ class JFormFieldCktextarea extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-		$this->setCommonProperties();
-		
-		$this->fieldOptions = array_merge($this->fieldOptions,$this->jdomOptions);
-		
-		$this->input = JDom::_('html.form.input.textarea', $this->fieldOptions);
+
+		$this->input = JDom::_('html.form.input.textarea', array_merge(array(
+				'dataKey' => $this->getOption('name'),
+				'formGroup' => $this->group,
+				'formControl' => $this->formControl,
+				'domClass' => $this->getOption('class'),
+				'cols' => $this->getOption('cols'),
+				'dataValue' => $this->value,
+				'responsive' => $this->getOption('responsive'),
+				'rows' => $this->getOption('rows')
+			), $this->jdomOptions));
 
 		return parent::getInput();
 	}
 
+	public function getLabel()
+	{
+		return parent::getLabel();
+	}
 
 
 }

@@ -6,41 +6,28 @@
  * Licensed under the MIT license.
  */
 
-;(function ($, document, window){
+(function ($, document, window){
 	var old = $.fn.wizard;
 
 	// WIZARD CONSTRUCTOR AND PROTOTYPE
 
 	var Wizard = function (element, options) {
-		var that = this;
 		this.$element = $(element);
 		this.options = $.extend({}, $.fn.wizard.defaults, options);
 		this.options.disablePreviousStep = ( this.$element.data().restrict === "previous" ) ? true : false;
 		this.currentStep = this.options.selectedItem.step;
 		this.numSteps = this.$element.find('.steps li').length;
-		this.parent = this.$element.parent();
-		this.$prevBtn = this.parent.find(this.options.prevButtons);
-		this.$nextBtn = this.parent.find(this.options.nextButtons);
+		this.$prevBtn = $(this.options.prevButtons);
+		this.$nextBtn = $(this.options.nextButtons);
 
 		this.$nextBtn.each(function(){
 				$(this).data('originalHTML',$(this).html());
 		});
 		
-		// handle events
-		this.$element.parent().on('click', this.options.prevButtons, function(e){
-			e.stopPropagation();
-			that.previous.call(that,e);
-		});
-		
-		this.$element.parent().on('click', this.options.nextButtons, function(e){
-			e.stopPropagation();
-			that.next.call(that,e);			
-		});
-		
-		this.$element.on('click', 'li.complete', function(e){
-			e.stopPropagation();
-			that.stepclicked.call(that,e);
-		});
+		// handle events		
+		this.$element.parent().on('click', this.options.prevButtons, $.proxy(this.previous, this));
+		this.$element.parent().on('click', this.options.nextButtons, $.proxy(this.next, this));
+		this.$element.on('click', 'li.complete', $.proxy(this.stepclicked, this));
 		
 		if(this.currentStep > 1) {
 			this.selectedItem(this.options.selectedItem);
@@ -100,14 +87,14 @@
 			// set class for current step
 			var currentSelector = '.steps li:eq(' + (this.currentStep - 1) + ')';
 			var $currentStep = this.$element.find(currentSelector);
-			$currentStep.addClass('active').trigger('shown');
+			$currentStep.addClass('active');
 			$currentStep.find('span.badge').addClass('badge-info');
 
 			// set display of target element
 			var target = $currentStep.data().target;
 			this.$element.next('.step-content').find('.step-pane').removeClass('active');
-			$(target).addClass('active').trigger('shown');
-			
+			$(target).addClass('active');
+
 			// reset the wizard position to the left
 			this.$element.find('.steps').first().attr('style','left: 0');
 
@@ -122,12 +109,11 @@
 			} else {
 				containerWidth = this.$element.width();
 			}
-			
 			if (totalWidth > containerWidth) {
 				var containerCenter = containerWidth / 2,
 					$activeStep = this.$element.find('li.active').first(),
 					$activeStepCenter = $activeStep.outerWidth() / 2;
-		
+					
 				// newMargin = $activeStep.position().left;
 				newMargin = (containerCenter - $activeStepCenter) - $activeStep.position().left;
 				if (newMargin > 0) {
@@ -136,6 +122,9 @@
 					this.$element.find('.steps').first().attr('style','left: ' + newMargin + 'px');
 				}
 			}
+
+			this.$element.trigger('changed');
+			this.$element.trigger('changed_'+this.$element.attr('id')); 
 		},
 
 		stepclicked: function (e) {
@@ -152,7 +141,12 @@
 			if( canMovePrev ) {
 				var evt = $.Event('stepclick');
 				this.$element.trigger(evt, {step: index + 1});
-								
+				
+				
+				var evt = $.Event('stepclick_'+this.$element.attr('id'));
+				this.$element.trigger(evt, {step: index + 1});
+				
+				
 				if (evt.isDefaultPrevented()) return;
 
 				this.currentStep = (index + 1);
@@ -166,8 +160,12 @@
 				canMovePrev = false;
 			}
 			if (canMovePrev) {
-				var e = $.Event('changeStep');
+				var e = $.Event('change');
 				this.$element.trigger(e, {step: this.currentStep, direction: 'previous'});
+				
+				var e = $.Event('change_'+this.$element.attr('id'));
+				this.$element.trigger(e, {step: this.currentStep, direction: 'previous'});
+				
 				
 				if (e.isDefaultPrevented()) return;
 
@@ -181,12 +179,12 @@
 			var lastStep = (this.currentStep === this.numSteps);
 
 			if (canMoveNext) {
-				var e = $.Event('changeStep');
+				var e = $.Event('change');
+				this.$element.trigger(e, {step: this.currentStep, direction: 'next'});
 				
-				var cu = this.$element.find('.steps li').eq((this.currentStep-1)),
-				ne = this.$element.find('.steps li').eq(this.currentStep);
 				
-				this.$element.trigger(e, {step: this.currentStep, direction: 'next', current:cu, next:ne});
+				var e = $.Event('change_'+this.$element.attr('id'));
+				this.$element.trigger(e, {step: this.currentStep, direction: 'next'});
 				
 				
 				if (e.isDefaultPrevented()) return;
@@ -196,6 +194,7 @@
 			}
 			else if (lastStep) {
 				this.$element.trigger('finished',{step: this.currentStep});
+				this.$element.trigger('finished_'+this.$element.attr('id'),{step: this.currentStep}); 
 			}
 		},
 

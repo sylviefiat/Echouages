@@ -41,7 +41,7 @@ class JDomHtmlFormInputAjax extends JDomHtmlFormInput
 	 *
 	 *
 	 * 	@ajaxContext: Ajax context (extension.view.layout.render) extension without 'com_'
-	 * 	@ajaxWrapper: Ajax Dom div which will be filled with the result
+	 * 	@ajaxWrapper: Ajax Dom div wich will be filled with the result
 	 * 	@ajaxVars	: Extends of override the ajax query
 	 *  @onReady	: Javascript to execute when Ajax succeed and DOM is ready
 	 *

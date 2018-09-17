@@ -70,8 +70,7 @@ class JDomHtmlFormInputCaptcha extends JDomHtmlFormInput
 			$plugin = JPluginHelper::getPlugin('captcha', 'recaptcha');
 			
 			// Joomla! 1.6 - 1.7 - 2.5
-			if (version_compare($version->RELEASE, '2.5', '<=')){
-				jimport( 'joomla.html.parameter' );
+			if (version_compare($version->RELEASE, '2.5', '<=')){	
 				$params = new JParameter($plugin->params);
 			} else {
 				$params = new JRegistry($plugin->params);

@@ -89,7 +89,7 @@ class JDomHtmlLinkButtonToolbar extends JDomHtmlLinkButton
 				case 'new':
 				case 'apply':
 					$this->addClass('btn-success');
-					$this->addClass('input-small'); 
+					$this->addClass('input-medium');
 					break;
 			}			
 		}
@@ -104,7 +104,7 @@ class JDomHtmlLinkButtonToolbar extends JDomHtmlLinkButton
 		
 		if ($this->ui == 'bootstrap')
 		{
-			$this->addClass('btn btn-mini'); 
+			$this->addClass('btn btn-small');
 		}
 		else
 		{		
@@ -198,7 +198,7 @@ class JDomHtmlLinkButtonToolbar extends JDomHtmlLinkButton
 			'LI_STYLE' 		=> "list-style:none; " . $alignStyle,
 			'LI_ID' 		=> 'toolbar-' . $this->task,
 			'CONTENT_CLASS' 	=> $contentClass,
-			'COMMAND' 		=> ($this->link_js?htmlspecialchars($this->link_js, ENT_COMPAT, 'UTF-8'):""),
+			'COMMAND' 		=> ($this->link_js?htmlspecialchars($this->link_js):""),
 			'TEXT' 			=> $this->JText($this->text),
 			'CLASS'		=> $this->buildDomClass(),
 		), $vars));

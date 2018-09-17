@@ -1,6 +1,9 @@
 <?php
-/**
-* (¯`·.¸¸.-> °º★ вүgιяσ.cσм ★º° <-.¸¸.·´¯)
+/**                               ______________________________________________
+*                          o O   |                                              |
+*                 (((((  o      <    Generated with Cook Self Service  V2.6.2   |
+*                ( o o )         |______________________________________________|
+* --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
 * @version		0.0.1
 * @package		Cook Self Service
 * @subpackage	JDom
@@ -46,19 +49,23 @@ class JFormFieldCkcolor extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-		$this->setCommonProperties();
 
-		$thisOpts = array(
-				'layout' => $this->getOption('layout')
-			);
-			
-		$this->fieldOptions = array_merge($this->fieldOptions,$thisOpts,$this->jdomOptions);
-		
-		$this->input = JDom::_('html.form.input.colorpicker', $this->fieldOptions);
+		$this->input = JDom::_('html.form.input.colorpicker', array_merge(array(
+				'dataKey' => $this->getOption('name'),
+				'formGroup' => $this->group,
+				'formControl' => $this->formControl,
+				'domClass' => $this->getOption('class'),
+				'dataValue' => $this->value,
+				'responsive' => $this->getOption('responsive')
+			), $this->jdomOptions));
 
 		return parent::getInput();
 	}
 
+	public function getLabel()
+	{
+		return parent::getLabel();
+	}
 
 
 }

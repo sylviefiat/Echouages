@@ -1,6 +1,9 @@
 <?php
-/**
-* (¯`·.¸¸.-> °º★ вүgιяσ.cσм ★º° <-.¸¸.·´¯)
+/**                               ______________________________________________
+*                          o O   |                                              |
+*                 (((((  o      <    Generated with Cook Self Service  V2.6.2   |
+*                ( o o )         |______________________________________________|
+* --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
 * @version		2.5
 * @package		Cook Self Service
 * @subpackage	JDom
@@ -64,7 +67,7 @@ class JFormRuleTime extends JdomClassFormRule
 		if (!isset($fieldNode['format']))
 			return;
 
-		$timeFormat = $fieldNode['format'];		
+		$timeFormat = $fieldNode['format'];
 		$regex = JdomHelperDates::strftime2regex($timeFormat, false, false);
 
 		$values = array(
@@ -94,20 +97,14 @@ class JFormRuleTime extends JdomClassFormRule
 	*
 	* @since	11.1
 	*/
-	public function test(SimpleXMLElement &$element, &$value, $group = null, JRegistry $input = null, JForm &$form = null)
+	public function test(SimpleXMLElement $element, $value, $group = null, JRegistry $input = null, JForm $form = null)
 	{
-		$timeFormat = (string)$element['format'];
-
-		//Convert the date format (strftime) in regular expression
-		$this->regex = JdomHelperDates::strftime2regex($timeFormat, false, false);
-
-		// Test the value against the regular expression.
-		$test = parent::test($element, $value, $group, $input, $form);
-
-		if (!$test){
+		// Common test : Required, Unique
+		if (!self::testDefaults($element, $value, $group, $input, $form))
 			return false;
-		}
-		
+		//Convert the date format (strftime) in regular exprassion
+		$this->regex = JdomHelperDates::strftime2regex($this->dateFormat, false);
+
 		return true;
 	}
 

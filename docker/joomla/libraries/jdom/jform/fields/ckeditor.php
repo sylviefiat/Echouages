@@ -1,6 +1,9 @@
 <?php
-/**
-* (¯`·.¸¸.-> °º★ вүgιяσ.cσм ★º° <-.¸¸.·´¯)
+/**                               ______________________________________________
+*                          o O   |                                              |
+*                 (((((  o      <    Generated with Cook Self Service  V2.6.2   |
+*                ( o o )         |______________________________________________|
+* --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
 * @version		2.5
 * @package		Cook Self Service
 * @subpackage	JDom
@@ -46,28 +49,27 @@ class JFormFieldCkeditor extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-		$this->setCommonProperties();
-		$buttons = ($this->getOption('buttons') === 'true') ? true : false;
-		$repeatable = ($this->getOption('repeatable') === 'true') ? true : false;
 
-		$thisOpts = array(
+		$this->input = JDom::_('html.form.input.editor', array_merge(array(
+				'dataKey' => $this->getOption('name'),
+				'formGroup' => $this->group,
+				'formControl' => $this->formControl,
+				'domClass' => $this->getOption('class'),
+				'cols' => $this->getOption('cols'),
+				'dataValue' => $this->value,
 				'height' => $this->getOption('height'),
-				'width' => $this->getOption('width'),
+				'responsive' => $this->getOption('responsive'),
 				'rows' => $this->getOption('rows'),
-				'editor' => $this->getOption('editor'),
-				'params' => $this->getOption('params'),
-				'dataFile' => $this->getOption('dataFile'),
-				'repeatable' => $repeatable,
-				'buttons' => $buttons
-			);
+				'width' => $this->getOption('width')
+			), $this->jdomOptions));
 
-		$this->fieldOptions = array_merge($this->fieldOptions,$thisOpts,$this->jdomOptions);
-		$this->input = JDom::_('html.form.input.editor', $this->fieldOptions);
-
-		
 		return parent::getInput();
 	}
 
+	public function getLabel()
+	{
+		return parent::getLabel();
+	}
 
 
 }

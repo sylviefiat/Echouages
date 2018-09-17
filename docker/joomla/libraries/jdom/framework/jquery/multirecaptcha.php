@@ -1,7 +1,6 @@
 <?php
 /**
 * @author		Girolamo Tomaselli http://bygiro.com - girotomaselli@gmail.com
-* @license		GNU General Public License
 */
 
 // no direct access
@@ -57,8 +56,7 @@ class JDomFrameworkJqueryMultirecaptcha extends JDomFrameworkJquery
 			$plugin = JPluginHelper::getPlugin('captcha', 'recaptcha');
 			
 			// Joomla! 1.6 - 1.7 - 2.5
-			if (version_compare($version->RELEASE, '2.5', '<=')){
-				jimport( 'joomla.html.parameter' );
+			if (version_compare($version->RELEASE, '2.5', '<=')){	
 				$params = new JParameter($plugin->params);
 			} else {
 				$params = new JRegistry($plugin->params);
@@ -79,12 +77,15 @@ class JDomFrameworkJqueryMultirecaptcha extends JDomFrameworkJquery
 		JDom::_('framework.jquery');		
 
 		$server = self::RECAPTCHA_API_SERVER;
-		if((isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on')) || getenv('SSL_PROTOCOL_VERSION')){
+		if ($app->isSSLConnection()){
 			$server = self::RECAPTCHA_API_SECURE_SERVER;
 		}
 
 		JHtml::_('script', $server . '/js/recaptcha_ajax.js');
-				
+		
+		// load language strings
+		$this->loadLanguageFiles(true);
+		
 		$this->defaultSettings->text = (object)array(
 									'btnTxt' => JText::_("JDOM_RECAPTCHA_CLICK_ME")
 								);
@@ -95,8 +96,8 @@ class JDomFrameworkJqueryMultirecaptcha extends JDomFrameworkJquery
 		$this->_getLanguage();
 		
 		$defaultSettings = str_replace("'","\'",$this->escapeJsonString(json_encode($this->defaultSettings)));
-		$script = "window.jQuery_multirecaptchaByGiro = JSON.parse('". $defaultSettings ."');";
-		$script .= 'jQuery(document).multirecaptchaByGiro(window.jQuery_multirecaptchaByGiro);';
+		$script .= "var multirecaptchaByGiro_settings = JSON.parse('". $defaultSettings ."');";
+		$script .= 'jQuery(document).multirecaptchaByGiro(multirecaptchaByGiro_settings);';
 		$this->addScriptInLine($script, true);
 		
 		// addresspicker manager files needed

@@ -37,9 +37,6 @@ class JDomHtmlFlyBootstrap extends JDomHtmlFly
 	{
 		parent::__construct($args);
 
-		JDom::_('framework.jquery');
-		JDom::_('framework.jquery.noconflict');
-		JDom::_('framework.bootstrap');
 
 	}
 

@@ -1,6 +1,9 @@
 <?php
-/**
-* (¯`·.¸¸.-> °º★ вүgιяσ.cσм ★º° <-.¸¸.·´¯)
+/**                               ______________________________________________
+*                          o O   |                                              |
+*                 (((((  o      <    Generated with Cook Self Service  V2.6.2   |
+*                ( o o )         |______________________________________________|
+* --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
 * @version		2.5
 * @package		Cook Self Service
 * @subpackage	JDom
@@ -54,92 +57,56 @@ class JFormRuleFile extends JdomClassFormRule
 	*/
 	public function getJsonRule($fieldNode)
 	{
-		static $instance;
-		
-		if($instance){
-			$this->handler .= '_'. $instance;
-		}
-		$instance++;
-		
-		$this->regex = '';
+		$regex = '';
 		$allowedExtensionsText = '*.*';
 		if (isset($fieldNode['allowedExtensions']))
 		{
-			$allowedExtensions = (string)$fieldNode['allowedExtensions'];
+			$allowedExtensions = $fieldNode['allowedExtensions'];
 
-			$allowedExtensionsText = str_replace("|", ", ", $allowedExtensions);
-			$this->setRegex($fieldNode);
+			$allowedExtensionsText = preg_replace("/\|/", "<br/>", $allowedExtensions);
+			//Remove eventual '*.'
+			$allowedExtensions = preg_replace("/\*\./", "", $allowedExtensions);
+
+			$regex = '\.(' . $allowedExtensions . ')$';
 		}
 
-		$maxSize = 'null';
-		if(isset($fieldNode['maxSize']) AND $size = floatval((string)$fieldNode['maxSize'])){
-			$maxSize = intval($size * 1024 * 1024);
-		}
-		
-		if (isset($fieldNode['msg-incorrect']))
-			$alertText = LI_PREFIX . JText::_($fieldNode['msg-incorrect']);
-		else
-			$alertText = LI_PREFIX . JText::sprintf('PLG_JDOM_ERROR_ALLOWED_FILES', $allowedExtensionsText);
 
-		$alertTextSize = LI_PREFIX . JText::sprintf('PLG_JDOM_ERROR_TOO_BIG_FILE_BYTES_MAX_ALLOWED_SIZE_BYTES', '<filesize>', self::bytesToString($maxSize));
-		
 		$values = array(
-			'func' => 'function(field, rules, i, options){
-				var maxSize = '. $maxSize .';
-				
-				// checkSize
-				if(maxSize){
-					// get the input file
-					var id = field.attr("id");
-					id = id.replace("-view","");
-					var inputField = field.parent().find("#"+ id).get(0);
-					
-					if(inputField.files && inputField.files[0]){
-						if(maxSize < inputField.files[0].size){
-							var alertText = "'. addslashes($alertTextSize) .'".replace("<filesize>",bytesToString(inputField.files[0].size));						
-							options.allrules["'. $this->handler .'"].alertText = alertText;
-							return false;
-						}
-					}
-				}
-				
-				// test allowed extensions
-				var pattern = new RegExp("' . $this->regex . '", \'i\');
-				if (!pattern.test(field.val())){					
-					options.allrules["'. $this->handler .'"].alertText = "'. addslashes($alertText) .'";
-					return false;
-				}
-				
-				return true;
-			}'
+			"#regex" => 'new RegExp("' . $regex . '", \'i\')'
 		);
+
+		if (isset($fieldNode['msg-incorrect']))
+			$values["alertText"] = LI_PREFIX . JText::_($fieldNode['msg-incorrect']);
+		else
+			$values["alertText"] = LI_PREFIX . JText::sprintf('JFORMS_ERROR_ALLOWED_FILES', $allowedExtensionsText);
 
 		$json = JdomHtmlValidator::jsonFromArray($values);
 		return "{" . LN . $json . LN . "}";
 	}
 
-	
-	public function setRegex($fieldNode)
+	/**
+	* Method to test the field.
+	*
+	* @access	public
+	* @param	SimpleXMLElement	$element	The JXMLElement object representing the <field /> tag for the form field object.
+	* @param	mixed	$value	The form field value to validate.
+	* @param	string	$group	The field name group control value. This acts as as an array container for the field.
+	* @param	JRegistry	$input	An optional JRegistry object with the entire data set to validate against the entire form.
+	* @param	JForm	$form	The form object for which the field is being tested.
+	*
+	* @return	boolean	True if the value is valid, false otherwise.
+	*
+	* @since	11.1
+	*/
+	public function test(SimpleXMLElement $element, $value, $group = null, JRegistry $input = null, JForm $form = null)
 	{
-		//Remove eventual '*.'
-		$allowedExtensions = str_replace(array(",","*."," "), array("|",""), (string)$fieldNode['allowedExtensions']);
+		// Common test : Required, Unique
+		if (!self::testDefaults($element, $value, $group, $input, $form))
+			return false;
 
-		$this->regex = '\.(' . $allowedExtensions . ')$';
+
+		return true;
 	}
-	
-	public static function bytesToString($bytes)
-	{
-		$suffix = "";
-		$units = array('K', 'M', 'G', 'T');
 
-		$i = 0;
-		while ($bytes >= 1024)
-		{
-			$bytes = $bytes / 1024;
-			$suffix = $units[$i];
-			$i++;
-		}
 
-		return round($bytes, 2) . $suffix;
-	}
 }

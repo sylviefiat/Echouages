@@ -62,7 +62,7 @@ class JDomDevLibIcons extends JDomDevLib
 				'raw' => true,
 				
 				'content' => $content,
-				'contents' => htmlspecialchars($html, ENT_COMPAT, 'UTF-8'),
+				'contents' => htmlspecialchars($html),
 				'title' => $title,
 				'placement' => 'top',
 				'rel' => 'myToolTip', //Distinct from others tooltip options

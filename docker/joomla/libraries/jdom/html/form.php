@@ -25,7 +25,6 @@ class JDomHtmlForm extends JDomHtml
 	var $fallback = 'input';	//Used for default
 
 	protected $dataKey;
-	protected $alias;
 	protected $dataObject;
 	protected $dataValue;
 
@@ -44,39 +43,6 @@ class JDomHtmlForm extends JDomHtml
 
 	}
 
-	protected function getInputValue()
-	{
-		$value = $this->dataValue;
-		
-		// Integers optimization.
-		if (is_int($value))
-			return $value;
-				
-		// Protect the string
-		if (is_string($value))
-			return  htmlspecialchars($value, ENT_COMPAT, 'UTF-8');
-
-
-		if (is_array($value))
-		{
-			//Empty array
-			if (!count($value))
-				return '';
-			
-			// Simple array of integer
-			if (is_int($value[0]))
-				return implode(',', $value);
-			
-			// Other type of array : Not handled in value markup property
-			return '';
-		}
-		
-		// JSon an object
-		if (is_object($value))
-			return json_encode($value);
-	
-		return '';
-	}
 	
 	function getInputName($suffix = null)
 	{
@@ -103,21 +69,14 @@ class JDomHtmlForm extends JDomHtml
 	function getInputId($suffix = null)
 	{
 		$id = $this->dataKey;
-		if(isset($this->alias) AND $this->alias != ''){
-			$id = $this->alias;
-		}
-		
-		if (isset($this->formGroup) AND $this->formGroup != null)
+		if ($this->formGroup != null)
 			$id = preg_replace("/\.(?!([^\{\{]+)?\}\})/i",'_',$this->formGroup) .'_'. $id;
 		
-		if (isset($this->formControl) AND $this->formControl != null)
+		if ($this->formControl != null)
 			$id = $this->formControl . '_' . $id;
 		
 		if ($suffix)
 			$id .= '-'. $suffix;
-			
-		if (!empty($this->prefix_id))
-			$id = $this->prefix_id . $id;
 		
 		return $id;
 	}

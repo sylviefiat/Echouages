@@ -1,7 +1,6 @@
 <?php
 /**
 * @author		Girolamo Tomaselli http://bygiro.com - girotomaselli@gmail.com
-* @license		GNU General Public License
 */
 
 // no direct access
@@ -45,16 +44,6 @@ class JDomFrameworkBootstrapTimepicker extends JDomFrameworkBootstrap
 		// timepicker manager files needed
 		$this->attachJs[] = 'timepicker.js';
 		$this->attachCss[] = 'timepicker.css';			
-		
-		$doc = JFactory::getDocument();
-		$script = '
-			jQuery(document).ready(function(){
-				jQuery(".timepickerByGiro").each(function(){
-					jQuery(this).timepickerByGiro();
-				});
-			});
-		';
-		$doc->addScriptDeclaration($script);		
 		
 		static::$loaded[__METHOD__] = true;
 	}

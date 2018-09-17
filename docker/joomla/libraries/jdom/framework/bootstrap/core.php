@@ -45,30 +45,25 @@ class JDomFrameworkBootstrapCore extends JDomFrameworkBootstrap
 	function build()
 	{
 		//Bootstrap should not be used
-		if (!$this->useFramework('bootstrap')){
-			$this->attachJs[] = 'radio.js'; 
+		if (!$this->useFramework('bootstrap'))
 			return;
-		}
 		
 		//Bootstrap is already in the core since Joomla 3.0. And already loaded.
-		if ($this->jVersion('3.0')){
-			JHtml::_('bootstrap.framework');
+		 // fix for javascript files order
+		/*
+		if ($this->jVersion('3.0'))
 			return;
-		}
+		*/
 		
 		$jsFile = 'bootstrap.min.js';
 		$assetFile = $this->assetFilePath('js', $jsFile);
 		
-		if (file_exists($assetFile)){
+		if (file_exists($assetFile))
 			$this->attachJs[] = $jsFile;
 		
 		//Fallback
-		} else {
+		else
 			$this->addScript($this->hostedSource);
-		}	
-			
-		// fix to load the radio.js even is there are no radio input
-		$this->attachJs[] = 'radio.js'; 
 	}
 	
 	function buildCss()

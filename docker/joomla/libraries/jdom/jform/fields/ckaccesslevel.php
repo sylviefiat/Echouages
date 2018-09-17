@@ -1,6 +1,9 @@
 <?php
-/**
-* (¯`·.¸¸.-> °º★ вүgιяσ.cσм ★º° <-.¸¸.·´¯)
+/**                               ______________________________________________
+*                          o O   |                                              |
+*                 (((((  o      <    Generated with Cook Self Service  V2.6.2   |
+*                ( o o )         |______________________________________________|
+* --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
 * @version		2.5
 * @package		Cook Self Service
 * @subpackage	JDom
@@ -46,20 +49,27 @@ class JFormFieldCkaccesslevel extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-		$this->setCommonProperties();
-		$thisOpts = array(
+
+		$this->input = JDom::_('html.form.input.accesslevel', array_merge(array(
+				'dataKey' => $this->getOption('name'),
+				'formGroup' => $this->group,
+				'formControl' => $this->formControl,
+				'domClass' => $this->getOption('class'),
+				'dataValue' => $this->value,
 				'display' => $this->getOption('display'),
-				'submitEventName' => ($this->getOption('submit') === 'true'?'onchange':null),
+				'nullLabel' => $this->getOption('nullLabel'),
+				'responsive' => $this->getOption('responsive'),
+				'submitEventName' => ($this->getOption('submit') == 'true'?'onchange':null),
 				'ui' => $this->getOption('ui')
-			);
-			
-		$this->fieldOptions = array_merge($this->fieldOptions,$thisOpts, $this->jdomOptions);
-		
-		$this->input = JDom::_('html.form.input.accesslevel', $this->fieldOptions);
+			), $this->jdomOptions));
 
 		return parent::getInput();
 	}
 
+	public function getLabel()
+	{
+		return parent::getLabel();
+	}
 
 
 }

@@ -51,16 +51,16 @@ class JDom extends JObject
 	var $path;
 	var $options;
 	var $app;
-	var $plugin;
 
 	var $_pathSite = JPATH_SITE;
 	var $_uriJdom;
 	
 	protected $args;
 	protected $fallback;
+	protected $loadLanguageFile;
 	
 	protected static $loaded = array();
-	public $extension;
+	protected $extension;
 	
 	
 	/*
@@ -99,16 +99,6 @@ class JDom extends JObject
 		$this->app = JFactory::getApplication();
 		
 		$this->registerFrameworks();
-		
-		// load some params (if any) from JDOM plugin (if exists)
-		// Get the plugin
-		$plugin = JPluginHelper::getPlugin('system', 'jdom');
-		if(!empty($plugin)){
-			$params = new JRegistry;
-			$params->loadString($plugin->params);
-			$plugin->params = $params;
-			$this->plugin = $plugin;
-		}
 	}
 
 	
@@ -262,30 +252,6 @@ class JDom extends JObject
 			return null;
 		
 		$class = new $className($this->args);
-
-		//Load the fallback class
-		if (!method_exists($class, 'build'))
-		{
-			
-			$fallback = $class->fallback;
-			if (!empty($fallback))
-			{
-				$className .= ucfirst($fallback);
-				$namespace = $this->namespace .'.'. $fallback;
-				$this->loadClassFile($namespace);
-				
-				if (!class_exists($className))
-					return $class;
-				
-				$class = new $className($this->args);
-			}
-		
-		}
-		
-		if (!method_exists($class, 'build'))
-		{
-			exit($this->error('build() function not found.'));
-		}
 		
 		return $class;
 	}
@@ -334,6 +300,23 @@ class JDom extends JObject
 		return $class->output();
 	}
 	
+
+	
+	//Fallback function
+	public function build()
+	{
+		if (empty($this->fallback))
+			return $this->error('build() function not found.');
+					
+		$this->namespace .= '.' . $this->fallback;
+		
+		$class = $this->getClassInstance();
+		if (!$class)
+			return $this->error('Not found : <strong>' . $this->namespace . '</strong>');
+		
+		return $class->output();
+	}
+	
 	public function output()
 	{
 		//ACL Access
@@ -342,8 +325,7 @@ class JDom extends JObject
 		
 		//HTML
 		$html = $this->build();
-	
-	
+		
 		//EMBED LINK
 		if (method_exists($this, 'embedLink'))
 			$html = $this->embedLink($html);
@@ -353,7 +335,7 @@ class JDom extends JObject
 		
 		if ($this->isAjax())
 			$this->ajaxHeader($html);	//Embed javascript and CSS in case of Ajax call
-	
+		
 		//Parser
 		$html = $this->parse($html);   //Was Recursive ?
 		
@@ -388,37 +370,23 @@ class JDom extends JObject
 	
 	protected function arg($name, $i = null, $args = array(), $fallback = null)
 	{
-		@$currentValue = $this->$name;		
 		$optionValue = $this->getOption($name);
 
-		if ($optionValue !== null){
-			$newVal = $this->options[$name];
-		} else if (($i !== null) && (count($args) > $i)){
-			if ($args[$i] !== null){
-				$newVal = $args[$i];
-			}
-		}
-		
-		if (!isset($newVal) && ($fallback !== null)){
-			$newVal = $fallback;
-		}
-		
-		if(!isset($newVal)){
-			return;
-		}
-		
-		if ($optionValue){
-			$this->options[$name] = $newVal;
-		}
-		
-		switch($name){
-			case 'selectors':
-				$this->addSelectors($newVal);
-				$newVal = $this->selectors;
-				break;
-		}
-		
-		$this->$name = $newVal;
+		if ($optionValue !== null)
+			$this->$name = $this->options[$name];
+		else if (($i !== null) && (count($args) > $i))
+			if ($args[$i] !== null)
+				$this->$name = $args[$i];
+			else
+				$this->$name = $fallback;
+
+		if (!isset($this->$name) && ($fallback !== null))
+			$this->$name = $fallback;
+
+
+		if ($optionValue)
+			$this->options[$name] = $this->$name;
+
 	}
 
 	protected function isArg($varname)
@@ -463,19 +431,16 @@ class JDom extends JObject
 		return $extension;
 	}
 	
-	function getComponentHelper($comAlias = '')
+	function getComponentHelper()
 	{
-		if(empty($comAlias)){
-			$comAlias = substr($this->getExtension(), 4);
-		}
-		$helperClass = ucfirst($comAlias) . 'Helper';
+		$helperClass = ucfirst(substr($this->getExtension(), 4)) . 'Helper';
 		
 		if (!class_exists($helperClass))
 		{
 			echo('Class <strong>' . $helperClass . '<strong> not found');
 			return;
 		}
-		return new $helperClass;
+		return $helperClass;
 	}
 	
 	public function isAjax()
@@ -512,10 +477,47 @@ class JDom extends JObject
 		//CSS
 		$this->buildCss();
 		$this->attachCssFiles();
+		
+		// load extra language files
+		$this->loadLanguageFiles(); 
 	}
 
 	public function buildJs()	{}
 	
+
+	public function loadLanguageFiles($forceLoad = false, $assetName = null)
+	{	
+		if(!$this->loadLanguageFile AND !$forceLoad){
+			return;
+		}
+		
+		if(!$assetName AND isset($this->assetName)){
+			$assetName = $this->assetName;
+		}
+		
+		if($assetName == ''){
+			return;
+		}
+	
+		$language = JFactory::getLanguage();
+	//	$fileBase = JPATH_SITE . DS . 'libraries'. DS .'jdom' ; // ONE folder with all the language files or language files on each asset?!?!
+		$fileBase = JPATH_SITE . DS . 'libraries'. DS .'jdom' . DS . 'assets' . DS . $assetName ;
+		
+		$langTag = $language->getTag();
+		$file = $fileBase . DS .'language'. DS . $langTag .DS. $langTag . '.plg_system_jdom_'. $assetName .'.ini';
+
+		if(!file_exists($file)){
+			// fallback into ENGLISH
+			$langTag = 'en-GB';
+			$file = $fileBase . DS .'language'. DS . $langTag .DS. $langTag . '.plg_system_jdom_'. $assetName .'.ini';
+		}
+
+		if (file_exists($file)){		
+			$language->load('plg_system_jdom_'. $assetName , $fileBase, $langTag);
+		}
+	}
+
+
 	protected function attachJsFiles()
 	{
 		//Javascript
@@ -530,17 +532,13 @@ class JDom extends JObject
 		$fileBase = ""; // dom Root
 		if (isset($this->assetName) && ($this->assetName != null))
 			$fileBase = 'assets' .DS. $this->assetName .DS. 'js' .DS;
-			
+
 		foreach($attachJs as $jsFileName)
 		{
-			if (preg_match("/^http/", $jsFileName)){
+			if (preg_match("/^http/", $jsFileName))
 				JFactory::getDocument()->addScript($jsFileName);
-			} else {
-				if(strpos($jsFileName,'assets') !== 0){ 
-					$jsFileName = $fileBase . $jsFileName;
-				}
-				$this->addScript($jsFileName);
-			}
+			else
+				$this->addScript($fileBase . $jsFileName);
 		}
 	}
 
@@ -554,24 +552,7 @@ class JDom extends JObject
 		else
 			return;
 
-			
-		$mode = '';
-		if(isset($this->plugin)){
-			$mode = $this->plugin->params->get('mode','development');
-		}
-
-		if($mode == 'production'){
-			$originalName = $relativeName;
-			$ext = pathinfo($relativeName, PATHINFO_EXTENSION);
-			$relativeName = str_replace('.'. $ext,'.min.'.$ext ,$relativeName);
-		}
-			
-		$jsFile = $this->searchFile($relativeName);
-		
-		if($mode == 'production' AND empty($jsFile)){
-			$jsFile = $this->searchFile($originalName);
-		}		
-		
+		$jsFile = $this->searchFile($relativeName, false);
 		if ($jsFile)
 		{
 			$jsFile = self::pathToUrl($jsFile);
@@ -633,7 +614,7 @@ class JDom extends JObject
 	protected function jsEmbedFramework($script, $embedFramework = 'jQuery')
 	{
 
-		$js = ';(function($){' . LN;
+		$js = '(function($){' . LN;
 		$js .= $this->indent($script, 1);
 		$js .= LN. "})($embedFramework);";
 
@@ -659,10 +640,8 @@ class JDom extends JObject
 
 		foreach($attachCss as $cssFileName)
 		{
-			if(strpos($cssFileName,'assets') !== 0){
-				$cssFileName = $fileBase . $cssFileName;
-			}
-			$this->addStyleSheet($cssFileName);
+			$relativeName = $fileBase . $cssFileName;
+			$this->addStyleSheet($relativeName);
 		}
 	}
 
@@ -681,23 +660,7 @@ class JDom extends JObject
 			$relativeName = 'assets' .DS. $name . DS. 'css' .DS . $name . '.css';
 		}
 
-		$mode = '';
-		if(isset($this->plugin)){
-			$mode = $this->plugin->params->get('mode','development');
-		}
-
-		if($mode == 'production'){
-			$originalName = $relativeName;
-			$ext = pathinfo($relativeName, PATHINFO_EXTENSION);
-			$relativeName = str_replace('.'. $ext,'.min.'.$ext ,$relativeName);
-		}
-			
-		$cssFile = $this->searchFile($relativeName);
-		
-		if($mode == 'production' AND empty($cssFile)){
-			$cssFile = $this->searchFile($originalName);
-		}
-		
+		$cssFile = $this->searchFile($relativeName, false);
 		if ($cssFile)
 		{
 			$cssFile = self::pathToUrl($cssFile);
@@ -774,7 +737,7 @@ class JDom extends JObject
 		if (!empty(self::$loaded['JDom::addStyleSheet']))
 			foreach (self::$loaded['JDom::addStyleSheet'] as $url => $foo)
 			{
-				$cssFile = $this->searchFile($url);
+				$cssFile = $this->searchFile($url, false);
 				if ($cssFile)
 					$cssFile = self::pathToUrl($cssFile);
 	
@@ -842,18 +805,19 @@ class JDom extends JObject
 		
 	}
 
-	protected function parse($html)
+	protected function parse($pattern)
 	{
 		$vars = $this->parseVars(array());
 
-		if (is_string($html) AND isset($vars) AND count($vars)){
-			foreach($vars as $key => $value)
-			{
-				//Escape $ char
-				$value = str_replace("$", "\\$", $value);
-				//Replace values
-				$html = preg_replace("/<%" . strtoupper($key) . "%>/", $value, $html);
-			}
+		$html = $pattern;
+
+		if (isset($vars) && count($vars))
+		foreach($vars as $key => $value)
+		{
+			//Escape $ char
+			$value = str_replace("$", "\\$", $value);
+			//Replace values
+			$html = preg_replace("/<%" . strtoupper($key) . "%>/", $value, $html);
 		}
 
 		return $html;
@@ -936,7 +900,7 @@ class JDom extends JObject
 	protected function JText($text)
 	{
 		//Fix a little Joomla bug
-		if ((strtolower($text) === 'true') || (strtolower($text) === 'false'))
+		if ((strtolower($text) == 'true') || (strtolower($text) == 'false'))
 			return $text;
 
 		if (preg_match("/\[([A-Z0-9_]+)\]/", $text))
@@ -975,27 +939,22 @@ class JDom extends JObject
 		return JDom::getInstance()->_uriJdom;
 	}
 
-    protected function pathToUrl($path, $raw = false)
-    {
-        $base = JDom::getInstance()->getPathSite();
-        $uri = JDom::getInstance()->getUriJDomBase();
-        
-        // Convert eventual Windows directory separators
-        if (DS == "\\")
-        {
-            $path = str_replace(DS, "/", $path);
-            $base = str_replace(DS, "/", $base);            
-        }
+	protected function pathToUrl($path, $raw = false)
+	{
+		$base = JDom::getInstance()->getPathSite();
+		$uri = JDom::getInstance()->getUriJDomBase();
+		
+		$path = str_replace("\\", "/", $path);
+		$base = str_replace("\\", "/", $base);
 
-        // Reduce until the base
-        $relUrl = $uri . substr($path, strlen($base));
- 
-        if ($raw)
-            return $relUrl;
+		$escaped = preg_replace("/\//", "\/", $base);
+		$relUrl = $uri . preg_replace("/^" . $escaped . "/", "", $path);
 
-        // Return complete URL
-        return JURI::root(true) . $relUrl;
-    }
+		if ($raw)
+			return $relUrl;
+
+		return JURI::root(true) . $relUrl;
+	}
 
 	protected function strftime2regex($format)
 	{
@@ -1224,80 +1183,11 @@ array(	"\\", "\/", 	"\#",	"\!", 	"\^", "$", "\(", "\)", "\[", "\]", "\{", "\}", 
 
 	}
 
-	public static function escapeJsonString($value) {
+	function escapeJsonString($value) {
 		# list from www.json.org: (\b backspace, \f formfeed)    
 		$escapers =     array("\\",     "/",   "\"",  "\n",  "\r",  "\t", "\x08", "\x0c");
 		$replacements = array("\\\\", "\\/", "\\\"", "\\n", "\\r", "\\t",  "\\f",  "\\b");
 		$result = str_replace($escapers, $replacements, $value);
 		return $result;
-	}	
-
-	public static function safeAlias($str, $toCase = 'lower')
-	{
-		//ACCENTS
-		$accents = array('À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ð', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'ß', 'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', 'ø', 'ù', 'ú', 'û', 'ü', 'ý', 'ÿ', 'Ā', 'ā', 'Ă', 'ă', 'Ą', 'ą', 'Ć', 'ć', 'Ĉ', 'ĉ', 'Ċ', 'ċ', 'Č', 'č', 'Ď', 'ď', 'Đ', 'đ', 'Ē', 'ē', 'Ĕ', 'ĕ', 'Ė', 'ė', 'Ę', 'ę', 'Ě', 'ě', 'Ĝ', 'ĝ', 'Ğ', 'ğ', 'Ġ', 'ġ', 'Ģ', 'ģ', 'Ĥ', 'ĥ', 'Ħ', 'ħ', 'Ĩ', 'ĩ', 'Ī', 'ī', 'Ĭ', 'ĭ', 'Į', 'į', 'İ', 'ı', 'Ĳ', 'ĳ', 'Ĵ', 'ĵ', 'Ķ', 'ķ', 'Ĺ', 'ĺ', 'Ļ', 'ļ', 'Ľ', 'ľ', 'Ŀ', 'ŀ', 'Ł', 'ł', 'Ń', 'ń', 'Ņ', 'ņ', 'Ň', 'ň', 'ŉ', 'Ō', 'ō', 'Ŏ', 'ŏ', 'Ő', 'ő', 'Œ', 'œ', 'Ŕ', 'ŕ', 'Ŗ', 'ŗ', 'Ř', 'ř', 'Ś', 'ś', 'Ŝ', 'ŝ', 'Ş', 'ş', 'Š', 'š', 'Ţ', 'ţ', 'Ť', 'ť', 'Ŧ', 'ŧ', 'Ũ', 'ũ', 'Ū', 'ū', 'Ŭ', 'ŭ', 'Ů', 'ů', 'Ű', 'ű', 'Ų', 'ų', 'Ŵ', 'ŵ', 'Ŷ', 'ŷ', 'Ÿ', 'Ź', 'ź', 'Ż', 'ż', 'Ž', 'ž', 'ſ', 'ƒ', 'Ơ', 'ơ', 'Ư', 'ư', 'Ǎ', 'ǎ', 'Ǐ', 'ǐ', 'Ǒ', 'ǒ', 'Ǔ', 'ǔ', 'Ǖ', 'ǖ', 'Ǘ', 'ǘ', 'Ǚ', 'ǚ', 'Ǜ', 'ǜ', 'Ǻ', 'ǻ', 'Ǽ', 'ǽ', 'Ǿ', 'ǿ');
-		$replacements = array('A', 'A', 'A', 'A', 'A', 'A', 'AE', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'D', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'U', 'U', 'U', 'U', 'Y', 's', 'a', 'a', 'a', 'a', 'a', 'a', 'ae', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'n', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'y', 'y', 'A', 'a', 'A', 'a', 'A', 'a', 'C', 'c', 'C', 'c', 'C', 'c', 'C', 'c', 'D', 'd', 'D', 'd', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'E', 'e', 'G', 'g', 'G', 'g', 'G', 'g', 'G', 'g', 'H', 'h', 'H', 'h', 'I', 'i', 'I', 'i', 'I', 'i', 'I', 'i', 'I', 'i', 'IJ', 'ij', 'J', 'j', 'K', 'k', 'L', 'l', 'L', 'l', 'L', 'l', 'L', 'l', 'l', 'l', 'N', 'n', 'N', 'n', 'N', 'n', 'n', 'O', 'o', 'O', 'o', 'O', 'o', 'OE', 'oe', 'R', 'r', 'R', 'r', 'R', 'r', 'S', 's', 'S', 's', 'S', 's', 'S', 's', 'T', 't', 'T', 't', 'T', 't', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'W', 'w', 'Y', 'y', 'Y', 'Z', 'z', 'Z', 'z', 'Z', 'z', 's', 'f', 'O', 'o', 'U', 'u', 'A', 'a', 'I', 'i', 'O', 'o', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'A', 'a', 'AE', 'ae', 'O', 'o');
-		$str = str_replace($accents, $replacements, $str);
-
-		//SPACES
-		$str = preg_replace("/\s+/", "-", $str);
-
-		//OTHER CHARACTERS
-		$strip = array("~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "=", "+", "[", "{", "]",
-					   "}", "\\", "|", ";", ":", "\"", "'", "&#8216;", "&#8217;", "&#8220;", "&#8221;", "&#8211;", "&#8212;",
-					   "—", "–", ",", "<", ".", ">", "/", "?");
-		$str = trim(str_replace($strip, "", strip_tags($str)));
-		
-		switch($toCase)
-		{
-			case 'lower':
-				$str = strtolower($str);
-				break;
-
-			case 'upper':
-				$str = strtoupper($str);
-				break;
-
-			case 'ucfirst':
-				$str = ucfirst($str);
-				break;
-
-			case 'ucwords':
-				$str = ucwords($str);
-				break;
-
-			default:
-				break;
-
-		}
-
-		return $str;
 	}
-	
-	function getLanguages(){
-		static $languages;
-		
-		if(isset($language)){
-			return $languages;
-		}
-		$db = JFactory::getDBO();
-		
-		$sql = "SELECT *, LOWER(REPLACE(lang_code,'-','')) as lang_tag  FROM #__languages WHERE published = 1";
-		$db->setQuery(  $sql );
-		$languages = $db->loadObjectList();
-
-		foreach($languages as &$lang){
-			$lang->postfix = $lang->lang_tag;
-			if($lang->lang_tag != ''){
-				$lang->postfix = '_'. $lang->lang_tag;
-			}
-			
-			$lang->img_url = '';
-			if($lang->lang_code != ''){
-				$lang->img_url = JURI::root() .'media/mod_languages/images/'. $lang->image .'.gif';
-			}
-		}
-		
-		return $languages;
-	}	
 }

@@ -77,6 +77,13 @@ class JDomHtmlFormFooter extends JDomHtmlForm
 			$keys['cid[]'] = (isset($this->dataObject->id)?$this->dataObject->id:0);
 		}
 
+
+		//Specifics values or overrides
+		if (isset($this->values))
+			foreach($this->values as $key => $value)
+				$keys[$key] = $value;
+
+
 		//Reproduce current query in the form
 		$followers = array('lang', 'Itemid', 'tmpl');  //Cmd types only for the moment
 
@@ -86,13 +93,6 @@ class JDomHtmlFormFooter extends JDomHtmlForm
 			if ($val) $keys[$follower] = $val;
 		}
 
-
-		//Specifics values or overrides
-		if (isset($this->values))
-			foreach($this->values as $key => $value)
-				$keys[$key] = $value;
-			
-		
 		$html = "";
 		foreach($keys as $key => $value)
 		{

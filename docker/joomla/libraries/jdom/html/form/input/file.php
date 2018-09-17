@@ -25,8 +25,6 @@ class JDomHtmlFormInputFile extends JDomHtmlFormInput
 	var $fallback = 'default';		//Used for default
 	protected static $loaded = array();
 	
-	protected $componentHelper;
-	protected $comAlias;
 	protected $indirect;
 	protected $root;
 	protected $width;
@@ -34,7 +32,6 @@ class JDomHtmlFormInputFile extends JDomHtmlFormInput
 	protected $attrs;
 	protected $cid;
 	protected $view;
-	protected $target;
 
 	/*
 	 * Constuctor
@@ -69,28 +66,11 @@ class JDomHtmlFormInputFile extends JDomHtmlFormInput
 
 		$this->arg('cid'		, null, $args);
 		$this->arg('view'		, null, $args);
-		$this->arg('comAlias'	, null, $args); 
 		
-		$this->arg('actions'	, null, $args);
-		$this->arg('target'		, null, $args);
+		$this->arg('actions'		, null, $args);
 
-		$this->componentHelper = $comHelper = $this->getComponentHelper($this->comAlias);
-		
-		$ext = pathinfo($this->dataValue, PATHINFO_EXTENSION);
-		$isImage = in_array($ext,array('jpg','gif','bmp','tiff','jpeg','png'));
-		
-		if($isImage AND $comHelper AND method_exists($comHelper, 'getImgSizes')){
-			$imgSizesLimit = $comHelper::getImgSizes();
-			
-			$width = min($this->width, $imgSizesLimit->maxWidth);
-			$this->width = max($width, $imgSizesLimit->minWidth);
-			
-			$height = min($this->height, $imgSizesLimit->maxHeight);
-			$this->height = max($width, $imgSizesLimit->minHeight);
-		}
-		
 		$this->thumb = ($this->width || $this->height);
-		
+
 		// Only load once
 		if (empty(static::$loaded[__METHOD__]))
 		{

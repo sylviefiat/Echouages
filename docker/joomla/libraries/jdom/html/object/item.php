@@ -40,12 +40,8 @@ class JDomHtmlListItem extends JDomHtmlList
 			if(isset($this->dataObject->$fieldName)){
 				$rp = new ReflectionProperty($field,'value');
 				if($rp->isProtected() AND $this->form instanceof JForm){
-					try{
-						@$this->form->setValue($fieldName,$field->group,$this->dataObject->$fieldName);
-						$field = $this->form->getField($fieldName,$field->group,$this->dataObject->$fieldName);
-					} catch (Exception $e){
-						$error = $e->getMessage();
-					}
+					$this->form->setValue($fieldName,$field->group,$this->dataObject->$fieldName);
+					$field = $this->form->getField($fieldName,$field->group,$this->dataObject->$fieldName);
 				} else if($rp->isPublic()){
 					$field->value = $this->dataObject->$fieldName;
 				}

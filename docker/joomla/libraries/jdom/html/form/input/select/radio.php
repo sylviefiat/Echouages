@@ -69,7 +69,7 @@ class JDomHtmlFormInputSelectRadio extends JDomHtmlFormInputSelect
 		//$this->addStyle('float', 'left');
 
 		$html = '';
-		$html .= '<fieldset id="<%DOM_ID%>" class="radio btn-group input-container" '
+		$html .= '<fieldset id="<%DOM_ID%>" class="radio btn-group" '
 			.	'style="border:0 none;">';
 
 		$i = 0;
@@ -83,17 +83,6 @@ class JDomHtmlFormInputSelectRadio extends JDomHtmlFormInputSelect
 			$i++;
 		}
 
-		// add options description
-		if($this->list){
-			JDom::_('framework.jquery.condrules');
-			foreach($this->list as $item){
-				$item = (object)$item;
-				if(!empty($item->description)){
-					$html .= ' <span class="option-description condRule[show,#<%DOM_ID%>,'. $item->{$this->listKey} .']">'. JText::_($item->description) .'</span>';
-				}
-			}
-		}		
-		
 		$html .= '</fieldset>';
 
 		return $html;
@@ -126,7 +115,8 @@ class JDomHtmlFormInputSelectRadio extends JDomHtmlFormInputSelect
 			$tooltipText = $this->parseKeys($item, $labelKey);
 				
 		
-		$checked = (isset($this->dataValue) AND isset($item->$listKey) AND $item->$listKey == $this->dataValue);
+		$checked = ($item->$listKey == $this->dataValue);
+
 		$js = '';
 
 		$options = array();
@@ -137,7 +127,7 @@ class JDomHtmlFormInputSelectRadio extends JDomHtmlFormInputSelect
 		$html =	'<input type="radio" name="<%INPUT_NAME%>"'
 			.	' id="' . $id . '"'
 			.	' value="' . $this->parseKeys($item, $listKey) . '"'
-			.	' rel="' . htmlspecialchars(json_encode($options), ENT_COMPAT, 'UTF-8') . '"'
+			.	' rel="' . htmlspecialchars(json_encode($options)) . '"'
 			.	'<%CLASS%>'
 			.	' ' . $js
 			.	($checked?' checked="checked"':'');
@@ -146,7 +136,7 @@ class JDomHtmlFormInputSelectRadio extends JDomHtmlFormInputSelect
 		
 		
 		$htmlIcon = '';
-		if ($iconKey AND !empty($item->icon))
+		if ($iconKey AND $item->icon != '')
 		{
 			$htmlIcon .= JDom::_('html.icon', array(
 				'icon' => $this->parseKeys($item, $iconKey),

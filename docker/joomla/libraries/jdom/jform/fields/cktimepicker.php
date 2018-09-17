@@ -1,6 +1,9 @@
 <?php
-/**
-* (¯`·.¸¸.-> °º★ вүgιяσ.cσм ★º° <-.¸¸.·´¯)
+/**                               ______________________________________________
+*                          o O   |                                              |
+*                 (((((  o      <    Generated with Cook Self Service  V2.6.2   |
+*                ( o o )         |______________________________________________|
+* --------oOOO-----(_)-----OOOo---------------------------------- www.j-cook.pro --- +
 * @version		0.0.1
 * @package		Cook Self Service
 * @subpackage	JDom
@@ -46,23 +49,25 @@ class JFormFieldCktimepicker extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-		$this->setCommonProperties();
-		
-		$thisOpts = array(
-				'domClass' => $this->getOption('class'),
-				'format' => ($this->getOption('format') ?: $this->getOption('timeFormat')),
-				'uiFormat' => $this->getOption('uiFormat'),
+		$this->input = JDom::_('html.form.input.timepicker', array_merge(array(
+				'dataKey' => $this->getOption('name'),
+				'formGroup' => $this->group,
+				'formControl' => $this->formControl,
+				'domClass' => $this->getOption('class') .' input-mini',
+				'dataValue' => $this->value,
 				'start' => $this->getOption('start'),
 				'end' => $this->getOption('end'),
 				'time' => $this->getOption('time'),
-				'step' => $this->getOption('step')
-			);
-			
-		$this->fieldOptions = array_merge($this->fieldOptions,$thisOpts, $this->jdomOptions);
-		
-		$this->input = JDom::_('html.form.input.timepicker', $this->fieldOptions);
+				'placeholder' => $this->getOption('placeholder'),
+				'responsive' => $this->getOption('responsive'),
+				'size' => $this->getOption('size')
+			), $this->jdomOptions));
 
 		return parent::getInput();
 	}
 
+	public function getLabel()
+	{
+		return parent::getLabel();
+	}
 }

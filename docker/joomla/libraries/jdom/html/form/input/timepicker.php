@@ -26,9 +26,6 @@ class JDomHtmlFormInputTimepicker extends JDomHtmlFormInput
 	var $time;
 	var $start;
 	var $end;
-	var $step;
-	var $format;
-	var $uiFormat;
 
 	/*
 	 * Constuctor
@@ -46,42 +43,54 @@ class JDomHtmlFormInputTimepicker extends JDomHtmlFormInput
 	{
 		parent::__construct($args);
 
-		$this->arg('size'		, null, $args, '32');
-		$this->arg('time'		, null, $args, '8:00');
-		$this->arg('start'		, null, $args, null);
-		$this->arg('end'		, null, $args, null);
-		$this->arg('step'		, null, $args, 5);
-		$this->arg('format'	, null, $args, 'H:i'); // options H hours, i minutes, unix = unixtimestamp
-		$this->arg('timeFormat'	, null, $args, 'H:i'); // options H hours, i minutes, unix = unixtimestamp
-		$this->arg('uiFormat'	, null, $args, 'H:i'); // options H hours, i minutes, unix = unixtimestamp
+		$this->arg('size'		, 6, $args, '32');
+		$this->arg('time'		, 6, $args, '8:00');
+		$this->arg('start'		, 6, $args, null);
+		$this->arg('end'		, 6, $args, null);
 	}
 	
 	function build()
 	{
 	
 		JDom::_('framework.bootstrap.timepicker');
-				
-		$this->addClass('timepickerByGiro input-mini');
-		$this->addSelector('data-start',$this->start);
-		$this->addSelector('data-end',$this->end);
-		$this->addSelector('data-time',$this->time);
-		$this->addSelector('data-step',$this->step);
-		$this->addSelector('data-format',$this->format);
-		$this->addSelector('data-ui-format',$this->uiFormat);
-
+		
+		$time = $this->time;
+		$start = $this->start;
+		$end = $this->end;
+		
 		$input =	'<input type="text" id="<%DOM_ID%>" name="<%INPUT_NAME%>"<%STYLE%><%CLASS%><%SELECTORS%>'
 			.	' value="<%VALUE%>"'
 			.	' size="' . $this->size . '"'
-			.	' />' .LN
+			.	' readonly/>' .LN
 			.	'<%VALIDOR_ICON%>'.LN
 			.	'<%MESSAGE%>';
 
-		$html = '
-  <div class="input-prepend">
-    <span class="add-on"><i class="datetime icon-clock"></i></span>
+		$html = '<div class="timepicker-bygiro" data-start="'. $start .'" data-end="'. $end .'" data-time="'. $time .'">
+  <div class="input-prepend timepicker-bygiro-toggle" data-toggle="timepicker-bygiro">
+    <span class="add-on"><i class="glyphicon icon-time"></i></span>
     '. $input .'
-  </div>';
-
+  </div>
+  <div class="timepicker-bygiro-popover">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td class="hour">
+            <a class="next" href="#"><i class="icomoon icon-chevron-up"></i></a><br>
+            <input type="text" class="input-mini" readonly><br>
+            <a class="previous" href="#"><i class="icomoon icon-chevron-down"></i></a>
+          </td>
+          <td class="separator">:</td>
+          <td class="minute">
+            <a class="next" href="#"><i class="icomoon icon-chevron-up"></i></a><br>
+            <input type="text" class="input-mini" readonly><br>
+            <a class="previous" href="#"><i class="icomoon icon-chevron-down"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>';
+		
 		return $html;
 	}
 

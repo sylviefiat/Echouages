@@ -155,80 +155,17 @@ class JDomHtml extends JDom
 
 		return $styleStr;
 	}
-	
-	public function parseSelectorsString($string)
-	{
-		// Match attribute-name attribute-value pairs.
-		$found = preg_match_all(
-			//    '#([^\s=]+)\s*=\s*(\'[^<\']*\'|"[^<"]*")#',
-				'#(\S+)=["\']?((?:.(?!["\']?\s+(?:\S+)=|[>"\']))+.)["\']?#',
-				$string, $matches, PREG_SET_ORDER);
 
-		if ($found != 0) {
-			// Create an associative array that matches attribute
-			// names to attribute values.
-			$attributes = array();
-			foreach ($matches as $attribute){
-				if(empty($attribute[1]) AND empty($attribute[2])){
-					continue;
-				}
-				
-				$attributes[$attribute[1]] = substr($attribute[2], 1, -1);
-			}
-		} else {
-			$attributes = array($string => '');
-		}
-			
-		return $attributes;
-	}
-	
-	public function addSelectors($selectors)
-	{
-		if(!is_array($selectors)){
-			$selectors = (array)$selectors;
-		}
-		
-		$newSelectors = array();
-		foreach($selectors as $key => $sel){
-			if(ctype_digit($key)){ // we probably have a string to be parsed
-				$newSelectors = array_merge($newSelectors, $this->parseSelectorsString($sel));
-			} else {
-				$newSelectors[$key] = $sel;
-			}
-		}
-		
-		foreach($newSelectors as $key => $value){
-			$this->addSelector($key, $value);
-		}
-	}
-	
 	public function addSelector($key, $value)
 	{
-		if(empty($key) AND empty($value)){
-			return;
-		}
-
-		if(is_array($value) OR is_object($value)){
-			$value = json_encode($value);
-			
-			
-			// convert strings "true"/"false" to booleans
-			$value = str_ireplace(array('"true"','"false"'),array('true','false'),$value);
-			
-		}
-
-		if (!isset($this->selectors)){
+		$value = htmlspecialchars($value, ENT_COMPAT, 'UTF-8');
+		
+		if (!isset($this->selectors))
 			$this->selectors = array();
-		} else if(is_string($this->selectors)){
-			$this->selectors = $this->parseSelectorsString($this->selectors);
-		} else if(is_object($this->selectors)){
-			$this->selectors = (array)$this->selectors;
-		}
 
-		
-		if (!in_array($key, array_keys($this->selectors)) OR ($key != 'style' AND $key != 'class'))
+		if (!in_array($key, array_keys((array)$this->selectors)))
 			$this->selectors[$key] = "";
-		
+
 		$this->selectors[$key] .= $value;
 	}
 
@@ -275,35 +212,28 @@ class JDomHtml extends JDom
 	}
 
 
-	protected function buildSelectors($extraSelectors = null)
-	{		
-		$html = "";
-		
-		if (!empty($extraSelectors)){
-			$this->addSelectors($extraSelectors);
-		}
-		
-		$selectors = $this->selectors;
-		if (empty($selectors)){
-			return '';
-		}
-		
-		if (is_string($selectors)){
+	protected function buildSelectors($selectors = null)
+	{
+
+		if (!$selectors && isset($this->selectors))
+			$selectors = $this->selectors;
+		else
+			return;
+
+		if (is_string($selectors))
 			return ' ' . $selectors;
-		}
-		
-		foreach($selectors as $key => $value)
-		{
-			if(empty($key)){
-				continue;
+
+		$html = "";
+
+		if ($selectors)
+			foreach($selectors as $key => $value)
+			{
+				if($key == 'placeholder'){
+					$html .= ' ' . $key . '="' . $value . '"';
+				} else {
+					$html .= ' ' . $key . '="' . htmlspecialchars($value) . '"';
+				}
 			}
-	
-			if($key == 'placeholder'){
-				$html .= ' ' . $key . '="' . $value . '"';
-			} else {
-				$html .= ' ' . $key . '="' . htmlspecialchars($value, ENT_QUOTES, 'UTF-8') . '"';
-			}
-		}
 
 		return $html;
 	}
@@ -321,9 +251,9 @@ class JDomHtml extends JDom
 		
 		//Check if opened in modal
 		if ($jinput->get('tmpl') == 'component')
-			$cmd .= "submitformAjax.call(this)";
+			$cmd .= "submitformAjax()";
 		else
-			$cmd .= "submitform.call(this)";
+			$cmd .= "submitform()";
 		
 		$cmd = "return " . $cmd;
 		
@@ -371,7 +301,7 @@ class JDomHtml extends JDom
 				$cmd .= "submitform";
 			
 				
-			$cmd = "return " . $cmd . ".call(this,'" . $taskCtrl . "');";
+			$cmd = "return " . $cmd . "('" . $taskCtrl . "');";
 			
 			
 			//Because there is no other place for it...

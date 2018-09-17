@@ -70,7 +70,7 @@ class JDomHtmlGridTaskStateDefault extends JDomHtmlGridTaskState
 		$this->taskYes = null;
 		
 		$lib = ' ' . $this->iconLibrary;
-		$icons = array(0=> 'star-empty'. $lib, 1=> 'default'. $lib); 
+		$icons = array(0=> 'star-empty'. $lib, 1=> 'star'. $lib);
 		if (!$this->jVersion('3.0'))
 			$icons = array(0=> 'notdefault'. $lib, 1=> 'default'. $lib);
 	

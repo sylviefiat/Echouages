@@ -21,27 +21,11 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 class JDomHtmlFormInputDatetimepicker extends JDomHtmlFormInput
 {
-
-	var $separator;
-	var $style;
-	var $mode;
-	var $minView;
-	var $maxView;
-	var $startView;
-	var $min;
-	var $max;
-	var $filter;
-	var $firstDay;
-	var $timeFormat;
-	var $minuteStep;
-	var $showDaysNotInMonth;
-	var $showDisabledTimes;
-	var $today;
-	var $calendars;
-	var $format;
-	var $uiFormat;
-	var $autoclose;
-	var $specialDates;
+	protected $dateFormat;
+	protected $uiFormat;
+	protected $filter;
+	protected $startDate;
+	protected $endDate;
 
 	/*
 	 * Constuctor
@@ -53,155 +37,69 @@ class JDomHtmlFormInputDatetimepicker extends JDomHtmlFormInput
 	 * 	@domID		: HTML id (DOM)  default=dataKey
 	 *
 	 *
-	 *	@format	: Date Format
+	 *	@dateFormat	: Date Format
 	 */
 	function __construct($args)
 	{
 
 		parent::__construct($args);
 
-		$this->arg('separator'		, null, $args, " | "); // Is used for joining separate dates in multiple mode and first/last dates in range mode
-		$this->arg('style'			, null, $args, 'popup'); // inline / popup
-		$this->arg('mode'			, null, $args, 'single'); // single/multiple/range
-		$this->arg('minView'		, null, $args, 'times'); // times/days/months/years
-		$this->arg('maxView'		, null, $args, 'years'); // times/days/months/years
-		$this->arg('startView'		, null, $args, 'days');	//view: days/months/years
-		$this->arg('min'			, null, $args, null); //min: null/object/string
-		$this->arg('max'			, null, $args, null); //max: null/object/string
-		$this->arg('firstDay'		, null, $args, 0); // 0 -> 6 // sunday to saturday
-		$this->arg('timeFormat'		, null, $args, 24); // 12 / 24 // 12 (AM-PM) or 24 hours
-		$this->arg('minuteStep'		, null, $args, 5);
-		$this->arg('showDaysNotInMonth'		, null, $args, false);
-		$this->arg('showDisabledTimes'		, null, $args, false);
-		$this->arg('today'			, null, $args, null);
-		$this->arg('calendars'		, null, $args, 1);
-		$this->arg('format'			, null, $args, "Y-m-d"); // Date format PHP standard supported
-		$this->arg('uiFormat'		, null, $args, null); // Date format PHP standard supported
-		$this->arg('autoclose'					, null, $args, null); // hide_on_select
-		$this->arg('specialDates'				, null, $args, null);
-	
-		$this->parameters = array(
-			'separator',
-			'style',
-			'mode',
-			'minView',
-			'maxView',
-			'startView',
-			'min',
-			'max',
-			'firstDay',
-			'timeFormat',
-			'minuteStep',
-			'showDaysNotInMonth',
-			'showDisabledTimes',
-			'today',
-			'calendars',
-			'format',
-			'uiFormat',
-			'autoclose',
-			'specialDates'
-		);
+		$this->arg('dateFormat'	, null, $args, "Y-m-d");
+		$this->arg('required'	, null, $args, false);
+		$this->arg('uiFormat'	, null, $args, "dd-mm-yyyy");
+		$this->arg('filter'		, null, $args);
+		$this->arg('todayBtn'	, null, $args, 'true');
+		$this->arg('autoclose'	, null, $args, 'true');
+		$this->arg('startView'	, null, $args, 2);
+		$this->arg('minView'	, null, $args, 0);
+		$this->arg('maxView'	, null, $args, 4);
+		$this->arg('startDate'	, null, $args);
+		$this->arg('endDate'	, null, $args);
+
+		
+		$numeric = array(0,1,2,3,4);
+		$textual = array('hour','day','month','year','decade');
+
+		if(in_array($this->startView,$textual)){
+			$this->startView = '"'. $this->startView .'"';
+		} else if(!in_array($this->startView,$numeric)){
+			$this->startView = 2;
+		}
+
+		if(in_array($this->minView,$textual)){
+			$this->minView = '"'. $this->minView .'"';
+		} else if(!in_array($this->minView,$numeric)){
+			$this->minView = 0;
+		}
+
+		if(in_array($this->maxView,$textual)){
+			$this->maxView = '"'. $this->maxView .'"';
+		} else if(!in_array($this->maxView,$numeric)){
+			$this->maxView = 4;
+		}		
 	}
 
 	function build()
-	{	
-		static $jsLoaded;
-		
-		$dataValue = $this->formatDate($this->dataValue,$this->format);
-		$uiValue = $this->formatDate($this->dataValue,$this->uiFormat);
-		
-		if($this->mode == 'multiple' AND $this->autoclose === null){
-			$this->autoclose = 'false';
-		}
-	
-		$inputId = $this->getInputId();
+	{
+		$dateFormat = $this->dateFormat;
 
-		foreach($this->parameters as $pa){
-			if(!(!empty($this->$pa) OR $this->$pa === false)){
-				continue;
-			}
-			$pieces = preg_split('/(?=[A-Z])/',$pa);
-
-			$this->addSelector('data-'. implode('-',$pieces), $this->$pa);
-		}
-		
-		$this->addSelector('data-ui-Target', '.uipicker');
-		$this->addSelector('readonly', 'readonly');
-		
-		$this->addClass('ckdatetimepicker');
-		if($this->mode == 'single'){
-			$this->addClass('input-medium');
-		} else {
-			$this->addClass('input-xlarge');
-		}
-		
-		$html =	'<div class="input-append date">'
-			.	'<input id="<%DOM_ID%>" type="text" value="'. $dataValue .'" name="<%INPUT_NAME%>"<%STYLE%><%CLASS%><%SELECTORS%>>';
-			
+		//JDate::toFormat() is deprecated. CONVERT Legacy Joomla Format
+		//Minutes : ‰M > i
+		$dateFormat = str_replace("%M", "i", $dateFormat);
+		//remove the %
+		$dateFormat = str_replace("%", "", $dateFormat);
 	
-		if(!empty($this->uiFormat) AND $this->uiFormat != $this->format){
-			$html .= '<input id="<%DOM_ID%>_uipicker" class="uipicker input-medium fakeInput condRulesExcludeDisabled" disabled="disabled" type="text" value="'. $uiValue .'" <%STYLE%>>';
-		}
-		
-		$html .= '<span class="add-on"><i style="cursor: pointer;" class="icomoon icon-calendar"></i></span>';
-		
-		if($this->mode == 'multiple'){
-			$html .= '<span id="<%DOM_ID%>_uipicker" class="ckdatetimepicker_values dtp-values" <%STYLE%>></span>';
-		}
-		$html .=	'<%VALIDOR_ICON%>'.LN
-			.	'<%MESSAGE%>'
-			.	'</div>';
-			
-		
-		if(!$jsLoaded){
-			JDom::_('framework.jquery.datetimepicker');
-			
-			$doc = JFactory::getDocument();
-		
-			$script = '
-			function dateTimePickerEnabler($obj){
-				if(!($obj instanceof jQuery)){
-					$obj = jQuery($obj);
-				}
-				
-				$obj.find("input.ckdatetimepicker").each(function(){
-					var that = this,
-					opts = (typeof window.jQuery_datetimepicker != "undefined") ? window.jQuery_datetimepicker : {};
-					
-					jQuery(this).datetimepickerByGiro(opts);
-					jQuery(this).parent().find("i.icon-calendar").parent().css("cursor","pointer").on("click",function(e){
-						e.preventDefault();
-						e.stopPropagation();						
-						jQuery(that).trigger("click");
-					});
-				});
-			}
-			
-			jQuery(document).ready(function(){				
-				dateTimePickerEnabler("body");				
-			});';
-			
-			$doc->addScriptDeclaration($script);			
-			$jsLoaded = true;
-		}
-		
-		return $html;		
-	}
-
 	
-	public function formatDate($rawDate,$format){
-		if((string)intval($rawDate) != $rawDate){
-			$rawDate = strtotime($rawDate);
-		}
-		
-		if(empty($rawDate)){
-			return '';
-		}
-		
-		try {
+		$formatedDate = $this->dataValue;
+
+		if ($this->dataValue
+		&& ($this->dataValue != "0000-00-00")
+		&& ($this->dataValue != "00:00:00")
+		&& ($this->dataValue != "0000-00-00 00:00:00"))
+		{
 			jimport("joomla.utilities.date");
-			$date = JFactory::getDate($rawDate);
-			$formatedDate = $date->format($format);
+			$date = JFactory::getDate($this->dataValue);
+			$formatedDate = $date->format($dateFormat);
 
 			$config = JFactory::getConfig();
 			// If a known filter is given use it.
@@ -209,31 +107,112 @@ class JDomHtmlFormInputDatetimepicker extends JDomHtmlFormInput
 			{
 				case 'SERVER_UTC':
 					// Convert a date to UTC based on the server timezone.
-					// Get a date object based on the correct timezone.
-					$date = JFactory::getDate($rawDate, 'UTC');
-					$date->setTimezone(new DateTimeZone($config->get('offset')));
+					if (intval($this->dataValue))
+					{
+						// Get a date object based on the correct timezone.
+						$date = JFactory::getDate($this->dataValue, 'UTC');
+						$date->setTimezone(new DateTimeZone($config->get('offset')));
 
-					// Format the date string.
-					$formatedDate = $date->format($format, true);
+						// Format the date string.
+						$formatedDate = $date->format($dateFormat, true);
+					}
 					break;
 
 				case 'USER_UTC':
 					// Convert a date to UTC based on the user timezone.
+					if (intval($this->dataValue))
+					{
+						// Get a date object based on the correct timezone.
+						$date = JFactory::getDate($this->dataValue, 'UTC');
+						$user = JFactory::getUser();
+						$date->setTimezone(new DateTimeZone($user->getParam('timezone', $config->get('offset'))));
 
-					// Get a date object based on the correct timezone.
-					$date = JFactory::getDate($rawDate, 'UTC');
-					$user = JFactory::getUser();
-					$date->setTimezone(new DateTimeZone($user->getParam('timezone', $config->get('offset'))));
-
-					// Format the date string.
-					$formatedDate = $date->format($format, true);
+						// Format the date string.
+						$formatedDate = $date->format($dateFormat, true);
+					}
 					break;
 			}
-		} catch (Exception $e) {
+		}
+		else {
 			$formatedDate = "";
-			// $errors[] = $e->getMessage();
+		}
+
+		static $jsLoaded;
+		$doc = JFactory::getDocument();
+		
+		if(!$jsLoaded){
+			$this->addScript('assets/datetimepicker/js/datetimepicker.js');
+			$this->addStyleSheet('assets/datetimepicker/css/datetimepicker.css');
+			
+			$lang = JFactory::getLanguage();
+			$currentLang = $lang->getName();
+			
+			$currentLang = explode('-', $currentLang);
+			if($currentLang[0] != 'en'){
+				$this->addScript('assets/datetimepicker/js/locale/datetimepicker.'. $currentLang[0] .'.js');
+			}
+		
+			$jsLoaded++;
 		}
 		
-		return $formatedDate;
+		$inputId = $this->getInputId();
+		
+		$startDate = $endDate = '';
+		if($this->startDate != ''){
+			if(strtolower($this->startDate) == 'now'){
+				$this->startDate = date ("d-m-Y", time());
+			}
+			$startDate = 'startDate: "'. $this->startDate .'",';
+		}
+		
+		if($this->endDate != ''){
+			if(strtolower($this->endDate) == 'now'){
+				$this->endDate = date ("d-m-Y", time());
+			}
+			$endDate = 'endDate: "'. $this->endDate .'",';
+		}
+		
+		$rand = $this->generateRandomString(15);
+		
+		$script = '
+		jQuery(document).ready(function(){			
+			jQuery("#'. $inputId .'_picker'. $rand .'").datetimepicker({
+				autoclose: '. $this->autoclose .',
+				todayBtn: '. $this->todayBtn .',
+				startView: '. $this->startView .',
+				minView: '. $this->minView .',
+				maxView: '. $this->maxView .',
+				'. $startDate .'
+				'. $endDate .'
+				minuteStep: 10
+			});
+			
+		});';
+		
+		$doc->addScriptDeclaration($script);
+		$required = '';
+		if($this->required){
+			$required = 'validate[required]';
+		}
+				
+		$html =	'<div class="input-append date" id="<%DOM_ID%>_picker'. $rand .'" data-date-format="'. $this->uiFormat .'">'
+			.	'<input id="<%DOM_ID%>_val'. $rand .'" size="16" type="text" value="'. $formatedDate .'" class="'. $required .'" readonly="readonly" <%STYLE%><%SELECTORS%>>'
+			.	'<input id="<%DOM_ID%>" type="hidden" value="'. $formatedDate .'" name="<%INPUT_NAME%>"<%STYLE%><%CLASS%><%SELECTORS%>>'
+			.	'<span class="add-on"><i class="icon-calendar"></i></span>'
+			.	'<%VALIDOR_ICON%>'.LN
+			.	'<%MESSAGE%>'
+			.	'</div>';
+		return $html;		
+	}
+
+	
+	// fix for BAD HTML with duplicated IDs
+	public static function generateRandomString($length = 5) {
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[rand(0, strlen($characters) - 1)];
+		}
+		return $randomString;
 	}
 }

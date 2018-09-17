@@ -21,42 +21,10 @@
 	width: 14px !important;
 	height: 14px !important;
 	*margin-right: .3em !important;
-	/*line-height: initial !important;*/ 
+	line-height: 14px !important;
 	background-image: none !important;
 	background-position: 0 0 !important;
-	margin-top: 0;
 }
-
-.btn-mini .icomoon[class^="icon-"],
-.btn-mini .icomoon[class*=" icon-"] {
-	width: 9.75px !important;
-	height: 9.75px !important;
-	font-size: 9.75px !important;
-	line-height: initial !important;
-}
-
-.btn-micro .icomoon[class^="icon-"],
-.btn-micro .icomoon[class*=" icon-"] {
-	font-size: 9.75px !important;
-	margin-bottom: -1px;
-}
-
-.btn-large .icomoon[class^="icon-"],
-.btn-large .icomoon[class*=" icon-"] {
-	width: 16.25px !important;
-	height: 16.25px !important;
-	font-size: 16.25px !important;
-	line-height: initial !important;
-}
-
-.btn-small .icomoon[class^="icon-"],
-.btn-small .icomoon[class*=" icon-"] {
-	width: 12px !important;
-	height: 12px !important;
-	font-size: 12px !important;
-	line-height: initial !important;
-}
-
 .icomoon[class^="icon-"]:before,
 .icomoon[class*=" icon-"]:before {
 	font-family: 'IcoMoon' !important;
@@ -498,8 +466,8 @@
 }
 
 /* White color when icon is inside an active btn */
-.btn.active:not(.btn-default) .icomoon[class^="icon-"]:before,
-.btn.active:not(.btn-default) .icomoon[class*=" icon-"]:before,
+.btn.active .icomoon[class^="icon-"]:before,
+.btn.active .icomoon[class*=" icon-"]:before,
 .label .icomoon[class^="icon-"]:before,
 .label .icomoon[class*=" icon-"]:before,
 .badge .icomoon[class^="icon-"]:before,
@@ -514,3 +482,11 @@
 	background-image: none;
 	background-position: 0 0;
 }
+
+/*
+#toolbar [class^="icon-"],
+#toolbar [class*=" icon-"] {
+	background-image: none;
+	background-position: 0 0;
+}
+*/

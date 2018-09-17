@@ -24,10 +24,6 @@ class JDomHtmlFormInputSelectCombo extends JDomHtmlFormInputSelect
 {
 	var $canEmbed = true;
 	
-	var $ui_allowCustomValues = false;
-	var $ui_hideSelect = false;
-	var $ui_direction = 'vertical';
-	
 	protected $ui;
 	protected $multiple;
 	protected $valueKey;
@@ -51,7 +47,7 @@ class JDomHtmlFormInputSelectCombo extends JDomHtmlFormInputSelect
 	 * 	@selectors	: raw selectors (Array) ie: javascript events
 	 *
 	 *
-	 *	@ui			: rendering effect (User Interface). (possible values : 'chosen','multiselect')
+	 *	@ui			: rendering effect (User Interface). (possible values : 'chosen')
 	 *
 	 */
 	function __construct($args)
@@ -60,15 +56,10 @@ class JDomHtmlFormInputSelectCombo extends JDomHtmlFormInputSelect
 		$this->arg('ui', 	null, $args);
 		$this->arg('multiple', 	null, $args);
 		$this->arg('valueKey', 	null, $args, $this->dataKey);
-		$this->arg('ui_direction', 	null, $args, $this->ui_direction);
-		$this->arg('ui_hideSelect', 	null, $args, $this->ui_hideSelect);
-		$this->arg('ui_allowCustomValues', 	null, $args, $this->ui_allowCustomValues);
 		
-		if ($this->multiple || $this->ui == 'multiselect'){
+		if ($this->multiple)
 			$this->domName .= '[]';
-			$this->multiple = true;
-		}
-
+		
 	}
 
 	function build()
@@ -84,23 +75,10 @@ class JDomHtmlFormInputSelectCombo extends JDomHtmlFormInputSelect
 		{
 			JDom::_('framework.jquery.chosen');			
 			$this->addClass('chzn-select');
-		} else if($this->ui == 'multiselect'){
-			JDom::_('framework.jquery.multiselect');
-			$this->addClass('multiselect');
-			
-			if($this->ui_allowCustomValues){
-				$this->addSelector('data-allow-custom-values', 'true');			
-			}
-			
-			if($this->ui_hideSelect){			
-				$this->addSelector('data-hide-select', 'true');
-			}
-
-			$this->addSelector('data-direction', $this->ui_direction);
 		}
 
 		$html =	'<select id="<%DOM_ID%>" name="<%INPUT_NAME%>"<%STYLE%><%CLASS%><%SELECTORS%>'
-			. 	($this->multiple ?' multiple':'')
+			. 	($this->multiple?' multiple':'')
 			.	((int)$this->size > 1?' size="' . (int)$this->size . '"':'') . '>' .LN
 			.	$this->indent($this->buildDefault(), 1)
 			.	$this->indent($options, 1)
@@ -108,27 +86,12 @@ class JDomHtmlFormInputSelectCombo extends JDomHtmlFormInputSelect
 			.	'<%VALIDOR_ICON%>'.LN
 			.	'<%MESSAGE%>';
 
-
-		// add options description
-		if($this->list){
-			JDom::_('framework.jquery.condrules');
-			foreach($this->list as $item){
-				$item = (object)$item;
-				
-				if(!empty($item->description)){
-					$html .= ' <span class="option-description condRule[show,#<%DOM_ID%>,'. $item->{$this->listKey} .']">'. JText::_($item->description) .'</span>';
-				}
-			}
-		}
-	
 		return $html;
 
 	}
 	
 	function buildJs()
 	{
-		static $multiselectLoaded;
-		
 		if ($this->useFramework('chosen') && $this->ui == 'chosen')
 		{
 			$js = 'jQuery(".chzn-select").chosen({
@@ -136,10 +99,6 @@ class JDomHtmlFormInputSelectCombo extends JDomHtmlFormInputSelect
 				allow_single_deselect : true
 			});';
 			$this->addScriptInline($js, !$this->isAjax());
-		} else if($this->ui == 'multiselect' AND !isset($multiselectLoaded)){
-			$js = 'jQuery(".multiselect").multiselectByGiro();';
-			$this->addScriptInline($js, !$this->isAjax());
-			$multiselectLoaded = true;
 		}
 	}
 
@@ -159,37 +118,11 @@ class JDomHtmlFormInputSelectCombo extends JDomHtmlFormInputSelect
 	function buildOptions()
 	{
 		$html =	'';
-		
-		if ($this->list){
-			$isArrDataValue = is_array($this->dataValue);
-			$vals = $this->dataValue;		
-			foreach($this->list as $item){
-				// check we have an UI multiselect with custom values
-				if($this->ui == 'multiselect' AND $this->ui_allowCustomValues AND $isArrDataValue){
-					$v = $item->{$this->listKey};
-					// check missing options
-					$found = array_search($v,$vals);
-					if($found !== false){
-						unset($vals[$found]);
-					}					
-				}
-			
-				$html .= $this->buildOption($item, $this->listKey, $this->labelKey);
-			}
-		
-			// add missing values to the list
-			if(is_array($vals) AND $this->ui_allowCustomValues){
-				unset($v);
-				foreach($vals as $v){
-					if($v == '') continue;
-					
-					$fakeItem = (object)array(
-						'value' => $v,
-						'text' => $v
-					);
-					$html .= $this->buildOption($fakeItem, 'value', 'text');
-				}
-			}
+
+		if ($this->list)
+		foreach($this->list as $item)
+		{
+			$html .= $this->buildOption($item, $this->listKey, $this->labelKey);
 		}
 
 		return $html;
@@ -199,7 +132,7 @@ class JDomHtmlFormInputSelectCombo extends JDomHtmlFormInputSelect
 	function buildOptionsGroup()
 	{
 		$indentStr = 		'&nbsp;&nbsp;&nbsp;';
-		$indentStrGroup = '&nbsp;&nbsp;&nbsp;';
+		$indentStrGroup = 	'&nbsp;&nbsp;&nbsp;';
 
 
 		$html =	'';
@@ -278,7 +211,6 @@ class JDomHtmlFormInputSelectCombo extends JDomHtmlFormInputSelect
 		if (!isset($item->$listKey))
 			$item->$listKey = null;
 
-		$selected = false;
 		// In case of multi select
 		if (is_array($this->dataValue) && count($this->dataValue))
 		{
@@ -295,32 +227,21 @@ class JDomHtmlFormInputSelectCombo extends JDomHtmlFormInputSelect
 			else
 				$values = $this->dataValue;
 			
-			$selected = in_array(($item->$listKey), $values);
+			$selected = in_array((int)($item->$listKey), $values);
 		}
+		
 		//Integer compatibility when possible
-		else if (is_integer($this->dataValue)){
+		else if (is_integer($this->dataValue))			
 			$selected = ((int)$item->$listKey === $this->dataValue);
-		} else {
+		else
 			$selected = ($item->$listKey === $this->dataValue);
-		}
-		
-		$class = '';
-		if(!empty($item->class)){
-			$class = $item->class .' ';
-		}
-		
-		$extra = $icon = '';
-		if(!empty($item->icon)){
-			$icon = 'icomoon '. $item->icon .' ';
-			$extra = ' ';
-		}
-		
 			
-		$html =	'<option class="'. $class . $icon .'" value="'
+
+		$html =	'<option value="'
 			.	htmlspecialchars($item->$listKey, ENT_COMPAT, 'UTF-8')
 			. 	'"'
 			.	($selected?' selected="selected"':'')
-			.	'>' . $extra
+			.	'>'
 			.	$prefix . $this->parseKeys($item, $labelKey)
 			. 	'</option>'.LN;
 

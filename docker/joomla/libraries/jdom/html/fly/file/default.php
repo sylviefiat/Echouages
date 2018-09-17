@@ -142,18 +142,6 @@ class JDomHtmlFlyFileDefault extends JDomHtmlFlyFile
 		$type = null;
 		$html = $this->getContent($type);
 
-		if($this->href != ''){
-			$options = array(
-				'content' => $html,
-				'domClass' => '',
-				'href' => $this->href
-			);
-			
-			$options = array_merge($this->options, $options);
-			
-			$html = JDom::_('html.link', $options);
-		}		
-		
 		return $html;
 
 	}

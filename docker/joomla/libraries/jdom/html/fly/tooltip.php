@@ -53,7 +53,7 @@ class JDomHtmlFlyTooltip extends JDomHtmlFly
 
 
 		$html = "<div"
-			.	" title='" . htmlspecialchars($this->dataValue, ENT_COMPAT, 'UTF-8'). "' id='" . $this->domId . "'"
+			.	" title='" . htmlspecialchars($this->dataValue). "' id='" . $this->domId . "'"
 			.	" style='cursor:pointer'>";
 
 		$html .= $this->content;

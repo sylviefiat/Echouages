@@ -21,11 +21,9 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 class JDomHtmlFlyFile extends JDomHtmlFly
 {
-	var $fallback = 'path';		//Used for default
-	var $allowWrapLink = false;	// Because this class in only a dispather
-	
-	protected $componentHelper;
-	protected $comAlias;
+	var $fallback = 'default';		//Used for default
+
+
 	protected $indirect;
 	protected $width;
 	protected $height;
@@ -37,7 +35,6 @@ class JDomHtmlFlyFile extends JDomHtmlFly
 	protected $listKey;
 	
 	protected $thumb;
-	protected $fullRoot; 
 
 	/*
 	 * Constuctor
@@ -78,21 +75,7 @@ class JDomHtmlFlyFile extends JDomHtmlFly
 		$this->arg('listKey'	, null, $args, 'id');
 		$this->arg('view'		, null, $args);
 		$this->arg('cid'		, null, $args);
-		$this->arg('fullRoot'	, null, $args, false); 
-		$this->arg('comAlias'	, null, $args); 
-		
-		$this->componentHelper = $comHelper = $this->getComponentHelper($this->comAlias);
-		
-		if($comHelper AND method_exists($comHelper, 'getImgSizes')){
-			$imgSizesLimit = $comHelper::getImgSizes();
-			
-			$width = min($this->width, $imgSizesLimit->maxWidth);
-			$this->width = max($width, $imgSizesLimit->minWidth);
-			
-			$height = min($this->height, $imgSizesLimit->maxHeight);
-			$this->height = max($width, $imgSizesLimit->minHeight);
-		}
-	
+
 		$this->thumb = ($this->width || $this->height);
 
 		if ($this->indirect === true)
@@ -100,46 +83,20 @@ class JDomHtmlFlyFile extends JDomHtmlFly
 		else if ($this->indirect === false)
 			$this->indirect = 'direct';
 
-    	if (!is_array($this->attrs)){
-    		$this->attrs = explode(",", $this->attrs);
-		}
-
-		$type = '';
-		//Dispatcher
-		switch($this->getFileExt())
-		{
-			case 'png':
-			case 'jpg':
-			case 'jpeg':
-			case 'gif':
-			case 'bmp':
-				$type = 'image';
-				break;
-				
-			default:
-				$type = 'path';
-				break;
-
-		}
-
-		$this->fallback = $type;
-		$this->buildHref($type);		
 	}
 
 	function getFileUrl($thumb = false, $link = false)
 	{
-		$helperClass = $this->componentHelper;		
+		$helperClass = $this->getComponentHelper();		
 		if (!$helperClass)
 			return;
 
 		if (($this->indirect != 'index') && empty($this->dataValue))
 			return;
 		
-		$path = $this->dataValue;
-		if (!preg_match("/\[.+\]/", $path) AND !preg_match("/\{\{.+\}\}/", $path)){
-			$path = $this->root . $path;				
-		}
-		$path = trim(preg_replace("#/+#", "/", str_replace('\\','/',$path)),'/');
+		if (empty($path))
+			$path = $this->root .DS. $this->dataValue;
+
 
 		// $link = false when creating the image thumb. 'download' not allowed in this case.
 		// Then, pass a second time to eventually create the download URL	
@@ -153,109 +110,32 @@ class JDomHtmlFlyFile extends JDomHtmlFly
 		else if ($link)
 		{
 			$options = array(
-				'content' => ($this->target == 'content'),			
-				'download' => ($this->target == 'download')			
+				'download' => ($this->target == 'download')
+			
 			);
 		}
-		
-		if($this->fullRoot){
-			$options['fullRoot'] = $this->fullRoot;
-		}
-		
+
 		switch ($this->indirect)
 		{
 			case 'index':		// Indexed image url
 				if ((!$cid = $this->cid) && $this->dataObject && ($listKey = $this->listKey))
 					$cid = $this->dataObject->$listKey;
 					
-				if(method_exists($helperClass , 'getIndexedFile')){
-					$url = $helperClass::getIndexedFile($this->view, $this->dataKey, $cid, $options);
-				}
+				$url = $helperClass::getIndexedFile($this->view, $this->dataKey, $cid, $options);
 				break;
-			
-			case 'physical':	// Physical file on the drive (url is a path here)
-			case 'direct':		// Direct url				
-			case 'indirect':	// Indirect file access
-			default:
-				if(method_exists($helperClass , 'getFile')){
-					$url = $helperClass::getFile($path, $this->indirect, $options);
-				}
 				
-				if($this->indirect != 'physical' AND $this->indirect != 'direct'){
-					// default - indirect
-					if($this->cid){
-						$url .= '&cid='. $this->cid;
-					}
-					
-					if($this->fullRoot){
-						$url = trim(str_replace(JURI::root(true),'',JURI::root()),'/') . $url;
-					}
-				} else {
-					// physycal - direct
-					
-					if($this->fullRoot){
-						$url = JURI::root() . $url;
-					}				
-					$url = preg_replace( '/\\\\+/', '/', $url);
-				}
+			case 'indirect':	// Indirect file access
+			case 'physical':	// Physical file on the drive (url is a path here)
+			case 'direct':		// Direct url
+			default:
+				$url = $helperClass::getFile($path, $this->indirect, $options);
 				break;
 		}	
-	
-		// FIX: remove administrator from the URL
-	//	$url = str_replace(array('administrator/','administrator\\'),'',$url);  TODO
 		
+			
 		/* Uncomment to see the returned url */
 		//echo('<pre>');print_r($url);echo('</pre>');
 
 		return $url;
 	}
-	
-	function getFileExt()
-	{
-		$path_parts = pathinfo($this->getFileUrl());
-		$ext = isset($path_parts["extension"])?$path_parts["extension"]:'';
-
-		return strtolower($ext);
-	}
-	
-	function buildHref($type)
-	{	
-		if ($this->target == 'download')
-			$this->target = 'download';
-		else if ($this->preview == 'modal')
-		{
-			$this->handler = '';
-			switch($type)
-			{
-				case 'image':
-					$this->target = 'modal';
-					break;
-
-				case 'flash':
-					$this->target = 'modal';
-					$this->handler = 'iframe';
-					break;
-
-				default:
-					$this->target = 'download';
-					break;
-			}
-
-			$this->options['target'] = $this->target;
-			$this->options['handler'] = $this->handler;
-
-		}
-
-
-		if (($this->href || $this->target) && (basename($this->dataValue) != ""))
-		{
-			if (!$this->href)
-			{
-				$this->href = $this->getFileUrl(false, true);
-				$this->options['href'] = $this->href;
-			}
-
-
-		}
-	}	
 }
