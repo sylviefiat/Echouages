@@ -46,7 +46,7 @@ class JDomHtmlFormInputDatetimepicker extends JDomHtmlFormInput
 
 		$this->arg('dateFormat'	, null, $args, "Y-m-d");
 		$this->arg('required'	, null, $args, false);
-		$this->arg('uiFormat'	, null, $args, "dd-mm-yyyy");
+		$this->arg('uiFormat'	, null, $args, "d M Y");
 		$this->arg('filter'		, null, $args);
 		$this->arg('todayBtn'	, null, $args, 'true');
 		$this->arg('autoclose'	, null, $args, 'true');
@@ -81,61 +81,20 @@ class JDomHtmlFormInputDatetimepicker extends JDomHtmlFormInput
 
 	function build()
 	{
-		$dateFormat = $this->dateFormat;
-
-		//JDate::toFormat() is deprecated. CONVERT Legacy Joomla Format
-		//Minutes : ‰M > i
-		$dateFormat = str_replace("%M", "i", $dateFormat);
-		//remove the %
-		$dateFormat = str_replace("%", "", $dateFormat);
-	
-	
-		$formatedDate = $this->dataValue;
-
-		if ($this->dataValue
-		&& ($this->dataValue != "0000-00-00")
-		&& ($this->dataValue != "00:00:00")
-		&& ($this->dataValue != "0000-00-00 00:00:00"))
-		{
-			jimport("joomla.utilities.date");
-			$date = JFactory::getDate($this->dataValue);
-			$formatedDate = $date->format($dateFormat);
-
-			$config = JFactory::getConfig();
-			// If a known filter is given use it.
-			switch (strtoupper(($this->filter)))
-			{
-				case 'SERVER_UTC':
-					// Convert a date to UTC based on the server timezone.
-					if (intval($this->dataValue))
-					{
-						// Get a date object based on the correct timezone.
-						$date = JFactory::getDate($this->dataValue, 'UTC');
-						$date->setTimezone(new DateTimeZone($config->get('offset')));
-
-						// Format the date string.
-						$formatedDate = $date->format($dateFormat, true);
-					}
-					break;
-
-				case 'USER_UTC':
-					// Convert a date to UTC based on the user timezone.
-					if (intval($this->dataValue))
-					{
-						// Get a date object based on the correct timezone.
-						$date = JFactory::getDate($this->dataValue, 'UTC');
-						$user = JFactory::getUser();
-						$date->setTimezone(new DateTimeZone($user->getParam('timezone', $config->get('offset'))));
-
-						// Format the date string.
-						$formatedDate = $date->format($dateFormat, true);
-					}
-					break;
-			}
+		static $inputsCreated;
+		static $rand;
+		
+		if(empty($inputsCreated)){
+			$inputsCreated = array();
 		}
-		else {
-			$formatedDate = "";
+		
+		if(empty($rand)){
+			$rand = '';
 		}
+		
+		
+		$dataValue = $this->formatDate($this->dataValue,$this->dateFormat);
+		$uiValue = $this->formatDate($this->dataValue,$this->uiFormat);
 
 		static $jsLoaded;
 		$doc = JFactory::getDocument();
@@ -172,7 +131,9 @@ class JDomHtmlFormInputDatetimepicker extends JDomHtmlFormInput
 			$endDate = 'endDate: "'. $this->endDate .'",';
 		}
 		
-		$rand = $this->generateRandomString(15);
+		if(isset($inputsCreated[$inputId])){
+			$rand++;
+		}
 		
 		$script = '
 		jQuery(document).ready(function(){			
@@ -184,7 +145,10 @@ class JDomHtmlFormInputDatetimepicker extends JDomHtmlFormInput
 				maxView: '. $this->maxView .',
 				'. $startDate .'
 				'. $endDate .'
-				minuteStep: 10
+				minuteStep: 10,
+				formatType: "php",
+				linkField: "'. $inputId .'",
+				linkFormat: "'. $this->dateFormat .'"
 			});
 			
 		});';
@@ -194,25 +158,79 @@ class JDomHtmlFormInputDatetimepicker extends JDomHtmlFormInput
 		if($this->required){
 			$required = 'validate[required]';
 		}
-				
+
 		$html =	'<div class="input-append date" id="<%DOM_ID%>_picker'. $rand .'" data-date-format="'. $this->uiFormat .'">'
-			.	'<input id="<%DOM_ID%>_val'. $rand .'" size="16" type="text" value="'. $formatedDate .'" class="'. $required .'" readonly="readonly" <%STYLE%><%SELECTORS%>>'
-			.	'<input id="<%DOM_ID%>" type="hidden" value="'. $formatedDate .'" name="<%INPUT_NAME%>"<%STYLE%><%CLASS%><%SELECTORS%>>'
+			.	'<input id="<%DOM_ID%>_val'. $rand .'" size="16" type="text" value="'. $uiValue .'" class="'. $required .'" readonly="readonly" <%STYLE%><%SELECTORS%>>'
+			.	'<input id="<%DOM_ID%>" type="hidden" value="'. $dataValue .'" name="<%INPUT_NAME%>"<%STYLE%><%CLASS%><%SELECTORS%>>'
 			.	'<span class="add-on"><i class="icon-calendar"></i></span>'
 			.	'<%VALIDOR_ICON%>'.LN
 			.	'<%MESSAGE%>'
 			.	'</div>';
+			
+			
+		$inputsCreated[$inputId] = true;
+			
 		return $html;		
 	}
 
 	
-	// fix for BAD HTML with duplicated IDs
-	public static function generateRandomString($length = 5) {
-		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		$randomString = '';
-		for ($i = 0; $i < $length; $i++) {
-			$randomString .= $characters[rand(0, strlen($characters) - 1)];
+	public function formatDate($rawDate,$dateFormat){
+		if((string)intval($rawDate) != $rawDate){
+			$rawDate = strtotime($rawDate);
 		}
-		return $randomString;
+
+		//JDate::toFormat() is deprecated. CONVERT Legacy Joomla Format
+		//Minutes : ‰M > i
+		$dateFormat = str_replace("%M", "i", $dateFormat);
+		//remove the %
+		$dateFormat = str_replace("%", "", $dateFormat);	
+		$formatedDate = $rawDate;
+
+		if ($rawDate
+		&& ($rawDate != "0000-00-00")
+		&& ($rawDate != "00:00:00")
+		&& ($rawDate != "0000-00-00 00:00:00"))
+		{
+			jimport("joomla.utilities.date");
+			$date = JFactory::getDate($rawDate);
+			$formatedDate = $date->format($dateFormat);
+
+			$config = JFactory::getConfig();
+			// If a known filter is given use it.
+			switch (strtoupper(($this->filter)))
+			{
+				case 'SERVER_UTC':
+					// Convert a date to UTC based on the server timezone.
+					if (intval($rawDate))
+					{
+						// Get a date object based on the correct timezone.
+						$date = JFactory::getDate($rawDate, 'UTC');
+						$date->setTimezone(new DateTimeZone($config->get('offset')));
+
+						// Format the date string.
+						$formatedDate = $date->format($dateFormat, true);
+					}
+					break;
+
+				case 'USER_UTC':
+					// Convert a date to UTC based on the user timezone.
+					if (intval($rawDate))
+					{
+						// Get a date object based on the correct timezone.
+						$date = JFactory::getDate($rawDate, 'UTC');
+						$user = JFactory::getUser();
+						$date->setTimezone(new DateTimeZone($user->getParam('timezone', $config->get('offset'))));
+
+						// Format the date string.
+						$formatedDate = $date->format($dateFormat, true);
+					}
+					break;
+			}
+		}
+		else {
+			$formatedDate = "";
+		}
+		
+		return $formatedDate;
 	}
 }

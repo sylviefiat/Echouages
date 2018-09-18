@@ -13,8 +13,19 @@
 			label="ID"
 			filter="INT"
 			description="ID_DESC"
-			readonly="true"			
+			readonly="true"
 			type="cktext"/>
+
+	<!--beginning id_location-->
+	<field name="id_location"
+					alias="id_location"
+					class="form-control"
+					label="ID"
+					filter="INT"
+					description="ID_DESC"
+					readonly="true"
+					type="cktext"/>
+<!--end id_location-->
 
 	<field name="observer_name"
 			alias="observer_name"
@@ -33,7 +44,7 @@
 			description="OBSERVER_TEL_DESC"
 			hint="OBSERVER_TEL"
 			type="tel"/>
-				
+
 	<field name="observer_email"
 			alias="observer_email"
 			class="form-control"
@@ -41,7 +52,35 @@
 			description="OBSERVER_EMAIL_DESC"
 			hint="OBSERVER_EMAIL"
 			type="email"/>
-		
+
+<!--beginning Informant contacts-->
+			<field name="informant_name"
+					alias="observer_name"
+					class="form-control"
+					label="OBSERVER_NAME"
+					filter="STRING"
+					description="OBSERVER_NAME_DESC"
+					required="true"
+					hint="OBSERVER_NAME_PL"
+					type="text"/>
+
+			<field name="informant_tel"
+					alias="observer_tel"
+					class="form-control"
+					label="OBSERVER_TEL"
+					description="OBSERVER_TEL_DESC"
+					hint="OBSERVER_TEL"
+					type="tel"/>
+
+			<field name="informant_email"
+					alias="observer_email"
+					class="form-control"
+					label="OBSERVER_EMAIL"
+					description="OBSERVER_EMAIL_DESC"
+					hint="OBSERVER_EMAIL"
+					type="email"/>
+<!--end Informant contacts-->
+
 	<field name="observation_datetime"
 			alias="observation_datetime"
 			class="form-control form-calendar"
@@ -83,7 +122,7 @@
 			description="OBSERVATION_CULLED_DESC"
 			hint="OBSERVATION_YEAR"
 			type="text"/>
-			
+
 		<field name="observation_location"
 			alias="observation_location"
 			class="form-control"
@@ -99,7 +138,7 @@
 				description="OBSERVATION_PICK_DESC"
 				filter="STRING"
 				class="formatted_address form-control"
-				type="ckaddresspicker"/>		
+				type="ckaddresspicker"/>
 
 		<field name="observation_region"
 				alias="region"
@@ -147,8 +186,8 @@
 				filter="FLOAT"
 				class="longitude form-control"
 				type="text"/>
-			
-	
+
+
 	<field name="observation_number"
 			alias="observation_number"
 			class="form-control"
@@ -156,8 +195,18 @@
 			description="OBSERVATION_NUMBER_DESC"
 			hint="OBSERVATION_NUMBER"
 			labelclass="control-label"
-			type="text"/>	
-	
+			type="text"/>
+
+<!--beginning observation_sizes-->
+	<field name="observation_sizes"
+				 alias="observation_sizes"
+				 class="sizes form-control"
+				 label="OBSERVATION_SIZES"
+				 description="OBSERVATION_SIZES_DESC"
+				 hint="OBSERVATION_SIZES"
+				 type="text"/>
+<!--end observation_sizes-->
+
 	<field name="observation_culled"
 			alias="observation_culled"
 			class="form-control"
@@ -184,7 +233,7 @@
 			class="form-control"
 			type="text"
 			labelclass="control-label"
-			label="COUNTING_METHOD_TIMED_SWIM" 
+			label="COUNTING_METHOD_TIMED_SWIM"
 			description="COUNTING_METHOD_TIMED_SWIM_DESC"
 			hint="COUNTING_METHOD_TIMED_SWIM"/>
 
@@ -193,7 +242,7 @@
 			class="form-control"
 			type="text"
 			labelclass="control-label"
-			label="COUNTING_METHOD_DISTANCE_SWIM" 
+			label="COUNTING_METHOD_DISTANCE_SWIM"
 			description="COUNTING_METHOD_DISTANCE_SWIM_DESC"
 			hint="COUNTING_METHOD_DISTANCE_SWIM"/>
 
@@ -202,7 +251,7 @@
 			class="form-control"
 			type="text"
 			labelclass="control-label"
-			label="COUNTING_METHOD_OTHER" 
+			label="COUNTING_METHOD_OTHER"
 			description="COUNTING_METHOD_OTHER_DESC"
 			hint="COUNTING_METHOD_OTHER"/>
 
@@ -241,6 +290,6 @@
                 description="CAPTCHA_DESC"
                 validate="captcha"
                 namespace="event"
-        />	
+        />
 </fieldset>
 </form>

@@ -89,7 +89,7 @@ class JDomHtmlLinkButtonToolbar extends JDomHtmlLinkButton
 				case 'new':
 				case 'apply':
 					$this->addClass('btn-success');
-					$this->addClass('input-medium');
+					$this->addClass('input-small'); 
 					break;
 			}			
 		}
@@ -104,7 +104,7 @@ class JDomHtmlLinkButtonToolbar extends JDomHtmlLinkButton
 		
 		if ($this->ui == 'bootstrap')
 		{
-			$this->addClass('btn btn-small');
+			$this->addClass('btn btn-mini'); 
 		}
 		else
 		{		

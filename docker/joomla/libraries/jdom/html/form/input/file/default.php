@@ -48,7 +48,6 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 		$this->arg('size'			, null, $args, '32');
 		$this->arg('uploadMaxSize'	, null, $args);
 		$this->arg('allowedExtensions'	, null, $args);
-
 	}
 	function build()
 	{
@@ -75,7 +74,7 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 			
 		
 		$htmlPreview = '';
-		if(!$isNew){
+		if(!$isNew){ 
 			//Create the preview	
 			$pickerStyle = "";
 			if ($this->thumb)
@@ -85,7 +84,7 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 			$htmlPreview .= JDom::_("html.fly.file", $this->options);
 			$htmlPreview .= "</div>";
 		//	$htmlPreview .= '<div class="clearfix"></div>';
-		}
+		} 
 		
 		//Current value is important for the removing features features ()
 		$htmlHiddenCurrent = JDom::_('html.form.input.hidden', array(
@@ -194,7 +193,7 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 		$isNew = (empty($this->dataValue));
 
 	$htmlPreview = '';
-	if(!$isNew){
+	if(!$isNew){ 
 		$htmlPreview .= "<div style='" . $pickerStyle . "'>";
 		$htmlPreview .= JDom::_("html.fly.file", $this->options);
 		$htmlPreview .= "</div>";
@@ -338,7 +337,7 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 		$idView = $this->getInputId('view');
 		
 		//Create hidden input (file)
-		$onchange = "jQuery(this).closest('div').find('#" . $idView . "').val(jQuery(this).val());";
+		$onchange = "jQuery(this).closest('div').find('#" . $idView . "').val(jQuery(this).val()); if(typeof jQuery.fn.validationEngine != 'undefined'){jQuery(this).closest('div').find('#" . $idView . "').validationEngine('validate');}";
 		$htmlInputHidden = '<input onChange="'. $onchange .'" type="file" id="<%DOM_ID%>" name="<%INPUT_NAME%>" ' 
 			. ' style="display:none;"'
 			.	' value="<%VALUE%>"'
@@ -355,6 +354,7 @@ class JDomHtmlFormInputFileDefault extends JDomHtmlFormInputFile
 		));
 
 		$dom->addClass('input-large');
+		$dom->addClass($this->domClass);
 
 		//for cross compatibility (remove margin and float)
 		$dom->addClass('inputfix');

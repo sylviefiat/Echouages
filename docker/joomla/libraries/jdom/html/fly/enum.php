@@ -58,7 +58,9 @@ class JDomHtmlFlyEnum extends JDomHtmlFly
 
 		// fix for objects
 		$this->list = (array)$this->list;
-		$this->list[$this->dataValue] = (array)$this->list[$this->dataValue];
+		if(isset($this->list[$this->dataValue])){
+			$this->list[$this->dataValue] = (array)$this->list[$this->dataValue];
+		}
 
 		if (isset($this->dataValue) && isset($this->list[$this->dataValue][$this->labelKey]))
 			$html = $this->list[$this->dataValue][$this->labelKey];

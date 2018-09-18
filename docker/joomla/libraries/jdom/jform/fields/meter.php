@@ -185,8 +185,44 @@ class JFormFieldMeter extends JFormFieldNumber
 		$value = ((float) ($value - $this->min) * 100) / ($this->max - $this->min);
 
 		$html[] = '<div ' . $class . $width . $data . ' >';
-		$html[] = '		<div class="bar" style="width: ' . strval($value) . '%;' . $color . '"></div>';
+		$html[] = '		<div class="bar" style="font-style: italic; width: ' . strval($value) . '%;' . $color . '"></div>';
 		$html[] = '</div>';
+
+		return implode('', $html);
+	}
+	
+	public function getOutput($tmplEngine = null)
+	{
+		// Initialize some field attributes.
+		$width = !empty($this->width) ? ' style="width:' . $this->width . ';"' : '';
+		
+		$color = '#3399FF';
+		if(!empty($this->color)){
+			$color = $this->color;
+		}
+		$color =  ' background-color:' . $color . ';';
+
+		$data = '';
+		$data .= ' data-max="' . $this->max . '"';
+		$data .= ' data-min="' . $this->min . '"';
+		$data .= ' data-step="' . $this->step . '"';
+
+		$class = 'progress ' . $this->class;
+		$class .= $this->animated ? ' progress-striped' : '';
+		$class .= $this->active ? ' active' : '';
+		$class = ' class="' . $class . '"';
+
+		$value = (float) $this->value;
+		$value = $value < $this->min ? $this->min : $value;
+		$value = $value > $this->max ? $this->max : $value;
+
+		$data .= ' data-value="' . $this->value . '"';
+
+		$value = ((float) ($value - $this->min) * 100) / ($this->max - $this->min);
+		
+		$valVisible = $value .'%';
+		
+		$html[] = '<span class="bar" style="padding-right: 5px; line-height: 16px; height: 16px; font-size: 12px; color:#ffffff; text-align: right; font-style: italic; display: inline-block; margin: 0; width: ' . strval($value) . '%;' . $color . '">'. $valVisible .'</span>';
 
 		return implode('', $html);
 	}

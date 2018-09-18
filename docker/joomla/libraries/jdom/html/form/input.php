@@ -32,6 +32,8 @@ class JDomHtmlFormInput extends JDomHtmlForm
 	protected $formControl;
 	protected $formGroup;
 	protected $required;
+	protected $readonly;
+	protected $disabled;
 	protected $hidden;
 	protected $validatorHandler;
 	protected $dateFormat;
@@ -86,6 +88,8 @@ class JDomHtmlFormInput extends JDomHtmlForm
 		$this->arg('formControl', null, $args);
 		$this->arg('formGroup', null, $args);
 		$this->arg('required' 				, null, $args, false);
+		$this->arg('readonly' 				, null, $args, false);	
+		$this->arg('disabled' 				, null, $args, false);	
 		$this->arg('validatorHandler' 		, null, $args);
 		$this->arg('dateFormat' 			, null, $args);
 		$this->arg('validatorRegex' 		, null, $args);
@@ -129,6 +133,12 @@ class JDomHtmlFormInput extends JDomHtmlForm
 
 		if ($this->placeholder)
 			$this->addSelector('placeholder', $this->JText($this->placeholder));
+			
+		if ($this->readonly)
+			$this->addSelector('readonly', 'readonly');
+			
+		if ($this->disabled)
+			$this->addSelector('disabled', 'disabled');
 	
 		if ($this->title)
 			$this->addSelector('title', $this->title);

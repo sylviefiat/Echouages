@@ -49,26 +49,15 @@ class JFormFieldCksearch extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-
-		$this->input = JDom::_('html.form.input.search', array_merge(array(
-				'dataKey' => $this->getOption('name'),
-				'formGroup' => $this->group,
-				'formControl' => $this->formControl,
-				'domClass' => $this->getOption('class'),
-				'dataValue' => $this->value,
-				'label' => $this->getOption('label'),
-				'placeholder' => $this->getOption('placeholder'),
-				'responsive' => $this->getOption('responsive'),
-				'size' => $this->getOption('size')
-			), $this->jdomOptions));
+		$this->setCommonProperties();
+		
+		$this->fieldOptions = array_merge($this->fieldOptions, $this->jdomOptions);
+		
+		$this->input = JDom::_('html.form.input.search', $this->fieldOptions);
 
 		return parent::getInput();
 	}
 
-	public function getLabel()
-	{
-		return parent::getLabel();
-	}
 
 
 }

@@ -2,7 +2,7 @@
 /**
  * @copyright	Copyright (C) 2013 Cook Self Service. All rights reserved.
  * @author		J. HUARD (http://j-cook.pro) - G. Tomaselli (http://bygiro.com)
- * @license     MIT License (MIT)
+ * @license     MIT License (MIT) AND GNU GPL v3 or later
  */
  
 defined('_JEXEC') or die;
@@ -57,6 +57,7 @@ class plgSystemJdom extends JPlugin
 		
 		JLoader::register('JdomHelperDates', JPATH_SITE . DS . 'libraries' . DS . 'jdom' . DS . 'helpers' . DS . 'dates.php');
 		JLoader::register('JdomHtmlValidator', JPATH_SITE . DS . 'libraries' . DS . 'jdom' . DS . 'jform' . DS . 'html' . DS . 'validator.php');
+		JLoader::register('CkJEditor', JPATH_SITE . DS . 'libraries' . DS . 'jdom' . DS . 'jform' . DS . 'html' . DS . 'editor.php');
 		
 		// form field class
 		JLoader::register('JdomClassFormField', JPATH_SITE . DS . 'libraries' . DS . 'jdom' . DS . 'jform' . DS . 'field.php');

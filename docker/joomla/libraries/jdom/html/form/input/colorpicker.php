@@ -54,7 +54,7 @@ class JDomHtmlFormInputColorpicker extends JDomHtmlFormInput
 
 		$dom->addClass('input-mini');
 		$htmlInput = $dom->output();
-		
+	
 		//Create the color
 		$htmlColor = JDom::_('html.fly.color', array_merge($this->options, array(
 			'width' => 12,

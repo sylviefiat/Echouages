@@ -49,25 +49,21 @@ class JFormFieldCktimepicker extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-		$this->input = JDom::_('html.form.input.timepicker', array_merge(array(
-				'dataKey' => $this->getOption('name'),
-				'formGroup' => $this->group,
-				'formControl' => $this->formControl,
+		$this->setCommonProperties();
+		
+		$thisOpts = array(
 				'domClass' => $this->getOption('class') .' input-mini',
-				'dataValue' => $this->value,
 				'start' => $this->getOption('start'),
 				'end' => $this->getOption('end'),
 				'time' => $this->getOption('time'),
-				'placeholder' => $this->getOption('placeholder'),
-				'responsive' => $this->getOption('responsive'),
-				'size' => $this->getOption('size')
-			), $this->jdomOptions));
+				'step' => $this->getOption('step')
+			);
+			
+		$this->fieldOptions = array_merge($this->fieldOptions,$thisOpts, $this->jdomOptions);
+		
+		$this->input = JDom::_('html.form.input.timepicker', $this->fieldOptions);
 
 		return parent::getInput();
 	}
 
-	public function getLabel()
-	{
-		return parent::getLabel();
-	}
 }

@@ -49,31 +49,24 @@ class JFormFieldCkfile extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-
-		$this->input = JDom::_('html.form.input.file', array_merge(array(
-				'dataKey' => $this->getOption('name'),
-				'formGroup' => $this->group,
-				'formControl' => $this->formControl,
-				'domClass' => $this->getOption('class'),
-				'dataValue' => $this->value,
+		$this->setCommonProperties();
+		
+		$thisOpts = array(
 				'height' => $this->getOption('height'),
 				'indirect' => $this->getOption('indirect', null, 'bool'),
 				'actions' => explode(',',$this->getOption('actions', null)),
-				'responsive' => $this->getOption('responsive'),
 				'preview' => $this->getOption('preview'),
 				'root' => $this->getOption('root'),
-				'ruleInstance' => $this->getOption('ruleInstance'),
 				'view' => $this->getOption('view'),
 				'width' => $this->getOption('width')
-			), $this->jdomOptions));
+			);
+		$this->fieldOptions = array_merge($this->fieldOptions,$thisOpts,$this->jdomOptions);
+		
+		$this->input = JDom::_('html.form.input.file', $this->fieldOptions);
 
 		return parent::getInput();
 	}
 
-	public function getLabel()
-	{
-		return parent::getLabel();
-	}
 
 
 }

@@ -66,7 +66,7 @@ class JDomHtmlFormLabel extends JDomHtmlForm
 			return;
 		}
 		
-		$script = 'jQuery(".hasTooltip").tooltip({"html": true,"placement":"right"});';
+		$script = 'jQuery(".hasTooltip").tooltip({"html": true});';
 		$this->addScriptInline($script, true);		
 		
 		

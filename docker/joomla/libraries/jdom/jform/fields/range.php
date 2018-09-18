@@ -40,6 +40,37 @@ class JFormFieldRange extends JFormFieldNumber
 	 */
 	public function getInput()
 	{
+		static $initialized;
+		
+		if(!$initialized){
+			$doc = JFactory::getDocument();
+			$script = "
+			jQuery(document).ready(function(){
+				jQuery('form').on('change','.range_input',function(){
+					var value = jQuery(this).val() +' %';
+					if(jQuery(this).next().hasClass('range_value')){
+						jQuery(this).next().html(value);
+					}
+				});
+			});
+			";
+			$doc->addScriptDeclaration($script);
+			
+			$style = "
+			.range_value {
+				margin-left: 5px;
+				font-style: italic;
+				color: green;
+				font-size: 80%;
+			}
+			";
+			$doc->addStyleDeclaration($style);			
+			
+			$initialized = true;
+		}
+		
+		$this->class .= ' range_input';
+		
 		// Initialize some field attributes.
 		$max      = !empty($this->max) ? ' max="' . $this->max . '"' : '';
 		$min      = !empty($this->min) ? ' min="' . $this->min . '"' : '';
@@ -62,6 +93,17 @@ class JFormFieldRange extends JFormFieldNumber
 
 		return '<input type="range" name="' . $this->name . '" id="' . $this->id . '"' . ' value="'
 			. htmlspecialchars($value, ENT_COMPAT, 'UTF-8') . '"' . $class . $disabled . $readonly
-			. $onchange . $max . $step . $min . $autofocus . ' />';
+			. $onchange . $max . $step . $min . $autofocus . ' /><span class="range_value">'. htmlspecialchars($value, ENT_COMPAT, 'UTF-8') .' %</span>';
+	}
+	
+
+	public function getOutput($tmplEngine = null)
+	{
+		$html = '';
+		if(!isset($this->value)){
+			return $html;
+		}
+		
+		return $this->value .'%';
 	}
 }

@@ -26,6 +26,7 @@ class JDomHtmlFormInputTimepicker extends JDomHtmlFormInput
 	var $time;
 	var $start;
 	var $end;
+	var $step;
 
 	/*
 	 * Constuctor
@@ -43,10 +44,11 @@ class JDomHtmlFormInputTimepicker extends JDomHtmlFormInput
 	{
 		parent::__construct($args);
 
-		$this->arg('size'		, 6, $args, '32');
-		$this->arg('time'		, 6, $args, '8:00');
-		$this->arg('start'		, 6, $args, null);
-		$this->arg('end'		, 6, $args, null);
+		$this->arg('size'		, null, $args, '32');
+		$this->arg('time'		, null, $args, '8:00');
+		$this->arg('start'		, null, $args, null);
+		$this->arg('end'		, null, $args, null);
+		$this->arg('step'		, null, $args, 1);
 	}
 	
 	function build()
@@ -57,6 +59,7 @@ class JDomHtmlFormInputTimepicker extends JDomHtmlFormInput
 		$time = $this->time;
 		$start = $this->start;
 		$end = $this->end;
+		$step = $this->step;
 		
 		$input =	'<input type="text" id="<%DOM_ID%>" name="<%INPUT_NAME%>"<%STYLE%><%CLASS%><%SELECTORS%>'
 			.	' value="<%VALUE%>"'
@@ -65,7 +68,7 @@ class JDomHtmlFormInputTimepicker extends JDomHtmlFormInput
 			.	'<%VALIDOR_ICON%>'.LN
 			.	'<%MESSAGE%>';
 
-		$html = '<div class="timepicker-bygiro" data-start="'. $start .'" data-end="'. $end .'" data-time="'. $time .'">
+		$html = '<div class="timepicker-bygiro" data-start="'. $start .'" data-end="'. $end .'" data-time="'. $time .'" data-step="'. $step .'">
   <div class="input-prepend timepicker-bygiro-toggle" data-toggle="timepicker-bygiro">
     <span class="add-on"><i class="glyphicon icon-time"></i></span>
     '. $input .'

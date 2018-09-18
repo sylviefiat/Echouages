@@ -6,19 +6,26 @@
 * @license		GNU GPL v3 or later
 */
 
-function triggerCondRulesOn(){
-	var condRulesElements = jQuery('form').find('[class^="condRule"], [class*=" condRule"]');
+function triggerCondRulesOn(searchOn){
+	if(typeof searchOn == 'undefined'){
+		searchOn = jQuery('body');
+	} else if(!(searchOn instanceof jQuery)){
+		searchOn = jQuery(searchOn);
+	}
+	var formElements = ['input','select','textarea'],
+		condRulesElements = searchOn.find('[class^="condRule"], [class*=" condRule"]');
 
+	var rulesGroups = {};
 	condRulesElements.each(function(){
-		var triggerEle,
-			formElements = ['input','select','textarea'],
-			targetEle = self = jQuery(this),
-			mainForm = self.closest('form'),
+		var targetEle = self = jQuery(this),
 			typeEle = self.get(0).tagName;
-			
+		
 		typeEle = typeEle.toLowerCase();
-		if(jQuery.inArray(typeEle,formElements) >= 0){
-			targetEle = self.closest('.control-group');
+		if(jQuery.inArray(typeEle,formElements) >= 0 || self.hasClass('form-widget')){
+			var cGroup = self.closest('.control-group');
+			if(cGroup.length > 0){
+				targetEle = cGroup;
+			}			
 		}
 		
 		var inputClass = self.attr('class');
@@ -33,86 +40,120 @@ function triggerCondRulesOn(){
 			ruleParts = ruleParts.split(',');
 			var rule = {};
 			rule.task = ruleParts[0];
-			rule.target = ruleParts[1];
-			rule.value = ruleParts[2];
+			rule.trigger = ruleParts[1];
+			rule.value = ruleParts[2];	
+			rule.target = targetEle;
+			rule.element = self;
 			
-			// fix for BAD HTML when many targets have the same ID
-			var mainTrigger = mainForm.find('#'+ rule.target);
-			var tagName = mainTrigger.get(0).tagName;
-			tagName = tagName.toLowerCase();
+			if(typeof rulesGroups[rule.trigger] == 'undefined'){
+				rulesGroups[rule.trigger] = [];
+			}
 			
-			if(jQuery.inArray(tagName,formElements) < 0){
-				// find all the form elements inside this element
-				triggerEle = mainTrigger.find(formElements.join(','));
+			rulesGroups[rule.trigger].push(rule);
+		});
+	});	
+	
+	jQuery.each(rulesGroups,function(trigger, rules){
+		var triggerEle;
+		
+		if(rules.length <= 0){
+			return true;
+		}
+		
+		var self = rules[0].element,
+			container = self.closest('.formFieldsContainer');
+			
+		if(container.length <= 0){
+			container = self.closest('form');
+		}
+
+		if(container.length <= 0){
+			container = jQuery('body');
+		}		
+		
+		// fix for BAD HTML when many targets have the same ID
+		var mainTrigger = container.find(trigger);
+		
+		if(mainTrigger.length <= 0){
+			return true;
+		}
+		
+		var tagName = mainTrigger.get(0).tagName;
+		tagName = tagName.toLowerCase();
+		
+		if(jQuery.inArray(tagName,formElements) < 0){
+			// find all the form elements inside this element
+			triggerEle = mainTrigger.find(formElements.join(','));
+		} else {
+			triggerEle = mainTrigger;
+		}
+		
+		jQuery.each(rules,function(i,rule){		
+			doCondTask(rule,triggerEle,rule.target);
+		});
+		
+		
+		triggerEle.on('keyup change click',function(event){
+			var withDelay = 1200,
+				doIt = false,
+				eleType,
+				that = jQuery(this),
+				tagName = that.get(0).tagName,
+				type = that.attr('type');
+				
+			if(typeof type != 'undefined'){
+				type = '_'+type;
 			} else {
-				triggerEle = mainTrigger;
+				type = '';
+			}
+			
+			eleType = tagName + type;
+			eleType = eleType.toLowerCase();
+			switch(eleType){							
+				case 'select':
+				case 'input_hidden':
+				case 'input_file':
+					// onchange
+					if(event.type == 'change'){
+						doIt = true;
+						withDelay = 50;
+					}
+					break;
+					
+				case 'input_radio':
+				case 'input_checkbox':
+					// onclick
+					if(event.type == 'click'){
+						doIt = true;
+						withDelay = 50;
+					}							
+					break;
+
+				case 'input_text':
+				case 'textarea':						
+				default:
+					// onkeyup
+					if(event.type == 'keyup'){
+						doIt = true;
+					}							
+					break;
+			}
+		
+			if(!doIt){
+				return;
 			}
 
-			doCondTask(rule,triggerEle,targetEle);
-			triggerEle.on('keyup change click',function(event){
-				var withDelay = 1200,
-					doIt = false,
-					eleType,
-					that = jQuery(this),
-					tagName = that.get(0).tagName,
-					type = that.attr('type');
-					
-				if(typeof type != 'undefined'){
-					type = '_'+type;
-				} else {
-					type = '';
-				}
-				
-				eleType = tagName + type;
-				eleType = eleType.toLowerCase();
-				switch(eleType){							
-					case 'select':
-					case 'input_hidden':
-					case 'input_file':
-						// onchange
-						if(event.type == 'change'){
-							doIt = true;
-							withDelay = 200;
-						}
-						break;
-						
-					case 'input_radio':
-					case 'input_checkbox':
-						// onclick
-						if(event.type == 'click'){
-							doIt = true;
-							withDelay = 200;
-						}							
-						break;
-
-					case 'input_text':
-					case 'textarea':						
-					default:
-						// onkeyup
-						if(event.type == 'keyup'){
-							doIt = true;
-						}							
-						break;
-				}
-			
-				if(!doIt){
-					return;
-				}
-console.log(eleType);
-console.log(rule);
-console.log(triggerEle);
-console.log(targetEle);
-console.log('----------------');
-				// check all values to see if we match the condition rule
-				delay(
-					function(){
-						doCondTask(rule,triggerEle,targetEle);
-					},
-					withDelay
-				);
-			});
+			// check all values to see if we match the condition rule
+			delay(
+				function(){
+					jQuery.each(rules,function(i,rule){
+						doCondTask(rule,triggerEle,rule.target);
+					});
+				},
+				withDelay
+			);
 		});
-	});
+	});	
 }
 
 function doCondTask(rule,triggerEle,targetEle){
@@ -162,7 +203,15 @@ function doCondTask(rule,triggerEle,targetEle){
 			}
 		});
 		
-		// do the task and break the loop
+		// callback
+		var eType = 'condRule.matched';
+		if(cond != true){
+			eType = 'condRule.unmatched';
+		}
+		var e = jQuery.Event(eType);
+		rule.element.trigger(e, [rule,targetEle,triggerEle]);
+
+		// do the task
 		switch(rule.task){
 			case 'show':
 				break;

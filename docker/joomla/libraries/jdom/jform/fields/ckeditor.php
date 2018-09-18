@@ -49,27 +49,27 @@ class JFormFieldCkeditor extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-
-		$this->input = JDom::_('html.form.input.editor', array_merge(array(
-				'dataKey' => $this->getOption('name'),
-				'formGroup' => $this->group,
-				'formControl' => $this->formControl,
-				'domClass' => $this->getOption('class'),
-				'cols' => $this->getOption('cols'),
-				'dataValue' => $this->value,
+		$this->setCommonProperties();
+		$thisOpts = array(
 				'height' => $this->getOption('height'),
-				'responsive' => $this->getOption('responsive'),
+				'editor' => $this->getOption('editor'),
+				'buttons' => $this->getOption('buttons'),
 				'rows' => $this->getOption('rows'),
 				'width' => $this->getOption('width')
-			), $this->jdomOptions));
+			);
+		$this->fieldOptions = array_merge($this->fieldOptions,$thisOpts,$this->jdomOptions);
+		
+		$editorType = 'editor';
+		if($this->getOption('repeatable') != '' OR (isset($this->fieldOptions['repeatable']) AND $this->fieldOptions['repeatable'])){
+			$editorType = 'editorrepeatable';
+		}
+		
+		$this->input = JDom::_('html.form.input.'. $editorType, $this->fieldOptions);
 
+		
 		return parent::getInput();
 	}
 
-	public function getLabel()
-	{
-		return parent::getLabel();
-	}
 
 
 }

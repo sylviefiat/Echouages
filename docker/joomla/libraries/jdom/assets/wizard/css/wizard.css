@@ -18,6 +18,7 @@ ul.dropdown-menu.removeList li{
   padding: 0 !important;
   margin: 0 !important;
   width: 4000px !important;
+  position:relative;
 }
 .wizard ul.steps.previous-disabled li.step.complete {
   cursor: default;
@@ -100,6 +101,9 @@ ul.dropdown-menu.removeList li{
 	display: table-cell;
 	vertical-align: middle;
 	padding: 0 5px;
+}
+.wizard .actions .act .btn{
+	white-space:nowrap;
 }
 
 .wizard .actions {

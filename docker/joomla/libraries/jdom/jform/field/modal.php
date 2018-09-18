@@ -55,18 +55,12 @@ class JdomClassFormFieldModal extends JFormField
 	*
 	* @since	11.1
 	*/
-	protected function getInput()
+	public function getInput()
 	{
 		//When Bootstrap is used in native, modal picker is instancied with JDom
 		$version = new JVersion();
 		if ($version->isCompatible('3.0'))
-		{
-			$dom = JDom::getInstance();
-			
-			// ?!?!? TO DO: check
-		//	$dom->set('extension', 'com_jforms');
-
-
+		{			
 			$html =  JDom::_('html.form.input.select.modalpicker', array(
 				'dataKey' => $this->id,
 				'domName' => $this->name,

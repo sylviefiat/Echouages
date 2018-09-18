@@ -166,6 +166,9 @@ class JDomHtml extends JDom
 		if (!in_array($key, array_keys((array)$this->selectors)))
 			$this->selectors[$key] = "";
 
+		if(!isset($this->selectors[$key])){
+			$this->selectors[$key] = '';
+		}
 		$this->selectors[$key] .= $value;
 	}
 

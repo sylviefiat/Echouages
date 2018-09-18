@@ -76,7 +76,7 @@ class JDomHtmlLink extends JDomHtml
 		$this->arg('modal_width'	, null, $args);
 		$this->arg('modal_height'	, null, $args);
 		$this->arg('alertConfirm'	, null, $args);
-
+		
 	}
 
 	function buildLink()

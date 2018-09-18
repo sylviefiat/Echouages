@@ -1230,7 +1230,8 @@
 	$.fn.datetimepicker = function (option) {
 		var args = Array.apply(null, arguments);
 		args.shift();
-		return this.each(function () {
+		var internal_return;
+		this.each(function () {
 			var $this = $(this),
 				data = $this.data('datetimepicker'),
 				options = typeof option == 'object' && option;
@@ -1238,9 +1239,16 @@
 				$this.data('datetimepicker', (data = new Datetimepicker(this, $.extend({}, $.fn.datetimepicker.defaults, options))));
 			}
 			if (typeof option == 'string' && typeof data[option] == 'function') {
-				data[option].apply(data, args);
+				internal_return = data[option].apply(data, args);
+				if (internal_return !== undefined) {
+					return false;
+				}
 			}
 		});
+		if (internal_return !== undefined)
+			return internal_return;
+		else
+			return this;
 	};
 
 	$.fn.datetimepicker.defaults = {
@@ -1408,7 +1416,7 @@
 						while (v < 0) v += 12;
 						v %= 12;
 						d.setUTCMonth(v);
-						while (d.getUTCMonth() != v)
+						while (d.getUTCMonth() != v && (d.getUTCDate() - 1) >= 0) 
 							d.setUTCDate(d.getUTCDate() - 1);
 						return d;
 					},
@@ -1580,9 +1588,9 @@
 		},
 		headTemplate:     '<thead>' +
 							  '<tr>' +
-							  '<th class="prev"><i class="icon-arrow-left"/></th>' +
+							  '<th class="prev"><i class="icomoon icon-arrow-left"/></th>' +
 							  '<th colspan="5" class="switch"></th>' +
-							  '<th class="next"><i class="icon-arrow-right"/></th>' +
+							  '<th class="next"><i class="icomoon icon-arrow-right"/></th>' +
 							  '</tr>' +
 			'</thead>',
 		headTemplateV3:   '<thead>' +

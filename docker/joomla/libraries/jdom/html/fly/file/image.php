@@ -63,7 +63,6 @@ class JDomHtmlFlyFileImage extends JDomHtmlFlyFile
 
         $thumbUrl = $this->getFileUrl(true);
 
-
 		// Cannot show the image, only the file path
 		if ($this->indirect == 'physical')
 			return $thumbUrl;
@@ -112,14 +111,18 @@ class JDomHtmlFlyFileImage extends JDomHtmlFlyFile
 		if (!$helperClass)
 			return;
 
-		$path = $this->root . $this->dataValue;
+		$path = $this->dataValue;
+		if($this->dataValue[0] != '['){
+			$path = $this->root . $this->dataValue;
+		}
+		
 		$options = array(
 			'width' => $this->width,
 			'height' => $this->height,
 			'attrs' => $this->attrs
 		);
-			
-		if (!$infos = $helperClass::getImageInfos($path, $options))
+
+		if (!$info = $helperClass::getImageInfos($path, $options))
 			return;
 
 		$margin = array(

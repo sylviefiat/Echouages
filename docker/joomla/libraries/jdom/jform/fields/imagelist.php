@@ -27,7 +27,7 @@ class JFormFieldImageList extends JFormFieldFileList
 	 * @var    string
 	 * @since  11.1
 	 */
-	protected $type = 'ImageList';
+	public $type = 'ImageList';
 
 	/**
 	 * Method to get the list of images field options.
@@ -42,6 +42,10 @@ class JFormFieldImageList extends JFormFieldFileList
 		// Define the image file type filter.
 		$filter = '\.png$|\.gif$|\.jpg$|\.bmp$|\.ico$|\.jpeg$|\.psd$|\.eps$';
 
+		
+		unset($this->element->attributes()->filter);		
+		
+		
 		// Set the form field element attribute for file type filter.
 		$this->element->addAttribute('filter', $filter);
 

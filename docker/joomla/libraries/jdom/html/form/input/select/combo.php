@@ -235,7 +235,6 @@ class JDomHtmlFormInputSelectCombo extends JDomHtmlFormInputSelect
 			$selected = ((int)$item->$listKey === $this->dataValue);
 		else
 			$selected = ($item->$listKey === $this->dataValue);
-			
 
 		$html =	'<option value="'
 			.	htmlspecialchars($item->$listKey, ENT_COMPAT, 'UTF-8')

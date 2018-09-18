@@ -64,14 +64,19 @@ class JDomFrameworkBootstrapCore extends JDomFrameworkBootstrap
 		//Fallback
 		else
 			$this->addScript($this->hostedSource);
+			
+			
+		// fix to load the radio.js even is there are no radio input
+		$this->attachJs[] = 'radio.js'; 
 	}
 	
 	function buildCss()
 	{
+	/*
 		//Bootstrap CSS is already in the core since Joomla 3.2
 		if ($this->jVersion('3.2'))
 			return;
-
+	*/
 		//Bootstrap should not be used
 		if (!$this->useFramework('bootstrap'))
 			return;

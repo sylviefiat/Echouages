@@ -1,5 +1,5 @@
 jQuery(document).ready(function(){
-	jQuery("#adminForm").validationEngine();
+	jQuery("#adminForm").validationEngine('attach', {promptPosition : "topRight:0,0"});
 });
 
 Joomla.submitform = function(pressbutton, form)
@@ -51,6 +51,14 @@ Joomla.submitform = function(pressbutton, form)
 				message: Joomla.JText._("PLG_JDOM_BLOCK_UI_DEFAULT_MESSAGE")
 			});		
 		}
+		
+		if(typeof tinyMCE != 'undefined'){
+			tinyMCE.triggerSave();
+		} 
+		
+		if(typeof tinymce != 'undefined'){
+			tinymce.triggerSave();
+		}
 	
 		form.submit();
 	} else {
@@ -74,24 +82,39 @@ function checkFullForm(form){
 		return true;
 	}
 	
-	var tabs = form.find('a[data-toggle="tab"]');
+	var tabs = form.find('.tab-content .tab-pane');
+
+	var error_msg = Joomla.JText._("JSHOP_FORM_WITH_ERRORS");
+	
 	
 	tabs.each(function(index){
-		href = jQuery(this).attr('href');
-		errors = jQuery(href).find('.formError:not(.greenPopup)');
-		numErrors = errors.length;
+		var errors = jQuery(this).find('.formError:not(.greenPopup)');
+		var numErrors = errors.length;
+		var tabId = jQuery(this).attr('id');
+		var tabHeader = jQuery('.nav-tabs li a[href="#'+ tabId +'"]');
 		
-		if(numErrors > 0){
-			var error_msg = Joomla.JText._("JSHOP_FORM_WITH_ERRORS");
-			var prompt = '<div class="parentFormadminForm formError" style="opacity: 0.87; position: absolute; top: -40px; left: -13px; margin-top: 0px;"><div style="width: 165px;" class="formErrorContent">'+ error_msg +'<br></div><div class="formErrorArrow"><div class="line10"><!-- --></div><div class="line9"><!-- --></div><div class="line8"><!-- --></div><div class="line7"><!-- --></div><div class="line6"><!-- --></div><div class="line5"><!-- --></div><div class="line4"><!-- --></div><div class="line3"><!-- --></div><div class="line2"><!-- --></div><div class="line1"><!-- --></div></div></div>';
-			jQuery(this).append('<span class="fields_errors"><span class="num">'+ numErrors +'</span>'+ prompt +'</span>');
+		if(numErrors <= 0){
+			return true;
 		}
-	});
+		var prompt = '<div class="formError" style="position: absolute; opacity: 0.87;"><div class="formErrorContent">';
+			prompt += error_msg;
+			prompt += '</div><div class="formErrorArrow"><div class="line10"></div><div class="line9"></div><div class="line8"></div><div class="line7"></div><div class="line6"></div><div class="line5"></div><div class="line4"></div><div class="line3"></div><div class="line2"></div><div class="line1"></div></div></div>';
+			
+			tabHeader.append('<span class="fields_errors"><span class="num">'+ numErrors +'</span>'+ prompt +'</span>');
 	
-	tabs.on('click', function(){
-		jQuery(this).find('.fields_errors').remove();	
+		var fieldError = tabHeader.find('.fields_errors .num');
+		var tabH_offParent = fieldError.offsetParent().offset();
+		var tabH_off = fieldError.offset();
+		
+		if(typeof tabH_off != 'undefined'){
+			tabHeader.find('.formError').css({
+				top: tabH_off.top - (tabH_offParent.top +40),
+				left: tabH_off.left - (tabH_offParent.left +17)
+			});
+		}
+		
 	});
-	
+
 	return false;
 }
 

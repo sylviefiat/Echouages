@@ -37,24 +37,21 @@ class JFormFieldCkcaptcha extends JdomClassFormField
 	* @since	11.1
 	*/
 	public function getInput()
-	{		
-		$this->input = JDom::_('html.form.input.captcha', array_merge(array(
-				'dataKey' => $this->getOption('name'),
-				'formGroup' => $this->group,
-				'formControl' => $this->formControl,
-				'domClass' => $this->getOption('class'),
+	{	
+		$this->setCommonProperties();
+		
+		$thisOpts = array(
 				'theme' => $this->getOption('theme'),
 				'pubkey' => $this->getOption('pubkey'),
 				'privkey' => $this->getOption('privkey'),
 				'required' => 'true',
 				'selectors' => $this->getOption('selectors')
-			), $this->jdomOptions));
+			);
+		$this->fieldOptions = array_merge($this->fieldOptions,$thisOpts, $this->jdomOptions);
+		
+		$this->input = JDom::_('html.form.input.captcha', $this->fieldOptions);
 
 		return parent::getInput();
 	}
 
-	public function getLabel()
-	{
-		return parent::getLabel();
-	}
 }

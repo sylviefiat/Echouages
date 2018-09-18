@@ -36,3 +36,12 @@
 div.modal.fade.in {
   top: 50% !important;
 }
+
+/* navbar fixes j3.x */
+.navbar .container {
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}

@@ -64,9 +64,9 @@ $document->addStyleSheet('components/com_cot_forms/assets/css/cot_forms.css');
             Joomla.submitform(task, document.getElementById('cot_admin-form'));
         }
         else {
-            
+
             if (task != 'cot_admin.cancel' && document.formvalidator.isValid(document.id('cot_admin-form'))) {
-                
+
                 Joomla.submitform(task, document.getElementById('cot_admin-form'));
             }
             else {
@@ -102,10 +102,24 @@ $document->addStyleSheet('components/com_cot_forms/assets/css/cot_forms.css');
 				<div class="control-label"><?php echo $this->form->getLabel('observer_email'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('observer_email'); ?></div>
 			</div>
+
+      <div class="control-label"><?php echo $this->form->getLabel('informant_name'); ?></div>
+      <div class="controls"><?php echo $this->form->getInput('informant_name'); ?></div>
+    </div>
+    <div class="control-group">
+      <div class="control-label"><?php echo $this->form->getLabel('informant_tel'); ?></div>
+      <div class="controls"><?php echo $this->form->getInput('informant_tel'); ?></div>
+    </div>
+    <div class="control-group">
+      <div class="control-label"><?php echo $this->form->getLabel('informant_email'); ?></div>
+      <div class="controls"><?php echo $this->form->getInput('informant_email'); ?></div>
+    </div>
+
 			<div class="control-group">
 				<div class="control-label"><?php echo $this->form->getLabel('observation_date'); ?></div>
-				<div class="controls"><?php echo $this->form->getInput('observation_datetime'); ?></div>
-			</div>			
+				<div class="controls"><?php echo $this->form->getInput('observation_date'); ?></div>
+			</div>
+
 			<div class="control-group">
 				<div class="control-label"><?php echo $this->form->getLabel('observation_localisation'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('observation_localisation'); ?></div>
@@ -134,13 +148,15 @@ $document->addStyleSheet('components/com_cot_forms/assets/css/cot_forms.css');
 				<div class="control-label"><?php echo $this->form->getLabel('observation_location'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('observation_location'); ?></div>
 			</div>
+
 			<div class="control-group">
-				<div class="control-label"><?php echo $this->form->getLabel('observation_number'); ?></div>
-				<div class="controls"><?php echo $this->form->getInput('observation_number'); ?></div>
+				<div class="control-label"><?php echo $this->form->getLabel('observation_mammal_number'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('observation_mammal_number'); ?></div>
 			</div>
+    <!--
 			<div class="control-group">
 				<div class="control-label"><?php echo $this->form->getLabel('observation_culled'); ?></div>
-				<div class="controls"><?php echo $this->form->getInput('observation_culled'); ?></div>
+				<div class="controls"><?--php echo $this->form->getInput('observation_culled'); ?></div>
 			</div>
 			<div class="control-group">
 				<div class="control-label"><?php echo $this->form->getLabel('observation_list'); ?></div>
@@ -176,12 +192,12 @@ $document->addStyleSheet('components/com_cot_forms/assets/css/cot_forms.css');
 				<div class="control-label"><?php echo $this->form->getLabel('remarks'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('remarks'); ?></div>
 			</div>
-			
+
 			<div class="control-group">
 				<div class="control-label"><?php echo $this->form->getLabel('observation_state'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('observation_state'); ?></div>
 			</div>
-
+-->
 			<div class="control-group">
 				<div class="control-label"><?php echo $this->form->getLabel('admin_validation'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('admin_validation'); ?></div>
@@ -191,8 +207,8 @@ $document->addStyleSheet('components/com_cot_forms/assets/css/cot_forms.css');
             </div>
         </div>
         <?php echo JHtml::_('bootstrap.endTab'); ?>
-        
-        
+
+
 
         <?php echo JHtml::_('bootstrap.endTabSet'); ?>
 

@@ -45,47 +45,42 @@ class JFormRuleRegexp extends JdomClassFormRule
 	* @var string
 	*/
 	protected $handler = 'regexp';
-
+	
 	/**
-	* Method to test the field.
+	* Use this function to customize your own javascript rule.
+	* $this->regex must be null if you want to customize here.
 	*
 	* @access	public
-	* @param	SimpleXMLElement	$element	The JXMLElement object representing the <field /> tag for the form field object.
-	* @param	mixed	$value	The form field value to validate.
-	* @param	string	$group	The field name group control value. This acts as as an array container for the field.
-	* @param	JRegistry	$input	An optional JRegistry object with the entire data set to validate against the entire form.
-	* @param	JForm	$form	The form object for which the field is being tested.
+	* @param	JXMLElement	$fieldNode	The JXMLElement object representing the <field /> tag for the form field object.
 	*
-	* @return	boolean	True if the value is valid, false otherwise.
-	*
-	* @since	11.1
+	* @return	string	A JSON string representing the javascript rules validation.
 	*/
-	public function test(SimpleXMLElement $element, $value, $group = null, JRegistry $input = null, JForm $form = null)
+	public function getJsonRule($fieldNode)
 	{
-		// Common test : Required, Unique
-		if (!self::testDefaults($element, $value, $group, $input, $form))
-			return false;
-		// If the regexp is empty, the field is valid.
-		if (empty($element['regexp']))
-			return true;
+		// set regex and modifiers from the XML element
+		$this->setRegex($fieldNode);
+		
+		$regex = $this->regex;
+		if ($this->regexJs){
+			$regex = $this->regexJs;
+		}
 
-		$this->regex = $element['regexp'];
+		$values = array(
+			"#regex" => '/' . $regex . '/' . $this->modifiers
+		);
 
-		if (!empty($element['regexpModifiers']))
-			$this->modifiers = $element['regexpModifiers'];
+		if (isset($fieldNode['msg-incorrect']))
+			$values["alertText"] = LI_PREFIX . JText::_($fieldNode['msg-incorrect']);
+		else
+			$values["alertText"] = LI_PREFIX . JText::sprintf('JLIB_FORM_VALIDATE_FIELD_INVALID', JText::_($fieldNode['label']));
 
-		$invert = false;
-		if (!empty($element['regexpInvert']))
-			$invert = $element['regexpInvert'];
-
-		// Test the value against the regular expression.
-		$test = parent::test($element, $value, $group, $input, $form);
-
-		if ($invert?$test:!$test)
-			return false;
-
-		return true;
-	}
-
-
+		$json = JdomHtmlValidator::jsonFromArray($values);
+		return "{" . LN . $json . LN . "}";
+	}	
+	
+	public function setRegex($fieldNode)
+	{
+		$this->regex = (string)$fieldNode['regexp'];
+		$this->modifiers = (string)$fieldNode['regexpModifiers'];
+	}	
 }

@@ -49,29 +49,35 @@ class JDomHtmlFormInputSelectLimit extends JDomHtmlFormInputSelect
 		
 		
 		$app = JFactory::getApplication();
-		$limits = array();
-
+		
 		$list = array();
 		// Make the option list.
-		for ($i = 5; $i <= 30; $i += 5)
-		{
+		$limits = array(5,10,15,20,25,30,50,100);
+		foreach($limits as $i){
 			$list[] = array(
 				'value' => (string)$i,
 				'text' => $i
 			);
 		}
-
-		$list[] = array('value' => '50','text' =>  JText::_('J50'));
-		$list[] = array('value' => '100','text' =>  JText::_('J100'));
-		$list[] = array('value' => '0','text' =>  JText::_('JALL'));
-				
-
+		$limit = $pagination->get('limit');
+		
+		if($limit > 0 AND !in_array($limit, $limits)){
+			$lastStepTxt = $lastStep = $limit;
+		} else {
+			$lastStep = 0;
+			$lastStepTxt = JText::_('JALL');
+		}
+		
+		$list[] = array(
+			'value' => (string)$lastStep,
+			'text' => $lastStepTxt
+		);
+			
+		$dataValue = (string)($pagination->get('viewall') ? 0 : $limit);
 
 		$onChange = 'Joomla.submitform();';		
 		if (!$app->isAdmin())
 			$onChange = 'this.form.submit();';
-
-		$dataValue = (string)($pagination->get('viewall') ? 0 : $pagination->get('limit'));
 
 		$html = JDom::_('html.form.input.select.combo', array_merge($this->options, array(
 			'domClass' => 'input-mini ' . $this->options['domClass'],

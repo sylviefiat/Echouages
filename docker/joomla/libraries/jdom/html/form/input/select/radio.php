@@ -115,8 +115,7 @@ class JDomHtmlFormInputSelectRadio extends JDomHtmlFormInputSelect
 			$tooltipText = $this->parseKeys($item, $labelKey);
 				
 		
-		$checked = ($item->$listKey == $this->dataValue);
-
+		$checked = (isset($this->dataValue) AND isset($item->$listKey) AND $item->$listKey == $this->dataValue);
 		$js = '';
 
 		$options = array();

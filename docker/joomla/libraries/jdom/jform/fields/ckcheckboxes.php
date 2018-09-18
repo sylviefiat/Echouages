@@ -49,54 +49,21 @@ class JFormFieldCkcheckboxes extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-		$options = array();
-		if (!isset($this->jdomOptions['list']))
-		{
-			//Get the options from XML
-			foreach ($this->element->children() as $option)
-			{
-				$opt = new stdClass();
-				foreach($option->attributes() as $attr => $value)
-					$opt->$attr = (string)$value;
-		
-				$opt->text = JText::_(trim((string) $option));
-				$options[] = $opt;
-			}
-		} else {
-			$labelKey = $this->getOption('labelKey');
-			$listKey = $this->getOption('listKey');
-		
-			foreach($this->jdomOptions['list'] as $item){
-				$opt = new stdClass();
-				$opt->value = $item->$listKey;
-				$opt->text = $item->$labelKey;
-				$options[] = $opt;				
-			}
+		// explode comma separated values
+		$this->__set('default',explode(',',trim($this->default,',')));
+		if(!is_array($this->value) OR $this->value == ''){
+			$this->__set('value',$this->default);
 		}
-		$dataValue = (isset($this->value)) ? $this->value : $this->jdomOptions['dataValue'];
+		
+		$this->setCommonProperties();
 
-		$checkOptions = array_merge($this->jdomOptions, array(
-							'dataKey' => $this->getOption('name'),
-				'formGroup' => $this->group,
-				'formControl' => $this->formControl,
-			'domClass' => $this->getOption('class'),
-			'domId' => $this->id,
-			'domName' => $this->name,
-			'dataValue' => $dataValue,
-			'list' => $options,
-			'cols' => $this->getOption('cols'),
-			'responsive' => $this->getOption('responsive')
-		));
-			
-		$this->input = JDom::_('html.form.input.checkboxes', $checkOptions);		
+		$this->fieldOptions = array_merge($this->fieldOptions,$this->jdomOptions);
+
+		$this->input = JDom::_('html.form.input.checkboxes', $this->fieldOptions);
 		
 		return parent::getInput();
 	}
 
-	public function getLabel()
-	{
-		return parent::getLabel();
-	}
 
 
 }

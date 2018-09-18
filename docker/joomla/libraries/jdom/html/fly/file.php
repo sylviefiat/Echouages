@@ -23,6 +23,7 @@ class JDomHtmlFlyFile extends JDomHtmlFly
 {
 	var $fallback = 'default';		//Used for default
 
+	
 
 	protected $indirect;
 	protected $width;
@@ -35,6 +36,7 @@ class JDomHtmlFlyFile extends JDomHtmlFly
 	protected $listKey;
 	
 	protected $thumb;
+	protected $fullRoot; 
 
 	/*
 	 * Constuctor
@@ -75,6 +77,7 @@ class JDomHtmlFlyFile extends JDomHtmlFly
 		$this->arg('listKey'	, null, $args, 'id');
 		$this->arg('view'		, null, $args);
 		$this->arg('cid'		, null, $args);
+		$this->arg('fullRoot'	, null, $args, false); 
 
 		$this->thumb = ($this->width || $this->height);
 
@@ -83,6 +86,9 @@ class JDomHtmlFlyFile extends JDomHtmlFly
 		else if ($this->indirect === false)
 			$this->indirect = 'direct';
 
+    	if (!is_array($this->attrs)){
+    		$this->attrs = explode(",", $this->attrs);
+		}
 	}
 
 	function getFileUrl($thumb = false, $link = false)
@@ -94,9 +100,11 @@ class JDomHtmlFlyFile extends JDomHtmlFly
 		if (($this->indirect != 'index') && empty($this->dataValue))
 			return;
 		
-		if (empty($path))
-			$path = $this->root .DS. $this->dataValue;
-
+		$path = $this->dataValue;
+		if (!preg_match("/\[.+\]/", $path) AND !preg_match("/\{\{.+\}\}/", $path)){
+			$path = $this->root . $path;				
+		}
+		$path = trim(preg_replace("#/+#", "/", str_replace('\\','/',$path)),'/');
 
 		// $link = false when creating the image thumb. 'download' not allowed in this case.
 		// Then, pass a second time to eventually create the download URL	
@@ -114,7 +122,10 @@ class JDomHtmlFlyFile extends JDomHtmlFly
 			
 			);
 		}
-
+		if($this->fullRoot){
+			$options['fullRoot'] = $this->fullRoot;
+		}
+		
 		switch ($this->indirect)
 		{
 			case 'index':		// Indexed image url
@@ -123,16 +134,29 @@ class JDomHtmlFlyFile extends JDomHtmlFly
 					
 				$url = $helperClass::getIndexedFile($this->view, $this->dataKey, $cid, $options);
 				break;
+			
+			case 'physical':	// Physical file on the drive (url is a path here)
+			case 'direct':		// Direct url		
+				$url = $helperClass::getFile($path, $this->indirect, $options);				
+				if($this->fullRoot){
+					$url = JURI::root() . $url;
+				}				
+				$url = preg_replace( '/\\\\+/', '/', $url);
+				break;
 				
 			case 'indirect':	// Indirect file access
-			case 'physical':	// Physical file on the drive (url is a path here)
-			case 'direct':		// Direct url
 			default:
 				$url = $helperClass::getFile($path, $this->indirect, $options);
+				if($this->cid){
+					$url .= '&cid='. $this->cid;
+				}
+				
+				if($this->fullRoot){
+					$url = trim(str_replace(JURI::root(true),'',JURI::root()),'/') . $url;
+				}
 				break;
 		}	
 		
-			
 		/* Uncomment to see the returned url */
 		//echo('<pre>');print_r($url);echo('</pre>');
 

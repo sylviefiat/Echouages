@@ -97,7 +97,7 @@ class JFormRuleTime extends JdomClassFormRule
 	*
 	* @since	11.1
 	*/
-	public function test(SimpleXMLElement $element, $value, $group = null, JRegistry $input = null, JForm $form = null)
+	public function test(SimpleXMLElement &$element, &$value, $group = null, JRegistry $input = null, JForm &$form = null)
 	{
 		// Common test : Required, Unique
 		if (!self::testDefaults($element, $value, $group, $input, $form))
@@ -105,6 +105,12 @@ class JFormRuleTime extends JdomClassFormRule
 		//Convert the date format (strftime) in regular exprassion
 		$this->regex = JdomHelperDates::strftime2regex($this->dateFormat, false);
 
+		// Test the value against the regular expression.
+		$test = parent::test($element, $value, $group, $input, $form);
+		if (!$test){
+			return false;
+		}
+		
 		return true;
 	}
 

@@ -37,6 +37,14 @@ class JFormFieldCkcontentlanguage extends JdomClassFormField
 	* @var string
 	*/
 	public $type = 'ckcontentlanguage';
+
+	/**
+	 * Cached array of the category items.
+	 *
+	 * @var    array
+	 * @since  3.2
+	 */
+	protected static $opts = array();
 	
 	/**
 	* Method to get the field input markup.
@@ -49,97 +57,52 @@ class JFormFieldCkcontentlanguage extends JdomClassFormField
 	*/
 	public function getInput()
 	{
+		$this->setCommonProperties();
+		
 		$options = $this->getOptions();
 		
-		$this->input = JDom::_('html.form.input.select', array_merge(array(
-				'dataKey' => $this->getOption('name'),
-				'formGroup' => $this->group,
-				'formControl' => $this->formControl,
-				'domClass' => $this->getOption('class'),
-				'dataValue' => (string)$this->value,
-				'labelKey' => $this->getOption('labelKey'),
+		$multiple = $this->getOption('multiple');
+		
+		$type = 'select';
+		if($multiple){
+			$type = 'checkboxes';
+		}
+		
+		$thisOpts = array(
 				'list' => $options,
-				'listKey' => $this->getOption('listKey'),
-				'nullLabel' => $this->getOption('nullLabel'),
-				'responsive' => $this->getOption('responsive'),
 				'size' => $this->getOption('size', 3, 'int'),
 				'submitEventName' => ($this->getOption('submit') == 'true'?'onchange':null)
-			), $this->jdomOptions));
+			);
+		$this->fieldOptions = array_merge($this->fieldOptions,$thisOpts,$this->jdomOptions);
+		
+		$this->input = JDom::_('html.form.input.'. $type, $this->fieldOptions);
 
 		return parent::getInput();
 	}
 
-	public function getLabel()
-	{
-		return parent::getLabel();
-	}
-	
-	public function getOutput($tmplEngine = '')
-	{
-		$options = $this->getOptions();
-		$values = array();
-		foreach($options as $opt){
-			$listKey = $this->getOption('listKey') ? $this->getOption('listKey') : 'id';
-			$labelKey = $this->getOption('labelKey') ? $this->getOption('labelKey') : 'text';
-			$values[$opt->$listKey] = $opt->$labelKey;
-		}
-
-		$html = '';
-		$fieldName = $this->getOption('name');
-		switch($tmplEngine){
-			case 'doT':
-				$values = str_replace("'","\'",$this->escapeJsonString(json_encode($values)));
-				$html .= 
-					'{{ var value,tmp_val,vals = JSON.parse(\''. $values .'\');
-							tmp_val = it.'. $fieldName .';
-							}}
-							{{ if(typeof it.'. $fieldName .' == "boolean"){ 
-								tmp_val = 0;
-								if(it.'. $fieldName .'){
-									tmp_val = 1; }}
-								{{ } }}
-							{{ } 
-							value = vals[tmp_val]; }}
-						{{=value || ""}}';
-				break;
-				
-			default:
-				$html .= $values[$this->value];
-				break;
-		}
-
-		return $html;
-	}
-	
+		
 	protected function getOptions(){
-		$options = array();
+		// Hash for caching
+		$hash = md5($this->element);
+		
+		if (isset(static::$opts[$hash])){
+			return static::$opts[$hash];
+		}
+			
+		$options = parent::getOptions();
 		$opt = new stdClass();
 		$opt->text = JText::_('JALL');
 		$opt->value = '*';
 		$options[] = $opt;		
-		
-		if (!isset($this->jdomOptions['list']))
-		{
-			//Get the options from XML
-			foreach ($this->element->children() as $option)
-			{
-				$opt = new stdClass();
-				foreach($option->attributes() as $attr => $value)
-					$opt->$attr = (string)$value;
-		
-				$opt->text = JText::_(trim((string) $option));
-				$options[] = $opt;
-			}
-		} else {
-			$options = $this->jdomOptions['list'];
-		}
 		
 		$this->languages = $languages = JHtml::_('contentlanguage.existing');
 		foreach ($languages as $opt)
 		{
 			$options[] = $opt;
 		}
+
+		static::$opts[$hash] = $options;
 		
-		return $options;
+		return static::$opts[$hash];
 	}
 }

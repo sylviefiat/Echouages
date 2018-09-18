@@ -67,7 +67,7 @@ class JFormRuleRecaptcha extends JdomClassFormRule
 	*
 	* @since	11.1
 	*/
-	public function test(SimpleXMLElement $element, $value, $group = null, JRegistry $input = null, JForm $form = null)
+	public function test(SimpleXMLElement &$element, &$value, $group = null, JRegistry $input = null, JForm &$form = null)
 	{	
 		// TO DO: load just the language string, instead of the multicaptchaplugin
 		JDom::loadLanguageFiles(true,'multirecaptcha');

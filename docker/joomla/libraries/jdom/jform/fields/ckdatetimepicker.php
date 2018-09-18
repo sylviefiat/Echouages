@@ -49,15 +49,9 @@ class JFormFieldCkdatetimepicker extends JdomClassFormField
 	*/
 	public function getInput()
 	{
+		$this->setCommonProperties();	
 
-		
-
-		$this->input = JDom::_('html.form.input.datetimepicker', array_merge(array(
-				'dataKey' => $this->getOption('name'),
-				'formGroup' => $this->group,
-				'formControl' => $this->formControl,
-				'domClass' => $this->getOption('class'),
-				'dataValue' => $this->value,
+		$thisOpts = array(
 				'dateFormat' => $this->getOption('format'),
 				'uiFormat' => $this->getOption('uiFormat'),
 				'required' => $this->getOption('required'),
@@ -69,19 +63,15 @@ class JFormFieldCkdatetimepicker extends JdomClassFormField
 				'startDate' => $this->getOption('startDate'),
 				'endDate' => $this->getOption('endDate'),
 				'filter' => $this->getOption('filter'),
-				'placeholder' => $this->getOption('placeholder'),
-				'responsive' => $this->getOption('responsive'),
-				'size' => $this->getOption('size'),
 				'submitEventName' => ($this->getOption('submit') == 'true'?'onchange':null)
-			), $this->jdomOptions));
+			);
+		$this->fieldOptions = array_merge($this->fieldOptions,$thisOpts,$this->jdomOptions);
+		
+		$this->input = JDom::_('html.form.input.datetimepicker', $this->fieldOptions);
 
 		return parent::getInput();
 	}
 
-	public function getLabel()
-	{
-		return parent::getLabel();
-	}
 
 
 }

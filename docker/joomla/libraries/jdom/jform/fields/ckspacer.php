@@ -49,14 +49,19 @@ class JFormFieldCkspacer extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-
+		$this->setCommonProperties();
+		
 		$this->input = '';
 
 		return parent::getInput();
 	}
-
+	
 	public function getLabel()
 	{
+		$this->markup = 'span';
+		$this->labelclass .= $this->labelclass .' ckspacer';
+		
 		return parent::getLabel();
 	}
+
 }

@@ -56,12 +56,13 @@ class JDomHtmlFlyColor extends JDomHtmlFly
 	{
 		$this->addStyle('width', $this->width . 'px');
 		$this->addStyle('height', $this->height . 'px');
+		$this->addStyle('margin', '0px');
 		$this->addStyle('background-color', '#' . ltrim($this->dataValue, '#'));
 		$this->addStyle('display', 'inline-block');
 
 		$this->addClass('fly-color');
 
-		$html = '<span <%STYLE%><%CLASS%><%SELECTORS%>>'
+		$html = '<span <%STYLE%><%CLASS%><%SELECTORS%>>&nbsp;'
 			.	'</span>';
 
 

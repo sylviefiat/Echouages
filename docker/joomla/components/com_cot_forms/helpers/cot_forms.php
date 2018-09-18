@@ -14,46 +14,55 @@ abstract class Cot_formsHelper
 	public static function sendMail($data,$email_admin)
 	{
 		// Get JMail helper
-		$mailer =& JFactory::getMailer();		
+		$mailer =& JFactory::getMailer();
 
-		// Set the sender (from joomla configuration)	
+		// Set the sender (from joomla configuration)
 		$config = JFactory::getConfig();
 		$from =& $config->get( 'mailfrom' );
 		$fromname = $config->get( 'fromname' );
-		$sender = array( 
+		$sender = array(
 		$config->get( 'mailfrom' ),
 		$config->get( 'fromname' ) );
 		$mailer->setSender($sender);
 
 		// Set the recipient
 		$recipient = $email_admin;
-		$mailer->addRecipient($email_admin);				
+		$mailer->addRecipient($email_admin);
 
 		$valid = "<a href='".JURI::base()."index.php/administrer-les-observations/".$data['id']."?view=cot_admin'>Aller sur le site pour valider</a>";
 
-		$body   = "<h4>Un nouveau report d'acanthasters a été effectué:</h4>"
+		$body   = "<h4>Un nouveau report d'échouages a été effectué:</h4>"
 				."<div>Observateur: ".$data['observer_name']."</div>"
 				.($data['observer_tel']!== ''?"<div>Téléphone: ".$data['observer_tel']."</div>":"")
 				.($data['observer_email']!== ''?"<div>Mail: ".$data['observer_email']."</div>":"")
-				."<div>Date de l'observation: ".($data['observation_datetime'])."</div>"
+
+				."<div>Informateur: ".$data['informant_name']."</div>"
+				.($data['informant_tel']!== ''?"<div>Téléphone: ".$data['informant_tel']."</div>":"")
+				.($data['informant_email']!== ''?"<div>Mail: ".$data['informant_email']."</div>":"")
+
+				."<div>Date de l'observation: ".($data['observation_date'])."</div>"
+
 				."<div>Détails sur la position de l'observation: ".$data['observation_location']."</div>"
 				."<div>Position: ".$data['observation_localisation']."</div>"
 				.($data['observation_region']!== ''?"<div>Région: ".$data['observation_region']."</div>":"")
 				.($data['observation_country']!== ''?"<div>Pays: ".$data['observation_country']."</div>":"")
-				.($data['observation_number']!== ''?"<div>Nombre d'acanthsters: ".$data['observation_number']."</div>":"")
-				.($data['observation_culled']!== ''?"<div>Nombre d'acanthsters nettoyés: ".$data['observation_culled']."</div>":"")
+				.($data['observation_mammal_number']!== ''?"<div>Nombre de mammifères échouer: ".$data['observation_mammal_number']."</div>":"")
+
+				."<div>Identification: ".$data['observation_mammal_spaces']."</div>"
+
+				/*.($data['observation_culled']!== ''?"<div>Nombre d'acanthsters nettoyés: ".$data['observation_culled']."</div>":"")
 				."<div>Méthode d'observation: ".implode( ',', $data['observation_method'])."</div>"
 				.($data['depth_range']!== ''?"<div>Tranche de profondeur: ".implode(", ",$data['depth_range'])."</div>":"")
 				.($data['counting_method_timed_swim']!== ''&&$data['counting_method_distance_swim']!== ''&&$data['counting_method_other']!== ''?"<div>Méthode(s) de comptage: </div>":"")
 				.($data['counting_method_timed_swim']!== ''?"<div>temps de nage: ".$data['counting_method_timed_swim']."</div>":"")
 				.($data['counting_method_distance_swim']!== ''?"<div>distance parcourue: ".$data['counting_method_distance_swim']."</div>":"")
 				.($data['counting_method_other']!== ''?"<div>autre: ".$data['counting_method_other']."</div>":"")
-				.($data['remarks']!== ''?"<div>Remarques: ".$data['remarks']."</div>":"")
+				.($data['remarks']!== ''?"<div>Remarques: ".$data['remarks']."</div>":"")*/
 				."<div>Observation validation: ".$valid." </div>";
 
-		
-		$subject = "Oreanet NC: nouveau report de présence d'acanthasters en Nouvelle-Calédonie";
-		$mailer->setSubject("Oreanet NC: nouveau report de présence d'acanthasters en Nouvelle-Calédonie");
+
+		$subject = "Opération Cétacé NC: nouveau report d'échouge en Nouvelle-Calédonie";
+		$mailer->setSubject("Oreanet NC: nouveau report d'échouge en Nouvelle-Calédonie");
 		$mailer->setBody($body);
 		$mailer->AltBody =JMailHelper::cleanText( strip_tags( $body));
 
@@ -68,7 +77,6 @@ abstract class Cot_formsHelper
 		}
 	}
 
-	
+
 
 }
-

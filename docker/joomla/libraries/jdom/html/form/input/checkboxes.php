@@ -27,7 +27,11 @@ class JDomHtmlFormInputCheckboxes extends JDomHtmlFormInput
 	var $selectors;
 
 	protected $list;
-	
+
+	protected $listKey;
+	protected $labelKey;
+
+
 	/*
 	 * Constuctor
 	 * 	@namespace 	: requested class
@@ -49,12 +53,45 @@ class JDomHtmlFormInputCheckboxes extends JDomHtmlFormInput
 		$this->arg('domClass'	, null, $args);
 		$this->arg('selectors'	, null, $args);
 		
+
+		$this->arg('listKey'	, null, $args, 'value');
+		$this->arg('labelKey'	, null, $args, 'text');
+
+
+		$this->domId = $this->getInputId();
+		$this->domName = $this->getInputName();
+		
+		static $loaded;
+		
+		if(!$loaded){
+		
+		$doc = JFactory::getDocument();
+			$style = "
+ul.checkboxes {
+	list-style: none;
+	display: inline-block;
+}
+
+ul.checkboxes li label{
+	display: inline;
+	margin: 3px 0 0 5px;
+	float: none;
+}
+
+ul.checkboxes li input{
+	display: inline;
+	margin: 0;
+	height: auto;
+}";
+			$doc->addStyleDeclaration($style);
+			$loaded = true;
+		}
 	}
 
 	function build()
 	{
-		$output = '';
 
+		$output = '';
 		switch(gettype($this->dataValue)){
 			case'object':
 				$dataValues = (array)$this->dataValue;
@@ -73,22 +110,34 @@ class JDomHtmlFormInputCheckboxes extends JDomHtmlFormInput
 			break;
 		}
 		
+		$listKey = $this->listKey;
+		$labelKey = $this->labelKey;
+
 		$checkboxes = array();
 		foreach($this->list as $key => $opt){
 			$value = null;
-			if(in_array($opt->value, $dataValues)){
-				$value = $opt->value;
+			if(isset($opt->$listKey) AND in_array($opt->$listKey, $dataValues)){
+				$value = $opt->$listKey;
 			}
-
-			$checkOptions = array_merge($this->options, array(
+			
+			$inputVal = null;
+			if(isset($opt->$listKey)){
+				$inputVal = $opt->$listKey;
+			}
+			
+			$inputLabel = null;
+			if(isset($opt->$labelKey)){
+				$inputLabel = $opt->$labelKey;
+			}
+			
+			$checkboxes[] = JDom::_('html.form.input.checkbox', array_merge($this->options, array(
 				'dataValue' => $value,
 				'domId' => $this->domId .'_'. $key,
 				'domName' => $this->domName .'[]',
-				'inputValue' => $opt->value,
-				'inputLabel' => $opt->text
-			));
-			
-			$checkboxes[] = JDom::_('html.form.input.checkbox', $checkOptions);
+				'inputValue' => $inputVal,
+				'inputLabel' => $inputLabel
+			))
+			);
 		}
 		
 		

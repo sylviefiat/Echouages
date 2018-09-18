@@ -1,6 +1,7 @@
 <?php
 /**
 * @author		Girolamo Tomaselli http://bygiro.com - girotomaselli@gmail.com
+* @license		GNU General Public License
 */
 
 // no direct access
@@ -96,7 +97,7 @@ class JDomFrameworkJqueryMultirecaptcha extends JDomFrameworkJquery
 		$this->_getLanguage();
 		
 		$defaultSettings = str_replace("'","\'",$this->escapeJsonString(json_encode($this->defaultSettings)));
-		$script .= "var multirecaptchaByGiro_settings = JSON.parse('". $defaultSettings ."');";
+		$script = "var multirecaptchaByGiro_settings = JSON.parse('". $defaultSettings ."');";
 		$script .= 'jQuery(document).multirecaptchaByGiro(multirecaptchaByGiro_settings);';
 		$this->addScriptInLine($script, true);
 		

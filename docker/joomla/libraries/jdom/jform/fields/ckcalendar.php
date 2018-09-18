@@ -49,29 +49,21 @@ class JFormFieldCkcalendar extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-
-		$this->input = JDom::_('html.form.input.calendar', array_merge(array(
-				'dataKey' => $this->getOption('name'),
-				'formGroup' => $this->group,
-				'formControl' => $this->formControl,
-				'domClass' => $this->getOption('class'),
-				'dataValue' => $this->value,
+		$this->setCommonProperties();
+		
+		$thisOpts = array(
 				'dateFormat' => $this->getOption('format'),
 				'filter' => $this->getOption('filter'),
 				'selectors' => $this->getOption('selectors'),
-				'placeholder' => $this->getOption('placeholder'),
-				'responsive' => $this->getOption('responsive'),
-				'size' => $this->getOption('size'),
 				'submitEventName' => ($this->getOption('submit') == 'true'?'onchange':null)
-			), $this->jdomOptions));
+			);
+		$this->fieldOptions = array_merge($this->fieldOptions,$thisOpts, $this->jdomOptions);
+		
+		$this->input = JDom::_('html.form.input.calendar', $this->fieldOptions);
 
 		return parent::getInput();
 	}
 
-	public function getLabel()
-	{
-		return parent::getLabel();
-	}
 
 
 }

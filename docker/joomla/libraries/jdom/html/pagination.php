@@ -56,7 +56,7 @@ class JDomHtmlPagination extends JDomHtml
 		$list['limit']			= $pagination->limit;
 		$list['limitstart']		= $pagination->limitstart;
 		$list['total']			= $pagination->total;
-		$list['limitfield']		= $pagination->getLimitBox();
+		$list['limitfield']		= $this->getLimitBox($pagination->limit, $pagination->prefix); 
 		$list['pagescounter']	= $pagination->getPagesCounter();
 		$list['pageslinks']		= $pagination->getPagesLinks();
 
@@ -87,5 +87,62 @@ class JDomHtmlPagination extends JDomHtml
 
 		return $html;
 	}
+
+
+	/**
+	 * Creates a dropdown box for selecting how many records to show per page.
+	 *
+	 * @return  string  The HTML for the limit # input box.
+	 *
+	 * @since   11.1
+	 */
+	public function getLimitBox($limit = null, $prefix = null)
+	{
+		$app = JFactory::getApplication();
+		
+		// Initialise variables.
+		$options = array();
+
+		// Make the option list.
+		$limits = array(5,10,15,20,25,30,50,100);
+		foreach($limits as $st){
+			$options[] = JHtml::_('select.option', "$st");
+		}
+		
+		if($limit > 0 AND !in_array($limit, $limits)){			
+			$options[] = JHtml::_('select.option', $limit);
+		} else {
+			$options[] = JHtml::_('select.option', '0', JText::_('JALL'));
+		}
+		$selected = $limit;
+
+		// Build the select list.
+		if ($app->isAdmin())
+		{
+			$html = JHtml::_(
+				'select.genericlist',
+				$options,
+				$prefix . 'limit',
+				'class="inputbox" size="1" onchange="Joomla.submitform();"',
+				'value',
+				'text',
+				$selected
+			);
+		}
+		else
+		{
+			$html = JHtml::_(
+				'select.genericlist',
+				$options,
+				$prefix . 'limit',
+				'class="inputbox" size="1" onchange="this.form.submit()"',
+				'value',
+				'text',
+				$selected
+			);
+		}
+		return $html;
+	}
+		
 
 }

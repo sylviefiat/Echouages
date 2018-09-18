@@ -25,6 +25,7 @@ class JDomHtmlForm extends JDomHtml
 	var $fallback = 'input';	//Used for default
 
 	protected $dataKey;
+	protected $alias;
 	protected $dataObject;
 	protected $dataValue;
 
@@ -69,10 +70,14 @@ class JDomHtmlForm extends JDomHtml
 	function getInputId($suffix = null)
 	{
 		$id = $this->dataKey;
-		if ($this->formGroup != null)
+		if(isset($this->alias) AND $this->alias != ''){
+			$id = $this->alias;
+		}
+		
+		if (isset($this->formGroup) AND $this->formGroup != null)
 			$id = preg_replace("/\.(?!([^\{\{]+)?\}\})/i",'_',$this->formGroup) .'_'. $id;
 		
-		if ($this->formControl != null)
+		if (isset($this->formControl) AND $this->formControl != null)
 			$id = $this->formControl . '_' . $id;
 		
 		if ($suffix)

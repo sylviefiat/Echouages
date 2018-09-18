@@ -30,12 +30,20 @@
 	  , initPopover: function() {
 		var time = this.options.time,
 			start = (this.options.start || ''),
-			end = (this.options.end || '');
+			end = (this.options.end || ''),
+			step = (this.options.step || 1);
 
+		// check current input time
+		var currentTime = this.$element.find('.timepicker-bygiro-toggle > input[type="text"]').val();
+		if(currentTime != ''){
+			time = currentTime;
+		}
+		
 		this.$element.data('starthour', '');
 		this.$element.data('startminute', '');
 		this.$element.data('endhour', '');
 		this.$element.data('endminute', '');
+		this.$element.data('step', step);
 		if(start != '' && end != ''){
 			var sTimeParts = new String(start).split(":");
 			this.$element.data('starthour', sTimeParts[0]);
@@ -110,7 +118,7 @@
 	  , previousHour: function (e) {
 		var $this = $(this)
 		  , $parent
-		  , $timePicker
+		  , $timePicker;
 		  
 		$parent = $this.closest('.timepicker-bygiro')
 
@@ -163,7 +171,7 @@
 	  , nextHour: function (e) {
 		var $this = $(this)
 		  , $parent
-		  , $timePicker
+		  , $timePicker;
 		  
 		$parent = $this.closest('.timepicker-bygiro')
 
@@ -216,7 +224,7 @@
 	  , previousMinute: function (e) {
 		var $this = $(this)
 		  , $parent
-		  , $timePicker
+		  , $timePicker;
 		  
 		$parent = $this.closest('.timepicker-bygiro');
 		
@@ -225,12 +233,13 @@
 			starthour = $parent.data('starthour'),
 			startminute = $parent.data('startminute'),
 			endhour = $parent.data('endhour'),
-			endminute = $parent.data('endminute');
+			endminute = $parent.data('endminute'),
+			step = $parent.data('step');
 			
-		if (minute == 59 || minute < 0) {
+		if (minute == 59 || (minute - step) < 0) {
 			minute = 0;
 		} else {
-			minute--;
+			minute -= step;
 		}
 
 		// check valid minute
@@ -257,7 +266,7 @@
 	  , nextMinute: function (e) {
 		var $this = $(this)
 		  , $parent
-		  , $timePicker
+		  , $timePicker;
 		  
 		$parent = $this.closest('.timepicker-bygiro');
 		
@@ -266,12 +275,13 @@
 			starthour = $parent.data('starthour'),
 			startminute = $parent.data('startminute'),
 			endhour = $parent.data('endhour'),
-			endminute = $parent.data('endminute');
+			endminute = $parent.data('endminute'),
+			step = $parent.data('step');
 
-		if (minute == 59) {
+		if (minute == 59 || (minute + step) > 59) {
 			minute = 0;
 		} else {
-			minute++;
+			minute += step;
 		}
 
 		// check valid minute
@@ -298,7 +308,7 @@
 	  , toggle: function (e) {
 		  var $this = $(this)
 			, $parent
-			, isActive
+			, isActive;
 
 		  if ($this.is('.disabled, :disabled')) return
 
@@ -354,7 +364,8 @@
 	  $.fn.timepickerbygiro.Constructor = TimePickerByGiro
 
 	  $.fn.timepickerbygiro.defaults = {
-		time: ""
+		time: "",
+		step: 1
 	  }
 	  
 	  /* APPLY TO STANDARD TIMEPICKER ELEMENTS

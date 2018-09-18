@@ -49,41 +49,14 @@ class JFormFieldCkradio extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-		$options = array();
-		if (!isset($this->jdomOptions['list']))
-		{
-			//Get the options from XML
-			foreach ($this->element->children() as $option)
-			{
-				$opt = new stdClass();
-				foreach($option->attributes() as $attr => $value)
-					$opt->$attr = (string)$value;
+		$this->setCommonProperties();
 		
-				$opt->text = JText::_(trim((string) $option));
-				$options[] = $opt;
-			}
-		}
-		$this->input = JDom::_('html.form.input.radio', array_merge(array(
-				'dataKey' => $this->getOption('name'),
-				'formGroup' => $this->group,
-				'formControl' => $this->formControl,
-				'domClass' => $this->getOption('class'),
-				'dataValue' => (string)$this->value,
-				'labelKey' => $this->getOption('labelKey'),
-				'list' => $options,
-				'listKey' => $this->getOption('listKey'),
-				'nullLabel' => $this->getOption('nullLabel'),
-				'responsive' => $this->getOption('responsive'),
-				'submitEventName' => ($this->getOption('submit') == 'true'?'onclick':null),
-				'viewType' => $this->getOption('viewType')
-			), $this->jdomOptions));
+		$this->fieldOptions = array_merge($this->fieldOptions,$this->jdomOptions);
+		
+		$this->input = JDom::_('html.form.input.radio', $this->fieldOptions);
 
 		return parent::getInput();
 	}
 
-	public function getLabel()
-	{
-		return parent::getLabel();
-	}
 
 }

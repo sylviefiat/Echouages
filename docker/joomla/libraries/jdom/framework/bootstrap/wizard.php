@@ -1,6 +1,7 @@
 <?php
 /**
 * @author		Girolamo Tomaselli http://bygiro.com - girotomaselli@gmail.com
+* @license		GNU General Public License
 */
 
 // no direct access

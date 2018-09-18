@@ -333,4 +333,81 @@ class CkJLoader extends JLoader
 			}
 		}
 	}
+
+	public static function get_php_classes($php_code) {
+	  $classes = array();
+	  $tokens = token_get_all($php_code);
+	  $count = count($tokens);
+	  for ($i = 2; $i < $count; $i++) {
+		if (   $tokens[$i - 2][0] == T_CLASS
+			&& $tokens[$i - 1][0] == T_WHITESPACE
+			&& $tokens[$i][0] == T_STRING) {
+
+			$class_name = $tokens[$i][1];
+			$classes[] = $class_name;
+		}
+	  }
+	  return $classes;
+	}
+	
+
+	/**
+	 * Method to discover classes of a given type in a given path.
+	 *
+	 * @param   string   $classPrefix  The class name prefix to use for discovery.
+	 * @param   string   $parentPath   Full path to the parent folder for the classes to discover.
+	 * @param   boolean  $force        True to overwrite the autoload path value for the class if it already exists.
+	 * @param   boolean  $recurse      Recurse through all child directories as well as the parent path.
+	 *
+	 * @return  void
+	 *
+	 * @since   11.1
+	 */
+	public static function Ckdiscover($classPrefix = '', $parentPath, $force = true, $recurse = false)
+	{
+		try
+		{
+			if ($recurse)
+			{
+				$iterator = new RecursiveIteratorIterator(
+					new RecursiveDirectoryIterator($parentPath),
+					RecursiveIteratorIterator::SELF_FIRST
+				);
+			}
+			else
+			{
+				$iterator = new DirectoryIterator($parentPath);
+			}
+
+			foreach ($iterator as $file)
+			{
+				$fileName = $file->getFilename();
+
+				// Only load for php files.
+				// Note: DirectoryIterator::getExtension only available PHP >= 5.3.6
+				if ($file->isFile() && substr($fileName, strrpos($fileName, '.') + 1) == 'php')
+				{
+					$filepath = $file->getPath() . '/' . $fileName;
+					$php_code = file_get_contents($filepath);
+					$cls = self::get_php_classes($php_code);
+					
+					foreach($cls as $cl){
+						if(strpos($cl, $classPrefix) === false AND $classPrefix != ''){
+							continue;
+						}
+						
+						// Register the class with the autoloader if not already registered or the force flag is set.
+						if (empty(self::$classes[$cl]) || $force)
+						{
+							self::register($cl, $filepath);
+						}
+					}
+				}
+			}
+		}
+		catch (UnexpectedValueException $e)
+		{
+			// Exception will be thrown if the path is not a directory. Ignore it.
+		}
+	}	
 }

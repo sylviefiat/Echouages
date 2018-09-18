@@ -31,6 +31,7 @@ class JDomHtmlFormInputEditor extends JDomHtmlFormInput
 	var $width;
 	var $height;
 	var $editor;
+	var $buttons;
 
 	/*
 	 * Constuctor
@@ -60,9 +61,15 @@ class JDomHtmlFormInputEditor extends JDomHtmlFormInput
 		$this->arg('width'		, null, $args, '100%');
 		$this->arg('height'		, null, $args, $this->rows * 20);
 		$this->arg('editor'		, null, $args);
+		$this->arg('buttons'	, null, $args, false);
 		$this->arg('domClass'	, null, $args);
 		$this->arg('selectors'	, null, $args);
 
+		if(is_string($this->buttons) AND strpos($this->buttons,',') !== false){
+			$this->buttons = explode(',',$this->buttons);
+		} else if($this->buttons !== false){
+			$this->buttons = true;
+		}
 	}
 
 	function build()
@@ -72,9 +79,8 @@ class JDomHtmlFormInputEditor extends JDomHtmlFormInput
 		$editor = JFactory::getEditor($this->editor);
 		$editor->set( 'toolbar', 'Default' );
 
-
-		$html .= '<div class="form-widget">';
-		$html .= $editor->display($this->getInputName(), $this->dataValue, $this->width, $this->height, $this->cols, $this->rows, false, $this->domId);
+		$html .= '<div class="form-widget <%CLASSES%>">';
+		$html .= $editor->display($this->getInputName(), $this->dataValue, $this->width, $this->height, $this->cols, $this->rows, $this->buttons, $this->domId);
 		$html .= '</div>';
 
 		return $html;

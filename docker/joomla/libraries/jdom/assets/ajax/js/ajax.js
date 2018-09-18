@@ -136,7 +136,7 @@
 				},
 				'error' : function(jqXHR, textStatus, errorThrown){
 					if (typeof(thisp.error) != 'undefined')
-						opts.error(div, textStatus, errorThrown);
+						thisp.error(div, textStatus, errorThrown); 
 				}
 
 			});

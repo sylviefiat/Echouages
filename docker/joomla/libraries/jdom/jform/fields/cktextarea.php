@@ -49,25 +49,15 @@ class JFormFieldCktextarea extends JdomClassFormField
 	*/
 	public function getInput()
 	{
-
-		$this->input = JDom::_('html.form.input.textarea', array_merge(array(
-				'dataKey' => $this->getOption('name'),
-				'formGroup' => $this->group,
-				'formControl' => $this->formControl,
-				'domClass' => $this->getOption('class'),
-				'cols' => $this->getOption('cols'),
-				'dataValue' => $this->value,
-				'responsive' => $this->getOption('responsive'),
-				'rows' => $this->getOption('rows')
-			), $this->jdomOptions));
+		$this->setCommonProperties();
+		
+		$this->fieldOptions = array_merge($this->fieldOptions,$this->jdomOptions);
+		
+		$this->input = JDom::_('html.form.input.textarea', $this->fieldOptions);
 
 		return parent::getInput();
 	}
 
-	public function getLabel()
-	{
-		return parent::getLabel();
-	}
 
 
 }

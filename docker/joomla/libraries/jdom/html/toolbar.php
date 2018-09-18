@@ -95,10 +95,9 @@ class JDomHtmlToolbar extends JDomHtml
 		if ($this->align == 'right')
 			$this->items = array_reverse($this->items);
 
-
 		foreach($this->items as $item)
 		{
-			if (!count($item))
+			if (!count($item) OR strtolower($item[0]) == 'link')  // missing the LINK button, for example: "options"
 				continue;
 
 			$itemNameSpace = 'html.link.button.toolbar.' . strtolower($item[0]);
