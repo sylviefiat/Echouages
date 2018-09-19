@@ -24,7 +24,7 @@ $user = JFactory::getUser();
 <!-- Styling for making front end forms look OK -->
 <!-- This should probably be moved to the template CSS file -->
 <style>
-   
+
 
     #jform_rules-lbl{
         display:none;
@@ -62,8 +62,8 @@ $user = JFactory::getUser();
         js = jQuery.noConflict();
         js(document).ready(function(){
             js('#form-cot_admin').submit(function(event){
-                 
-            }); 
+
+            });
             document.getElementById("jform_counting_method_timed_swim_chbx").checked = document.getElementById("jform_counting_method_timed_swim").value.length>0?1:0;
             document.getElementById("jform_counting_method_distance_swim_chbx").checked = document.getElementById("jform_counting_method_distance_swim").value.length>0?1:0;
             document.getElementById("jform_counting_method_other_chbx").checked = document.getElementById("jform_counting_method_other").value.length>0?1:0;
@@ -71,7 +71,7 @@ $user = JFactory::getUser();
             enable_timed_swim(document.getElementById("jform_counting_method_timed_swim").value.length>0?true:false);
             enable_distance_swim(document.getElementById("jform_counting_method_distance_swim").value.length>0?true:false);
             enable_other(document.getElementById("jform_counting_method_other").value.length>0?true:false);
-            
+
         });
     });
 
@@ -101,7 +101,7 @@ $user = JFactory::getUser();
                 document.getElementById("jform_counting_method_other").removeAttribute('readonly');
         }
     }
-    
+
 </script>
 
 <div class="cot_admin-edit front-end-edit">
@@ -113,12 +113,13 @@ $user = JFactory::getUser();
     <?php endif; ?>
 
     <form id="form-cot_admin" action="<?php echo JRoute::_('index.php?option=com_cot_forms&task=cot_admin.save'); ?>" method="post" class="form-validate" enctype="multipart/form-data">
-    			<div class="row">
+
+    <div class="row">
 			    <div class="col-xs-12"><?php echo $this->form->getLabel('observer_name'); ?></div>
 			    <div class="col-lg-4 col-md-6 col-xs-12">
 				<div class="input-group">
-				    <span class="input-group-addon exergue"><span class="fa fa-user"></span></span> 
-				    <?php echo $this->form->getInput('observer_name'); ?> 
+				    <span class="input-group-addon exergue"><span class="fa fa-user"></span></span>
+				    <?php echo $this->form->getInput('observer_name'); ?>
 				    <span style="display:none;" ><?php echo $this->form->getInput('id'); ?></span>
 				</div>
 			    </div>
@@ -134,13 +135,38 @@ $user = JFactory::getUser();
 				    <?php echo $this->form->getInput('observer_email'); ?>
 				</div>
 			    </div>
-			</div>		
+			</div>
+
+      <!--Informant contact frontend-->
+      <div class="row">
+      <div class="col-xs-12"><?php echo $this->form->getLabel('informant_name'); ?></div>
+      <div class="col-lg-4 col-md-6 col-xs-12">
+    <div class="input-group">
+        <span class="input-group-addon exergue"><span class="fa fa-user"></span></span>
+        <?php echo $this->form->getInput('informant_name'); ?>
+        <span style="display:none;" ><?php echo $this->form->getInput('id'); ?></span>
+    </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-xs-12">
+    <div class="input-group">
+        <span class="input-group-addon"><span class="fa fa-phone"></span></span>
+        <?php echo $this->form->getInput('informant_tel'); ?>
+    </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-xs-12">
+    <div class="input-group">
+        <span class="input-group-addon exergue"><span class="fa fa-envelope"></span></span>
+        <?php echo $this->form->getInput('informant_email'); ?>
+    </div>
+      </div>
+  </div>
+
 			<div class="row">
 			    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_date'); ?></div>
 			    <div class="col-lg-4 col-md-6 col-xs-12">
 				<div class="input-group">
-				    <span class="input-group-addon exergue"><span class="fa fa-calendar"></span></span> 
-				    <?php echo $this->form->getInput('observation_datetime'); ?> 
+				    <span class="input-group-addon exergue"><span class="fa fa-calendar"></span></span>
+				    <?php echo $this->form->getInput('observation_datetime'); ?>
 				</div>
 			    </div>
 			    <div class="col-lg-8 col-md-6 col-xs-12">
@@ -149,7 +175,7 @@ $user = JFactory::getUser();
 				    <?php echo $this->form->getInput('observation_location'); ?>
 				</div>
 			    </div>
-			</div>	
+			</div>
 			<div class="row">
 			    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_localisation'); ?></div>
 			    <div class="col-md-12 col-md-12 col-xs-12">
@@ -158,22 +184,22 @@ $user = JFactory::getUser();
 				    <?php echo $this->form->getInput('observation_localisation'); ?>
 				</div>
 			    </div>
-			</div>	
+			</div>
 			<div class="row">
 			    <div class="col-md-6 col-md-6 col-xs-12">
 				<div class="input-group">
 				    <span class="input-group-addon"></span>
-				    <?php echo $this->form->getInput('observation_region'); ?> 
+				    <?php echo $this->form->getInput('observation_region'); ?>
 				</div>
 			    </div>
 			    <div class="col-md-6 col-md-6 col-xs-12">
 				<div class="input-group">
 				    <span class="input-group-addon"></span>
-				    <?php echo $this->form->getInput('observation_latitude'); ?> 
+				    <?php echo $this->form->getInput('observation_latitude'); ?>
 				</div>
 			    </div>
-			</div>	
-			<div class="row">			
+			</div>
+			<div class="row">
 			    <div class="col-md-6 col-md-6 col-xs-12">
 				<div class="input-group">
 				    <span class="input-group-addon"></span>
@@ -186,13 +212,13 @@ $user = JFactory::getUser();
 				    <?php echo $this->form->getInput('observation_longitude'); ?>
 				</div>
 			    </div>
-			</div>		
+			</div>
             		<div class="row">
 			    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_number'); ?></div>
 			    <div class="col-lg-6 col-md-6 col-xs-12">
 				<div class="input-group">
-				    <span class="input-group-addon"><span class="fa fa-tachometer"></span></span> 
-				    <?php echo $this->form->getInput('observation_number'); ?> 
+				    <span class="input-group-addon"><span class="fa fa-tachometer"></span></span>
+				    <?php echo $this->form->getInput('observation_number'); ?>
 				</div>
 			    </div>
 			    <div class="col-lg-6 col-md-6 col-xs-12">
@@ -202,9 +228,9 @@ $user = JFactory::getUser();
 				</div>
 			    </div>
 			</div>
-			
+
 			<div class="row">
-			    			    
+
 			    <div class="col-lg-6 col-md-6 col-xs-12">
 				<div class="form-group">
 				    <?php echo $this->form->getLabel('observation_method'); ?>
@@ -215,7 +241,7 @@ $user = JFactory::getUser();
 				    </div>
 				</div>
 			    </div>
-			    <div class="col-lg-6 col-md-6 col-xs-12">				
+			    <div class="col-lg-6 col-md-6 col-xs-12">
 				<div class="form-group">
 				    <?php echo $this->form->getLabel('depth_range'); ?>
 				    <div class="col-xs-offset-2 col-xs-10">
@@ -257,14 +283,14 @@ $user = JFactory::getUser();
     			           <?php echo $this->form->getInput('counting_method_other'); ?>
 			        </div>
 			    </div>
-			</div>	
-			
+			</div>
+
 			<div class="row">
 			    <div class="col-xs-12"><?php echo $this->form->getLabel('remarks'); ?></div>
 			    <div class="col-lg-12 col-md-12 col-xs-12">
 				<div class="input-group">
-				    <span class="input-group-addon"><span class="fa fa-comment "></span></span> 
-				    <?php echo $this->form->getInput('remarks'); ?> 
+				    <span class="input-group-addon"><span class="fa fa-comment "></span></span>
+				    <?php echo $this->form->getInput('remarks'); ?>
 				</div>
 			    </div>
 			</div>
@@ -274,8 +300,8 @@ $user = JFactory::getUser();
 			    	<div class="col-xs-12"><?php echo $this->form->getLabel('admin_validation'); ?></div>
 			    	<div class="col-lg-12 col-md-12 col-xs-12">
 				    <div class="input-group">
-				    	<span class="input-group-addon"><span class="fa fa-check "></span></span> 
-				    	<?php echo $this->form->getInput('admin_validation'); ?> 
+				    	<span class="input-group-addon"><span class="fa fa-check "></span></span>
+				    	<?php echo $this->form->getInput('admin_validation'); ?>
 				    </div>
 			    	</div>
 			    </div>
@@ -300,4 +326,3 @@ $user = JFactory::getUser();
         </div>
     </form>
 </div>
-

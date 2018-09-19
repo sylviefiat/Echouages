@@ -122,9 +122,9 @@ class Cot_formsViewCot_admins extends JViewLegacy
 		'a.observer_tel' => JText::_('COM_COT_FORMS_COT_ADMINS_OBSERVER_TEL'),
 		'a.observer_email' => JText::_('COM_COT_FORMS_COT_ADMINS_OBSERVER_EMAIL'),
 
-		'a.informant_name' => JText::_('COM_COT_FORMS_COT_ADMINS_OBSERVER_NAME'),
-		'a.informant_tel' => JText::_('COM_COT_FORMS_COT_ADMINS_OBSERVER_TEL'),
-		'a.informant_email' => JText::_('COM_COT_FORMS_COT_ADMINS_OBSERVER_EMAIL'),
+		'a.informant_name' => JText::_('COM_COT_FORMS_COT_ADMINS_INFORMANT_NAME'),
+		'a.informant_tel' => JText::_('COM_COT_FORMS_COT_ADMINS_INFORMANT_TEL'),
+		'a.informant_email' => JText::_('COM_COT_FORMS_COT_ADMINS_INFORMANT_EMAIL'),
 
 		'a.observation_date' => JText::_('COM_COT_FORMS_COT_ADMINS_OBSERVATION_DATE'),
 		'a.observation_location' => JText::_('COM_COT_FORMS_COT_ADMINS_OBSERVATION_LOCATION'),

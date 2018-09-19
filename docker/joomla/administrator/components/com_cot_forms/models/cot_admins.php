@@ -28,6 +28,7 @@ class Cot_formsModelCot_admins extends JModelList {
             $config['filter_fields'] = array(
                 'id', 'a.id',
                 'references', 'a.references',
+		'id_location', 'a.id_location',
                 'observer_name', 'a.observer_name',
                 'observer_tel', 'a.observer_tel',
                 'observer_email', 'a.observer_email',

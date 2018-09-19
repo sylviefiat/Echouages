@@ -62,7 +62,7 @@ if (!empty($this->extra_sidebar)) {
 <?php else : ?>
 	<div id="j-main-container">
 <?php endif;?>
-    
+
 		<div id="filter-bar" class="btn-toolbar">
 			<div class="filter-search btn-group pull-left">
 				<label for="filter_search" class="element-invisible"><?php echo JText::_('JSEARCH_FILTER');?></label>
@@ -91,7 +91,7 @@ if (!empty($this->extra_sidebar)) {
 					<?php echo JHtml::_('select.options', $sortFields, 'value', 'text', $listOrder);?>
 				</select>
 			</div>
-		</div>        
+		</div>
 		<div class="clearfix"> </div>
 		<table class="table table-striped" id="cot_adminList">
 			<thead>
@@ -109,7 +109,7 @@ if (!empty($this->extra_sidebar)) {
 						<?php echo JHtml::_('grid.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
 					</th>
                 <?php endif; ?>
-                    
+				<!--Observer contacts-->
 				<th class='left'>
 				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVER_NAME', 'a.observer_name', $listDirn, $listOrder); ?>
 				</th>
@@ -119,32 +119,57 @@ if (!empty($this->extra_sidebar)) {
 				<th class='left'>
 				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVER_EMAIL', 'a.observer_mail', $listDirn, $listOrder); ?>
 				</th>
+				<!--Informant Contacts-->
 				<th class='left'>
-				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_DATE', 'a.observation_datetime', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_INFORMANT_NAME', 'a.informant_name', $listDirn, $listOrder); ?>
 				</th>
+				<th class='left'>
+				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_INFORMANT_TEL', 'a.informant_tel', $listDirn, $listOrder); ?>
+				</th>
+				<th class='left'>
+				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_INFORMANT_EMAIL', 'a.informant_mail', $listDirn, $listOrder); ?>
+				</th>
+				<!--Date-->
+				<th class='left'>
+				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_DATE', 'a.observation_date', $listDirn, $listOrder); ?>
+				</th>
+				<!--Location-->
 				<th class='left'>
 				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_LOCATION', 'a.observation_location', $listDirn, $listOrder); ?>
 				</th>
+				<!--Number-->
 				<th class='left'>
-				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_NUMBER', 'a.observation_number', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_NUMBER', 'a.observation_mammal_number', $listDirn, $listOrder); ?>
 				</th>
+				<!--Spaces-->
 				<th class='left'>
-				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_CULLED', 'a.observation_culled', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_SPACES', 'a.observation_mammal_spaces', $listDirn, $listOrder); ?>
 				</th>
+				<!--Size-->
 				<th class='left'>
-				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_LIST', 'a.observation_list', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_SIZE', 'a.observation_mammal_size', $listDirn, $listOrder); ?>
 				</th>
+				<!--Levies-->
 				<th class='left'>
-				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_METHOD', 'a.observation_method', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_LEVIES', 'a.observation_levies', $listDirn, $listOrder); ?>
 				</th>
+				<!--Abnormalities-->
 				<th class='left'>
-				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_STATE', 'a.observation_state', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_ABNORMALITIES', 'a.observation_abnormalities', $listDirn, $listOrder); ?>
 				</th>
+				<!--State-->
+				<th class='left'>
+				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_STATE', 'a.observation_mammal_state', $listDirn, $listOrder); ?>
+				</th>
+				<!--State decomposition-->
+				<th class='left'>
+				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_STATE_DECOMPOSITION', 'a.observation_mammal_state_decomposition', $listDirn, $listOrder); ?>
+				</th>
+				<!--Admin validation-->
 				<th class='left'>
 				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_ADMIN_VALIDATION', 'a.admin_validation', $listDirn, $listOrder); ?>
 				</th>
-                    
-                    
+
                 <?php if (isset($this->items[0]->id)): ?>
 					<th width="1%" class="nowrap center hidden-phone">
 						<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
@@ -153,7 +178,7 @@ if (!empty($this->extra_sidebar)) {
 				</tr>
 			</thead>
 			<tfoot>
-                <?php 
+                <?php
                 if(isset($this->items[0])){
                     $colspan = count(get_object_vars($this->items[0]));
                 }
@@ -176,7 +201,7 @@ if (!empty($this->extra_sidebar)) {
                 $canChange	= $user->authorise('core.edit.state',	'com_cot_forms');
 				?>
 				<tr class="row<?php echo $i % 2; ?>">
-                    
+
                 <?php if (isset($this->items[0]->ordering)): ?>
 					<td class="order nowrap center hidden-phone">
 					<?php if ($canChange) :
@@ -205,7 +230,7 @@ if (!empty($this->extra_sidebar)) {
 						<?php echo JHtml::_('jgrid.published', $item->state, $i, 'cot_admins.', $canChange, 'cb'); ?>
 					</td>
                 <?php endif; ?>
-                    
+
 				<td>
 				<?php if (isset($item->checked_out) && $item->checked_out) : ?>
 					<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'cot_admins.', $canCheckin); ?>
@@ -235,28 +260,29 @@ if (!empty($this->extra_sidebar)) {
 				</td>
 				<td>
 
-					<?php echo $item->observation_number; ?>
+					<?php echo $item->observation_mammal_number; ?>
 				</td>
 				<td>
 
-					<?php echo $item->observation_culled; ?>
+					<?php echo $item->observation_levies; ?>
 				</td>
 				<td>
 
-					<?php echo $item->observation_list; ?>
+					<?php echo $item->observation_abnormalities; ?>
 				</td>
 				<td>
 
-					<?php echo $item->observation_method; ?>
+					<?php echo $item->observation_mammal_state; ?>
 				</td>
 				<td>
 
-					<?php echo $item->observation_state; ?>
+					<?php echo $item->observation_mammal_state_decomposition; ?>
 				</td>
 				<td>
 
 					<?php echo $item->admin_validation; ?>
 				</td>
+
 
                 <?php if (isset($this->items[0]->id)): ?>
 					<td class="center hidden-phone">
@@ -274,6 +300,4 @@ if (!empty($this->extra_sidebar)) {
 		<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>" />
 		<?php echo JHtml::_('form.token'); ?>
 	</div>
-</form>        
-
-		
+</form>

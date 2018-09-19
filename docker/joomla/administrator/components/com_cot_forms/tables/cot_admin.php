@@ -22,7 +22,7 @@ class Cot_formsTablecot_Admin extends JTable {
      */
     public function __construct(&$db) {
         //parent::__construct('#__cot_admin', 'id', $db);
-        parent::__construct('#__cetace_cot_admin_forms', 'id', $db);
+        parent::__construct('#__cot_admin_forms', 'id', $db);
     }
 
     /**

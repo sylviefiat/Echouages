@@ -32,15 +32,15 @@ defined('_JEXEC') or die;
     }
     function validateItem(item_id){
         document.getElementById('form-cot-admin-validate-' + item_id).submit();
-        
+
     }
     var map;
     function initMap(lat,lng,zoom) {
     	var div = document.getElementById("map");
         var map = new google.maps.Map(div, {
             center: {lat: lat, lng: lng},
-            zoom: zoom,	  
-	    mapTypeId: google.maps.MapTypeId.SATELLITE 
+            zoom: zoom,
+	    mapTypeId: google.maps.MapTypeId.SATELLITE
         });
 	if(zoom === 12){
 		var marker = new google.maps.Marker({
@@ -56,7 +56,7 @@ defined('_JEXEC') or die;
             var latitude = document.getElementById("latitude").innerText;
             var longitude = document.getElementById("longitude").innerText;
 	    if(!isNaN(parseFloat(latitude)) && !isNaN(parseFloat(longitude))){
-	    	initMap(parseFloat(latitude),parseFloat(longitude),12);		
+	    	initMap(parseFloat(latitude),parseFloat(longitude),12);
 	    } else {
 	    	initMap(-21.5, 165.5, 5);
 	    }
@@ -77,7 +77,7 @@ $lang->load('com_cot_forms', JPATH_ADMINISTRATOR);
 		<div class="panel-body">
 			<div class="row">
 				<div class="col-md-3 col-lg-3 " align="center"> <span class="fa fa-user fa-2x"></span> </div>
-				<div class=" col-md-9 col-lg-9 "> 
+				<div class=" col-md-9 col-lg-9 ">
                   			<table class="table table-user-information">
 						<tbody>
 							<tr>
@@ -96,9 +96,33 @@ $lang->load('com_cot_forms', JPATH_ADMINISTRATOR);
 					</table>
 				</div>
 			</div>
+
+      <!--Informant contacts-->
+      <div class="row">
+        <div class="col-md-3 col-lg-3 " align="center"> <span class="fa fa-user fa-2x"></span> </div>
+        <div class=" col-md-9 col-lg-9 ">
+                        <table class="table table-user-information">
+            <tbody>
+              <tr>
+                <td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_INFORMANT_NAME'); ?>: </td>
+                <td><?php echo $this->item->observer_name; ?></td>
+              </tr>
+              <tr>
+                <td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_INFORMANT_TEL'); ?>: </td>
+                <td><?php echo $this->item->observer_tel; ?></td>
+              </tr>
+              <tr>
+                <td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_INFORMANT_EMAIL'); ?>: </td>
+                <td><?php echo $this->item->observer_email; ?></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
 			<div class="row">
 				<div class="col-md-3 col-lg-3 " align="center"> <span class="fa fa-eye fa-2x"></span> </div>
-				<div class=" col-md-9 col-lg-9 "> 
+				<div class=" col-md-9 col-lg-9 ">
                   			<table class="table table-user-information">
 						<tbody>
 							<tr>
@@ -151,21 +175,21 @@ $lang->load('com_cot_forms', JPATH_ADMINISTRATOR);
 							<tr>
 								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_COUNTING_METHOD'); ?>: </td>
 								<td><?php if($this->item->counting_method_timed_swim!=='') {
-									echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_COUNTING_METHOD_TIMED_SWIM'); 
+									echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_COUNTING_METHOD_TIMED_SWIM');
 									echo ": ";
-									echo $this->item->counting_method_timed_swim; 
+									echo $this->item->counting_method_timed_swim;
 									if($this->item->counting_method_distance_swim!=='' || ($this->item->counting_method_distance_swim=='' && $this->item->counting_method_other!==''))
 										echo ', ';
-								} ?><br><br><?php if($this->item->counting_method_distance_swim!=='') { 
+								} ?><br><br><?php if($this->item->counting_method_distance_swim!=='') {
 									echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_COUNTING_METHOD_DISTANCE_SWIM');
 									echo ": ";
-									echo $this->item->counting_method_distance_swim; 
+									echo $this->item->counting_method_distance_swim;
 									if($this->item->counting_method_other!=='')
 										echo ', ';
 								} ?><br><br><?php if($this->item->counting_method_other!=='')  {
 									echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_COUNTING_METHOD_OTHER');
-									echo ": ";					 
-									echo $this->item->counting_method_other; 
+									echo ": ";
+									echo $this->item->counting_method_other;
 								} ?></td>
 							</tr>
 							<tr>
@@ -180,13 +204,13 @@ $lang->load('com_cot_forms', JPATH_ADMINISTRATOR);
 					</table>
 				</div>
 			</div>
-		</div>	
+		</div>
 
     </div>
-   
+
 	<a class="btn btn-primary" href="<?php echo JRoute::_('index.php?option=com_cot_forms&task=cot_admin.edit&id='.$this->item->id); ?>"><?php echo JText::_("COM_COT_FORMS_EDIT_ITEM"); ?></a>
 
-								
+
 	<a class="btn btn-primary" href="javascript:document.getElementById('form-cot-admin-delete-<?php echo $this->item->id ?>').submit()"><?php echo JText::_("COM_COT_FORMS_DELETE_ITEM"); ?></a>
 									<form id="form-cot-admin-delete-<?php echo $this->item->id; ?>" style="display:inline" action="<?php echo JRoute::_('index.php?option=com_cot_forms&task=cot-admin.remove'); ?>" method="post" class="form-validate" enctype="multipart/form-data">
 										<input type="hidden" name="jform[id]" value="<?php echo $this->item->id; ?>" />
@@ -204,8 +228,8 @@ $lang->load('com_cot_forms', JPATH_ADMINISTRATOR);
 										<?php echo JHtml::_('form.token'); ?>
 									</form>
 	<?php } ?>
-	
-								
+
+
 <?php
 else:
     echo JText::_('COM_COT_FORMS_ITEM_NOT_LOADED');

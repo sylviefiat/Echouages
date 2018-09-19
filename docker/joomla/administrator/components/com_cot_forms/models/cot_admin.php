@@ -114,7 +114,7 @@ class Cot_formsModelCot_admin extends JModelAdmin
 			// Set ordering to the last item if not set
 			if (@$table->ordering === '') {
 				$db = JFactory::getDbo();
-				$db->setQuery('SELECT MAX(ordering) FROM #__cot_admin');
+				$db->setQuery('SELECT MAX(ordering) FROM #__cot_admin_forms');
 				$max = $db->loadResult();
 				$table->ordering = $max+1;
 			}

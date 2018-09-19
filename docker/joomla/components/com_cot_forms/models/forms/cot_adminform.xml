@@ -15,17 +15,24 @@
 			description="ID_DESC"
 			readonly="true"
 			type="cktext"/>
+			<!--References-->
+			<field name="references"
+					alias="references"
+					class="form-control"
+					label="REFERENCES"
+					description="REFERENCES_DESC"
+					readonly="true"
+					type="text"/>
 
-	<!--beginning id_location-->
+	<!--id_location-->
 	<field name="id_location"
 					alias="id_location"
 					class="form-control"
-					label="ID"
+					label="ID_LOCATION"
 					filter="INT"
 					description="ID_DESC"
 					readonly="true"
 					type="cktext"/>
-<!--end id_location-->
 
 	<field name="observer_name"
 			alias="observer_name"
@@ -187,25 +194,96 @@
 				class="longitude form-control"
 				type="text"/>
 
-
-	<field name="observation_number"
-			alias="observation_number"
+<!--Number-->
+	<field name="observation_mammal_number"
+			alias="observation_mammal_number"
 			class="form-control"
-			label="OBSERVATION_NUMBER"
-			description="OBSERVATION_NUMBER_DESC"
-			hint="OBSERVATION_NUMBER"
+			label="OBSERVATION_MAMMAL_NUMBER"
+			description="OBSERVATION_MAMMAL_NUMBER_DESC"
+			hint="OBSERVATION_MAMMAL_NUMBER"
 			labelclass="control-label"
-			type="text"/>
-
-<!--beginning observation_sizes-->
-	<field name="observation_sizes"
-				 alias="observation_sizes"
+			type="cktext"/>
+<!--Size-->
+	<field name="observation_mammal_size"
+				 alias="observation_mammal_size"
 				 class="sizes form-control"
 				 label="OBSERVATION_SIZES"
 				 description="OBSERVATION_SIZES_DESC"
 				 hint="OBSERVATION_SIZES"
+				 labelclass="control-label"
 				 type="text"/>
-<!--end observation_sizes-->
+<!--Sexe-->
+<field name="observation_mammal_sex"
+			alias="observation_mammal_sex"
+			class="sizes form-control"
+			label="OBSERVATION_MAMMAL_SEX"
+			description="OBSERVATION_MAMMAL_SEX_DESC"
+			hint="OBSERVATION_MAMMAL_SEX"
+			labelclass="control-label"
+			type="checkboxes"
+			required="true"
+			multiple="false">
+			<option value="mal">OBSERVATION_GENDER_A</option>
+			<option value="femal">OBSERVATION_GENDER_B</option>
+			<option value="unknown">OBSERVATION_GENDER_C</option>
+		</field>
+<!--Spaces-->
+	<field name="observation_mammal_spaces"
+				 alias="observation_mammal_spaces"
+				 class="sizes form-control"
+				 label="OBSERVATION_MAMMAL_SIZE"
+				 description="OBSERVATION_MAMMAL_SIZE_DESC"
+				 hint="OBSERVATION_MAMMAL_SIZE"
+				 labelclass="control-label"
+				 type="text"/>
+<!--Spaces identification-->
+<field name="observation_mammal_spaces_identification"
+			alias="observation_mammal_spaces_identification"
+			class="sizes form-control"
+			label="OBSERVATION_MAMMAL_SPACES_IDENTIFICATION"
+			description="OBSERVATION_MAMMAL_SPACES_IDENTIFICATION_DESC"
+			hint="OBSERVATION_MAMMAL_SPACES_IDENTIFICATION"
+			labelclass="control-label"
+			type="checkboxes"
+			required="true"
+			multiple="false">
+			<option value="probable">OBSERVATION_IDENTIFICATION_A</option>
+			<option value="certain">OBSERVATION_IDENTIFICATION_B</option>
+		</field>
+<!--Abnormalities-->
+<field name="observation_abnormalities"
+			 alias="observation_abnormalities"
+			 class="abnormalities form-control"
+			 label="OBSERVATION_ABNORMALITIES"
+			 descrtiption="OBSERVATION_ABNORMALITIES_DESC"
+			 hint="OBSERVATION_ABNORMALITIES"
+			 labelclass="control-label"
+			 type="text"/>
+<!--Levies -->
+<field name="observation_levies"
+			 alias="observation_levies"
+			 class="levies form-control"
+			 label="OBSERVATION_MAMMAL_LEVIES"
+			 descrtiption="OBSERVATION_MAMMAL_LEVIES_DESC"
+			 hint="OBSERVATION_MAMMAL_LEVIES"
+			 labelclass="control-label"
+			 type="text"/>
+<!--State-->
+<field name="observation_mammal_state"
+			 alias="observation_mammal_state"
+			 class="state form-control"
+			 label="OBSERVATION_MAMMAL_STATE"
+			 description="OBSERVATION_MAMMAL_STATE_DESC"
+			 hint="OBSERVATION_MAMMAL_STATE"
+			 type="text"/>
+<!--State decomposition-->
+<field name="observation_mammal_state"
+			 alias="observation_mammal_state"
+			 class="state form-control"
+			 label="OBSERVATION_MAMMAL_STATE_DECOMPOSITION"
+			 description="OBSERVATION_MAMMAL_STATE_DECOMPOSITION_DESC"
+			 hint="OBSERVATION_MAMMAL_STATE_DECOMPOSITION"
+			 type="text"/>
 
 	<field name="observation_culled"
 			alias="observation_culled"
