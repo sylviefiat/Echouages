@@ -153,7 +153,8 @@ $document->addStyleSheet('components/com_cot_forms/assets/css/cot_forms.css');
 				<div class="control-label"><?php echo $this->form->getLabel('observation_mammal_number'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('observation_mammal_number'); ?></div>
 			</div>
-    <!--
+
+    <!-- Début - code a supprimé -->
 			<div class="control-group">
 				<div class="control-label"><?php echo $this->form->getLabel('observation_culled'); ?></div>
 				<div class="controls"><?--php echo $this->form->getInput('observation_culled'); ?></div>
@@ -197,7 +198,8 @@ $document->addStyleSheet('components/com_cot_forms/assets/css/cot_forms.css');
 				<div class="control-label"><?php echo $this->form->getLabel('observation_state'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('observation_state'); ?></div>
 			</div>
--->
+<!-- Fin - Code a supprimé -->
+
 			<div class="control-group">
 				<div class="control-label"><?php echo $this->form->getLabel('admin_validation'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('admin_validation'); ?></div>

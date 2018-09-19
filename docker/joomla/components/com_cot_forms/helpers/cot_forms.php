@@ -33,12 +33,12 @@ abstract class Cot_formsHelper
 
 		$body   = "<h4>Un nouveau report d'échouages a été effectué:</h4>"
 				."<div>Observateur: ".$data['observer_name']."</div>"
-				.($data['observer_tel']!== ''?"<div>Téléphone: ".$data['observer_tel']."</div>":"")
-				.($data['observer_email']!== ''?"<div>Mail: ".$data['observer_email']."</div>":"")
+				.($data['observer_tel']!== ''?"<div>Téléphone de l'observateur: ".$data['observer_tel']."</div>":"")
+				.($data['observer_email']!== ''?"<div>Mail de l'observateur: ".$data['observer_email']."</div>":"")
 
 				."<div>Informateur: ".$data['informant_name']."</div>"
-				.($data['informant_tel']!== ''?"<div>Téléphone: ".$data['informant_tel']."</div>":"")
-				.($data['informant_email']!== ''?"<div>Mail: ".$data['informant_email']."</div>":"")
+				.($data['informant_tel']!== ''?"<div>Téléphone de l'informateur: ".$data['informant_tel']."</div>":"")
+				.($data['informant_email']!== ''?"<div>Mail de l'informateur: ".$data['informant_email']."</div>":"")
 
 				."<div>Date de l'observation: ".($data['observation_date'])."</div>"
 
@@ -50,19 +50,20 @@ abstract class Cot_formsHelper
 
 				."<div>Identification: ".$data['observation_mammal_spaces']."</div>"
 
-				/*.($data['observation_culled']!== ''?"<div>Nombre d'acanthsters nettoyés: ".$data['observation_culled']."</div>":"")
+				.($data['observation_culled']!== ''?"<div>Nombre d'acanthsters nettoyés: ".$data['observation_culled']."</div>":"")
 				."<div>Méthode d'observation: ".implode( ',', $data['observation_method'])."</div>"
 				.($data['depth_range']!== ''?"<div>Tranche de profondeur: ".implode(", ",$data['depth_range'])."</div>":"")
 				.($data['counting_method_timed_swim']!== ''&&$data['counting_method_distance_swim']!== ''&&$data['counting_method_other']!== ''?"<div>Méthode(s) de comptage: </div>":"")
 				.($data['counting_method_timed_swim']!== ''?"<div>temps de nage: ".$data['counting_method_timed_swim']."</div>":"")
 				.($data['counting_method_distance_swim']!== ''?"<div>distance parcourue: ".$data['counting_method_distance_swim']."</div>":"")
 				.($data['counting_method_other']!== ''?"<div>autre: ".$data['counting_method_other']."</div>":"")
-				.($data['remarks']!== ''?"<div>Remarques: ".$data['remarks']."</div>":"")*/
+				.($data['remarks']!== ''?"<div>Remarques: ".$data['remarks']."</div>":"")
+
 				."<div>Observation validation: ".$valid." </div>";
 
 
 		$subject = "Opération Cétacé NC: nouveau report d'échouge en Nouvelle-Calédonie";
-		$mailer->setSubject("Oreanet NC: nouveau report d'échouge en Nouvelle-Calédonie");
+		$mailer->setSubject("Opération Cétacé NC: nouveau report d'échouge en Nouvelle-Calédonie");
 		$mailer->setBody($body);
 		$mailer->AltBody =JMailHelper::cleanText( strip_tags( $body));
 
@@ -76,7 +77,4 @@ abstract class Cot_formsHelper
 		    return 'Mail sent';
 		}
 	}
-
-
-
 }

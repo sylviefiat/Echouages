@@ -46,7 +46,7 @@ defined('_JEXEC') or die;
 		var marker = new google.maps.Marker({
 		    position: {lat: lat, lng: lng},
 		    map: map,
-		    title: 'Acanthasters!'
+		    title: 'Echouages!'
 		});
 	}
     }
