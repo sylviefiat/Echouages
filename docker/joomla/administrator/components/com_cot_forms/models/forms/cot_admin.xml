@@ -32,6 +32,7 @@
 					readonly="true"
 					type="cktext"/>
 
+<!--Observer contacts-->
 	<field name="observer_name"
 			alias="observer_name"
 			label="OBSERVER_NAME"
@@ -52,7 +53,7 @@
 			description="OBSERVER_EMAIL_DESC"
 			type="email"/>
 
-			<!--beginning Informant contacts-->
+			<!--Informant contacts-->
 						<field name="informant_name"
 								alias="observer_name"
 								label="OBSERVER_NAME"
@@ -72,8 +73,8 @@
 								label="OBSERVER_EMAIL"
 								description="OBSERVER_EMAIL_DESC"
 								type="email"/>
-			<!--end Informant contacts-->
 
+<!--Date-->
 	<field name="observation_datetime"
 			alias="observation_datetime"
 			class="form-control form-calendar"
@@ -173,12 +174,12 @@
 							labelclass="control-label"
 							type="cktext"/>
 
-<!--	<field name="observation_number"
+	<!--<field name="observation_number"
 			alias="observation_number"
 			label="OBSERVATION_NUMBER"
 			description="OBSERVATION_NUMBER_DESC"
 			labelclass="control-label"
-			type="cktext"/>	-->
+			type="cktext"/>-->
 
 			<!--Size-->
 				<field name="observation_mammal_size"
@@ -235,21 +236,35 @@
 						 descrtiption="OBSERVATION_MAMMAL_LEVIES_DESC"
 						 labelclass="control-label"
 						 type="text"/>
-			<!--State-->
-			<field name="observation_mammal_state"
-						 alias="observation_mammal_state"
-						 class="state"
-						 label="OBSERVATION_MAMMAL_STATE"
-						 description="OBSERVATION_MAMMAL_STATE_DESC"
-						 type="text"/>
-						 <!--State decomposition-->
-			 			<field name="observation_mammal_state"
-			 						 alias="observation_mammal_state"
-			 						 class="state_decomposition"
-			 						 label="OBSERVATION_MAMMAL_STATE_DECOMPOSITION"
-			 						 description="OBSERVATION_MAMMAL_STATE_DECOMPOSITION_DESC"
-			 						 type="text"/>
 
+			 <!--State-->
+		 	<field name="observation_mammal_state"
+		 				 alias="observation_mammal_state"
+		 				 class="state"
+		 				 label="OBSERVATION_MAMMAL_STATE"
+		 				 description="OBSERVATION_MAMMAL_STATE_DESC"
+		 				 type="checkboxes"
+		 				 required="true"
+		 				 multiple="false">
+		 				 <option value="death">OBSERVATION_MAMMAL_STATE_A</option>
+		 				 <option value="alive">OBSERVATION_MAMMAL_STATE_B</option>
+		 				</field>
+		 <!--State decomposition-->
+		 <field name="observation_mammal_state"
+			 			alias="observation_mammal_state"
+			 			class="state_decomposition"
+			 			label="OBSERVATION_MAMMAL_STATE_DECOMPOSITION"
+			 			description="OBSERVATION_MAMMAL_STATE_DECOMPOSITION_DESC"
+						type="checkboxes"
+						required="true"
+						multiple="false">
+						<option value="very fresh">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_A</option>
+						<option value="fresh">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_B</option>
+						<option value="putrefactive">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_C</option>
+						<option value="verry putrefactive">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_D</option>
+						<option value="remains">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_E</option>
+					</field>
+<!--
 	<field name="observation_culled"
 			alias="observation_culled"
 			label="OBSERVATION_CULLED"
@@ -300,6 +315,7 @@
 		<option value="medium">Medium (2-10m)</option>
 		<option value="deep">Deep (more than 10m)</option>
 	</field>
+-->
 
 	<field name="remarks"
 			alias="remarks"
@@ -308,7 +324,7 @@
 			description="REMARKS_DESC"
 			type="cktextarea"/>
 
-	<field name="observation_state"
+<!--	<field name="observation_state"
 			alias="observation_state"
 			label="OBSERVATION_STATE"
 			description="OBSERVATION_STATE_DESC"
@@ -320,7 +336,7 @@
 		<option value="Low">OBSERVATION_STATE_A</option>
 		<option value="Medium">OBSERVATION_STATE_B</option>
 		<option value="High">OBSERVATION_STATE_C</option>
-	</field>
+	</field>-->
 
 	<field name="admin_validation"
 			alias="admin_validation"

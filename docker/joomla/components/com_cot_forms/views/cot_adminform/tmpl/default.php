@@ -160,7 +160,7 @@ $user = JFactory::getUser();
     </div>
       </div>
   </div>
-
+<!--Date-->
 			<div class="row">
 			    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_date'); ?></div>
 			    <div class="col-lg-4 col-md-6 col-xs-12">
@@ -169,13 +169,14 @@ $user = JFactory::getUser();
 				    <?php echo $this->form->getInput('observation_datetime'); ?>
 				</div>
 			    </div>
-			    <div class="col-lg-8 col-md-6 col-xs-12">
+			    <!--<div class="col-lg-8 col-md-6 col-xs-12">
 				<div class="input-group">
 				    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-				    <?php echo $this->form->getInput('observation_location'); ?>
+				    <?php //echo $this->form->getInput('observation_location'); ?>
 				</div>
-			    </div>
+      </div>-->
 			</div>
+
 			<div class="row">
 			    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_localisation'); ?></div>
 			    <div class="col-md-12 col-md-12 col-xs-12">
@@ -213,50 +214,52 @@ $user = JFactory::getUser();
 				</div>
 			    </div>
 			</div>
+
+      <!--Number-->
             		<div class="row">
-			    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_number'); ?></div>
+			    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_mammal_number'); ?></div>
 			    <div class="col-lg-6 col-md-6 col-xs-12">
 				<div class="input-group">
 				    <span class="input-group-addon"><span class="fa fa-tachometer"></span></span>
-				    <?php echo $this->form->getInput('observation_number'); ?>
+				    <?php echo $this->form->getInput('observation_mammal_number'); ?>
 				</div>
 			    </div>
-			    <div class="col-lg-6 col-md-6 col-xs-12">
+          <!--<div class="col-lg-6 col-md-6 col-xs-12">
 				<div class="input-group">
 				    <span class="input-group-addon"><span class="fa fa-refresh"></span></span>
-				    <?php echo $this->form->getInput('observation_culled'); ?>
+				    <?//php echo $this->form->getInput('observation_culled'); ?>
 				</div>
-			    </div>
+      </div>-->
 			</div>
 
-			<div class="row">
+			<!--<div class="row">
 
 			    <div class="col-lg-6 col-md-6 col-xs-12">
 				<div class="form-group">
-				    <?php echo $this->form->getLabel('observation_method'); ?>
+				    <?php //echo $this->form->getLabel('observation_method'); ?>
 				    <div class="col-xs-offset-2 col-xs-10">
 					<div class="checkbox">
-					    <label><?php echo $this->form->getInput('observation_method'); ?></label>
+					    <label><?php //echo $this->form->getInput('observation_method'); ?></label>
 					</div>
 				    </div>
 				</div>
 			    </div>
 			    <div class="col-lg-6 col-md-6 col-xs-12">
 				<div class="form-group">
-				    <?php echo $this->form->getLabel('depth_range'); ?>
+				    <?php //echo $this->form->getLabel('depth_range'); ?>
 				    <div class="col-xs-offset-2 col-xs-10">
 					<div class="checkbox">
-					    <label><?php echo $this->form->getInput('depth_range'); ?></label>
+					    <label><?php //echo $this->form->getInput('depth_range'); ?></label>
 					</div>
 				    </div>
 				</div>
 			    </div>
-			</div>
+			</div>-->
 
-			<div class="row">
+			<!--<div class="row">
 			    <div class="col-xs-12">
-				<label id="jform_counting_method_label" class="hasTooltip" title="<?php echo JText::_('OBSERVATION_COUNTING_METHOD_DESC');?>">
-                                    <?php echo JText::_('OBSERVATION_COUNTING_METHOD');?>
+				<label id="jform_counting_method_label" class="hasTooltip" title="<?php //echo JText::_('OBSERVATION_COUNTING_METHOD_DESC');?>">
+                                    <?php //echo JText::_('OBSERVATION_COUNTING_METHOD');?>
                                 </label>
 			    </div>
 			    <div class="col-lg-4 col-md-6 col-xs-12">
@@ -264,7 +267,7 @@ $user = JFactory::getUser();
 			           <span class="input-group-addon">
 				        <input id="jform_counting_method_timed_swim_chbx" class="control-label" type="checkbox" name="counting_method_timed_swim" onclick="enable_timed_swim(this.checked)">
 			           </span>
-    			           <?php echo $this->form->getInput('counting_method_timed_swim'); ?>
+    			           <?php //echo $this->form->getInput('counting_method_timed_swim'); ?>
 			        </div>
 			    </div>
 			    <div class="col-lg-4 col-md-6 col-xs-12">
@@ -272,7 +275,7 @@ $user = JFactory::getUser();
 			           <span class="input-group-addon">
 				        <input id="jform_counting_method_distance_swim_chbx" class="control-label" type="checkbox" name="counting_method_distance_swim" onclick="enable_distance_swim(this.checked)" >
 			           </span>
-    			           <?php echo $this->form->getInput('counting_method_distance_swim'); ?>
+    			           <?php //echo $this->form->getInput('counting_method_distance_swim'); ?>
 			        </div>
 			    </div>
 			    <div class="col-lg-4 col-md-6 col-xs-12">
@@ -280,10 +283,10 @@ $user = JFactory::getUser();
 			           <span class="input-group-addon">
 				        <input id="jform_counting_method_other_chbx" class="control-label" type="checkbox" name="counting_method_other" onclick="enable_other(this.checked)" >
 			           </span>
-    			           <?php echo $this->form->getInput('counting_method_other'); ?>
+    			           <?php //echo $this->form->getInput('counting_method_other'); ?>
 			        </div>
 			    </div>
-			</div>
+			</div>-->
 
 			<div class="row">
 			    <div class="col-xs-12"><?php echo $this->form->getLabel('remarks'); ?></div>

@@ -7,7 +7,8 @@
 		printable="true"
 		addfieldpath="/libraries/jdom/jform/fields"
 		>
-	<field name="id"
+		<!--Id-->
+<field name="id"
 			alias="id"
 			class="form-control"
 			label="ID"
@@ -15,14 +16,15 @@
 			description="ID_DESC"
 			readonly="true"
 			type="cktext"/>
-			<!--References-->
-			<field name="references"
-					alias="references"
-					class="form-control"
-					label="REFERENCES"
-					description="REFERENCES_DESC"
-					readonly="true"
-					type="text"/>
+
+	<!--References-->
+<field name="references"
+			 alias="references"
+			 class="form-control"
+			 label="REFERENCES"
+			 description="REFERENCES_DESC"
+			 readonly="true"
+			 type="text"/>
 
 	<!--id_location-->
 	<field name="id_location"
@@ -34,6 +36,7 @@
 					readonly="true"
 					type="cktext"/>
 
+<!--Observer contacts-->
 	<field name="observer_name"
 			alias="observer_name"
 			class="form-control"
@@ -60,34 +63,34 @@
 			hint="OBSERVER_EMAIL"
 			type="email"/>
 
-<!--beginning Informant contacts-->
+<!--Informant contacts-->
 			<field name="informant_name"
-					alias="observer_name"
+					alias="informant_name"
 					class="form-control"
-					label="OBSERVER_NAME"
+					label="INFORMANT_NAME"
 					filter="STRING"
-					description="OBSERVER_NAME_DESC"
+					description="INFORMANT_NAME_DESC"
 					required="true"
-					hint="OBSERVER_NAME_PL"
+					hint="INFORMANT_NAME_PL"
 					type="text"/>
 
 			<field name="informant_tel"
-					alias="observer_tel"
+					alias="informant_tel"
 					class="form-control"
-					label="OBSERVER_TEL"
-					description="OBSERVER_TEL_DESC"
-					hint="OBSERVER_TEL"
+					label="INFORMANT_TEL"
+					description="INFORMANT_TEL_DESC"
+					hint="INFORMANT_TEL"
 					type="tel"/>
 
 			<field name="informant_email"
-					alias="observer_email"
+					alias="informant_email"
 					class="form-control"
-					label="OBSERVER_EMAIL"
-					description="OBSERVER_EMAIL_DESC"
-					hint="OBSERVER_EMAIL"
+					label="INFORMANT_EMAIL"
+					description="INFORMANT_EMAIL_DESC"
+					hint="INFORMANT_EMAIL"
 					type="email"/>
-<!--end Informant contacts-->
 
+<!--Date-->
 	<field name="observation_datetime"
 			alias="observation_datetime"
 			class="form-control form-calendar"
@@ -275,17 +278,30 @@
 			 label="OBSERVATION_MAMMAL_STATE"
 			 description="OBSERVATION_MAMMAL_STATE_DESC"
 			 hint="OBSERVATION_MAMMAL_STATE"
-			 type="text"/>
+			 type="checkboxes"
+			 required="true"
+			 multiple="false">
+			 <option value="death">OBSERVATION_MAMMAL_STATE_A</option>
+			 <option value="alive">OBSERVATION_MAMMAL_STATE_B</option>
+		 </field>
 <!--State decomposition-->
-<field name="observation_mammal_state"
-			 alias="observation_mammal_state"
-			 class="state form-control"
-			 label="OBSERVATION_MAMMAL_STATE_DECOMPOSITION"
-			 description="OBSERVATION_MAMMAL_STATE_DECOMPOSITION_DESC"
-			 hint="OBSERVATION_MAMMAL_STATE_DECOMPOSITION"
-			 type="text"/>
+ <field name="observation_mammal_state"
+				alias="observation_mammal_state"
+				class="state_decomposition form-control"
+				label="OBSERVATION_MAMMAL_STATE_DECOMPOSITION"
+				description="OBSERVATION_MAMMAL_STATE_DECOMPOSITION_DESC"
+				hint="OBSERVATION_MAMMAL_STATE_DECOMPOSITION"
+				type="checkboxes"
+				required="true"
+				multiple="false">
+				<option value="very fresh">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_A</option>
+				<option value="fresh">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_B</option>
+				<option value="putrefactive">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_C</option>
+				<option value="verry putrefactive">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_D</option>
+				<option value="remains">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_E</option>
+				</field>
 
-	<field name="observation_culled"
+<!--	<field name="observation_culled"
 			alias="observation_culled"
 			class="form-control"
 			label="OBSERVATION_CULLED"
@@ -344,7 +360,7 @@
 		<option value="shallow">DEPTH_RANGE_A</option>
 		<option value="medium">DEPTH_RANGE_B</option>
 		<option value="deep">DEPTH_RANGE_C</option>
-	</field>
+	</field>-->
 
 	<field name="remarks"
 			alias="remarks"
