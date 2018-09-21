@@ -21,8 +21,7 @@ class Cot_formsTablecot_Admin extends JTable {
      * @param JDatabase A database connector object
      */
     public function __construct(&$db) {
-        //parent::__construct('#__cot_admin', 'id', $db);
-        parent::__construct('#__cot_admin_forms', 'id', $db);
+        parent::__construct('#__cot_admin', 'id', $db);
     }
 
     /**
@@ -35,7 +34,7 @@ class Cot_formsTablecot_Admin extends JTable {
      */
     public function bind($array, $ignore = '') {
 
-
+        
 
         if (isset($array['params']) && is_array($array['params'])) {
             $registry = new JRegistry();
@@ -180,9 +179,9 @@ class Cot_formsTablecot_Admin extends JTable {
 
     /**
      * Define a namespaced asset name for inclusion in the #__assets table
-     * @return string The asset name
+     * @return string The asset name 
      *
-     * @see JTable::_getAssetName
+     * @see JTable::_getAssetName 
      */
     protected function _getAssetName() {
         $k = $this->_tbl_key;
@@ -192,7 +191,7 @@ class Cot_formsTablecot_Admin extends JTable {
     /**
      * Returns the parent asset's id. If you have a tree structure, retrieve the parent's id using the external key field
      *
-     * @see JTable::_getAssetParentId
+     * @see JTable::_getAssetParentId 
      */
     protected function _getAssetParentId(JTable $table = null, $id = null) {
         // We will retrieve the parent-asset from the Asset-table
@@ -212,8 +211,8 @@ class Cot_formsTablecot_Admin extends JTable {
         $this->load($pk);
         $result = parent::delete($pk);
         if ($result) {
-
-
+            
+            
         }
         return $result;
     }
@@ -221,7 +220,7 @@ class Cot_formsTablecot_Admin extends JTable {
      /**
      * Method to set the validation state for a row. USED TO VALIDATE COT FORM FROM PUBLIC.
      *
-     * @param    mixed    primary key values to update.
+     * @param    mixed    primary key values to update.  
      * @return    boolean    True on success.
      * @since    2.0.7
      */

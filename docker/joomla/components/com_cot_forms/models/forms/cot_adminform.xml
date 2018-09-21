@@ -7,8 +7,7 @@
 		printable="true"
 		addfieldpath="/libraries/jdom/jform/fields"
 		>
-		<!--Id-->
-<field name="id"
+	<field name="id"
 			alias="id"
 			class="form-control"
 			label="ID"
@@ -16,23 +15,21 @@
 			description="ID_DESC"
 			readonly="true"
 			type="cktext"/>
-
-	<!--References-->
-<field name="references"
-			 alias="references"
-			 class="form-control"
-			 label="REFERENCES"
-			 description="REFERENCES_DESC"
-			 readonly="true"
-			 type="text"/>
-
-	<!--id_location-->
-	<field name="id_location"
+			<!--References-->
+			<field name="references"
+					alias="references"
+					class="form-control"
+					label="REFERENCES"
+					description="REFERENCES_DESC"
+					readonly="true"
+					type="cktext"/>
+			<!--Location_ID-->
+			<field name="id_location"
 					alias="id_location"
 					class="form-control"
 					label="ID_LOCATION"
 					filter="INT"
-					description="ID_DESC"
+					description="ID_LOCATION_DESC"
 					readonly="true"
 					type="cktext"/>
 
@@ -63,34 +60,34 @@
 			hint="OBSERVER_EMAIL"
 			type="email"/>
 
-<!--Informant contacts-->
-			<field name="informant_name"
-					alias="informant_name"
-					class="form-control"
-					label="INFORMANT_NAME"
-					filter="STRING"
-					description="INFORMANT_NAME_DESC"
-					required="true"
-					hint="INFORMANT_NAME_PL"
-					type="text"/>
+	<!--Informant contacts-->
+	<field name="informant_name"
+			alias="informant_name"
+			class="form-control"
+			label="INFORMANT_NAME"
+			filter="STRING"
+			description="INFORMANT_NAME_DESC"
+			required="true"
+			hint="INFORMANT_NAME_PL"
+			type="text"/>
 
-			<field name="informant_tel"
-					alias="informant_tel"
-					class="form-control"
-					label="INFORMANT_TEL"
-					description="INFORMANT_TEL_DESC"
-					hint="INFORMANT_TEL"
-					type="tel"/>
+	<field name="informant_tel"
+			alias="informant_tel"
+			class="form-control"
+			label="INFORMANT_TEL"
+			description="INFORMANT_TEL_DESC"
+			hint="INFORMANT_TEL"
+			type="tel"/>
 
-			<field name="informant_email"
-					alias="informant_email"
-					class="form-control"
-					label="INFORMANT_EMAIL"
-					description="INFORMANT_EMAIL_DESC"
-					hint="INFORMANT_EMAIL"
-					type="email"/>
+	<field name="informant_email"
+			alias="informant_email"
+			class="form-control"
+			label="INFORMANT_EMAIL"
+			description="INFORMANT_EMAIL_DESC"
+			hint="INFORMANT_EMAIL"
+			type="email"/>
 
-<!--Date-->
+		<!--Date-->
 	<field name="observation_datetime"
 			alias="observation_datetime"
 			class="form-control form-calendar"
@@ -197,111 +194,17 @@
 				class="longitude form-control"
 				type="text"/>
 
-<!--Number-->
-	<field name="observation_mammal_number"
-			alias="observation_mammal_number"
-			class="form-control"
-			label="OBSERVATION_MAMMAL_NUMBER"
-			description="OBSERVATION_MAMMAL_NUMBER_DESC"
-			hint="OBSERVATION_MAMMAL_NUMBER"
-			labelclass="control-label"
-			type="cktext"/>
-<!--Size-->
-	<field name="observation_mammal_size"
-				 alias="observation_mammal_size"
-				 class="sizes form-control"
-				 label="OBSERVATION_SIZES"
-				 description="OBSERVATION_SIZES_DESC"
-				 hint="OBSERVATION_SIZES"
-				 labelclass="control-label"
-				 type="text"/>
-<!--Sexe-->
-<field name="observation_mammal_sex"
-			alias="observation_mammal_sex"
-			class="sizes form-control"
-			label="OBSERVATION_MAMMAL_SEX"
-			description="OBSERVATION_MAMMAL_SEX_DESC"
-			hint="OBSERVATION_MAMMAL_SEX"
-			labelclass="control-label"
-			type="checkboxes"
-			required="true"
-			multiple="false">
-			<option value="mal">OBSERVATION_GENDER_A</option>
-			<option value="femal">OBSERVATION_GENDER_B</option>
-			<option value="unknown">OBSERVATION_GENDER_C</option>
-		</field>
-<!--Spaces-->
-	<field name="observation_mammal_spaces"
-				 alias="observation_mammal_spaces"
-				 class="sizes form-control"
-				 label="OBSERVATION_MAMMAL_SIZE"
-				 description="OBSERVATION_MAMMAL_SIZE_DESC"
-				 hint="OBSERVATION_MAMMAL_SIZE"
-				 labelclass="control-label"
-				 type="text"/>
-<!--Spaces identification-->
-<field name="observation_mammal_spaces_identification"
-			alias="observation_mammal_spaces_identification"
-			class="sizes form-control"
-			label="OBSERVATION_MAMMAL_SPACES_IDENTIFICATION"
-			description="OBSERVATION_MAMMAL_SPACES_IDENTIFICATION_DESC"
-			hint="OBSERVATION_MAMMAL_SPACES_IDENTIFICATION"
-			labelclass="control-label"
-			type="checkboxes"
-			required="true"
-			multiple="false">
-			<option value="probable">OBSERVATION_IDENTIFICATION_A</option>
-			<option value="certain">OBSERVATION_IDENTIFICATION_B</option>
-		</field>
-<!--Abnormalities-->
-<field name="observation_abnormalities"
-			 alias="observation_abnormalities"
-			 class="abnormalities form-control"
-			 label="OBSERVATION_ABNORMALITIES"
-			 descrtiption="OBSERVATION_ABNORMALITIES_DESC"
-			 hint="OBSERVATION_ABNORMALITIES"
-			 labelclass="control-label"
-			 type="text"/>
-<!--Levies -->
-<field name="observation_levies"
-			 alias="observation_levies"
-			 class="levies form-control"
-			 label="OBSERVATION_MAMMAL_LEVIES"
-			 descrtiption="OBSERVATION_MAMMAL_LEVIES_DESC"
-			 hint="OBSERVATION_MAMMAL_LEVIES"
-			 labelclass="control-label"
-			 type="text"/>
-<!--State-->
-<field name="observation_mammal_state"
-			 alias="observation_mammal_state"
-			 class="state form-control"
-			 label="OBSERVATION_MAMMAL_STATE"
-			 description="OBSERVATION_MAMMAL_STATE_DESC"
-			 hint="OBSERVATION_MAMMAL_STATE"
-			 type="checkboxes"
-			 required="true"
-			 multiple="false">
-			 <option value="death">OBSERVATION_MAMMAL_STATE_A</option>
-			 <option value="alive">OBSERVATION_MAMMAL_STATE_B</option>
-		 </field>
-<!--State decomposition-->
- <field name="observation_mammal_state"
-				alias="observation_mammal_state"
-				class="state_decomposition form-control"
-				label="OBSERVATION_MAMMAL_STATE_DECOMPOSITION"
-				description="OBSERVATION_MAMMAL_STATE_DECOMPOSITION_DESC"
-				hint="OBSERVATION_MAMMAL_STATE_DECOMPOSITION"
-				type="checkboxes"
-				required="true"
-				multiple="false">
-				<option value="very fresh">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_A</option>
-				<option value="fresh">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_B</option>
-				<option value="putrefactive">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_C</option>
-				<option value="verry putrefactive">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_D</option>
-				<option value="remains">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_E</option>
-				</field>
 
-<!--	<field name="observation_culled"
+	<field name="observation_number"
+			alias="observation_number"
+			class="form-control"
+			label="OBSERVATION_NUMBER"
+			description="OBSERVATION_NUMBER_DESC"
+			hint="OBSERVATION_NUMBER"
+			labelclass="control-label"
+			type="text"/>
+
+	<field name="observation_culled"
 			alias="observation_culled"
 			class="form-control"
 			label="OBSERVATION_CULLED"
@@ -360,7 +263,7 @@
 		<option value="shallow">DEPTH_RANGE_A</option>
 		<option value="medium">DEPTH_RANGE_B</option>
 		<option value="deep">DEPTH_RANGE_C</option>
-	</field>-->
+	</field>
 
 	<field name="remarks"
 			alias="remarks"

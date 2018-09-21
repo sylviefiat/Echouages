@@ -27,42 +27,40 @@ class Cot_formsModelCot_admins extends JModelList {
         if (empty($config['filter_fields'])) {
             $config['filter_fields'] = array(
                 'id', 'a.id',
-                'references', 'a.references',
-		'id_location', 'a.id_location',
+                
+                //ajout référence et id_location
+                'references','a.references',
+                'id_location','a.id_location',
+
                 'observer_name', 'a.observer_name',
                 'observer_tel', 'a.observer_tel',
                 'observer_email', 'a.observer_email',
+
+                // contacts de l'informateur
                 'informant_name', 'a.informant_name',
                 'informant_tel', 'a.informant_tel',
                 'informant_email', 'a.informant_email',
-		            'observation_date', 'a.observation_date',
-		            'observation_location', 'a.observation_location',
+
+		        'observation_datetime', 'a.observation_datetime',
+		        'observation_location', 'a.observation_location',
                 'observation_localisation', 'a.observation_localisation',
                 'observation_region', 'a.observation_region',
                 'observation_country', 'a.observation_country',
                 'observation_country_code', 'a.observation_country_code',
                 'observation_latitude', 'a.observation_latitude',
                 'observation_longitude', 'a.observation_longitude',
-                'observation_mammal_number', 'a.observation_mammal_number',
-                'observation_mammal_size', 'a.observation_mammal_size',
-                'observation_mammal_sex', 'a.observation_mammal_sex',
-                'observation_mammal_spaces', 'a.observation_mammal_spaces',
-                'observation_mammal_spaces_identification', 'a.observation_mammal_spaces_identification',
-                'observation_abnormalities', 'a.observation_abnormalities',
-                'observation_levies', 'a.observation_levies',
-                'observation_mammal_state', 'a.observation_mammal_state',
-                'observation_mammal_state_decomposition', 'a.observation_mammal_state_decomposition',
-                //'observation_culled', 'a.observation_culled',
-                //'observation_state', 'a.observation_state',
-                //'counting_method_timed_swim', 'a.counting_method_timed_swim',
-                //'counting_method_distance_swim', 'a.counting_method_distance_swim',
-                //'counting_method_other', 'a.counting_method_other',
-		            //'depth_range', 'a.depth_range',
-		            //'observation_method', 'a.observation_method',
-		 'remarks', 'a.remarks',
+                'observation_number', 'a.observation_number',
+                'observation_culled', 'a.observation_culled',
+                'observation_state', 'a.observation_state',
+                'counting_method_timed_swim', 'a.counting_method_timed_swim',
+                'counting_method_distance_swim', 'a.counting_method_distance_swim',
+                'counting_method_other', 'a.counting_method_other',
+		        'depth_range', 'a.depth_range',
+		        'observation_method', 'a.observation_method',
+		        'remarks', 'a.remarks',
                 'created_by', 'a.created_by',
                 'localisation', 'a.localisation',
-		            'admin_validation', 'a.admin_validation'
+		        'admin_validation', 'a.admin_validation'
             );
         }
 
@@ -131,8 +129,7 @@ class Cot_formsModelCot_admins extends JModelList {
                         'list.select', 'a.*'
                 )
         );
-        $query->from('`#__cot_admin_forms` AS a');
-        //$query->from('`#__cot_admin` AS a');
+        $query->from('`#__cot_admin` AS a');
 
 
 		// Join over the user field 'created_by'

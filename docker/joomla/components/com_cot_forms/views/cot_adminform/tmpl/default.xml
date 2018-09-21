@@ -18,7 +18,7 @@
 	    </field>
             <field
                 name="item_id"
-                query="SELECT 0 as `id` UNION SELECT `id` FROM #__cot_admin_forms ORDER BY `id`"
+                query="SELECT 0 as `id` UNION SELECT `id` FROM #__cot_admin ORDER BY `id`"
                 type="sql"
                 key_field="id" 
                 value_field="id"

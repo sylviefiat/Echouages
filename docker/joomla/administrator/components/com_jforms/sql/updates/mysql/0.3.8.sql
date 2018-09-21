@@ -1,1 +1,0 @@
-ALTER TABLE `#__jforms_forms` ADD `layouts` LONGTEXT AFTER `events`;

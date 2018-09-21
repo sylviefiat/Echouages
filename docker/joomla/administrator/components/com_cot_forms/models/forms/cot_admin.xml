@@ -21,17 +21,15 @@
 					label="REFERENCES"
 					description="REFERENCES_DESC"
 					readonly="true"
-					type="text"/>
-
-	<!--id_location-->
-	<field name="id_location"
+					type="cktext"/>
+			<!--Location_ID-->
+			<field name="id_location"
 					alias="id_location"
 					label="ID_LOCATION"
 					filter="INT"
-					description="ID_DESC"
+					description="ID_LOCATION_DESC"
 					readonly="true"
 					type="cktext"/>
-
 <!--Observer contacts-->
 	<field name="observer_name"
 			alias="observer_name"
@@ -54,27 +52,26 @@
 			type="email"/>
 
 			<!--Informant contacts-->
-						<field name="informant_name"
-								alias="observer_name"
-								label="OBSERVER_NAME"
-								filter="STRING"
-								description="OBSERVER_NAME_DESC"
-								required="true"
-								type="text"/>
+			<field name="informant_name"
+					alias="informant_name"
+					label="INFORMANT_NAME"
+					filter="STRING"
+					description="INFORMANT_NAME_DESC"
+					required="true"
+					type="text"/>
 
-						<field name="informant_tel"
-								alias="observer_tel"
-								label="OBSERVER_TEL"
-								description="OBSERVER_TEL_DESC"
-								type="tel"/>
+			<field name="informant_tel"
+					alias="informant_tel"
+					label="INFORMANT_TEL"
+					description="INFORMANT_TEL_DESC"
+					type="tel"/>
 
-						<field name="informant_email"
-								alias="observer_email"
-								label="OBSERVER_EMAIL"
-								description="OBSERVER_EMAIL_DESC"
-								type="email"/>
+			<field name="informant_email"
+					alias="informant_email"
+					label="INFORMANT_EMAIL"
+					description="INFORMANT_EMAIL_DESC"
+					type="email"/>
 
-<!--Date-->
 	<field name="observation_datetime"
 			alias="observation_datetime"
 			class="form-control form-calendar"
@@ -166,105 +163,14 @@
 				class="longitude"
 				type="cktext"/>
 
-				<!--Number-->
-					<field name="observation_mammal_number"
-							alias="observation_mammal_number"
-							label="OBSERVATION_MAMMAL_NUMBER"
-							description="OBSERVATION_MAMMAL_NUMBER_DESC"
-							labelclass="control-label"
-							type="cktext"/>
 
-	<!--<field name="observation_number"
+	<field name="observation_number"
 			alias="observation_number"
 			label="OBSERVATION_NUMBER"
 			description="OBSERVATION_NUMBER_DESC"
 			labelclass="control-label"
-			type="cktext"/>-->
+			type="cktext"/>
 
-			<!--Size-->
-				<field name="observation_mammal_size"
-							 alias="observation_mammal_size"
-							 label="OBSERVATION_SIZES"
-							 description="OBSERVATION_SIZES_DESC"
-							 labelclass="control-label"
-							 type="text"/>
-			<!--Sexe-->
-			<field name="observation_mammal_sex"
-						alias="observation_mammal_sex"
-						label="OBSERVATION_MAMMAL_SEX"
-						description="OBSERVATION_MAMMAL_SEX_DESC"
-						labelclass="control-label"
-						type="checkboxes"
-						required="true"
-						multiple="false">
-						<option value="mal">OBSERVATION_GENDER_A</option>
-						<option value="femal">OBSERVATION_GENDER_B</option>
-						<option value="unknown">OBSERVATION_GENDER_C</option>
-					</field>
-			<!--Spaces-->
-				<field name="observation_mammal_spaces"
-							 alias="observation_mammal_spaces"
-							 label="OBSERVATION_MAMMAL_SIZE"
-							 description="OBSERVATION_MAMMAL_SIZE_DESC"
-							 labelclass="control-label"
-							 type="text"/>
-			<!--Spaces identification-->
-			<field name="observation_mammal_spaces_identification"
-						alias="observation_mammal_spaces_identification"
-						label="OBSERVATION_MAMMAL_SPACES_IDENTIFICATION"
-						description="OBSERVATION_MAMMAL_SPACES_IDENTIFICATION_DESC"
-						labelclass="control-label"
-						type="checkboxes"
-						required="true"
-						multiple="false">
-						<option value="probable">OBSERVATION_IDENTIFICATION_A</option>
-						<option value="certain">OBSERVATION_IDENTIFICATION_B</option>
-					</field>
-					<!--Abnormalities-->
-					<field name="observation_abnormalities"
-								 alias="observation_abnormalities"
-								 class="abnormalities"
-								 label="OBSERVATION_ABNORMALITIES"
-								 descrtiption="OBSERVATION_ABNORMALITIES_DESC"
-								 labelclass="control-label"
-								 type="text"/>
-			<!--Levies -->
-			<field name="observation_levies"
-						 alias="observation_levies"
-						 class="levies"
-						 label="OBSERVATION_MAMMAL_LEVIES"
-						 descrtiption="OBSERVATION_MAMMAL_LEVIES_DESC"
-						 labelclass="control-label"
-						 type="text"/>
-
-			 <!--State-->
-		 	<field name="observation_mammal_state"
-		 				 alias="observation_mammal_state"
-		 				 class="state"
-		 				 label="OBSERVATION_MAMMAL_STATE"
-		 				 description="OBSERVATION_MAMMAL_STATE_DESC"
-		 				 type="checkboxes"
-		 				 required="true"
-		 				 multiple="false">
-		 				 <option value="death">OBSERVATION_MAMMAL_STATE_A</option>
-		 				 <option value="alive">OBSERVATION_MAMMAL_STATE_B</option>
-		 				</field>
-		 <!--State decomposition-->
-		 <field name="observation_mammal_state"
-			 			alias="observation_mammal_state"
-			 			class="state_decomposition"
-			 			label="OBSERVATION_MAMMAL_STATE_DECOMPOSITION"
-			 			description="OBSERVATION_MAMMAL_STATE_DECOMPOSITION_DESC"
-						type="checkboxes"
-						required="true"
-						multiple="false">
-						<option value="very fresh">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_A</option>
-						<option value="fresh">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_B</option>
-						<option value="putrefactive">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_C</option>
-						<option value="verry putrefactive">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_D</option>
-						<option value="remains">OBSERVATION_MAMMAL_STATE_DECOMPOSITION_E</option>
-					</field>
-<!--
 	<field name="observation_culled"
 			alias="observation_culled"
 			label="OBSERVATION_CULLED"
@@ -315,7 +221,6 @@
 		<option value="medium">Medium (2-10m)</option>
 		<option value="deep">Deep (more than 10m)</option>
 	</field>
--->
 
 	<field name="remarks"
 			alias="remarks"
@@ -324,7 +229,7 @@
 			description="REMARKS_DESC"
 			type="cktextarea"/>
 
-<!--	<field name="observation_state"
+	<field name="observation_state"
 			alias="observation_state"
 			label="OBSERVATION_STATE"
 			description="OBSERVATION_STATE_DESC"
@@ -336,7 +241,7 @@
 		<option value="Low">OBSERVATION_STATE_A</option>
 		<option value="Medium">OBSERVATION_STATE_B</option>
 		<option value="High">OBSERVATION_STATE_C</option>
-	</field>-->
+	</field>
 
 	<field name="admin_validation"
 			alias="admin_validation"
@@ -345,5 +250,8 @@
 			description="ADMIN_VALIDATION_DESC"
 			type="checkbox"
 			required="true"/>
+
+
+
 </fieldset>
 </form>

@@ -46,7 +46,7 @@ defined('_JEXEC') or die;
 		var marker = new google.maps.Marker({
 		    position: {lat: lat, lng: lng},
 		    map: map,
-		    title: 'Echouages!'
+		    title: 'Acanthasters!'
 		});
 	}
     }
@@ -75,6 +75,7 @@ $lang->load('com_cot_forms', JPATH_ADMINISTRATOR);
 				<h3 class="panel-title"><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_ID'); ?>: <?php echo $this->item->id; ?></h3>
 			</div>
 		<div class="panel-body">
+      <!--Observer contacts-->
 			<div class="row">
 				<div class="col-md-3 col-lg-3 " align="center"> <span class="fa fa-user fa-2x"></span> </div>
 				<div class=" col-md-9 col-lg-9 ">
@@ -96,29 +97,28 @@ $lang->load('com_cot_forms', JPATH_ADMINISTRATOR);
 					</table>
 				</div>
 			</div>
-
       <!--Informant contacts-->
       <div class="row">
-        <div class="col-md-3 col-lg-3 " align="center"> <span class="fa fa-user fa-2x"></span> </div>
-        <div class=" col-md-9 col-lg-9 ">
-                        <table class="table table-user-information">
-            <tbody>
-              <tr>
-                <td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_INFORMANT_NAME'); ?>: </td>
-                <td><?php echo $this->item->observer_name; ?></td>
-              </tr>
-              <tr>
-                <td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_INFORMANT_TEL'); ?>: </td>
-                <td><?php echo $this->item->observer_tel; ?></td>
-              </tr>
-              <tr>
-                <td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_INFORMANT_EMAIL'); ?>: </td>
-                <td><?php echo $this->item->observer_email; ?></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+				<div class="col-md-3 col-lg-3 " align="center"> <span class="fa fa-user fa-2x"></span> </div>
+				<div class=" col-md-9 col-lg-9 ">
+                  			<table class="table table-user-information">
+						<tbody>
+							<tr>
+								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_INFORMANT_NAME'); ?>: </td>
+								<td><?php echo $this->item->informant_name; ?></td>
+							</tr>
+							<tr>
+								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_INFORMANT_TEL'); ?>: </td>
+								<td><?php echo $this->item->informant_tel; ?></td>
+							</tr>
+							<tr>
+								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_INFORMANT_EMAIL'); ?>: </td>
+								<td><?php echo $this->item->informant_email; ?></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 
 			<div class="row">
 				<div class="col-md-3 col-lg-3 " align="center"> <span class="fa fa-eye fa-2x"></span> </div>
@@ -129,12 +129,10 @@ $lang->load('com_cot_forms', JPATH_ADMINISTRATOR);
 								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_DATE'); ?>: </td>
 								<td><?php echo $this->item->observation_datetime; ?></td>
 							</tr>
-
 							<tr>
 								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_LOCATION'); ?>: </td>
 								<td><?php echo $this->item->observation_location; ?></td>
 							</tr>
-
 							<tr>
 								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_LOCALISATION'); ?>: </td>
 								<td><?php echo $this->item->observation_localisation; ?></td>
@@ -158,58 +156,25 @@ $lang->load('com_cot_forms', JPATH_ADMINISTRATOR);
 								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_LONGITUDE'); ?>: </td>
 								<td id="longitude"><?php echo $this->item->observation_longitude; ?></td>
 							</tr>
-              <!--Number-->
 							<tr>
 								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_NUMBER'); ?>: </td>
-								<td><?php echo $this->item->observation_mammal_number; ?></td>
-							</tr>
-              <!--Sex-->
-              <tr>
-								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_SEX'); ?>: </td>
-								<td><?php echo $this->item->observation_mammal_sex; ?></td>
-							</tr>
-              <!--Speces-->
-              <tr>
-								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_SPACES'); ?>: </td>
-								<td><?php echo $this->item->observation_mammal_spaces; ?></td>
-							</tr>
-              <!--Size-->
-              <tr>
-                <td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_SIZE'); ?>: </td>
-                <td><?php echo $this->item->observation_mammal_size; ?></td>
-              </tr>
-              <!--Levies-->
-              <tr>
-                <td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_LEVIES'); ?>: </td>
-                <td><?php echo $this->item->observation_levies; ?></td>
-              </tr>
-              <!--State-->
-              <tr>
-                <td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_STATE'); ?>: </td>
-                <td><?php echo $this->item->observation_mammal_state; ?></td>
-              </tr>
-              <!--State decomposition-->
-              <tr>
-                <td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_STATE_DECOMPOSITION'); ?>: </td>
-                <td><?php echo $this->item->observation_mammal_state_decomposition; ?></td>
-              </tr>
-
-              <!--
-							<tr>
-								<td><?php //echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_CULLED'); ?>: </td>
-								<td><?php //echo $this->item->observation_culled; ?></td>
+								<td><?php echo $this->item->observation_number; ?></td>
 							</tr>
 							<tr>
-								<td><?php //echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_METHOD'); ?>: </td>
-								<td><?php //echo $this->item->observation_method; ?></td>
+								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_CULLED'); ?>: </td>
+								<td><?php echo $this->item->observation_culled; ?></td>
 							</tr>
 							<tr>
-								<td><?php //echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_DEPTH_RANGE'); ?>: </td>
-								<td><?php //echo $this->item->depth_range; ?></td>
+								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_METHOD'); ?>: </td>
+								<td><?php echo $this->item->observation_method; ?></td>
 							</tr>
 							<tr>
-								<td><?php //echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_COUNTING_METHOD'); ?>: </td>
-								<td><?php /*if($this->item->counting_method_timed_swim!=='') {
+								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_DEPTH_RANGE'); ?>: </td>
+								<td><?php echo $this->item->depth_range; ?></td>
+							</tr>
+							<tr>
+								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_COUNTING_METHOD'); ?>: </td>
+								<td><?php if($this->item->counting_method_timed_swim!=='') {
 									echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_COUNTING_METHOD_TIMED_SWIM');
 									echo ": ";
 									echo $this->item->counting_method_timed_swim;
@@ -224,11 +189,9 @@ $lang->load('com_cot_forms', JPATH_ADMINISTRATOR);
 								} ?><br><br><?php if($this->item->counting_method_other!=='')  {
 									echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_COUNTING_METHOD_OTHER');
 									echo ": ";
-									echo $this->item->counting_method_other;*/
+									echo $this->item->counting_method_other;
 								} ?></td>
 							</tr>
-            -->
-
 							<tr>
 								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_REMARKS'); ?>: </td>
 								<td><?php echo $this->item->remarks; ?></td>

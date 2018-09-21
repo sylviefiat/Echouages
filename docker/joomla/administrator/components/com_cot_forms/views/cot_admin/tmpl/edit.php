@@ -86,20 +86,22 @@ $document->addStyleSheet('components/com_cot_forms/assets/css/cot_forms.css');
             <div class="span10 form-horizontal">
                 <fieldset class="adminform">
 
-                  <div class="control-group">
-          				<div class="control-label"><?php echo $this->form->getLabel('id'); ?></div>
-          				<div class="controls"><?php echo $this->form->getInput('id'); ?></div>
-			           </div>
-
-      	    <div class="control-group">
-          				<div class="control-label"><?php echo $this->form->getLabel('references'); ?></div>
-          				<div class="controls"><?php echo $this->form->getInput('references'); ?></div>
-			           </div>
-
         <div class="control-group">
-          <div class="control-label"><?php echo $this->form->getLabel('id_location'); ?></div>
-          <div class="controls"><?php echo $this->form->getInput('id_location'); ?></div>
+				<div class="control-label"><?php echo $this->form->getLabel('id'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('id'); ?></div>
       </div>
+
+        <!--References Id_location-->
+        <div class="control-group">
+        <div class="control-label"><?php echo $this->form->getLabel('references'); ?></div>
+        <div class="controls"><?php echo $this->form->getInput('references'); ?></div>
+      </div>
+        <div class="control-group">
+        <div class="control-label"><?php echo $this->form->getLabel('id_location'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('id_location'); ?></div>
+			</diV>
+
+      <!--Observer contacts-->
 			<div class="control-group">
 				<div class="control-label"><?php echo $this->form->getLabel('observer_name'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('observer_name'); ?></div>
@@ -112,24 +114,26 @@ $document->addStyleSheet('components/com_cot_forms/assets/css/cot_forms.css');
 				<div class="control-label"><?php echo $this->form->getLabel('observer_email'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('observer_email'); ?></div>
 			</div>
+
       <!--Informant contacts-->
-      <div class="control-label"><?php echo $this->form->getLabel('informant_name'); ?></div>
-      <div class="controls"><?php echo $this->form->getInput('informant_name'); ?></div>
-    </div>
-    <div class="control-group">
-      <div class="control-label"><?php echo $this->form->getLabel('informant_tel'); ?></div>
-      <div class="controls"><?php echo $this->form->getInput('informant_tel'); ?></div>
-    </div>
-    <div class="control-group">
-      <div class="control-label"><?php echo $this->form->getLabel('informant_email'); ?></div>
-      <div class="controls"><?php echo $this->form->getInput('informant_email'); ?></div>
-    </div>
-    <!--Date-->
+      <div class="control-group">
+				<div class="control-label"><?php echo $this->form->getLabel('informant_name'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('informant_name'); ?></div>
+			</div>
+			<div class="control-group">
+				<div class="control-label"><?php echo $this->form->getLabel('informant_tel'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('informant_tel'); ?></div>
+			</div>
+			<div class="control-group">
+				<div class="control-label"><?php echo $this->form->getLabel('informant_email'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('informant_email'); ?></div>
+			</div>
+
+
 			<div class="control-group">
 				<div class="control-label"><?php echo $this->form->getLabel('observation_date'); ?></div>
-				<div class="controls"><?php echo $this->form->getInput('observation_date'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('observation_datetime'); ?></div>
 			</div>
-      <!--Localisation-->
 			<div class="control-group">
 				<div class="control-label"><?php echo $this->form->getLabel('observation_localisation'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('observation_localisation'); ?></div>
@@ -158,52 +162,13 @@ $document->addStyleSheet('components/com_cot_forms/assets/css/cot_forms.css');
 				<div class="control-label"><?php echo $this->form->getLabel('observation_location'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('observation_location'); ?></div>
 			</div>
-      <!--Number-->
 			<div class="control-group">
-				<div class="control-label"><?php echo $this->form->getLabel('observation_mammal_number'); ?></div>
-				<div class="controls"><?php echo $this->form->getInput('observation_mammal_number'); ?></div>
+				<div class="control-label"><?php echo $this->form->getLabel('observation_number'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('observation_number'); ?></div>
 			</div>
-      <!--Sex-->
-      <div class="control-group">
-				<div class="control-label"><?php echo $this->form->getLabel('observation_mammal_sex'); ?></div>
-				<div class="controls"><?php echo $this->form->getInput('observation_mammal_sex'); ?></div>
-			</div>
-      <!--Spaces-->
-      <div class="control-group">
-				<div class="control-label"><?php echo $this->form->getLabel('observation_mammal_spaces'); ?></div>
-				<div class="controls"><?php echo $this->form->getInput('observation_mammal_spaces'); ?></div>
-			</div>
-      <!--Spaces Identification-->
-      <div class="control-group">
-        <div class="control-label"><?php echo $this->form->getLabel('observation_mammal_spaces_identification'); ?></div>
-        <div class="controls"><?php echo $this->form->getInput('observation_mammal_spaces_identification'); ?></div>
-      </div>
-      <!--Abnormalities-->
-      <div class="control-group">
-        <div class="control-label"><?php echo $this->form->getLabel('observation_abnormalities'); ?></div>
-        <div class="controls"><?php echo $this->form->getInput('observation_abnormalities'); ?></div>
-      </div>
-      <!--Levies-->
-      <div class="control-group">
-        <div class="control-label"><?php echo $this->form->getLabel('observation_levies'); ?></div>
-        <div class="controls"><?php echo $this->form->getInput('observation_levies'); ?></div>
-      </div>
-      <!--State-->
-      <div class="control-group">
-        <div class="control-label"><?php echo $this->form->getLabel('observation_mammal_state'); ?></div>
-        <div class="controls"><?php echo $this->form->getInput('observation_mammal_state'); ?></div>
-      </div>
-      <!--State decomposition-->
-      <div class="control-group">
-        <div class="control-label"><?php echo $this->form->getLabel('observation_mammal_state_decomposition'); ?></div>
-        <div class="controls"><?php echo $this->form->getInput('observation_mammal_state_decomposition'); ?></div>
-      </div>
-
-
-    <!-- Début - code a supprimé -->
 			<div class="control-group">
 				<div class="control-label"><?php echo $this->form->getLabel('observation_culled'); ?></div>
-				<div class="controls"><?--php echo $this->form->getInput('observation_culled'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('observation_culled'); ?></div>
 			</div>
 			<div class="control-group">
 				<div class="control-label"><?php echo $this->form->getLabel('observation_list'); ?></div>
@@ -244,7 +209,6 @@ $document->addStyleSheet('components/com_cot_forms/assets/css/cot_forms.css');
 				<div class="control-label"><?php echo $this->form->getLabel('observation_state'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('observation_state'); ?></div>
 			</div>
-<!-- Fin - Code a supprimé -->
 
 			<div class="control-group">
 				<div class="control-label"><?php echo $this->form->getLabel('admin_validation'); ?></div>

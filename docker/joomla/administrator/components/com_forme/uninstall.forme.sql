@@ -1,1 +1,0 @@
-DROP TABLE IF EXISTS `#__forme_forms`, `#__forme_fields`, `#__forme_config`, `#__forme_data`;
