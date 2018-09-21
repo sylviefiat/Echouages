@@ -156,12 +156,44 @@ $lang->load('com_cot_forms', JPATH_ADMINISTRATOR);
 								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_LONGITUDE'); ?>: </td>
 								<td id="longitude"><?php echo $this->item->observation_longitude; ?></td>
 							</tr>
+              <!--Number-->
 							<tr>
 								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_NUMBER'); ?>: </td>
 								<td><?php echo $this->item->observation_number; ?></td>
 							</tr>
 							<tr>
-								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_CULLED'); ?>: </td>
+                <!--Spaces-->
+  							<tr>
+  								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_SPACES'); ?>: </td>
+  								<td><?php echo $this->item->observation_spaces; ?></td>
+  							</tr>
+  							<tr>
+                  <!--Spaces identification-->
+    							<tr>
+    								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_SPACES_IDENTIFICATION'); ?>: </td>
+    								<td><?php echo $this->item->observation_spaces_identification; ?></td>
+    							</tr>
+    							<tr>
+                    <!--Size-->
+                    <tr>
+                      <td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_SIZE'); ?>: </td>
+                      <td><?php echo $this->item->observation_size; ?></td>
+                    </tr>
+                    <tr>
+                      <!--Sex-->
+                      <tr>
+                        <td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_SEX'); ?>: </td>
+                        <td><?php echo $this->item->observation_sex; ?></td>
+                      </tr>
+                      <!--State-->
+                      <tr>
+                        <td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_STATE'); ?>: </td>
+                        <td><?php echo $this->item->observation_state; ?></td>
+                      </tr>
+
+<!--
+                      <tr>
+								<td><?php /*echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_OBSERVATION_CULLED'); ?>: </td>
 								<td><?php echo $this->item->observation_culled; ?></td>
 							</tr>
 							<tr>
@@ -190,8 +222,9 @@ $lang->load('com_cot_forms', JPATH_ADMINISTRATOR);
 									echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_COUNTING_METHOD_OTHER');
 									echo ": ";
 									echo $this->item->counting_method_other;
-								} ?></td>
+								} */?></td>
 							</tr>
+            -->
 							<tr>
 								<td><?php echo JText::_('COM_COT_FORMS_FORM_LBL_COT_ADMIN_REMARKS'); ?>: </td>
 								<td><?php echo $this->item->remarks; ?></td>

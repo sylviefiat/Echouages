@@ -120,7 +120,7 @@ if (!empty($this->extra_sidebar)) {
 				<th class='left'>
 				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVER_EMAIL', 'a.observer_mail', $listDirn, $listOrder); ?>
 				</th>
-				
+
 				<!--Informant contacts-->
 				<th class='left'>
 				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_INFORMANT_NAME', 'a.informant_name', $listDirn, $listOrder); ?>
@@ -131,16 +131,22 @@ if (!empty($this->extra_sidebar)) {
 				<th class='left'>
 				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_INFORMANT_EMAIL', 'a.informant_mail', $listDirn, $listOrder); ?>
 				</th>
-
+				<!--Date-->
 				<th class='left'>
 				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_DATE', 'a.observation_datetime', $listDirn, $listOrder); ?>
 				</th>
 				<th class='left'>
 				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_LOCATION', 'a.observation_location', $listDirn, $listOrder); ?>
 				</th>
+				<!--Number-->
 				<th class='left'>
 				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_NUMBER', 'a.observation_number', $listDirn, $listOrder); ?>
 				</th>
+				<!--Spaces-->
+				<th class='left'>
+				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_SPACES', 'a.observation_spaces', $listDirn, $listOrder); ?>
+				</th>
+
 				<th class='left'>
 				<?php echo JHtml::_('grid.sort',  'COM_COT_FORMS_COT_ADMINS_OBSERVATION_CULLED', 'a.observation_culled', $listDirn, $listOrder); ?>
 				</th>

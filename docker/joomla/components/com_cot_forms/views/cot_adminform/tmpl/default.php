@@ -159,7 +159,7 @@ $user = JFactory::getUser();
     </div>
       </div>
   </div>
-
+<!--Date-->
 			<div class="row">
 			    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_date'); ?></div>
 			    <div class="col-lg-4 col-md-6 col-xs-12">
@@ -168,6 +168,7 @@ $user = JFactory::getUser();
 				    <?php echo $this->form->getInput('observation_datetime'); ?>
 				</div>
 			    </div>
+
 			    <div class="col-lg-8 col-md-6 col-xs-12">
 				<div class="input-group">
 				    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
@@ -220,19 +221,172 @@ $user = JFactory::getUser();
 				    <?php echo $this->form->getInput('observation_number'); ?>
 				</div>
 			    </div>
-			    <div class="col-lg-6 col-md-6 col-xs-12">
-				<div class="input-group">
-				    <span class="input-group-addon"><span class="fa fa-refresh"></span></span>
-				    <?php echo $this->form->getInput('observation_culled'); ?>
-				</div>
-			    </div>
+        </div>
+
+          <div class="row">
+            <!--Spaces-->
+    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_spaces'); ?></div>
+    <div class="col-lg-6 col-md-6 col-xs-12">
+  <div class="input-group">
+      <span class="input-group-addon"><span class="fa fa-eye-open"></span></span>
+      <?php echo $this->form->getInput('observation_spaces'); ?>
+  </div>
+    </div>
+<!--Spaces identification-->
+    <div class="col-lg-6 col-md-6 col-xs-12">
+  <div class="form-group">
+      <?php echo $this->form->getLabel('observation_spaces_identification'); ?>
+      <div class="col-xs-offset-2 col-xs-10">
+    <div class="checkbox">
+        <label><?php echo $this->form->getInput('observation_spaces_identification'); ?></label>
+    </div>
+      </div>
+  </div>
+    </div>
+    <!--Sex-->
+    <div class="col-lg-6 col-md-6 col-xs-12">
+  <div class="form-group">
+      <?php echo $this->form->getLabel('observation_sex'); ?>
+      <div class="col-xs-offset-2 col-xs-10">
+    <div class="checkbox">
+        <label><?php echo $this->form->getInput('observation_sex'); ?></label>
+    </div>
+      </div>
+  </div>
+  <!--Color-->
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-12">
+    <div class="input-group">
+      <span class="input-group-addon"><span class="fa fa-resize-horizontal"></span></span>
+      <?php echo $this->form->getInput('observation_color'); ?>
+    </div>
+    </div>
 			</div>
 
+      <div class="row">
+        <!--Size-->
+<div class="col-xs-12"><?php echo $this->form->getLabel('observation_size'); ?></div>
+<div class="col-lg-6 col-md-6 col-xs-12">
+<div class="input-group">
+  <span class="input-group-addon"><span class="fa fa-resize-horizontal"></span></span>
+  <?php echo $this->form->getInput('observation_size'); ?>
+</div>
+</div>
+</div>
+
+<!--Animal-->
+<div class="row">
+
+  <div class="row">
+  <!--Abnormalities-->
+  <div class="col-lg-6 col-md-6 col-xs-12">
+<div class="form-group">
+    <?php echo $this->form->getLabel('observation_abnormalities'); ?>
+    <div class="col-xs-offset-2 col-xs-10">
+  <div class="checkbox">
+      <label><?php echo $this->form->getInput('observation_abnormalities'); ?></label>
+  </div>
+    </div>
+</div>
+  </div>
+</div>
+
+<div class="row">
+  <!--Capture traces-->
+<div class="col-lg-6 col-md-6 col-xs-12">
+<div class="form-group">
+  <?php echo $this->form->getLabel('observation_capture_traces'); ?>
+  <div class="col-xs-offset-2 col-xs-10">
+<div class="checkbox">
+    <label><?php echo $this->form->getInput('observation_capture_traces'); ?></label>
+</div>
+  </div>
+</div>
+</div>
+<div class="row">
+  <!--Catch indices-->
+    <div class="col-lg-12 col-md-12 col-xs-12">
+  <div class="input-group">
+      <span class="input-group-addon"><span class="fa fa-comment "></span></span>
+      <?php echo $this->form->getInput('catch_indices'); ?>
+  </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+    <!--State-->
+    <div class="col-lg-6 col-md-6 col-xs-12">
+  <div class="form-group">
+      <?php echo $this->form->getLabel('observation_state'); ?>
+      <div class="col-xs-offset-2 col-xs-10">
+    <div class="checkbox">
+        <label><?php echo $this->form->getInput('observation_state'); ?></label>
+    </div>
+      </div>
+  </div>
+    </div>
+<!--Death-->
+<div class="col-lg-6 col-md-6 col-xs-12">
+<div class="form-group">
+  <?php echo $this->form->getLabel('observation_death'); ?>
+  <div class="col-xs-offset-2 col-xs-10">
+<div class="checkbox">
+    <label><?php echo $this->form->getInput('observation_death'); ?></label>
+</div>
+  </div>
+</div>
+</div>
+<!--Death date-->
+<div class="col-xs-12"><?php echo $this->form->getLabel('observation_datetime_death'); ?></div>
+<div class="col-lg-4 col-md-6 col-xs-12">
+<div class="input-group">
+  <span class="input-group-addon exergue"><span class="fa fa-calendar"></span></span>
+  <?php echo $this->form->getInput('observation_datetime_death'); ?>
+</div>
+</div>
+    <!--State decomposition-->
+    <div class="col-lg-6 col-md-6 col-xs-12">
+  <div class="form-group">
+      <?php echo $this->form->getLabel('observation_state_decomposition'); ?>
+      <div class="col-xs-offset-2 col-xs-10">
+    <div class="checkbox">
+        <label><?php echo $this->form->getInput('observation_state_decomposition'); ?></label>
+    </div>
+      </div>
+  </div>
+    </div>
+  </div>
+  <div class="row">
+    <!--Alive-->
+    <div class="col-lg-6 col-md-6 col-xs-12">
+    <div class="form-group">
+      <?php echo $this->form->getLabel('observation_alive'); ?>
+      <div class="col-xs-offset-2 col-xs-10">
+    <div class="checkbox">
+        <label><?php echo $this->form->getInput('observation_alive'); ?></label>
+    </div>
+      </div>
+    </div>
+    </div>
+    <!--Alive date-->
+    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_datetime_release'); ?></div>
+    <div class="col-lg-4 col-md-6 col-xs-12">
+    <div class="input-group">
+      <span class="input-group-addon exergue"><span class="fa fa-calendar"></span></span>
+      <?php echo $this->form->getInput('observation_datetime_release'); ?>
+    </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!--
 			<div class="row">
 
 			    <div class="col-lg-6 col-md-6 col-xs-12">
 				<div class="form-group">
-				    <?php echo $this->form->getLabel('observation_method'); ?>
+				    <?php /*echo $this->form->getLabel('observation_method'); ?>
 				    <div class="col-xs-offset-2 col-xs-10">
 					<div class="checkbox">
 					    <label><?php echo $this->form->getInput('observation_method'); ?></label>
@@ -279,11 +433,11 @@ $user = JFactory::getUser();
 			           <span class="input-group-addon">
 				        <input id="jform_counting_method_other_chbx" class="control-label" type="checkbox" name="counting_method_other" onclick="enable_other(this.checked)" >
 			           </span>
-    			           <?php echo $this->form->getInput('counting_method_other'); ?>
+    			           <?php echo $this->form->getInput('counting_method_other'); */?>
 			        </div>
 			    </div>
 			</div>
-
+-->
 			<div class="row">
 			    <div class="col-xs-12"><?php echo $this->form->getLabel('remarks'); ?></div>
 			    <div class="col-lg-12 col-md-12 col-xs-12">
@@ -316,7 +470,7 @@ $user = JFactory::getUser();
 
 
             <button type="submit" class="validate"><span><?php echo JText::_('JSUBMIT'); ?></span></button>
-            <?php echo JText::_('or'); ?>
+            <?php echo JText::_('OR'); ?>
             <a href="<?php echo JRoute::_('index.php?option=com_cot_forms&task=cot_adminform.cancel'); ?>" title="<?php echo JText::_('JCANCEL'); ?>"><?php echo JText::_('JCANCEL'); ?></a>
 
             <input type="hidden" name="option" value="com_cot_forms" />

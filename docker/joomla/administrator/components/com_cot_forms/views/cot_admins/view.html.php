@@ -134,6 +134,4 @@ class Cot_formsViewCot_admins extends JViewLegacy
 		'a.admin_validation' => JText::_('COM_COT_FORMS_COT_ADMINS_ADMIN_VALIDATION'),
 		);
 	}
-
-
 }
