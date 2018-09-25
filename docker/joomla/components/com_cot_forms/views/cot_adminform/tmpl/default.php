@@ -239,7 +239,7 @@ $user = JFactory::getUser();
   <div class="form-group">
       <?php echo $this->form->getLabel('observation_spaces_identification'); ?>
       <div class="col-xs-offset-2 col-xs-10">
-    <div class="checkbox">
+    <div class="radio">
         <label><?php echo $this->form->getInput('observation_spaces_identification'); ?></label>
     </div>
       </div>
@@ -250,7 +250,7 @@ $user = JFactory::getUser();
   <div class="form-group">
       <?php echo $this->form->getLabel('observation_sex'); ?>
       <div class="col-xs-offset-2 col-xs-10">
-    <div class="checkbox">
+    <div class="radio">
         <label><?php echo $this->form->getInput('observation_sex'); ?></label>
     </div>
       </div>
@@ -286,7 +286,7 @@ $user = JFactory::getUser();
 <div class="form-group">
     <?php echo $this->form->getLabel('observation_abnormalities'); ?>
     <div class="col-xs-offset-2 col-xs-10">
-  <div class="checkbox">
+  <div class="radio">
       <label><?php echo $this->form->getInput('observation_abnormalities'); ?></label>
   </div>
     </div>
@@ -300,7 +300,7 @@ $user = JFactory::getUser();
 <div class="form-group">
   <?php echo $this->form->getLabel('observation_capture_traces'); ?>
   <div class="col-xs-offset-2 col-xs-10">
-<div class="checkbox">
+<div class="radio">
     <label><?php echo $this->form->getInput('observation_capture_traces'); ?></label>
 </div>
   </div>
@@ -322,7 +322,7 @@ $user = JFactory::getUser();
   <div class="form-group">
       <?php echo $this->form->getLabel('observation_state'); ?>
       <div class="col-xs-offset-2 col-xs-10">
-    <div class="checkbox">
+    <div class="radio">
         <label><?php echo $this->form->getInput('observation_state'); ?></label>
     </div>
       </div>
@@ -333,7 +333,7 @@ $user = JFactory::getUser();
 <div class="form-group">
   <?php echo $this->form->getLabel('observation_death'); ?>
   <div class="col-xs-offset-2 col-xs-10">
-<div class="checkbox">
+<div class="radio">
     <label><?php echo $this->form->getInput('observation_death'); ?></label>
 </div>
   </div>

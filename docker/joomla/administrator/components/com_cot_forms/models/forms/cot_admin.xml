@@ -81,7 +81,7 @@
 			type="ckcalendar"
             default="NOW"
             format="Y-m-d"/>
-
+<!--
 	<field name="observation_date"
 			alias="observation_date"
 			label="OBSERVATION_DATE"
@@ -105,7 +105,7 @@
 			label="OBSERVATION_YEAR"
 			description="OBSERVATION_CULLED_DESC"
 			type="cktext"/>
-
+-->
 		<field name="observation_location"
 			alias="observation_location"
 			label="OBSERVATION_LOCATION"
@@ -297,7 +297,7 @@
 									alias="observation_alive"
 									label="OBSERVATION_ALIVE"
 									description="OBSERVATION_ALIVE_DESC"
-									type="radio" >
+									type="checkboxes" >
 								<option value="animal remis à l'eau">OBSERVATION_ALIVE_A</option>
 							</field>
 											<!--Date release-->

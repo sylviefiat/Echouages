@@ -184,14 +184,50 @@ $document->addStyleSheet('components/com_cot_forms/assets/css/cot_forms.css');
 			</div>
       <!--Sex-->
       <div class="control-group">
-				<div class="control-label"><?php echo $this->form->getLabel('observation_sex'); ?></div>
-				<div class="controls"><?php echo $this->form->getInput('observation_sex'); ?></div>
-			</div>
+        <div class="control-label"><?php echo $this->form->getLabel('observation_sex'); ?></div>
+        <div class="controls"><?php echo $this->form->getInput('observation_sex'); ?></div>
+      </div>
       <!--State-->
-      <div class="control-group">
+      <div class="btn-group">
 				<div class="control-label"><?php echo $this->form->getLabel('observation_state'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('observation_state'); ?></div>
 			</div>
+      <!--Alive-->
+      <div class="btn-group">
+				<div class="control-label"><?php echo $this->form->getLabel('observation_alive'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('observation_alive'); ?></div>
+			</div>
+      <!--Release date-->
+      <div class="btn-group">
+				<div class="control-label"><?php echo $this->form->getLabel('observation_datetime_release'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('observation_datetime_release'); ?></div>
+			</div>
+      <!--Death-->
+      <div class="btn-group">
+				<div class="control-label"><?php echo $this->form->getLabel('observation_death'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('observation_death'); ?></div>
+			</div>
+      <!--Death date-->
+      <div class="btn-group">
+				<div class="control-label"><?php echo $this->form->getLabel('observation_datetime_death'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('observation_datetime_death'); ?></div>
+			</div>
+      <!--Abnormalities-->
+      <div class="control-group">
+				<div class="control-label"><?php echo $this->form->getLabel('observation_abnormalities'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('observation_abnormalities'); ?></div>
+			</div>
+      <!--Capture traces-->
+      <div class="control-group">
+				<div class="control-label"><?php echo $this->form->getLabel('observation_capture_traces'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('observation_capture_traces'); ?></div>
+			</div>
+      <!--Catch indices-->
+      <div class="control-group">
+				<div class="control-label"><?php echo $this->form->getLabel('catch_indices'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('catch_indices'); ?></div>
+			</div>
+
 
 <!--
 			<div class="control-group">

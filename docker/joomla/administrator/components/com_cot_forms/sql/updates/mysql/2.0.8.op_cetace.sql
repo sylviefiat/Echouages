@@ -30,3 +30,7 @@ ALTER TABLE `#__cot_admin` CHANGE `admin_validation` `admin_validation` TINYINT(
 
 ALTER TABLE `#__cot_admin` CHANGE `levies_protocole` `levies_protocole` VARCHAR(100) NOT NULL AFTER `observation_abnormalities` ;
 ALTER TABLE `#__cot_admin` CHANGE `form_references` `form_references` VARCHAR(50) NOT NULL DEFAULT 'EC2018' ;
+ALTER TABLE `#__cot_admin` CHANGE `observation_date` `observation_datetime` DATE NOT NULL ;
+
+ALTER TABLE `#__cot_admin` ADD `observation_datetime_death` DATE NOT NULL AFTER `observation_state` ;
+ALTER TABLE `#__cot_admin` ADD `observation_datetime_release` DATE NOT NULL AFTER `observation_datetime_death` ;
