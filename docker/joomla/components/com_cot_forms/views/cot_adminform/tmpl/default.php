@@ -161,7 +161,7 @@ $user = JFactory::getUser();
   </div>
 <!--Date-->
 			<div class="row">
-			    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_date'); ?></div>
+			    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_datetime'); ?></div>
 			    <div class="col-lg-4 col-md-6 col-xs-12">
 				<div class="input-group">
 				    <span class="input-group-addon exergue"><span class="fa fa-calendar"></span></span>

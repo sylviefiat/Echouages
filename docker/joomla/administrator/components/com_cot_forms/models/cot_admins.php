@@ -28,7 +28,7 @@ class Cot_formsModelCot_admins extends JModelList {
             $config['filter_fields'] = array(
                 'id', 'a.id',
 
-                //ajout référence et id_location
+                //references and id_location
                 'references','a.references',
                 'id_location','a.id_location',
 
@@ -36,10 +36,15 @@ class Cot_formsModelCot_admins extends JModelList {
                 'observer_tel', 'a.observer_tel',
                 'observer_email', 'a.observer_email',
 
-                // contacts de l'informateur
+                // grounding data
                 'informant_name', 'a.informant_name',
                 'informant_tel', 'a.informant_tel',
                 'informant_email', 'a.informant_email',
+                'observation_number', 'a.observation_number',
+                'observation_spaces', 'a.observation_spaces',
+                'observation_spaces_identification', 'a.observation_spaces_identification',
+                'observation_size','a.observation_size',
+                'observation_sex','a.observation_sex',
 
 		            'observation_datetime', 'a.observation_datetime',
 		            'observation_location', 'a.observation_location',
@@ -49,7 +54,7 @@ class Cot_formsModelCot_admins extends JModelList {
                 'observation_country_code', 'a.observation_country_code',
                 'observation_latitude', 'a.observation_latitude',
                 'observation_longitude', 'a.observation_longitude',
-                'observation_number', 'a.observation_number',
+
                 'observation_culled', 'a.observation_culled',
                 'observation_state', 'a.observation_state',
                 'counting_method_timed_swim', 'a.counting_method_timed_swim',

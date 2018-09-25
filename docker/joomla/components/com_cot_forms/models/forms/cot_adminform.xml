@@ -232,9 +232,9 @@
 					description="OBSERVATION_SEX_DESC"
 					type="radio"
 					required="true" >
-				<option value="male">OBSERVATION_SEX_A</option>
-				<option value="female">OBSERVATION_SEX_B</option>
-				<option value="unknow">OBSERVATION_SEX_C</option>
+				<option value="mâle">OBSERVATION_SEX_A</option>
+				<option value="femelle">OBSERVATION_SEX_B</option>
+				<option value="inconnu">OBSERVATION_SEX_C</option>
 			</field>
 			<!--Color-->
 			<field name="observation_color"
@@ -263,8 +263,8 @@
 			description="OBSERVATION_ABNORMALITIES_DESC"
 			type="radio"
 			required="true">
-		<option value="yes">JYES</option>
-		<option value="no">JNO</option>
+		<option value="oui">JYES</option>
+		<option value="non">JNO</option>
 	</field>
 	<!--Capture traces-->
 	<field name="observation_capture_traces"
@@ -274,8 +274,8 @@
 			description="OBSERVATION_CAPTURE_TRACES_DESC"
 			type="radio"
 			required="true">
-		<option value="ct probable">OBSERVATION_CAPTURE_TRACES_A</option>
-		<option value="ct certaine">OBSERVATION_CAPTURE_TRACES_B</option>
+		<option value="probable">OBSERVATION_CAPTURE_TRACES_A</option>
+		<option value="certaine">OBSERVATION_CAPTURE_TRACES_B</option>
 	</field>
 	<!--Catch indices-->
 	<field name="catch_indices"
@@ -294,8 +294,8 @@
 			description="OBSERVATION_STATE_DESC"
 			type="radio"
 			required="true" >
-		<option value="death">OBSERVATION_STATE_A</option>
-		<option value="alive">OBSERVATION_STATE_B</option>
+		<option value="mort">OBSERVATION_STATE_A</option>
+		<option value="vivant">OBSERVATION_STATE_B</option>
 	</field>
 	<!--Death-->
 	<field name="observation_death"
@@ -305,9 +305,9 @@
 			description="OBSERVATION_DEATH_DESC"
 			type="radio"
 			multiple="false" >
-		<option value="death_A">OBSERVATION_DEATH_A</option>
-		<option value="death_B">OBSERVATION_DEATH_B</option>
-		<option value="death_C">OBSERVATION_DEATH_C</option>
+		<option value="animal mort avant mon arrivée">OBSERVATION_DEATH_A</option>
+		<option value="animal mort pendant mon intervention">OBSERVATION_DEATH_B</option>
+		<option value="animal euthanasié">OBSERVATION_DEATH_C</option>
 	</field>
 	<!--Date death-->
 <field name="observation_datetime_death"
@@ -326,11 +326,22 @@
 			label="OBSERVATION_STATE_DECOMPOSITION"
 			description="OBSERVATION_STATE_DECOMPOSITION_DESC"
 			type="radio">
-		<option value="very fresh">OBSERVATION_STATE_DECOMPOSITION_A</option>
-		<option value="fresh">OBSERVATION_STATE_DECOMPOSITION_B</option>
-		<option value="putrefactive">OBSERVATION_STATE_DECOMPOSITION_D</option>
-		<option value="very putrefactive">OBSERVATION_STATE_DECOMPOSITION_D</option>
-		<option value="remains">OBSERVATION_STATE_DECOMPOSITION_E</option>
+		<option value="très frais">OBSERVATION_STATE_DECOMPOSITION_A</option>
+		<option value="frais ">OBSERVATION_STATE_DECOMPOSITION_B</option>
+		<option value="putréfié">OBSERVATION_STATE_DECOMPOSITION_D</option>
+		<option value="très putréfié">OBSERVATION_STATE_DECOMPOSITION_D</option>
+		<option value="restes">OBSERVATION_STATE_DECOMPOSITION_E</option>
+	</field>
+		<!--Levies protocole-->
+	<field name="levies_protocole"
+			alias="levies_protocole"
+			class="btn-group"
+			label="LEVIES_PROTOCOL"
+			description="LEVIES_PROTOCOL_DESC"
+			type="radio">
+		<option value="standard">LEVIES_PROTOCOL_A</option>
+		<option value="intermédiaire">LEVIES_PROTOCOL_B</option>
+		<option value="complet">LEVIES_PROTOCOL_C</option>
 	</field>
 	<!--Alive-->
 	<field name="observation_alive"
@@ -340,7 +351,7 @@
 			description="OBSERVATION_ALIVE_DESC"
 			type="checkboxes"
 			multiple="false" >
-		<option value="alive">OBSERVATION_ALIVE_A</option>
+		<option value="animal remis à l'eau">OBSERVATION_ALIVE_A</option>
 	</field>
 					<!--Date release-->
 				<field name="observation_datetime_release"
