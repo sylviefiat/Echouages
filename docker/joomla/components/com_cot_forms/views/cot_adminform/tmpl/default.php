@@ -213,6 +213,7 @@ $user = JFactory::getUser();
 				</div>
 			    </div>
 			</div>
+      <!--Number-->
             		<div class="row">
 			    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_number'); ?></div>
 			    <div class="col-lg-6 col-md-6 col-xs-12">
@@ -223,6 +224,7 @@ $user = JFactory::getUser();
 			    </div>
         </div>
 
+        <!--Indentification-->
           <div class="row">
             <!--Spaces-->
     <div class="col-xs-12"><?php echo $this->form->getLabel('observation_spaces'); ?></div>
@@ -255,6 +257,7 @@ $user = JFactory::getUser();
   </div>
   <!--Color-->
     </div>
+    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_color'); ?></div>
     <div class="col-lg-6 col-md-6 col-xs-12">
     <div class="input-group">
       <span class="input-group-addon"><span class="fa fa-resize-horizontal"></span></span>
@@ -349,7 +352,7 @@ $user = JFactory::getUser();
   <div class="form-group">
       <?php echo $this->form->getLabel('observation_state_decomposition'); ?>
       <div class="col-xs-offset-2 col-xs-10">
-    <div class="checkbox">
+    <div class="radio">
         <label><?php echo $this->form->getInput('observation_state_decomposition'); ?></label>
     </div>
       </div>

@@ -216,24 +216,22 @@
 			<!--Spaces identification-->
 			<field name="observation_spaces_identification"
 					alias="observation_spaces_identification"
-					class="form-control"
+					class="btn-group"
 					label="OBSERVATION_SPACES_IDENTIFICATION"
 					description="OBSERVATION_SPACES_IDENTIFICATION_DESC"
-					type="checkboxes"
-					required="true"
-					multiple="false" >
+					type="radio"
+					required="true" >
 				<option value="probable">OBSERVATION_SPACES_IDENTIFICATION_A</option>
 				<option value="certain">OBSERVATION_SPACES_IDENTIFICATION_B</option>
 			</field>
 			<!--Sex-->
 			<field name="observation_sex"
 					alias="observation_sex"
-					class="form-control"
+					class="btn-group"
 					label="OBSERVATION_SEX"
 					description="OBSERVATION_SEX_DESC"
-					type="checkboxes"
-					required="true"
-					multiple="false" >
+					type="radio"
+					required="true" >
 				<option value="male">OBSERVATION_SEX_A</option>
 				<option value="female">OBSERVATION_SEX_B</option>
 				<option value="unknow">OBSERVATION_SEX_C</option>
@@ -260,24 +258,22 @@
 	<!--Abnormalities-->
 	<field name="observation_abnormalities"
 			alias="observation_abnormalities"
-			class="form-control"
+			class="btn-group btn-group-yesno"
 			label="OBSERVATION_ABNORMALITIES"
 			description="OBSERVATION_ABNORMALITIES_DESC"
-			type="checkboxes"
-			required="true"
-			multiple="false" >
-		<option value="yes">OBSERVATION_ABNORMALITIES_A</option>
-		<option value="no">OBSERVATION_ABNORMALITIES_B</option>
+			type="radio"
+			required="true">
+		<option value="yes">JYES</option>
+		<option value="no">JNO</option>
 	</field>
 	<!--Capture traces-->
 	<field name="observation_capture_traces"
 			alias="observation_capture_traces"
-			class="form-control"
+			class="btn-group"
 			label="OBSERVATION_CAPTURE_TRACES"
 			description="OBSERVATION_CAPTURE_TRACES_DESC"
-			type="checkboxes"
-			required="true"
-			multiple="false" >
+			type="radio"
+			required="true">
 		<option value="ct probable">OBSERVATION_CAPTURE_TRACES_A</option>
 		<option value="ct certaine">OBSERVATION_CAPTURE_TRACES_B</option>
 	</field>
@@ -293,23 +289,21 @@
 	<!--State-->
 	<field name="observation_state"
 			alias="observation_state"
-			class="form-control"
+			class="btn-group"
 			label="OBSERVATION_STATE"
 			description="OBSERVATION_STATE_DESC"
-			type="checkboxes"
-			required="true"
-			multiple="false" >
+			type="radio"
+			required="true" >
 		<option value="death">OBSERVATION_STATE_A</option>
 		<option value="alive">OBSERVATION_STATE_B</option>
 	</field>
 	<!--Death-->
 	<field name="observation_death"
 			alias="observation_death"
-			class="form-control"
+			class="btn-group"
 			label="OBSERVATION_DEATH"
 			description="OBSERVATION_DEATH_DESC"
-			type="checkboxes"
-			required="true"
+			type="radio"
 			multiple="false" >
 		<option value="death_A">OBSERVATION_DEATH_A</option>
 		<option value="death_B">OBSERVATION_DEATH_B</option>
@@ -328,12 +322,10 @@
 	<!--State decomposition-->
 	<field name="observation_state_decomposition"
 			alias="observation_state_decomposition"
-			class="form-control"
+			class="btn-group"
 			label="OBSERVATION_STATE_DECOMPOSITION"
 			description="OBSERVATION_STATE_DECOMPOSITION_DESC"
-			type="checkboxes"
-			required="true"
-			multiple="false" >
+			type="radio">
 		<option value="very fresh">OBSERVATION_STATE_DECOMPOSITION_A</option>
 		<option value="fresh">OBSERVATION_STATE_DECOMPOSITION_B</option>
 		<option value="putrefactive">OBSERVATION_STATE_DECOMPOSITION_D</option>
@@ -347,7 +339,6 @@
 			label="OBSERVATION_ALIVE"
 			description="OBSERVATION_ALIVE_DESC"
 			type="checkboxes"
-			required="true"
 			multiple="false" >
 		<option value="alive">OBSERVATION_ALIVE_A</option>
 	</field>
