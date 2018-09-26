@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="file" version="2.5" method="upgrade">
+	<name>JCE Language fr-FR</name>
+	<version>2.6.26.1</version>
+	<creationDate>07-03-2018</creationDate>
+	<author>Sarki</author>
+	<authorEmail>info@sarki.ch</authorEmail>
+	<authorUrl>https://www.sarki.ch</authorUrl>
+	<copyright>© 2018 Sarki</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<url>https://www.sarki.ch/jce</url>
+	<description><![CDATA[
+		<h3>Pack de fichiers langue FR pour JCE 2.6</h3>
+		<div style="font-weight:normal;"><p>Le pack de langue FR est automatiquement utilisé si votre interface est en français.</p>
+		<p><strong>Note :</strong> ce pack de langue inclut le suivi de mise à jour en ligne.</p>
+		<p>Traduction & réalisation du pack par <a href="https://www.sarki.ch" target="_blank">Sarki</a>
+		<br />Support francophone de JCE sur <a href="https://www.sarki.ch/jce" target="_blank">www.sarki.ch/jce</a></p><br /> </div>
+		]]></description>
+	<fileset>
+		<files folder="administrator/language/fr-FR" target="administrator/language/fr-FR">
+			<file>fr-FR.com_jce.ini</file>
+			<file>fr-FR.com_jce.menu.ini</file>
+			<file>fr-FR.com_jce_pro.sys.ini</file>
+			<file>fr-FR.com_jce.sys.ini</file>
+			<file>fr-FR.mod_jce_quickicon.ini</file>
+			<file>fr-FR.pkg_jce_pro.sys.ini</file>
+			<file>fr-FR.pkg_jce.sys.ini</file>
+			<file>fr-FR.plg_content_jce.ini</file>
+			<file>fr-FR.plg_content_jce.sys.ini</file>
+			<file>fr-FR.plg_editors_jce.ini</file>
+			<file>fr-FR.plg_editors_jce.sys.ini</file>
+			<file>fr-FR.plg_extension_jce.ini</file>
+			<file>fr-FR.plg_extension_jce.sys.ini</file>
+			<file>fr-FR.plg_installer_jce.ini</file>
+			<file>fr-FR.plg_installer_jce.sys.ini</file>
+			<file>fr-FR.plg_quickicon_jce.ini</file>
+			<file>fr-FR.plg_quickicon_jce.sys.ini</file>
+			<file>fr-FR.plg_system_jce.ini</file>
+			<file>fr-FR.plg_system_jce.sys.ini</file>
+			<file>fr-FR.plg_system_jcemediabox.ini</file>
+			<file>fr-FR.plg_system_jcemediabox.sys.ini</file>
+		</files>
+		<tinymce folder="components/com_jce/editor/tiny_mce">
+			<file>themes/advanced/langs/fr.js</file>
+		</tinymce>
+		<files folder="language/fr-FR" target="language/fr-FR">
+			<file>fr-FR.com_jce.ini</file>
+			<file>fr-FR.com_jce_pro.ini</file>
+		</files>
+  	</fileset>
+    <updateservers>
+       <server type="extension" priority="1" name="JCE Language fr-FR">https://www.sarki.ch/jce/update/jce_language_fr.xml</server>
+    </updateservers>
+</extension>
