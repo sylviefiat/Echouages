@@ -6,11 +6,11 @@ class JConfig {
 	public $offline_image = '';
 	public $sitename = 'Opération Cétacé NC';
 	public $editor = 'jce';
-	public $captcha = '0';
+	public $captcha = 'recaptcha';
 	public $list_limit = '20';
 	public $access = '1';
-	public $debug = '0';
-	public $debug_lang = '0';
+	public $debug = '1';
+	public $debug_lang = '1';
 	public $dbtype = 'pdomysql';
 	public $host = 'docker_mysql';
 	public $user = 'root';
@@ -20,7 +20,7 @@ class JConfig {
 	public $live_site = '';
 	public $secret = 'jPuyeT4OKsQUazz0';
 	public $gzip = '0';
-	public $error_reporting = 'default';
+	public $error_reporting = 'development';
 	public $helpurl = 'https://help.joomla.fr/index.php?option=com_help&keyref=Help{major}{minor}:{keyref}';
 	public $ftp_host = '';
 	public $ftp_port = '';
@@ -31,7 +31,7 @@ class JConfig {
 	public $offset = 'UTC';
 	public $mailonline = '1';
 	public $mailer = 'mail';
-	public $mailfrom = 'ezechiel.wahoulo@ird.fr';
+	public $mailfrom = 'ezechiel.wahoulo@etudiant.unc.nc';
 	public $fromname = 'Opération Cétacé NC';
 	public $sendmail = '/usr/sbin/sendmail';
 	public $smtpauth = '0';
@@ -80,7 +80,7 @@ class JConfig {
 	public $proxy_user = '';
 	public $proxy_pass = '';
 	public $massmailoff = '0';
-	public $replyto = '';
+	public $replyto = 'ezechiel.wahoulo@etudiant.unc.nc';
 	public $replytoname = '';
 	public $MetaRights = '';
 	public $sitename_pagetitles = '0';
