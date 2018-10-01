@@ -25,7 +25,6 @@ $user = JFactory::getUser();
 <!-- This should probably be moved to the template CSS file -->
 <style>
 
-
 #jform_rules-lbl{
   display:none;
 }
@@ -38,7 +37,13 @@ $user = JFactory::getUser();
 fieldset.radio label{
   width: 50px !important;
 }
+
+.radio {
+  display: inline-block;
+}
+
 </style>
+
 <script type="text/javascript">
 
  function getScript(url,success) {
@@ -270,7 +275,7 @@ fieldset.radio label{
     <div class="form-group">
       <?php echo $this->form->getLabel('observation_stranding_type'); ?>
       <div class="col-xs-offset-2 col-xs-10">
-        <div class="radio">
+        <div class="radio-inline">
           <label><?php echo $this->form->getInput('observation_stranding_type'); ?></label>
         </div>
       </div>
@@ -404,16 +409,16 @@ fieldset.radio label{
       <?php //echo $this->form->getInput('observation_death'); ?>
     </div>
   </div>-->
-    <div class="col-lg-6 col-md-6 col-xs-12">
-      <div class="form-group">
-        <?php //echo $this->form->getLabel('observation_death'); ?>
-        <div class="col-xs-offset-3 col-xs-10">
-          <div class="radio">
-            <label><?php echo $this->form->getInput('observation_death'); ?></label>
-          </div>
+  <div class="col-lg-6 col-md-6 col-xs-12">
+    <div class="form-group">
+      <?php //echo $this->form->getLabel('observation_death'); ?>
+      <div class="col-xs-offset-3 col-xs-10">
+        <div class="radio">
+          <label><?php echo $this->form->getInput('observation_death'); ?></label>
         </div>
       </div>
     </div>
+  </div>
   <!--Death date-->
   <div class="col-xs-12"><?php echo $this->form->getLabel('observation_datetime_death'); ?></div>
   <div class="col-lg-4 col-md-6 col-xs-12">
@@ -453,25 +458,25 @@ fieldset.radio label{
         <?php echo JText::_('OBSERVATION_LIVING_ANIMAL');?>
       </label>
     </div>
-  <div class="col-lg-6 col-md-6 col-xs-12">
-    <div class="form-group">
-      <?php //echo $this->form->getLabel('observation_alive'); ?>
-      <div class="col-xs-offset-2 col-xs-10">
-        <div class="checkbox">
-          <label><?php echo $this->form->getInput('observation_alive'); ?></label>
+    <div class="col-lg-6 col-md-6 col-xs-12">
+      <div class="form-group">
+        <?php //echo $this->form->getLabel('observation_alive'); ?>
+        <div class="col-xs-offset-2 col-xs-10">
+          <div class="checkbox">
+            <label><?php echo $this->form->getInput('observation_alive'); ?></label>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!--Release date-->
-  <div class="col-xs-12"><?php echo $this->form->getLabel('observation_datetime_release'); ?></div>
-  <div class="col-lg-4 col-md-6 col-xs-12">
-    <div class="input-group">
-      <span class="input-group-addon exergue"><span class="fa fa-calendar"></span></span>
-      <?php echo $this->form->getInput('observation_datetime_release'); ?>
+    <!--Release date-->
+    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_datetime_release'); ?></div>
+    <div class="col-lg-4 col-md-6 col-xs-12">
+      <div class="input-group">
+        <span class="input-group-addon exergue"><span class="fa fa-calendar"></span></span>
+        <?php echo $this->form->getInput('observation_datetime_release'); ?>
+      </div>
     </div>
   </div>
-</div>
 </div>
 <!--Tissue removal-->
 <div class="row">
