@@ -58,7 +58,8 @@ class Cot_formsModelCot_admins extends JModelList {
      * @return	JDatabaseQuery
      * @since	1.6
      */
-    protected function getListQuery() {
+    // Extended csv export
+    protected function getListQueryExtended() {
         // Create a new query object.
         $db = $this->getDbo();
         $query = $db->getQuery(true);
@@ -94,30 +95,121 @@ class Cot_formsModelCot_admins extends JModelList {
         return $query;
     }
 
+    // Sample csv export
+     protected function getListQuerySample() {
+      // Create a new query object.
+      $db = $this->getDbo();
+      $query = $db->getQuery(true);
+
+      // Select the required fields from the table.
+      $query->select(
+              $this->getState(
+                      'list.select', 'a.id,
+                                      a.form_references,
+                                      a.id_location,
+                                      a.observation_spaces,
+                                      a.observation_datetime,
+                                      a.observation_country,
+                                      a.observation_region,
+                                      a.observation_localisation,
+                                      a.observation_latitude,
+                                      a.observation_longitude,
+                                      a.observation_number,
+                                      a.observation_sex,
+                                      a.observation_size,
+                                      a.observation_state_decomposition,
+                                      a.informant_name,
+                                      a.observer_name,
+                                      a.catch_indices,
+                                      a.observation_tissue_removal,
+                                      a.form_references'
+
+              )
+      );
+
+      $query->from('`#__cot_admin` AS a');
+
+    // Join over the created by field 'created_by'
+    $query->select('created_by.name AS created_by');
+    $query->join('LEFT', '#__users AS created_by ON created_by.id = a.created_by');
+
+
+        // Filter by search in title
+        $search = $this->getState('filter.search');
+        if (!empty($search)) {
+            if (stripos($search, 'id:') === 0) {
+                $query->where('a.id = ' . (int) substr($search, 3));
+            } else {
+                $search = $db->Quote('%' . $db->escape($search, true) . '%');
+                $query->where('( a.observer_name LIKE '.$search.' )');
+            }
+        }
+        return $query;
+    }
+
     public function getItems() {
         return parent::getItems();
     }
 
-    public function getCsv()
+    // Sample getCsv
+    public function sampleGetCsv()
     {
       $this->populateState();
       $db = $this->getDbo();
 
       $cols = array_keys($db->getTableColumns('#__cot_admin'));
-      for($cptr=1; $cptr<5; $cptr++){ array_pop($cols); }
-      $items = $db->setQuery($this->getListQuery())->loadObjectList();
+
+      // Count columns 
+      $nb_columns = count($cols); 
+
+      // Delete all the columns header
+      for($cptr=0; $cptr<$nb_columns; $cptr++){ array_pop($cols); }
+      
+      array_push($cols, 'Id', 'Référence', 'Id_location', 'Espèce', 'Date_examen', 'Collectivité', 'Commune', 'Lieu', 'Position_latitude', 'Postion_longitude', 'Nombre',   'Sexe', 'Longueur', 'DCC', 'Informateur', 'Observateur', 'Observations','Prélèvements');
+
+      $items = $db->setQuery($this->getListQuerySample())->loadObjectList();
       $csv =  fopen('php://output', 'w');
       fprintf($csv, chr(0xEF).chr(0xBB).chr(0xBF));
       fputcsv($csv, $cols);
 
       foreach($items as $line){
         $in = (array) $line;
-        for($cptr=1; $cptr<5; $cptr++){ array_pop($in); }
         fputcsv($csv, (array) $in);
       }
 
       return fclose($csv);
     }
+
+    // Extended getCsv
+    public function extendedGetCsv()
+    {
+      $this->populateState();
+      $db = $this->getDbo();
+
+      $cols = array_keys($db->getTableColumns('#__cot_admin'));
+
+      // Count columns 
+      $nb_columns = count($cols); 
+
+      // Delete all the columns header
+      /*for($cptr=0; $cptr<$nb_columns; $cptr++){ array_pop($cols); }
+      
+      array_push($cols, 'Id', 'Référence', 'Id_location', 'Espèce', 'Date_examen', 'Collectivité', 'Commune', 'Lieu', 'Position_latitude', 'Postion_longitude', 'Nombre',   'Sexe', 'Longueur', 'DCC', 'Informateur', 'Observateur', 'Observations','Prélèvements');*/
+
+      $items = $db->setQuery($this->getListQueryExtended())->loadObjectList();
+      $csv =  fopen('php://output', 'w');
+      fprintf($csv, chr(0xEF).chr(0xBB).chr(0xBF));
+      fputcsv($csv, $cols);
+
+      foreach($items as $line){
+        $in = (array) $line;
+        fputcsv($csv, (array) $in);
+      }
+
+      return fclose($csv);
+    }
+
+
   }
 
 /*
