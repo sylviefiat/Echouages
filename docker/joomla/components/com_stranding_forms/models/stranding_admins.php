@@ -74,7 +74,7 @@ class Stranding_formsModelStranding_admins extends JModelList {
                                     Year(observation_datetime),
                                     a.observation_country,
                                     988,
-                                    a.observation_commune,
+                                    a.observation_region,
                                     a.observation_localisation,
                                     a.observation_latitude,
                                     a.observation_longitude,
@@ -82,11 +82,11 @@ class Stranding_formsModelStranding_admins extends JModelList {
                                     a.observation_sex,
                                     a.observation_size,
                                     a.observation_size_precision,
-                                    a.observation_state_decomposition,
+                                    CONCAT(observation_state_decomposition, observation_alive),
                                     CONCAT(informant_name, " ", informant_address, " ", informant_tel, " ", informant_email),
                                     CONCAT(observer_name, " ", observer_address, " ", observer_tel, " ", observer_email),
                                     a.catch_indices,
-                                    a.observation_tissue_removal,
+                                    a.levies,
                                     a.observation_location_stock,
                                     a.admin_validation'
 
@@ -125,80 +125,45 @@ class Stranding_formsModelStranding_admins extends JModelList {
                                       Year(observation_datetime),
                                       Month(observation_datetime),
                                       a.observation_datetime,
-                                      a.observation_commune,
-                                      CONCAT(observation_localisation," ", observation_region),
+                                      a.observation_region,
+                                      a.observation_localisation,
                                       a.observation_latitude,
                                       a.observation_longitude,
-                                      a.observation_spaces,
                                       a.observation_stranding_type,
                                       a.observation_number,
+                                      a.observation_spaces,
+                                      a.observation_spaces_identification,
+                                      a.observation_sex,
+                                      a.observation_size,
+                                      a.observation_color,
                                       CONCAT(a.observer_name, " ", observer_address, " ", observer_tel, " ", observer_email),
                                       CONCAT(informant_name, " ", informant_address, " ", informant_tel, " ", informant_email),
+                                      a.levies,
+                                      a.photos,
+                                      a.observation_caudal,
+                                      CONCAT(observation_beak, observation_furrows, observation_defenses),
+                                      a.nb_teeth_upper_right,
+                                      a.nb_teeth_upper_left,
+                                      a.nb_teeth_lower_right,
+                                      a.nb_teeth_lower_left,
+                                      a.observation_teeth_base_diametre,
+                                      a.observation_baleen_color,
+                                      a.observation_baleen_height,
+                                      a.observation_baleen_base_height,
+                                      a.observation_abnormalities,
+                                      a.observation_capture_traces,
+                                      a.catch_indices,
+                                      CONCAT(observation_state_decomposition,observation_alive),
+                                      a.observation_datetime_death,
+                                      a.observation_datetime_release,
+                                      a.levies_protocole,
+                                      a.label_references,
+                                      CONCAT(observation_tissue_removal_dead, observation_tissue_removal_alive),
+                                      a.observation_location_stock,
                                       a.remarks,
-                                      a.id,
                                       a.observer_name,
+                                      a.id,
                                       a.admin_validation'
-
-              )
-      );
-         
-      $query->from('`#__stranding_admin` AS a');
-
-      // Join over the created by field 'created_by'
-      $query->select('created_by.name AS created_by');
-      $query->join('LEFT', '#__users AS created_by ON created_by.id = a.created_by');
-
-      // Filter by search in title
-      $search = $this->getState('filter.search');
-      if (!empty($search)) {
-          if (stripos($search, 'id:') === 0) {
-              $query->where('a.id = ' . (int) substr($search, 3));
-          } else {
-              $search = $db->Quote('%' . $db->escape($search, true) . '%');
-              $query->where('( a.observer_name LIKE '.$search.' )');
-          }
-      }
-      return $query;
-    }
-
-    // The animal data output
-    protected function getListQuery() {
-    // Create a new query object.
-    $db = $this->getDbo();
-    $query = $db->getQuery(true);
-
-    // Select the required fields from the table.
-    $query->select(
-            $this->getState(
-                    'list.select', 'CONCAT("EC",Year(observation_datetime),"-","0",a.id,"-","0",id_location),
-                                    a.observation_sex,
-                                    a.observation_size,
-                                    a.observation_color,
-                                    a.observation_caudal,
-                                    CONCAT(observation_beak, " ", observation_furrows),
-                                    a.nb_teeth_upper_right,
-                                    a.nb_teeth_upper_left,
-                                    a.nb_teeth_lower_right,
-                                    a.nb_teeth_lower_left,
-                                    a.observation_teeth_base_diametre,
-                                    a.observation_baleen_color,
-                                    a.observation_baleen_height,
-                                    a.observation_baleen_base_height,
-                                    a.observation_defenses,
-                                    a.observation_abnormalities,
-                                    a.observation_capture_traces,
-                                    a.catch_indices,
-                                    CONCAT(observation_death,observation_alive),
-                                    CONCAT(observation_datetime_death,observation_datetime_release),
-                                    a.levies_protocole,
-                                    a.label_references,
-                                    observation_state_decomposition,
-                                    a.observation_tissue_removal,
-                                    a.observation_location_stock,
-                                    a.remarks,
-                                    a.id,
-                                    a.observer_name,
-                                    a.admin_validation'
 
               )
       );
@@ -256,23 +221,7 @@ class Stranding_formsModelStranding_admins extends JModelList {
         return fclose($csv);
 
       }else if($var == 1) {
-            array_push($cols, 'References', 'Année', 'Mois', 'Date', 'Lieu', 'Espèce', 'Echouage isolé ou en groupe', "Nombre d'individus", 'Identification', 'Sexe', 'Contactes', "Origine de l'information", 'Remarques');
-            $items = $db->setQuery($this->getListQuery())->loadObjectList();
-            $csv =  fopen('php://output', 'w');
-            fprintf($csv, chr(0xEF).chr(0xBB).chr(0xBF));
-            fputcsv($csv, $cols);
-
-            foreach($items as $line){
-              $in = (array) $line;
-              array_pop($in);
-              array_pop($in);
-              array_pop($in);
-              array_pop($in);
-              fputcsv($csv, (array) $in);
-          }
-        return fclose($csv);
-      }else {
-           array_push($cols, 'References', 'Sexe', 'Taille','Couleur','Encoche médiane à la caudale' , 'Animal mort ou vivant', 'DCC', 'Longueur', 'Prélèvements', 'Sexe', 'Les cause de la mort', 'Remarques');
+            array_push($cols, 'References', 'Année', 'Mois', 'Date', 'Commune', 'Lieu', 'Latitude', 'Longitude',  'Echouage isolé ou en groupe', "Nombre d'individus",'Espèce', 'Identification', 'Sexe', 'Taille', 'Couleur', "Contact de l'observateur", "Origine de l'information", 'Prélèvements','Photos', 'Encoche médiane à la caudale', 'Bec, sillons sous la gorge ou défenses', 'Nombre de dents en haut à droite', 'Nombre de dents en haut à gauche', 'Nombre de dents en bas à droite', 'Nombre de dents en bas à gauche', 'Diamètre à la base', 'Couleur des fanons', 'Hauteur des fanons', 'largeure à la base','Présence de blessures, morssures', 'Présence de traces de capture', 'Indices de capture', 'DCC','Date de la mort', "Date de la remise à l'eau", 'Protocole de prélèvements', 'Référence sur les étiquettes', 'Prélèvements de tissus','Lieu de stockage','Remarques');
             $items = $db->setQuery($this->getListQuery())->loadObjectList();
             $csv =  fopen('php://output', 'w');
             fprintf($csv, chr(0xEF).chr(0xBB).chr(0xBF));
@@ -288,9 +237,7 @@ class Stranding_formsModelStranding_admins extends JModelList {
           }
         return fclose($csv);
       }
-      
     }
-
   }
 
 

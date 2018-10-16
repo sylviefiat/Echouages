@@ -146,7 +146,7 @@ class HelixUltimate
 
         if($view == 'form' && $layout == 'edit')
         {
-            $doc->addStylesheet( \JURI::root(true) . '\plugins/system/helixultimate/assets/css/frontend-edit.css');
+            $doc->addStylesheet(JURI::root(true) . '\plugins/system/helixultimate/assets/css/frontend-edit.css');
         }
         
         $this->add_js('popper.min.js, bootstrap.min.js');

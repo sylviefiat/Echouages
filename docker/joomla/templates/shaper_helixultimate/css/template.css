@@ -92,6 +92,15 @@ fieldset {
     border: 0;
     min-width: 0;
 }
+.input-group-addon:first-child {
+    border-right: 0;
+}
+.input-group {
+    position: relative;
+    /*display: table;*/
+    border-collapse: separate;
+}
+
 
 
 
