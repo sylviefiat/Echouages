@@ -174,7 +174,7 @@ function transpo(i) {
 
     <form id="form-stranding_admin" action="<?php echo JRoute::_('index.php?option=com_stranding_forms&task=stranding_admin.save'); ?>" method="post" class="form-validate" enctype="multipart/form-data">
       <!--Contacts-->
-      <div class="col-lg-12 col-md-12 col-xs-12"><h4 class="fa fa-user fa-2x"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW1'); ?></h4></div>
+      <div class="col-xs-12"><h4 class="fa fa-user fa-2x"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW1'); ?></h4></div>
       <!--Observer contacts-->
       <div class="row">
        <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observer_name'); ?></div>
@@ -236,7 +236,7 @@ function transpo(i) {
       </div>
     </div>
     <!--Circonstance de l'échouage-->
-    <div class="col-lg-12 col-md-12 col-xs-12"><h4 class="fa fa-flag fa-2x"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW2'); ?></h4></div>
+    <div class="col-xs-12"><h4 class="fa fa-flag fa-2x"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW2'); ?></h4></div>
     <!--Date-->
     <div class="row">
      <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observation_datetime'); ?></div>
@@ -316,7 +316,7 @@ function transpo(i) {
 
 <div class="stranding_admin-mammal_data" id="stranding_admin-the_clone">
   <!--Indentification-->
-  <div class="col-lg-12 col-md-12 col-xs-12" id="title_R3"><h4 class="fa fa-eye fa-2x"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW3'); ?></h4></div>
+  <div class="col-xs-12" id="title_R3"><h4 class="fa fa-eye fa-2x"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW3'); ?></h4></div>
 
   <div class="row" id="identification">
     <!--Spaces-->
@@ -412,50 +412,54 @@ function transpo(i) {
       <?php echo JText::_('OBSERVATION_TOOTH_NUMBER_LBL');?>
     </label>
   </div>
-  <div class="col-lg-3 col-md-3 col-xs-6">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="form-group">
       <?php echo $this->form->getLabel('nb_teeth_upper_right'); ?>
-      <div class="col-xs-offset-3 col-xs-10">
+      <div class="col-xs-offset-6 col-xs-12">
         <div class="input-group">
+          <span class="input-group-addon"><span class="fa fa-tachometer"></span></span>
           <?php echo $this->form->getInput('nb_teeth_upper_right'); ?>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-3 col-xs-6">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="form-group">
       <?php echo $this->form->getLabel('nb_teeth_upper_left'); ?>
-      <div class="col-xs-offset-3 col-xs-10">
+      <div class="col-xs-offset-6 col-xs-12">
         <div class="input-group">
+          <span class="input-group-addon"><span class="fa fa-tachometer"></span></span>
           <?php echo $this->form->getInput('nb_teeth_upper_left'); ?>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-3 col-xs-6">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="form-group">
       <?php echo $this->form->getLabel('nb_teeth_lower_right'); ?>
-      <div class="col-xs-offset-3 col-xs-10">
+      <div class="col-xs-offset-6 col-xs-12">
         <div class="input-group">
+          <span class="input-group-addon"><span class="fa fa-tachometer"></span></span>
           <?php echo $this->form->getInput('nb_teeth_lower_right'); ?>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-3 col-xs-6">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="form-group">
       <?php echo $this->form->getLabel('nb_teeth_lower_left'); ?>
-      <div class="col-xs-offset-3 col-xs-10">
+      <div class="col-xs-offset-6 col-xs-12">
         <div class="input-group">
+          <span class="input-group-addon"><span class="fa fa-tachometer"></span></span>
           <?php echo $this->form->getInput('nb_teeth_lower_left'); ?>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-3 col-xs-6">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="form-group">
       <?php echo $this->form->getLabel('observation_teeth_base_diametre'); ?>
-      <div class="col-xs-offset-3 col-xs-10">
+      <div class="col-xs-offset-6 col-xs-12">
         <div class="input-group">
           <?php echo $this->form->getInput('observation_teeth_base_diametre'); ?>
         </div>
@@ -470,35 +474,35 @@ function transpo(i) {
       <?php echo JText::_('OBSERVATION_BALEEN_LBL');?>
     </label>
   </div>
-  <div class="col-lg-3 col-md-3 col-xs-6">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="form-group">
       <?php echo $this->form->getLabel('observation_baleen_color'); ?>
-      <div class="col-xs-offset-3 col-xs-10">
+      <div class="col-xs-offset-6 col-xs-12">
         <div class="input-group">
           <?php echo $this->form->getInput('observation_baleen_color'); ?>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-xs-12">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <label id="" class="hasTooltip" title="<?php echo JText::_('OBSERVATION_BALEEN_MEASURES_DESC');?>">
       <?php echo JText::_('OBSERVATION_BALEEN_MEASURES_LBL');?>
     </label>
   </div>
-  <div class="col-lg-3 col-md-3 col-xs-6">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="form-group">
       <?php echo $this->form->getLabel('observation_baleen_height'); ?>
-      <div class="col-xs-offset-3 col-xs-10">
+      <div class="col-xs-offset-6 col-xs-12">
         <div class="input-group">
           <?php echo $this->form->getInput('observation_baleen_height'); ?>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 col-md-3 col-xs-6">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="form-group">
       <?php echo $this->form->getLabel('observation_baleen_base_height'); ?>
-      <div class="col-xs-offset-3 col-xs-10">
+      <div class="col-xs-offset-6 col-xs-12">
         <div class="input-group">
           <?php echo $this->form->getInput('observation_baleen_base_height'); ?>
         </div>
@@ -544,7 +548,7 @@ function transpo(i) {
 </div>
 </div>
 <!--Animal-->
-<div class="col-lg-12 col-md-12 col-xs-12" id="title_R4"><h4 class="fa fa-shield fa-2x"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW4'); ?></h4></div>
+<div class="col-xs-12" id="title_R4"><h4 class="fa fa-shield fa-2x"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW4'); ?></h4></div>
 <div class="row">
   <div class="row">
     <!--Size-->
@@ -740,9 +744,7 @@ function transpo(i) {
 <div class="row">
  <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observation_location_stock'); ?></div>
  <div class="col-lg-12 col-md-12 col-xs-12">
-  <div class="input-group">
     <?php echo $this->form->getInput('observation_location_stock'); ?>
-  </div>
 </div>
 </div>
 <!--Remarks-->

@@ -18,6 +18,11 @@ body {
   margin-left: -15px;
   margin-right: -15px;
 }
+.input-group {
+  position: relative;
+  /*display: table;*/
+  border-collapse: separate;
+}
 .input-group-addon {
     padding: 6px 12px;
     font-size: 14px;
@@ -28,9 +33,6 @@ body {
     background-color: #eeeeee;
     border: 1px solid #cccccc;
     border-radius: 4px;
-}
-.input-group-addon, .input-group-btn, .input-group .form-control {
-    display: table-cell;
 }
 h1 {
     display: block;
@@ -92,15 +94,39 @@ fieldset {
     border: 0;
     min-width: 0;
 }
-.input-group-addon:first-child {
-    border-right: 0;
-}
-.input-group {
-    position: relative;
-    /*display: table;*/
-    border-collapse: separate;
-}
 
+
+/*#jform_observation_datetime-btn {
+    position: absolute;
+    margin-left: -100%;
+    z-index: 2000;
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+}*/
+/*.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}*/
+div {
+    display: block;
+}
 
 
 
