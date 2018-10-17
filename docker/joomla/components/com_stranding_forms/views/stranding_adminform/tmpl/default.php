@@ -723,7 +723,7 @@ function toggleContainer(name)
     </div>
     <!--Release date-->
     <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observation_datetime_release'); ?></div>
-    <div class="col-lg-6 col-md-6 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-xs-12">
       <div class="input-group">
         <span class="input-group-addon exergue"><span class="fa fa-calendar"></span></span>
         <?php echo $this->form->getInput('observation_datetime_release'); ?>

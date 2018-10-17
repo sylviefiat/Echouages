@@ -122,9 +122,11 @@ textarea.form-control {
 .radio {
   display:inline;
   margin-right:50px;
+
 }
-
-
+input[type="radio"] {
+  
+}
 
 
 body {
