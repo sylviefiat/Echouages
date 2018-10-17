@@ -194,7 +194,7 @@ function toggleContainer(name)
         </div>
         <div class="col-lg-3 col-md-6 col-xs-12">
           <div class="input-group">
-            <span class="input-group-addon"><span class="fa fa-phone"></span></span>
+            <span class="input-group-addon exergue"><span class="fa fa-phone"></span></span>
             <?php echo $this->form->getInput('observer_tel'); ?>
           </div>
         </div>
@@ -205,8 +205,12 @@ function toggleContainer(name)
           </div>
         </div>
       </div>
-      <label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_INFORMANT_CONTACT');?></label>
-      <button type="button" name="informantBtn" class="btn btn-primary" value="informateur" onclick="toggleContainer('informant_field')"><?php echo $this->form->getLabel('informant_name'); ?></button>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+          <label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_INFORMANT_CONTACT');?></label>
+          <button type="button" name="informantBtn" class="btn btn-primary" value="informateur" onclick="toggleContainer('informant_field')"><?php echo $this->form->getLabel('informant_name'); ?></button>
+        </div>
+      </div>
       <!--Informant contacts-->
       <div class="row" id="informant_field" style="display: none;">
         <div class="col-xs-12"><?php echo $this->form->getLabel('informant_name'); ?></div>
@@ -224,7 +228,7 @@ function toggleContainer(name)
         </div>
         <div class="col-lg-3 col-md-6 col-xs-12">
           <div class="input-group">
-            <span class="input-group-addon"><span class="fa fa-phone"></span></span>
+            <span class="input-group-addon exergue"><span class="fa fa-phone"></span></span>
             <?php echo $this->form->getInput('informant_tel'); ?>
           </div>
         </div>
