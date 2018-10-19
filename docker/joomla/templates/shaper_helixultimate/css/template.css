@@ -164,7 +164,13 @@ input[type="radio"] {
 input[type="checkboxes"] {
   border: none;
 }
-
+.radio label, .checkbox label {
+    min-height: 20px;
+    padding-left: 20px;
+    margin-bottom: 0;
+    font-weight: normal;
+    cursor: pointer;
+}
 .btn {
     display: inline-block;
     margin-bottom: 0;
@@ -185,29 +191,7 @@ input[type="checkboxes"] {
     -ms-user-select: none;
     user-select: none;
 }
-#jform_observation_datetime-btn {
-    position: absolute;
-    margin-top: -10%;
-    z-index: 10000;
-    height: 100%;
-    width: 100%;
-    border-radius: 0;
-    display: block;
-    color: transparent;
-    -webkit-appearance: none; 
-}
-#jform_observation_datetime_death-btn {
-    position: absolute;
-    margin-top: -10%;
-    z-index: 10000;
-    height: 100%;
-    width: 100%;
-    border-radius: 0;
-    display: block;
-    color: transparent;
-    -webkit-appearance: none; 
-}
-#jform_observation_datetime_release-btn {
+#jform_observation_datetime-btn, #jform_observation_datetime_death-btn, #jform_observation_datetime_release-btn {
     position: absolute;
     margin-top: -10%;
     z-index: 10000;
