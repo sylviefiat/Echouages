@@ -79,10 +79,14 @@ body {
 .input-group-addon, .input-group-btn {
     white-space: nowrap;
     vertical-align: middle;
+    
+}
+.included {
+  display: table;
 }
 .input-group {
     position: relative;
-    /*display: table;*/
+    border-right: 0;
     border-collapse: separate;
 }
 .input-group-addon, .input-group-btn, .input-group .form-control {
@@ -130,10 +134,6 @@ label {
 div {
     display: block;
 }
-.input-group:first-child {
-    border-right: 0;
-}
-
 #form-cot_admin .row {
     margin-bottom: 10px;
 }
@@ -157,15 +157,10 @@ input[type="radio"] {
     border:none;
     margin: 10px;
 }
-
-#jform_observation_datetime-btn {
-    position: absolute;
-    margin-left: -100%;
-    z-index: 10000;
-    height: 100%;
-    width: 100%;
-    border-radius: 0;
+input[type="checkboxes"] {
+  border: none;
 }
+
 .btn {
     display: inline-block;
     margin-bottom: 0;
@@ -186,7 +181,48 @@ input[type="radio"] {
     -ms-user-select: none;
     user-select: none;
 }
-
+#jform_observation_datetime-btn {
+    position: absolute;
+    margin-top: -10%;
+    z-index: 10000;
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+    display: block;
+    color: transparent;
+    -webkit-appearance: none; 
+}
+#jform_observation_datetime_death-btn {
+    position: absolute;
+    margin-top: -10%;
+    z-index: 10000;
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+    display: block;
+    color: transparent;
+    -webkit-appearance: none; 
+}
+#jform_observation_datetime_release-btn {
+    position: absolute;
+    margin-top: -10%;
+    z-index: 10000;
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+    display: block;
+    color: transparent;
+    -webkit-appearance: none; 
+}
+#jform_observation_localisation {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 0;
+  border-radius: 4px;
+}
+.ol-unselectable {
+  display: table-cell;
+}
 
 
 
