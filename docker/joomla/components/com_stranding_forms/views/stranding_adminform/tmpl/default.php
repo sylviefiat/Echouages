@@ -174,10 +174,12 @@ function toggleContainer(name)
 
       <form id="form-stranding_admin" action="<?php echo JRoute::_('index.php?option=com_stranding_forms&task=stranding_admin.save'); ?>" method="post" class="form-validate" enctype="multipart/form-data">
         <!--Contacts-->
-        <div class="col-xs-12"><span class="input-group-addon exergue"><span class="fa fa-user fa-2x"><h4><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW1'); ?></h4></span></span></div>
+        <div class="row">
+          <div class="col-xs-12"><span class="stranding_admin-title_row"><span class="fa fa-user fa-2x"><h4><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW1'); ?></h4></span></span></div>
+        </div>
         <!--Observer contacts-->
         <div class="row">
-         <div class="col-xs-12"><?php echo $this->form->getLabel('observer_name'); ?></div>
+         <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observer_name'); ?></div>
          <div class="col-lg-3 col-md-6 col-xs-12">
           <div class="input-group">
             <span class="input-group-addon exergue"><span class="fa fa-user"></span></span>
@@ -213,7 +215,7 @@ function toggleContainer(name)
       </div>
       <!--Informant contacts-->
       <div class="row" id="informant_field" style="display: none;">
-        <div class="col-xs-12"><?php echo $this->form->getLabel('informant_name'); ?></div>
+        <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('informant_name'); ?></div>
         <div class="col-lg-3 col-md-6 col-xs-12">
           <div class="input-group">
             <span class="input-group-addon exergue"><span class="fa fa-user"></span></span>
@@ -240,10 +242,12 @@ function toggleContainer(name)
         </div>
       </div>
       <!--Circonstance de l'échouage-->
-      <div class="col-xs-12"><span class="input-group-addon exergue"><span class="fa fa-flag fa-2x"><h4><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW2'); ?></h4></span></span></div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12"><span class="stranding_admin-title_row"><span class="fa fa-flag fa-2x"><h4><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW2'); ?></h4></span></span></div>
+      </div> 
       <!--Date-->
       <div class="row">
-       <div class="col-xs-12"><?php echo $this->form->getLabel('observation_datetime'); ?></div>
+       <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observation_datetime'); ?></div>
        <div class="col-lg-4 col-md-6 col-xs-12">
         <div class="input-group">
           <span class="input-group-addon exergue"><span class="fa fa-calendar"></span></span>
@@ -258,7 +262,7 @@ function toggleContainer(name)
       </div>
     </div>
     <div class="row">
-     <div class="col-xs-12"><?php echo $this->form->getLabel('observation_localisation'); ?></div>
+     <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observation_localisation'); ?></div>
      <div class="col-md-12 col-md-12 col-xs-12">
       <div class="input-group">
         <span class="input-group-addon exergue"><span class="fa fa-map-marker"></span></span>
@@ -296,7 +300,7 @@ function toggleContainer(name)
 </div>
 <div class="row">
   <!--Stranding type-->
-  <div class="col-xs-12"><?php echo $this->form->getLabel('observation_stranding_type'); ?></div>
+  <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observation_stranding_type'); ?></div>
   <div class="col-lg-6 col-md-6 col-xs-12">
     <div class="form-group">
       <div class="col-xs-offset-2 col-xs-10">
@@ -307,7 +311,7 @@ function toggleContainer(name)
     </div>
   </div>
   <!--Number-->
-  <div class="col-xs-12"><?php echo $this->form->getLabel('observation_number'); ?></div>
+  <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observation_number'); ?></div>
   <div class="col-lg-6 col-md-6 col-xs-12">
     <div class="input-group">
       <span class="input-group-addon"><span class="fa fa-tachometer"></span></span>
@@ -316,17 +320,18 @@ function toggleContainer(name)
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
-    <button type="button" onclick="duplic('identification')" ><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ADD_FIELDS'); ?></button>
+  <div class="col-lg-12 col-md-12 col-xs-12">
+    <button type="button" class="btn btn-primary" onclick="duplic('identification')" ><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ADD_FIELDS'); ?></button>
   </div>
 </div>
 <div class="stranding_admin-mammal_data" id="stranding_admin-the_clone">
   <!--Indentification-->
-  <div class="col-xs-12" id="title_R3"><span class="input-group-addon exergue"><span class="fa fa-eye fa-2x"><h4><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW3'); ?></h4></span></span></div>
-
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12" id="title_R3"><span class="stranding_admin-title_row"><span class="fa fa-eye fa-2x"><h4><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW3'); ?></h4></span></span></div>
+  </div>
   <div class="row" id="identification">
     <!--Spaces-->
-    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_spaces'); ?></div>
+    <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observation_spaces'); ?></div>
     <div class="col-lg-6 col-md-6 col-xs-12" id="spaces" name="espece[]">
       <div class="input-group">
         <span class="input-group-addon"><span class="fa fa-eye-open"></span>
@@ -336,7 +341,7 @@ function toggleContainer(name)
     </div>
   </div>
   <!--Spaces identification-->
-  <div class="col-xs-12" id="spaces_identification" name="id_espece[]"><?php echo $this->form->getLabel('observation_spaces_identification'); ?></div>
+  <div class="col-lg-12 col-md-12 col-xs-12" id="spaces_identification" name="id_espece[]"><?php echo $this->form->getLabel('observation_spaces_identification'); ?></div>
   <div class="col-lg-6 col-md-6 col-xs-12">
     <div class="form-group">
       <div class="col-xs-offset-6 col-xs-12">
@@ -347,7 +352,7 @@ function toggleContainer(name)
     </div>
   </div>
   <!--Color-->
-  <div class="col-xs-12"><?php echo $this->form->getLabel('observation_color'); ?></div>
+  <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observation_color'); ?></div>
   <div class="col-lg-6 col-md-6 col-xs-12" id="color">
     <div class="input-group">
       <span class="input-group-addon"><span class="fa fa-resize-horizontal"></span></span>
@@ -355,7 +360,7 @@ function toggleContainer(name)
     </div>
   </div>
   <!--Encoche médiane à la caudale-->
-  <div class="col-xs-12" id="caudale"><?php echo $this->form->getLabel('observation_caudal'); ?></div>
+  <div class="col-lg-12 col-md-12 col-xs-12" id="caudale"><?php echo $this->form->getLabel('observation_caudal'); ?></div>
   <div class="col-lg-2 col-md-2 col-xs-4">
      <p>
       <img src="administrator/components/com_stranding_forms/assets/images/cetace_tail.png" title="<?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_TAIL_FIN')?>" />
@@ -371,7 +376,7 @@ function toggleContainer(name)
     </div>
   </div>
    <!--Beak-->
-  <div class="col-xs-12">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <label class="hasTooltip" title="<?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_BEC_OR_FURROWS_DESC');?>"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_BEC_OR_FURROWS'); ?></label></div>
   <div class="col-lg-6 col-md-6 col-xs-12" id="beak">
     <div class="form-group">
@@ -480,7 +485,7 @@ function toggleContainer(name)
 </div>
 <!--Baleen-->
 <div class="row baleen_f" id="baleen_field" style="display: none;">
-  <div class="col-xs-12">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <label id="" class="hasTooltip" title="<?php echo JText::_('OBSERVATION_BALEEN_DESC');?>">
       <?php echo JText::_('OBSERVATION_BALEEN_LBL');?>
     </label>
@@ -559,11 +564,13 @@ function toggleContainer(name)
 </div>
 </div>
 <!--Animal-->
-<div class="col-xs-12" id="title_R4"><span class="input-group-addon exergue"><span class="fa fa-shield fa-2x"><h4><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW4'); ?></h4></span></span></div>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-xs-12" id="title_R4"><span class="stranding_admin-title_row"><span class="fa fa-shield fa-2x"><h4><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW4'); ?></h4></span></span></div>
+</div>
 <div class="row">
   <div class="row">
     <!--Size-->
-    <div class="col-xs-12"><?php echo $this->form->getLabel('observation_size'); ?></div>
+    <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observation_size'); ?></div>
     <div class="col-lg-6 col-md-6 col-xs-12">
       <div class="input-group">
         <span class="input-group-addon"><span class="fa fa-arrows-h"></span></span>
@@ -617,7 +624,7 @@ function toggleContainer(name)
       </div>
     </div>
     <!--Catch indices-->
-    <div class="col-xs-12"><?php echo $this->form->getLabel('catch_indices'); ?></div>
+    <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('catch_indices'); ?></div>
     <div class="col-lg-6 col-md-6 col-xs-12">
       <div class="input-group"> 
         <span class="input-group-addon"><span class="fa fa-comment "></span></span>
@@ -627,7 +634,7 @@ function toggleContainer(name)
   </div>
   <!--State-->
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-lg-12 col-md-12 col-xs-12">
       <label id="jform_state_label" class="hasTooltip" title="<?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_OBSERVATION_STATE_DESC');?>">
         <?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_OBSERVATION_STATE');?>
       </label>
@@ -771,14 +778,14 @@ function toggleContainer(name)
 </div>
 <!--Stockage location-->
 <div class="row">
- <div class="col-xs-12"><?php echo $this->form->getLabel('observation_location_stock'); ?></div>
+ <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observation_location_stock'); ?></div>
  <div class="col-lg-12 col-md-12 col-xs-12">
   <?php echo $this->form->getInput('observation_location_stock'); ?>
 </div>
 </div>
 <!--Remarks-->
 <div class="row">
- <div class="col-xs-12"><?php echo $this->form->getLabel('remarks'); ?></div>
+ <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('remarks'); ?></div>
  <div class="col-lg-12 col-md-12 col-xs-12">
   <div class="input-group">
     <span class="input-group-addon"><span class="fa fa-comment "></span></span>
@@ -789,7 +796,7 @@ function toggleContainer(name)
 <!--Admin validation-->
 <?php if($user->id != 0){ ?>
  <div class="row">
-  <div class="col-xs-12"><?php echo $this->form->getLabel('admin_validation'); ?></div>
+  <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('admin_validation'); ?></div>
   <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="input-group">
      <span class="input-group-addon"><span class="fa fa-check "></span></span>
@@ -800,7 +807,7 @@ function toggleContainer(name)
 <?php } ?>
 <!--Captcha-->
 <div class="row">
-  <div class="col-xs-12"><?php echo $this->form->getLabel('captcha'); ?></div>
+  <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('captcha'); ?></div>
   <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="input-group">
       <?php echo $this->form->getInput('captcha'); ?>
