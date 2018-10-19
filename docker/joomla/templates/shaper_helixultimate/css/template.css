@@ -144,8 +144,12 @@ div {
 textarea.form-control {
     height: auto;
 }
-.fa{
+.fa {
   display:inline-block;
+  position: relative;
+}
+.fa-comment, .fa-location-arrow{
+  margin-top: 10px;
 }
 .radio {
   display:inline;

@@ -362,22 +362,22 @@ function toggleContainer(name)
   <!--Encoche médiane à la caudale-->
   <div class="col-lg-12 col-md-12 col-xs-12" id="caudale"><?php echo $this->form->getLabel('observation_caudal'); ?></div>
   <div class="col-lg-2 col-md-2 col-xs-4">
-     <p>
-      <img src="administrator/components/com_stranding_forms/assets/images/cetace_tail.png" title="<?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_TAIL_FIN')?>" />
-    </p>
-  </div>
-  <div class="col-lg-6 col-md-6 col-xs-12">
-    <div class="form-group">
-      <div class="col-xs-offset-2 col-xs-10">
-        <div class="radio">
-          <label><?php echo $this->form->getInput('observation_caudal'); ?></label>
-        </div>
+   <p>
+    <img src="administrator/components/com_stranding_forms/assets/images/cetace_tail.png" title="<?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_TAIL_FIN')?>" />
+  </p>
+</div>
+<div class="col-lg-6 col-md-6 col-xs-12">
+  <div class="form-group">
+    <div class="col-xs-offset-2 col-xs-10">
+      <div class="radio">
+        <label><?php echo $this->form->getInput('observation_caudal'); ?></label>
       </div>
     </div>
   </div>
-   <!--Beak-->
-  <div class="col-lg-12 col-md-12 col-xs-12">
-    <label class="hasTooltip" title="<?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_BEC_OR_FURROWS_DESC');?>"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_BEC_OR_FURROWS'); ?></label></div>
+</div>
+<!--Beak-->
+<div class="col-lg-12 col-md-12 col-xs-12">
+  <label class="hasTooltip" title="<?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_BEC_OR_FURROWS_DESC');?>"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_BEC_OR_FURROWS'); ?></label></div>
   <div class="col-lg-6 col-md-6 col-xs-12" id="beak">
     <div class="form-group">
       <div class="col-xs-offset-6 col-xs-12">
@@ -398,7 +398,7 @@ function toggleContainer(name)
     </div>
   </div>
   <!--Other caracteristques-->
-  <div class="row" id="other_caracts">
+  <div id="other_caracts">
    <div class="col-lg-12 col-md-12 col-xs-12">
     <label class="hasTooltip" title="<?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_IDENTIFICATION_CARACT_DESC');?>">
       <?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_IDENTIFICATION_CARACT');?>
@@ -422,7 +422,7 @@ function toggleContainer(name)
 </div>
 </div>
 <!--Tooth-->
-<div class="row tooth_f" id="tooth_field" style="display: none;">
+<div class="tooth_f" id="tooth_field" style="display: none;">
   <div class="col-xs-12">
     <label id="" class="hasTooltip" title="<?php echo JText::_('OBSERVATION_TOOTH_NUMBER_DESC');?>">
       <?php echo JText::_('OBSERVATION_TOOTH_NUMBER_LBL');?>
@@ -484,7 +484,7 @@ function toggleContainer(name)
   </div>
 </div>
 <!--Baleen-->
-<div class="row baleen_f" id="baleen_field" style="display: none;">
+<div class="baleen_f" id="baleen_field" style="display: none;">
   <div class="col-lg-12 col-md-12 col-xs-12">
     <label id="" class="hasTooltip" title="<?php echo JText::_('OBSERVATION_BALEEN_DESC');?>">
       <?php echo JText::_('OBSERVATION_BALEEN_LBL');?>
@@ -540,21 +540,21 @@ function toggleContainer(name)
   </div>
 </div>
 <!--Levies & photos-->
-<div class="row" id="levies_photo">
-  <div class="col-lg-6 col-md-6 col-xs-12">
+<div id="levies_photo">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="form-group">
       <?php echo $this->form->getLabel('levies'); ?>
-      <div class="col-xs-offset-2 col-xs-10">
+      <div class="col-xs-offset-12 col-xs-12">
         <div class="radio">
           <label><?php echo $this->form->getInput('levies'); ?></label>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-6 col-md-6 col-xs-12">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="form-group">
       <?php echo $this->form->getLabel('photos'); ?>
-      <div class="col-xs-offset-2 col-xs-10">
+      <div class="col-xs-offset-12 col-xs-12">
         <div class="radio">
           <label><?php echo $this->form->getInput('photos'); ?></label>
         </div>
@@ -567,7 +567,6 @@ function toggleContainer(name)
 <!--<div class="row">
   <div class="col-lg-12 col-md-12 col-xs-12" id="title_R4"><span class="stranding_admin-title_row"><span class="fa fa-shield fa-2x"><h4><?php //echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW4'); ?></h4></span></span></div>
 </div>-->
-<div class="row">
   <div class="row">
     <!--Size-->
     <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observation_size'); ?></div>
@@ -757,31 +756,30 @@ function toggleContainer(name)
     </div>
   </div>
 </div>
-</div>
 <div class="row">
   <!--<div class="col-xs-12"><?php //echo $this->form->getLabel('observation_daulphin_mesures'); ?></div>
   <div class="col-xs-offset-6 col-xs-12">
         <div class="form-group">
             <label><?php //echo $this->form->getInput('observation_daulphin_mesures'); ?></label>
         </div>
-  </div>-->
-<div class="col-lg-8 colmd-8 col-xs-12">
-  <label class="hasTooltip" title="<?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_MESURES_IMAGE_DESC'); ?>"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_DOLPHIN_MESURES_IMAGE'); ?></label>
-  <p>
-       <img src="administrator/components/com_stranding_forms/assets/images/dolphin.png" alt="Mesures sur cétacés" title="Renseignez les mesures" />
-    </p>&nbsp;&nbsp;
-   <label class="hasTooltip" title="<?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_MESURES_IMAGE_DESC'); ?>"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_DUGONG_MESURES_IMAGE'); ?></label>
-    <p>
-      <img src="administrator/components/com_stranding_forms/assets/images/dugong.png" alt="Mesures sur dugongs" title="Renseignez les mesures" />
-    </p>
-</div>
-</div>
-<!--Stockage location-->
-<div class="row">
- <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observation_location_stock'); ?></div>
- <div class="col-lg-12 col-md-12 col-xs-12">
-  <?php echo $this->form->getInput('observation_location_stock'); ?>
-</div>
+      </div>-->
+      <div class="col-lg-8 colmd-8 col-xs-12">
+        <label class="hasTooltip" title="<?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_MESURES_IMAGE_DESC'); ?>"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_DOLPHIN_MESURES_IMAGE'); ?></label>
+        <p>
+         <img src="administrator/components/com_stranding_forms/assets/images/dolphin.png" alt="Mesures sur cétacés" title="Renseignez les mesures" />
+       </p>&nbsp;&nbsp;
+       <label class="hasTooltip" title="<?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_MESURES_IMAGE_DESC'); ?>"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_DUGONG_MESURES_IMAGE'); ?></label>
+       <p>
+        <img src="administrator/components/com_stranding_forms/assets/images/dugong.png" alt="Mesures sur dugongs" title="Renseignez les mesures" />
+      </p>
+    </div>
+  </div>
+  <!--Stockage location-->
+  <div class="row">
+   <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observation_location_stock'); ?></div>
+   <div class="col-lg-12 col-md-12 col-xs-12">
+    <?php echo $this->form->getInput('observation_location_stock'); ?>
+  </div>
 </div>
 <!--Remarks-->
 <div class="row">
