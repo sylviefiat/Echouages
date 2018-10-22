@@ -8,9 +8,9 @@
   content: " ";
   display: table;
 }
-#identification {
+/*#identification {
   content: " ";
-}
+}*/
 html {
   display: block;
   font-family:sans-serif;
@@ -221,7 +221,9 @@ input[type="checkboxes"] {
   background-color: rgb(246, 142, 118);
   border:red;
 }
-
+.measures {
+  font-size: 20px;
+}
 
 body {
   text-rendering: auto;
