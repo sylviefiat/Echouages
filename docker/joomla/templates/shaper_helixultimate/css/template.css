@@ -211,7 +211,15 @@ input[type="checkboxes"] {
 .ol-unselectable {
   display: table-cell;
 }
-
+.info-mesurements, .fa-info-circle {
+  font-size: 20px;
+}
+.info-mesurements {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.important_mesures {
+  background-color: rgb(246, 142, 118);
+}
 
 
 body {
