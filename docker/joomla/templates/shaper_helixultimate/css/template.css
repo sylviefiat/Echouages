@@ -219,6 +219,7 @@ input[type="checkboxes"] {
 }
 .important_mesures {
   background-color: rgb(246, 142, 118);
+  border:red;
 }
 
 
