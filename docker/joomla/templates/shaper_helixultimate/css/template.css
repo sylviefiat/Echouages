@@ -8,9 +8,10 @@
   content: " ";
   display: table;
 }
-/*#identification {
+#identification {
   content: " ";
-}*/
+  padding: 10px;
+}
 html {
   display: block;
   font-family:sans-serif;
@@ -165,8 +166,8 @@ input[type="checkboxes"] {
   border: none;
 }
 .radio label, .checkbox label {
-    min-height: 20px;
-    padding-left: 20px;
+    min-height: 10px;
+    padding-left: 10px;
     margin-bottom: 0;
     font-weight: normal;
     cursor: pointer;
