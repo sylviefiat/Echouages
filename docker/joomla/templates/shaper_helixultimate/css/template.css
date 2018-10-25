@@ -135,6 +135,12 @@ label {
     font-weight: bold;
     cursor: default;
 }
+label.invalid {
+    color: #ff0000;
+}
+.invalid {
+    border-color: #ff0000;
+}
 div {
     display: block;
 }
