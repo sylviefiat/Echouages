@@ -19,8 +19,11 @@
 * -------------\ (----) /----------------------------------------------------------- +
 *               \_)  (_/
 */
+
 // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
+
+
 class JDomFrameworkOpenLayers extends JDomFramework
 {	
 	var $assetName = 'OpenLayers';
@@ -50,6 +53,7 @@ class JDomFrameworkOpenLayers extends JDomFramework
 		$doc = JFactory::getDocument();
 		$doc->addStyleSheet( 'http://openlayers.org/en/v3.17.1/css/ol.css' );
 		$doc->addScript('http://openlayers.org/en/v3.17.1/build/ol.js');
+
 		// fix bootstrap CSS conflict
 		$css = '.ol-style img{
 			max-width: none !important;
@@ -59,4 +63,5 @@ class JDomFrameworkOpenLayers extends JDomFramework
 		
 		static::$loaded[__METHOD__] = true;
 	}
+
 }
