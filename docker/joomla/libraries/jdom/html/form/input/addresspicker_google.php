@@ -15,11 +15,8 @@
 * -------------\ (----) /----------------------------------------------------------- +
 *               \_)  (_/
 */
-
 // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
-
-
 class JDomHtmlFormInputAddresspicker extends JDomHtmlFormInput
 {
 	var $size;
@@ -28,7 +25,6 @@ class JDomHtmlFormInputAddresspicker extends JDomHtmlFormInput
 	var $onOpenModal;
 	var $onCloseModal;
 	var $onSuccess;
-
 	/*
 	 * Constuctor
 	 * 	@namespace 	: requested class
@@ -44,7 +40,6 @@ class JDomHtmlFormInputAddresspicker extends JDomHtmlFormInput
 	function __construct($args)
 	{
 		parent::__construct($args);
-
 		$this->arg('size'		, 6, $args, '32');	
 		$this->arg('targets_prefix'	, null, $args, '');		
 		$this->arg('mode'			, null, $args, 'modal');	
@@ -57,11 +52,9 @@ class JDomHtmlFormInputAddresspicker extends JDomHtmlFormInput
 	{
 		static $jsLoaded;
 		$doc = JFactory::getDocument();
-
 		JDom::_('framework.jquery.addresspicker');
 		
 		$inputId = $this->getInputId();
-
 		$script = '
 		jQuery(document).ready(function(){	
 			jQuery( "#'. $inputId .'" ).addressPickerByGiro(
@@ -96,5 +89,4 @@ class JDomHtmlFormInputAddresspicker extends JDomHtmlFormInput
 			
 		return $html;
 	}
-
 }
