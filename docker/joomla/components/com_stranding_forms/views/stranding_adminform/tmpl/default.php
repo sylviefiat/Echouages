@@ -70,7 +70,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',function(
   js(document).ready(function() {
     js('#form-stranding_admin').submit(function(event) {
 
-      //add_new_identification_field(document.getElementById("jform_observation_number").value>1?true:false); 
+      //add_new_identification_field(document.getElementById("jform_observation_number").value>0?true:false); 
     }); 
   });
 });
@@ -140,9 +140,13 @@ function add_new_btn(div, text, nbr) {
       for(var i=2; i<=nbr; i++) {
         var btn = document.createElement("BUTTON");
         var t = document.createTextNode(text+" "+i);
+        document.getElementById("jform_id_location").value = i;
         btn.appendChild(t);
         document.getElementById(div).appendChild(btn);
       }
+    }
+    else if(nbr == 1) {
+      document.getElementById("jform_id_location").value = 1;
     }
 }
 
@@ -358,6 +362,7 @@ function add_new_measurements_field(div) {
     </div>
   </div>
 </div>
+
 <!--Identification-->
 <div class="row">
   <div class="col-lg-12 col-md-12 col-xs-12" id="title_R3"><span class="stranding_admin-title_row"><span class="fa fa-eye fa-2x"><h4><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW3'); ?></h4></span></span></div>
