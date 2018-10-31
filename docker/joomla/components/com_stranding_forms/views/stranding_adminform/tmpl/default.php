@@ -73,6 +73,18 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',function(
       //add_new_identification_field(document.getElementById("jform_observation_number").value>0?true:false); 
     }); 
   });
+  jQuery(document).ready(function() {
+    jQuery('input:radio').on('click', function() {
+      if(jQuery(this).attr('id') === 'jform_observation_dead_or_alive0') {
+        display('#dead_field', true);
+        display('#alive_field', false);
+      }
+      else if(jQuery(this).attr('id') === 'jform_observation_dead_or_alive1') {
+        display('#dead_field', false);
+        display('#alive_field', true);
+      }
+    })
+  })
 });
 
 var cloneId = 0;
@@ -88,24 +100,16 @@ $(document).ready(function()
   });
 });
 
-// si affiche=true alors on affiche le block choisi, sinon pas d'affichage
-function display(div, affiche) { 
-  if (affiche) 
-    document.getElementById(div).style.display="block"; 
-  else 
-    document.getElementById(div).style.display="none";  
-}
-
 // affiche ou pas le block en focntion du choix du user
 function choixUser(btn,champ1,champ2) { 
-  if (btn.id == "jform_observation_dead_or_alive0") { 
+  /*if (btn.id == "jform_observation_dead_or_alive0") { 
     display(champ1,true); 
     display(champ2,false);  
   } 
   else if (btn.id == "jform_observation_dead_or_alive1") { 
     display(champ2,true); 
     display(champ1,false); 
-  }
+  }*/
   if(btn.id == "jform_observation_tooth_or_baleen_or_defenses0") {
     display(champ1,true); 
     display(champ2,false);
@@ -120,6 +124,14 @@ function choixUser(btn,champ1,champ2) {
   }
 }
 
+// si affiche=true alors on affiche le block choisi, sinon pas d'affichage
+function display(div, affiche) { 
+  if (affiche) 
+    document.getElementById(div).style.display="block"; 
+  else 
+    document.getElementById(div).style.display="none";  
+}
+
 // affiche et masque le block au click
 function toggleContainer(name) {
       var e = document.getElementById(name);// MooTools might not be available ;)
@@ -128,10 +140,10 @@ function toggleContainer(name) {
 
 
 // cloner le bloc identification
-/*function add_new_identification_field() {
+function add_new_identification_field() {
   var new_identification = document.getElementById("identification").innerHTML;
   document.getElementById("demo").innerHTML = new_identification;
-}*/
+}
 
 // ajoute des boutons en fonction du nombre d'animals échoués
 function add_new_btn(div, text, nbr) {
@@ -140,6 +152,7 @@ function add_new_btn(div, text, nbr) {
       for(var i=2; i<=nbr; i++) {
         var btn = document.createElement("BUTTON");
         var t = document.createTextNode(text+" "+i);
+        // incrémentation de l'id_location
         document.getElementById("jform_id_location").value = i;
         btn.appendChild(t);
         document.getElementById(div).appendChild(btn);
@@ -658,7 +671,7 @@ function add_new_measurements_field(div) {
       </div>
     </div>
   </div>
-  <!--Dead animal-->
+  <!--Dead animal  -->
   <div class="col-lg-12 col-md-12 col-xs-12" id="dead_field" style="display: none;">
     <div class="col-lg-6 col-md-6 col-xs-12">
       <label id="jform_dead_animal_label" class="hasTooltip" title="<?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_OBSERVATION_DEAD_ANIMAL_DESC');?>">
@@ -734,7 +747,7 @@ function add_new_measurements_field(div) {
   </div>
 </div>
 </div>
-<!--Living animal-->
+<!--Living animal  -->
 <div class="col-lg-12 col-md-12 col-xs-12" id="alive_field" style="display: none;">
   <div class="col-lg-6 col-md-6 col-xs-12">
     <label id="jform_dead_animal_label" class="hasTooltip" title="<?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_OBSERVATION_LIVING_ANIMAL_DESC');?>">

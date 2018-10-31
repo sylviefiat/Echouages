@@ -598,7 +598,8 @@
 			type="textarea"/>
 
 
-	<!--Dead or alive-->
+	<!--Dead or alive   onclick="choixUser(this,'dead_field','alive_field')"
+						onclick="choixUser(this,'dead_field','alive_field')"-->
 	<field name="observation_dead_or_alive"
 			alias="observation_dead_or_alive"
 			class="btn-group"
@@ -606,8 +607,8 @@
 			description="OBSERVATION_DEAD_OR_ALIVE_DESC"
 			type="radio"
 			required="true">
-			<option value="Mort" onclick="choixUser(this,'dead_field','alive_field')">OBSERVATION_DEAD_OR_ALIVE_A</option>
-			<option value="Vivant" onclick="choixUser(this,'dead_field','alive_field')">OBSERVATION_DEAD_OR_ALIVE_B</option>
+			<option value="Mort">OBSERVATION_DEAD_OR_ALIVE_A</option>
+			<option value="Vivant">OBSERVATION_DEAD_OR_ALIVE_B</option>
 	</field>
 
 	<!--Death-->
