@@ -429,6 +429,7 @@
 			type="radio">
 			<option value="Bec">OBSERVATION_BEAK</option>
 			<option value="Sillons sous la gorge">OBSERVATION_FURROWS</option>
+			<option value="Aucuns">OBSERVATION_NO_BEAK_NO_FURROWS</option>
 	</field>
 
 	<!--Tooth, Baleen or Defenses-->
@@ -443,7 +444,6 @@
 			<option value="Fanons" onclick="choixUser(this,'tooth_field','baleen_field')">OBSERVATION_BALEEN</option>
 			<option value="Défenses" onclick="choixUser(this,'tooth_field','baleen_field')">OBSERVATION_DEFENSES</option>
 	</field>
-
 
 	<!--Tooth-->
 	<field name="nb_teeth_upper_right"
@@ -523,18 +523,6 @@
 			step="0.01"
 			max="1000"/>
 
-	<!--Defenses-->
-	<field name="observation_defenses"
-			alias="observation_defenses"
-			class="form-control"
-			label="OBSERVATION_DEFENSES_LBL"
-			labelclass="control-label"
-			description="OBSERVATION_DEFENSES_DESC"
-			type="checkboxes"
-			multiple="false">
-			<option value="Défenses">OBSERVATION_DEFENSES</option>
-	</field>
-
 	<!--Size-->
 	<field name="observation_size"
 			alias="observation_size"
@@ -598,8 +586,7 @@
 			type="textarea"/>
 
 
-	<!--Dead or alive   onclick="choixUser(this,'dead_field','alive_field')"
-						onclick="choixUser(this,'dead_field','alive_field')"-->
+	<!--Dead or alive-->
 	<field name="observation_dead_or_alive"
 			alias="observation_dead_or_alive"
 			class="btn-group"
@@ -607,8 +594,8 @@
 			description="OBSERVATION_DEAD_OR_ALIVE_DESC"
 			type="radio"
 			required="true">
-			<option value="Mort">OBSERVATION_DEAD_OR_ALIVE_A</option>
-			<option value="Vivant">OBSERVATION_DEAD_OR_ALIVE_B</option>
+			<option value="Mort" onclick="choixUser(this,'dead_field','alive_field')">OBSERVATION_DEAD_OR_ALIVE_A</option>
+			<option value="Vivant" onclick="choixUser(this,'dead_field','alive_field')">OBSERVATION_DEAD_OR_ALIVE_B</option>
 	</field>
 
 	<!--Death-->
