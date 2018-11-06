@@ -4,6 +4,9 @@
  * @copyright Copyright (c) 2010 - 2018 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
+
+
+ /* DEBUT DE MON CODE*/
 #form-stranding_admin{
   /*content: " ";*/
   /*display: table;*/
@@ -133,6 +136,7 @@ label {
     margin-bottom: 5px;
     font-weight: bold;
     cursor: default;
+    margin-top: 10px;
 }
 label.invalid {
     color: #ff0000;
@@ -272,10 +276,39 @@ ul, ol {
 }
 ul {
   text-decoration-color: transparent;
+}
+/*.beak_or_furrows label {
+  display: block;
+  float: left;
+  padding-right: 10px;
+  padding-left: 22px;
+  text-indent: -22px;
+}
+#jform_observation_beak_or_furrows input {
+  vertical-align: middle;
+}
+#jform_observation_beak_or_furrows label {
+  display: block;
+  float: left;
+  padding-right: 10px;
+  padding-left: 22px;
+  text-indent: -22px;
+  vertical-align: middle;
+}*/
 
+/*#jform_observation_beak_or_furrows label{
+display: inline !important;
+float: left !important;
+width: 100% !important;
 }
 
-
+#jform_observation_beak_or_furrows input{
+   vertical-align: middle;
+ }*/
+.jform_tooth_baleen .col-lg-12{
+  padding: 10px;
+}
+ /* FIN DE MON CODE*/
 
 /*body {
   text-rendering: auto;

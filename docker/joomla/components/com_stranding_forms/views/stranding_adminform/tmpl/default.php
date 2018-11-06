@@ -436,8 +436,8 @@ function add_new_measurements_field(div) {
   <div class="col-lg-12 col-md-12 col-xs-12" id="tail_fin" name="tail[]">
     <div class="form-group">
       <?php echo $this->form->getLabel('observation_beak_or_furrows'); ?>
-      <div class="col-xs-offset-2 col-xs-10">
-        <div class="radio">
+      <div class="col-xs-offset-6 col-xs-12">
+        <div class="checkbox beak_or_furrows">
           <label><?php echo $this->form->getInput('observation_beak_or_furrows'); ?></label>
         </div>
       </div>
@@ -455,85 +455,61 @@ function add_new_measurements_field(div) {
     </div>
   </div>
   <!--Tooth-->
-  <div class="tooth_f" id="tooth_field" style="display: none;" name="dents[]">
+  <div class="jform_tooth_baleen" id="tooth_field" style="display: none;" name="dents[]">
     <div class="col-lg-12 col-md-12 col-xs-12">
       <label id="" class="hasTooltip" title="<?php echo JText::_('OBSERVATION_TOOTH_NUMBER_DESC');?>">
         <?php echo JText::_('OBSERVATION_TOOTH_NUMBER_LBL');?>
       </label>
     </div>
     <div class="col-lg-12 col-md-12 col-xs-12">
-      <div class="form-group">
         <?php echo $this->form->getLabel('nb_teeth_upper_right'); ?>
-        <div class="col-xs-offset-6 col-xs-12">
           <div class="input-group">
             <span class="input-group-addon"><span class="fa fa-tachometer"></span></span>
             <?php echo $this->form->getInput('nb_teeth_upper_right'); ?>
           </div>
-        </div>
-      </div>
     </div>
     <div class="col-lg-12 col-md-12 col-xs-12">
-      <div class="form-group">
         <?php echo $this->form->getLabel('nb_teeth_upper_left'); ?>
-        <div class="col-xs-offset-6 col-xs-12">
           <div class="input-group">
             <span class="input-group-addon"><span class="fa fa-tachometer"></span></span>
             <?php echo $this->form->getInput('nb_teeth_upper_left'); ?>
           </div>
-        </div>
-      </div>
     </div>
     <div class="col-lg-12 col-md-12 col-xs-12">
-      <div class="form-group">
         <?php echo $this->form->getLabel('nb_teeth_lower_right'); ?>
-        <div class="col-xs-offset-6 col-xs-12">
           <div class="input-group">
             <span class="input-group-addon"><span class="fa fa-tachometer"></span></span>
             <?php echo $this->form->getInput('nb_teeth_lower_right'); ?>
           </div>
-        </div>
-      </div>
     </div>
     <div class="col-lg-12 col-md-12 col-xs-12">
-      <div class="form-group">
         <?php echo $this->form->getLabel('nb_teeth_lower_left'); ?>
-        <div class="col-xs-offset-6 col-xs-12">
           <div class="input-group">
             <span class="input-group-addon"><span class="fa fa-tachometer"></span></span>
             <?php echo $this->form->getInput('nb_teeth_lower_left'); ?>
           </div>
-        </div>
-      </div>
     </div>
     <div class="col-lg-12 col-md-12 col-xs-12">
-      <div class="form-group">
         <?php echo $this->form->getLabel('observation_teeth_base_diametre'); ?>
-        <div class="col-xs-offset-6 col-xs-12">
           <div class="input-group">
             <span class="input-group-addon"><span class="fa fa-arrows-h"></span></span>
             <?php echo $this->form->getInput('observation_teeth_base_diametre'); ?>
           </div>
-        </div>
-      </div>
     </div>
   </div>
   <!--Baleen-->
-  <div class="baleen_f" id="baleen_field" style="display: none;" name="fanons[]">
+  <div class="jform_tooth_baleen" id="baleen_field" style="display: none;" name="fanons[]">
     <div class="col-lg-12 col-md-12 col-xs-12">
       <label id="" class="hasTooltip" title="<?php echo JText::_('OBSERVATION_BALEEN_DESC');?>">
-        <?php echo JText::_('OBSERVATION_BALEEN_LBL');?>
+        <?php echo JText::_('OBSERVATION_BALEEN');?>
       </label>
     </div>
     <div class="col-lg-12 col-md-12 col-xs-12">
-      <div class="form-group">
         <?php echo $this->form->getLabel('observation_baleen_color'); ?>
-        <div class="col-xs-offset-6 col-xs-12">
           <div class="input-group">
            <span class="input-group-addon"><span class="fa fa-adjust"></span></span>
            <?php echo $this->form->getInput('observation_baleen_color'); ?>
          </div>
-       </div>
-     </div>
    </div>
    <div class="col-lg-12 col-md-12 col-xs-12">
     <label id="" class="hasTooltip" title="<?php echo JText::_('OBSERVATION_BALEEN_MEASURES_DESC');?>">
@@ -541,31 +517,23 @@ function add_new_measurements_field(div) {
     </label>
   </div>
   <div class="col-lg-12 col-md-12 col-xs-12">
-    <div class="form-group">
       <?php echo $this->form->getLabel('observation_baleen_height'); ?>
-      <div class="col-xs-offset-6 col-xs-12">
         <div class="input-group">
           <span class="input-group-addon"><span class="fa fa-arrows-v"></span></span>
           <?php echo $this->form->getInput('observation_baleen_height'); ?>
         </div>
-      </div>
-    </div>
   </div>
   <div class="col-lg-12 col-md-12 col-xs-12">
-    <div class="form-group">
       <?php echo $this->form->getLabel('observation_baleen_base_height'); ?>
-      <div class="col-xs-offset-6 col-xs-12">
         <div class="input-group">
           <span class="input-group-addon"><span class="fa fa-arrows-h"></span></span>
           <?php echo $this->form->getInput('observation_baleen_base_height'); ?>
         </div>
-      </div>
-    </div>
   </div>
 </div>
-<div class="col-lg-12 col-md-12 col-xs-12" id="news_identification_btns">
+<!--<div class="col-lg-12 col-md-12 col-xs-12" id="news_identification_btns">
   
-</div>
+</div>-->
 </div>
 
 <!--<div class="row" id="demo">
