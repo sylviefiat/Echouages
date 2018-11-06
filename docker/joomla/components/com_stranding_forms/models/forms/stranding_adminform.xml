@@ -258,8 +258,7 @@
 			description="OBSERVATION_PICK_DESC"
 			filter="STRING"
 			class="formatted_address form-control"
-			type="ckaddresspicker"
-			required="true"/>
+			type="ckaddresspicker"/>
 	<field name="observation_region"
 			alias="region"
 			label="OBSERVATION_REGION"
@@ -647,7 +646,8 @@
 			hint="OBSERVATION_SIZE"
 			type="number"
 			step="0.01"
-			max="1000"
+			min="0.00"
+			max="1000.00"
 			required="true"/>
 
 	<!--Size precision-->
