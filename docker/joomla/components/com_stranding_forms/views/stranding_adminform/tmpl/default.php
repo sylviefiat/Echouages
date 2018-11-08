@@ -767,6 +767,14 @@ function add_new_measurements_field(div) {
   </div>
 </div>
 </div>
+<!--Stockage location-->
+ <div class="col-lg-12 col-md-12 col-xs-12" style="display: none;">
+  <?php echo $this->form->getLabel('observation_location_stock'); ?>
+  <div class="input-group">
+    <span class="input-group-addon"><span class="fa fa-archive "></span></span>
+    <?php echo $this->form->getInput('observation_location_stock'); ?>
+  </div>
+</div>
 <!--<div id="news_animal_btns">
   
 </div>-->
@@ -1100,19 +1108,9 @@ function add_new_measurements_field(div) {
    </div>
  </div>
 </div>
-<div id="news_measurements_btns">
+<!--<div id="news_measurements_btns">
   
-</div>
-</div>
-<!--Stockage location-->
-<div class="row">
- <div class="col-lg-12 col-md-12 col-xs-12">
-  <?php echo $this->form->getLabel('observation_location_stock'); ?>
-  <div class="input-group">
-    <span class="input-group-addon"><span class="fa fa-archive "></span></span>
-    <?php echo $this->form->getInput('observation_location_stock'); ?>
-  </div>
-</div>
+</div>-->
 </div>
 <!--Remarks-->
 <div class="row">

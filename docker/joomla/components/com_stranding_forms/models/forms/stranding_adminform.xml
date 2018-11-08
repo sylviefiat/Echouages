@@ -647,7 +647,7 @@
 			type="number"
 			step="0.01"
 			min="0.00"
-			max="1000.00"
+			max="10000000.00"
 			required="true"/>
 
 	<!--Size precision-->
