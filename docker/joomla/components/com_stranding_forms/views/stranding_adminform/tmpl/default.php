@@ -68,10 +68,6 @@ fieldset.radio label{
 getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',function() {
   js = jQuery.noConflict();
   js(document).ready(function() {
-    js('#form-stranding_admin').submit(function(event) {
-
-      //add_new_identification_field(document.getElementById("jform_observation_number").value>0?true:false); 
-    }); 
     js('input:radio').click(function() {
       /*if(js(this).attr('id') === 'jform_observation_dead_or_alive0') {
         //display('#dead_field', true);
@@ -82,20 +78,14 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',function(
         //display('#alive_field', true);
       }*/
     })
-
-  });
-});
-
-
-var cloneId = 0;
-$(document).ready(function()
-{
-  $("#new_identification").click(function()
-  {
-    var clone = $(".sp_id").clone(true);
-    clone.find("input").prop("name", "jform" + cloneId);
-    cloneId++;
-    clone.appendTo(".row");
+    /*var cloneId = 0;
+    js("#new_identification").click(function()
+    {
+      var clone = $(".sp_id").clone(true);
+      clone.find("input").prop("name", "jform" + cloneId);
+      cloneId++;
+      clone.appendTo(".row");
+    });*/
   });
 });
 
@@ -147,14 +137,15 @@ function toggleContainer(name) {
 
 function create_new_observation_btn(nbr) {
   if(nbr > 1) {
+    document.getElementById("div_clone_btn").style.display="block";
     for(var i=2; i<=nbr; i++){
-      var btn =  document.createElement("BUTTON");
-      var t = document.createTextNode("Observation" + " " + i);
-      t.id = "observation"+i;
-      btn.appendChild(t);
-      document.getElementById("div_observation_clone").appendChild(btn);
+      //var btn =  document.createElement("BUTTON");
+      //var t = document.createTextNode("Observation" + " " + i);
+      //btn.appendChild(t);
+      //btn.id = "observation"+i;
+      //document.getElementById("div_observation_clone").appendChild(btn);
       document.getElementById("jform_id_location").value = i;
-      btn.onclick = add_new_block();
+      
     }
   }
   else if(nbr == 1) {
@@ -163,43 +154,17 @@ function create_new_observation_btn(nbr) {
 }
 
 // cloner le bloc identification
-function add_new_block(nbr) {
-  for(var i=2; i<=nbr; i++){
-    var div = document.getElementById("div_observation_clone").innerHTML;
-    div_aux = document.createElement("DIV");
-    div_aux.id = "new_div_clone"+i;
-    document.getElementById("div_observation_clone").appendChild(div_aux);
-    document.getElementById(div_aux).innerHTML = div;
-  }
-  
-}
-
 /*function add_new_block(nbr) {
   if(nbr > 1) {
-    clone01 = document.getElementById("identification_title").cloneNode(true);
-    clon1 = document.getElementById("identification").cloneNode(true);
-    clone02 = document.getElementById("animal_title").cloneNode(true);
-    clone2 = document.getElementById("animal").cloneNode(true);
-    clone03 = document.getElementById("measurements_title").cloneNode(true);
-    clone3 = document.getElementById("measurements").cloneNode(true);
-    
-    for(var i=2; i<=nbr; i++) {
+    for(var i=2; i<=nbr; i++){
+      //var div = document.getElementById("div_observation_clone").innerHTML;
+      var div = document.createElement("DIV");
+      div.id = "new_div_clone"+i;
+      //div = document.getElementById("div_observation_clone").innerHTML;
+      //document.getElementById("form-stranding_admin").appendChild(div);
 
-      clon01.id = "identification_title"+i;
-      document.getElementById("div_observation_clone").appendChild(clone01);
-      clon1.id = "identification"+i;
-      document.getElementById("div_observation_clone").appendChild(clone1);
-      
-      clon02.id = "animal_title"+i;
-      document.getElementById("div_observation_clone").appendChild(clone02);
-      clon2.id = "animal"+i;
-      document.getElementById("div_observation_clone").appendChild(clone2);
-
-      clon03.id = "measurements_title"+i;
-      document.getElementById("div_observation_clone").appendChild(clone03); 
-      clon3.id = "measurements"+i;
-      document.getElementById("div_observation_clone").appendChild(clone3);
-
+      document.getElementById("new_div_clone").appendChild("new_div_clone"+i);
+      //document.getElementById("new_div_clone").innerHTML = div;
       document.getElementById("jform_id_location").value = i;
     }
   }
@@ -207,6 +172,11 @@ function add_new_block(nbr) {
     document.getElementById("jform_id_location").value = 1;
   }
 }*/
+
+function add_new_block() {
+    clone = document.getElementById("div_observation_clone").cloneNode(true);
+    document.getElementById("new_div_clone").appendChild(clone);
+}
 
 // ajoute des boutons en fonction du nombre d'animals échoués
 /*function add_new_btn(div, text, nbr) {
@@ -227,18 +197,6 @@ function add_new_block(nbr) {
     }
 }*/
 
-function delete_new_btn(div, text) {
-
-}
-
-function add_new_mammal_field(div) {
-
-}
-
-function add_new_measurements_field(div) {
-
-}
-
   /*function duplic(element) {
     clone01 = document.getElementById("spaces_title").cloneNode(true);
     clone01.id="spaces_title_1";
@@ -250,11 +208,6 @@ function add_new_measurements_field(div) {
     clone02.id = "spaces_identification_title_1";
     document.getElementById(element).appendChild (clone02);
   }*/
-
-
-  function enable_measures($status) {
-
-  }
 
   /*Fonction ajout et suppression de champs version 2*/
   function addDiv(name, field) {
@@ -591,24 +544,7 @@ function add_new_measurements_field(div) {
         </div>
   </div>
 </div>
-<!--<div class="col-lg-12 col-md-12 col-xs-12" id="news_identification_btns">
-  
-</div>-->
 </div>
-
-<!--<div class="row" id="demo">
-  
-</div>-->
-
-<!--<div class="row">
-  <div class="col-lg-12 col-md-12 col-xs-12">
-    <button type="button" id="new_identification" class="btn btn-primary" onclick="add_new_identification_field()"><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ADD_FIELDS'); ?></label></button>
-  </div>
-</div>
-<div class="row" id="demo">
-  
-</div>-->
-
 <!--Animal-->
 <div class="row" id="animal_title">
   <div class="col-lg-12 col-md-12 col-xs-12" id="title_R4"><span class="stranding_admin-title_row"><span class="fa fa-shield fa-2x"><h4><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW4'); ?></h4></span></span></div>
@@ -835,9 +771,6 @@ function add_new_measurements_field(div) {
   </div>
 </div>
 </div>
-<!--<div id="news_animal_btns">
-  
-</div>-->
 </div>
 <!--Measurements-->
 <div class="row" id="measurements_title">
@@ -1184,7 +1117,11 @@ function add_new_measurements_field(div) {
 <div id="new_div_clone">
   
 </div>
-
+<div id="div_clone_btn" class="row" style="display: none;">
+  <div class="col-lg-12 col-md-12 col-xs-12">
+    <button type="button" id="new_observation" class="btn btn-primary" onclick="add_new_block()"><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ADD_FIELDS'); ?></label></button>
+  </div>
+</div>
 <!--Admin validation-->
 <?php if($user->id != 0){ ?>
  <div class="row">
