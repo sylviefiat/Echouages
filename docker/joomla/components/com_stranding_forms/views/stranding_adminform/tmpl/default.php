@@ -145,23 +145,68 @@ function toggleContainer(name) {
       e.style.display = e.style.display === 'none' ? 'block' : 'none';
 }
 
+function create_new_observation_btn(nbr) {
+  if(nbr > 1) {
+    for(var i=2; i<=nbr; i++){
+      var btn =  document.createElement("BUTTON");
+      var t = document.createTextNode("Observation" + " " + i);
+      t.id = "observation"+i;
+      btn.appendChild(t);
+      document.getElementById("div_observation_clone").appendChild(btn);
+      document.getElementById("jform_id_location").value = i;
+      btn.onclick = add_new_block();
+    }
+  }
+  else if(nbr == 1) {
+    document.getElementById("jform_id_location").value = 1;
+  }
+}
 
 // cloner le bloc identification
 function add_new_block(nbr) {
+  for(var i=2; i<=nbr; i++){
+    var div = document.getElementById("div_observation_clone").innerHTML;
+    div_aux = document.createElement("DIV");
+    div_aux.id = "new_div_clone"+i;
+    document.getElementById("div_observation_clone").appendChild(div_aux);
+    document.getElementById(div_aux).innerHTML = div;
+  }
+  
+}
+
+/*function add_new_block(nbr) {
   if(nbr > 1) {
-    for(var i = 2; i<=nbr; i++) {
-      var div = document.createElement("DIV");
-      div.setAttribute("id", "new_div_clone"+i);
-      div = document.getElementById("div_observation_clone").innerHTML;
-      document.getElementById("new_div_clone").innerHTML = div;
+    clone01 = document.getElementById("identification_title").cloneNode(true);
+    clon1 = document.getElementById("identification").cloneNode(true);
+    clone02 = document.getElementById("animal_title").cloneNode(true);
+    clone2 = document.getElementById("animal").cloneNode(true);
+    clone03 = document.getElementById("measurements_title").cloneNode(true);
+    clone3 = document.getElementById("measurements").cloneNode(true);
+    
+    for(var i=2; i<=nbr; i++) {
+
+      clon01.id = "identification_title"+i;
+      document.getElementById("div_observation_clone").appendChild(clone01);
+      clon1.id = "identification"+i;
+      document.getElementById("div_observation_clone").appendChild(clone1);
+      
+      clon02.id = "animal_title"+i;
+      document.getElementById("div_observation_clone").appendChild(clone02);
+      clon2.id = "animal"+i;
+      document.getElementById("div_observation_clone").appendChild(clone2);
+
+      clon03.id = "measurements_title"+i;
+      document.getElementById("div_observation_clone").appendChild(clone03); 
+      clon3.id = "measurements"+i;
+      document.getElementById("div_observation_clone").appendChild(clone3);
+
       document.getElementById("jform_id_location").value = i;
     }
   }
   else if(nbr == 1) {
     document.getElementById("jform_id_location").value = 1;
   }
-  
-}
+}*/
 
 // ajoute des boutons en fonction du nombre d'animals échoués
 /*function add_new_btn(div, text, nbr) {

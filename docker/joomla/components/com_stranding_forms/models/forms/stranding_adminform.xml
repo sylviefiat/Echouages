@@ -322,7 +322,7 @@
 			hint="OBSERVATION_NUMBER"
 			labelclass="control-label"
 			type="number"
-			onchange="add_new_block(this.value)"
+			onchange="create_new_observation_btn(this.value)"
 			min="0"
 			max="1000"
 			required="true"/>
