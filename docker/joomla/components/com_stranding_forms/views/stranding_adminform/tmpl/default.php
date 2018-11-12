@@ -64,31 +64,77 @@ fieldset.radio label{
   };
   head.appendChild(script);
 }
-
 getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',function() {
   js = jQuery.noConflict();
   js(document).ready(function() {
-    js('input:radio').click(function() {
-      /*if(js(this).attr('id') === 'jform_observation_dead_or_alive0') {
-        //display('#dead_field', true);
-        //display('#alive_field', false);
+    // affiche ou pas le block en fonction du choix du user
+    js("input[type='radio']").click(function() {
+      switch(this.id) {
+        case 'jform_observation_dead_or_alive0' :
+              displayBlock('dead_field', true);
+              displayBlock('alive_field', false);
+              break;
+        case 'jform_observation_dead_or_alive1' :
+              displayBlock('dead_field', false);
+              displayBlock('alive_field', true);
+              break;
+        case 'jform_observation_tooth_or_baleen_or_defenses0' :
+              displayBlock('tooth_field',true); 
+              displayBlock('baleen_field',false);
+              break;
+        case 'jform_observation_tooth_or_baleen_or_defenses1' :
+              displayBlock('tooth_field',false); 
+              displayBlock('baleen_field',true);
+              break;
+        case 'jform_observation_tooth_or_baleen_or_defenses2' :
+              displayBlock('tooth_field',false); 
+              displayBlock('baleen_field',false);
+              break;
+        case 'jform_levies0' :
+              displayBlock('stockage_location_field',true);
+              break;
+        case 'jform_levies1' :
+              displayBlock('stockage_location_field',false);
+              break;
       }
-      else if(js(this).attr('id') === 'jform_observation_dead_or_alive1') {
-        //display('#dead_field', false);
-        //display('#alive_field', true);
-      }*/
     })
-    /*var cloneId = 0;
-    js("#new_identification").click(function()
-    {
-      var clone = $(".sp_id").clone(true);
-      clone.find("input").prop("name", "jform" + cloneId);
+    // démasque un bouton si nombre de mammifère est > 1
+    js("#jform_observation_number").change(function() {
+        if(this.value > 1) {
+           document.getElementById("div_clone_btn").style.display="block";
+           for(var i=2; i<=this.value; i++){
+            // incrémente la référence
+            document.getElementById("jform_id_location").value = i;
+           }
+        }
+        else if(this.value == 1) {
+          document.getElementById("jform_id_location").value = 1;
+        }
+    });
+    // clonage des blocs
+    var cloneId = 0; // incrémenté en fonction du clonage
+    js("#new_observation").click(function() {
+      var clone = js("#div_observation_clone").clone(true);
+      clone.find("input").prop("name", "jform[observation_spaces_identification]" + cloneId);
+      clone.find("div").attr("id", "dead_field" + cloneId);
+      
+
+      /*clone.find("input").prop("name", "jform[observation_caudal]" + cloneId);
+      clone.find("input").prop("name", "jform[observation_tooth_or_baleen_or_defenses]" + cloneId);
+      clone.find("input").prop("name", "jform[observation_size_precision]" + cloneId);
+      clone.find("input").prop("name", "jform[observation_sex]" + cloneId);
+      clone.find("input").prop("name", "jform[observation_abnormalities]" + cloneId);
+      clone.find("input").prop("name", "jform[observation_capture_traces]" + cloneId);
+      clone.find("input").prop("name", "jform[levies]" + cloneId);
+      clone.find("input").prop("name", "jform[photos]" + cloneId);
+      clone.find("input").prop("name", "jform[observation_dead_or_alive]" + cloneId);*/
       cloneId++;
-      clone.appendTo(".row");
-    });*/
+      clone.appendTo("#new_div_clone");
+      //document.getElementById("new_div_clone").appendChild(clone);
+     
+    });
   });
 });
-
 // affiche ou pas le block en focntion du choix du user
 function choixUser(btn,champ1,champ2) { 
   if (btn.id == "jform_observation_dead_or_alive0") { 
@@ -120,37 +166,14 @@ function choixUser(btn,champ1,champ2) {
     display(champ2,false);
   }
 }
-
-// si affiche=true alors on affiche le block choisi, sinon pas d'affichage
-function display(div, affiche) { 
-  if (affiche) 
-    document.getElementById(div).style.display="block"; 
-  else 
-    document.getElementById(div).style.display="none";  
+// si affiche vraie alors on affiche le block choisi, sinon pas d'affichage
+function displayBlock(div, affiche) { 
+  document.getElementById(div).style.display = affiche ? 'block' : 'none';
 }
-
 // affiche et masque le block au click
 function toggleContainer(name) {
       var e = document.getElementById(name);// MooTools might not be available ;)
       e.style.display = e.style.display === 'none' ? 'block' : 'none';
-}
-
-function create_new_observation_btn(nbr) {
-  if(nbr > 1) {
-    document.getElementById("div_clone_btn").style.display="block";
-    for(var i=2; i<=nbr; i++){
-      //var btn =  document.createElement("BUTTON");
-      //var t = document.createTextNode("Observation" + " " + i);
-      //btn.appendChild(t);
-      //btn.id = "observation"+i;
-      //document.getElementById("div_observation_clone").appendChild(btn);
-      document.getElementById("jform_id_location").value = i;
-      
-    }
-  }
-  else if(nbr == 1) {
-    document.getElementById("jform_id_location").value = 1;
-  }
 }
 
 // cloner le bloc identification
@@ -172,11 +195,6 @@ function create_new_observation_btn(nbr) {
     document.getElementById("jform_id_location").value = 1;
   }
 }*/
-
-function add_new_block() {
-    clone = document.getElementById("div_observation_clone").cloneNode(true);
-    document.getElementById("new_div_clone").appendChild(clone);
-}
 
 // ajoute des boutons en fonction du nombre d'animals échoués
 /*function add_new_btn(div, text, nbr) {
@@ -1119,7 +1137,7 @@ function add_new_block() {
 </div>
 <div id="div_clone_btn" class="row" style="display: none;">
   <div class="col-lg-12 col-md-12 col-xs-12">
-    <button type="button" id="new_observation" class="btn btn-primary" onclick="add_new_block()"><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ADD_FIELDS'); ?></label></button>
+    <button type="button" id="new_observation" class="btn btn-primary"><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ADD_FIELDS'); ?></label></button>
   </div>
 </div>
 <!--Admin validation-->
