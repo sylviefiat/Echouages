@@ -116,7 +116,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',function(
     js("#new_observation").click(function() {
       var clone = js("#div_observation_clone").clone(true);
       clone.find("input").prop("name", "jform[observation_spaces_identification]" + cloneId);
-      clone.find("div").attr("id", "dead_field" + cloneId);
+      //clone.find("div").attr("id", "dead_field" + cloneId);
       
 
       /*clone.find("input").prop("name", "jform[observation_caudal]" + cloneId);
@@ -135,35 +135,35 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',function(
     });
   });
 });
-// affiche ou pas le block en focntion du choix du user
+// affiche ou pas le block en fonction du choix du user
 function choixUser(btn,champ1,champ2) { 
-  if (btn.id == "jform_observation_dead_or_alive0") { 
-    display(champ1,true); 
-    display(champ2,false);  
-  } 
-  else if (btn.id == "jform_observation_dead_or_alive1") { 
-    display(champ2,true); 
-    display(champ1,false); 
-  }
-  if(btn.id == "jform_observation_tooth_or_baleen_or_defenses0") {
-    display(champ1,true); 
-    display(champ2,false);
-  }
-  else if(btn.id == "jform_observation_tooth_or_baleen_or_defenses1") {
-    display(champ2,true); 
-    display(champ1,false);
-  }
-  else if(btn.id == "jform_observation_tooth_or_baleen_or_defenses2") {
-    display(champ2,false); 
-    display(champ1,false);
-  }
-  if(btn.id == "jform_levies0") {
-    display(champ1,true); 
-    display(champ2,false);
-  }
-  else if(btn.id == "jform_levies1") {
-    display(champ1,false); 
-    display(champ2,false);
+  switch(btn.id) {
+    case 'jform_observation_dead_or_alive0' :
+          display(champ1,true); 
+          display(champ2,false); 
+          break;
+    case 'jform_observation_dead_or_alive1' :
+          display(champ2,true); 
+          display(champ1,false);
+          break;
+    case 'jform_observation_tooth_or_baleen_or_defenses0' :
+          display(champ1,true); 
+          display(champ2,false);
+          break;
+    case 'jform_observation_tooth_or_baleen_or_defenses1' :
+          display(champ2,true); 
+          display(champ1,false);
+          break;
+    case 'jform_observation_tooth_or_baleen_or_defenses2' :
+          display(champ2,false); 
+          display(champ1,false);
+          break;
+    case 'jform_levies0' :
+         display(champ1,true);
+         break; 
+    case 'jform_levies1' :
+          display(champ1,false); 
+          break;
   }
 }
 // si affiche vraie alors on affiche le block choisi, sinon pas d'affichage
@@ -172,8 +172,8 @@ function displayBlock(div, affiche) {
 }
 // affiche et masque le block au click
 function toggleContainer(name) {
-      var e = document.getElementById(name);// MooTools might not be available ;)
-      e.style.display = e.style.display === 'none' ? 'block' : 'none';
+  var e = document.getElementById(name);// MooTools might not be available ;)
+  e.style.display = e.style.display === 'none' ? 'block' : 'none';
 }
 
 // cloner le bloc identification
