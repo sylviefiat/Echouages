@@ -97,7 +97,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',function(
               displayBlock('stockage_location_field',false);
               break;
       }
-    })
+    });
     // démasque un bouton si nombre de mammifère est > 1
     js("#jform_observation_number").change(function() {
         if(this.value > 1) {
@@ -111,6 +111,10 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',function(
           document.getElementById("jform_id_location").value = 1;
         }
     });
+    // affiche l'image représentative de l'encoche médiane
+    js("button[name='Tail_Fin_Btn']").click(function() {
+      toggleContainer("tail_fin_image");
+    }) 
     // clonage des blocs
     var cloneId = 0; // incrémenté en fonction du clonage
     js("#new_observation").click(function() {
@@ -143,6 +147,12 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',function(
       clone.find("div[id='tooth_field']").prop("id", "tooth_field" + cloneId);
       clone.find("div[id='baleen_field']").prop("id", "baleen_field" + cloneId);
       clone.find("div[id='stockage_location_field']").prop("id", "stockage_location_field" + cloneId);
+
+      clone.find("button[name='Tail_Fin_Btn']").prop("name", "Tail_Fin_Btn" + cloneId);
+      clone.find("div[name='tail_fin_image']").prop("id", "tail_fin_image" + cloneId);
+      js("button[name='Tail_Fin_Btn" + cloneId + "']").click(function() {
+        toggleContainer("tail_fin_image" + cloneId); 
+      });
 
       // affiche ou pas le block en fonction du choix du user
       clone.find("input[type='radio']").click(function() {
@@ -179,8 +189,6 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',function(
 
       cloneId++;
       clone.appendTo("#new_div_clone");
-      //document.getElementById("new_div_clone").appendChild(clone);
-     
     });
   });
 });
@@ -499,7 +507,7 @@ function toggleContainer(name) {
     <div class="col-lg-6 col-md-6 col-xs-12" name="tail[]">
       <div class="form-group">
         <?php echo $this->form->getLabel('observation_caudal'); ?>
-        <button type="button" name="Tail_Fin_Btn" class="btn btn-light" value="Tail-Fin"onclick="toggleContainer('tail_fin_image')"><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_SEE_TF_IMAGE'); ?></label></button>
+        <button type="button" name="Tail_Fin_Btn" class="btn btn-light" value="Tail-Fin"><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_SEE_TF_IMAGE'); ?></label></button>
         <div class="col-xs-offset-2 col-xs-10">
           <div class="radio">
             <label><?php echo $this->form->getInput('observation_caudal'); ?></label>
