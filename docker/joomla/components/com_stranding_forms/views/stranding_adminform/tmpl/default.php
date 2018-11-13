@@ -115,19 +115,68 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',function(
     var cloneId = 0; // incrémenté en fonction du clonage
     js("#new_observation").click(function() {
       var clone = js("#div_observation_clone").clone(true);
-      clone.find("input").prop("name", "jform[observation_spaces_identification]" + cloneId);
-      //clone.find("div").attr("id", "dead_field" + cloneId);
-      
 
-      /*clone.find("input").prop("name", "jform[observation_caudal]" + cloneId);
-      clone.find("input").prop("name", "jform[observation_tooth_or_baleen_or_defenses]" + cloneId);
-      clone.find("input").prop("name", "jform[observation_size_precision]" + cloneId);
-      clone.find("input").prop("name", "jform[observation_sex]" + cloneId);
-      clone.find("input").prop("name", "jform[observation_abnormalities]" + cloneId);
-      clone.find("input").prop("name", "jform[observation_capture_traces]" + cloneId);
-      clone.find("input").prop("name", "jform[levies]" + cloneId);
-      clone.find("input").prop("name", "jform[photos]" + cloneId);
-      clone.find("input").prop("name", "jform[observation_dead_or_alive]" + cloneId);*/
+      clone.find("input[name='jform[observation_spaces_identification]']").prop("name", "jform[observation_spaces_identification]" + cloneId);
+      clone.find("input[name='jform[observation_caudal]']").prop("name", "jform[observation_caudal]" + cloneId);
+      clone.find("input[name='jform[observation_tooth_or_baleen_or_defenses]']").prop("name", "jform[observation_tooth_or_baleen_or_defenses]" + cloneId);
+      clone.find("input[name='jform[observation_size_precision]']").prop("name", "jform[observation_size_precision]" + cloneId);
+      clone.find("input[name='jform[observation_sex]']").prop("name", "jform[observation_sex]" + cloneId);
+      clone.find("input[name='jform[observation_abnormalities]']").prop("name", "jform[observation_abnormalities]" + cloneId);
+      clone.find("input[name='jform[observation_capture_traces]']").prop("name", "jform[observation_capture_traces]" + cloneId);
+      clone.find("input[name='jform[levies]']").prop("name", "jform[levies]" + cloneId);
+      clone.find("input[name='jform[photos]']").prop("name", "jform[photos]" + cloneId);
+      clone.find("input[name='jform[observation_dead_or_alive]']").prop("name", "jform[observation_dead_or_alive]" + cloneId);
+      clone.find("input[name='jform[observation_death]']").prop("name", "jform[observation_death]" + cloneId);
+      clone.find("input[name='jform[observation_state_decomposition]']").prop("name", "jform[observation_state_decomposition]" + cloneId);
+      clone.find("input[name='jform[levies_protocole]']").prop("name", "jform[levies_protocole]" + cloneId);
+
+      clone.find("input[id='jform_observation_dead_or_alive0']").prop("id", "jform_observation_dead_or_alive0" + cloneId);
+      clone.find("input[id='jform_observation_dead_or_alive1']").prop("id", "jform_observation_dead_or_alive1" + cloneId);
+      clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses0']").prop("id", "jform_observation_tooth_or_baleen_or_defenses0" + cloneId);
+      clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses1']").prop("id", "jform_observation_tooth_or_baleen_or_defenses1" + cloneId);
+      clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses2']").prop("id", "jform_observation_tooth_or_baleen_or_defenses2" + cloneId);
+      clone.find("input[id='jform_levies0']").prop("id", "jform_levies0" + cloneId);
+      clone.find("input[id='jform_levies1']").prop("id", "jform_levies1" + cloneId);
+
+      clone.find("div[id='dead_field']").prop("id", "dead_field" + cloneId);
+      clone.find("div[id='alive_field']").prop("id", "alive_field" + cloneId);
+      clone.find("div[id='tooth_field']").prop("id", "tooth_field" + cloneId);
+      clone.find("div[id='baleen_field']").prop("id", "baleen_field" + cloneId);
+      clone.find("div[id='stockage_location_field']").prop("id", "stockage_location_field" + cloneId);
+
+      // affiche ou pas le block en fonction du choix du user
+      clone.find("input[type='radio']").click(function() {
+        switch(this.id) {
+          case 'jform_observation_dead_or_alive0' + cloneId :
+                displayBlock('dead_field' + cloneId, true);
+                displayBlock('alive_field' + cloneId, false);
+                break;
+          case 'jform_observation_dead_or_alive1' + cloneId :
+                displayBlock('dead_field' + cloneId, false);
+                displayBlock('alive_field' + cloneId, true);
+                break;
+          case 'jform_observation_tooth_or_baleen_or_defenses0' + cloneId :
+                displayBlock('tooth_field' + cloneId, true); 
+                displayBlock('baleen_field' + cloneId, false);
+                break;
+          case 'jform_observation_tooth_or_baleen_or_defenses1' + cloneId :
+                displayBlock('tooth_field' + cloneId, false); 
+                displayBlock('baleen_field' + cloneId, true);
+                break;
+          case 'jform_observation_tooth_or_baleen_or_defenses2' + cloneId :
+                displayBlock('tooth_field' + cloneId, false); 
+                displayBlock('baleen_field' + cloneId, false);
+                break;
+          case 'jform_levies0' + cloneId :
+                displayBlock('stockage_location_field' + cloneId, true);
+                break;
+          case 'jform_levies1' + cloneId :
+                displayBlock('stockage_location_field' + cloneId, false);
+                break;
+        }
+      });
+
+
       cloneId++;
       clone.appendTo("#new_div_clone");
       //document.getElementById("new_div_clone").appendChild(clone);
