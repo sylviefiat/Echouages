@@ -101,8 +101,9 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',function(
     // démasque un bouton si nombre de mammifère est > 1
     js("#jform_observation_number").change(function() {
         if(this.value > 1) {
-           document.getElementById("div_clone_btn").style.display="block";
-           for(var i=2; i<=this.value; i++){
+           document.getElementById("div_add_clone_btn").style.display="block";
+           document.getElementById("div_delete_clone_btn").style.display="block";
+           for(var i = 2; i <= this.value; i++){
             // incrémente la référence
             document.getElementById("jform_id_location").value = i;
            }
@@ -111,205 +112,129 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',function(
           document.getElementById("jform_id_location").value = 1;
         }
     });
-    // affiche l'image représentative de l'encoche médiane
-    js("button[name='Tail_Fin_Btn']").click(function() {
-      toggleContainer("tail_fin_image");
-    }) 
-    // clonage des blocs
+    // en fonction de l'id du boutons
     var cloneId = 0; // incrémenté en fonction du clonage
-    js("#new_observation").click(function() {
-      var clone = js("#div_observation_clone").clone(true);
+    js("button").click(function() {
 
-      clone.find("input[name='jform[observation_spaces_identification]']").prop("name", "jform[observation_spaces_identification]" + cloneId);
-      clone.find("input[name='jform[observation_caudal]']").prop("name", "jform[observation_caudal]" + cloneId);
-      clone.find("input[name='jform[observation_tooth_or_baleen_or_defenses]']").prop("name", "jform[observation_tooth_or_baleen_or_defenses]" + cloneId);
-      clone.find("input[name='jform[observation_size_precision]']").prop("name", "jform[observation_size_precision]" + cloneId);
-      clone.find("input[name='jform[observation_sex]']").prop("name", "jform[observation_sex]" + cloneId);
-      clone.find("input[name='jform[observation_abnormalities]']").prop("name", "jform[observation_abnormalities]" + cloneId);
-      clone.find("input[name='jform[observation_capture_traces]']").prop("name", "jform[observation_capture_traces]" + cloneId);
-      clone.find("input[name='jform[levies]']").prop("name", "jform[levies]" + cloneId);
-      clone.find("input[name='jform[photos]']").prop("name", "jform[photos]" + cloneId);
-      clone.find("input[name='jform[observation_dead_or_alive]']").prop("name", "jform[observation_dead_or_alive]" + cloneId);
-      clone.find("input[name='jform[observation_death]']").prop("name", "jform[observation_death]" + cloneId);
-      clone.find("input[name='jform[observation_state_decomposition]']").prop("name", "jform[observation_state_decomposition]" + cloneId);
-      clone.find("input[name='jform[levies_protocole]']").prop("name", "jform[levies_protocole]" + cloneId);
+      switch (this.id) {
 
-      clone.find("input[id='jform_observation_dead_or_alive0']").prop("id", "jform_observation_dead_or_alive0" + cloneId);
-      clone.find("input[id='jform_observation_dead_or_alive1']").prop("id", "jform_observation_dead_or_alive1" + cloneId);
-      clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses0']").prop("id", "jform_observation_tooth_or_baleen_or_defenses0" + cloneId);
-      clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses1']").prop("id", "jform_observation_tooth_or_baleen_or_defenses1" + cloneId);
-      clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses2']").prop("id", "jform_observation_tooth_or_baleen_or_defenses2" + cloneId);
-      clone.find("input[id='jform_levies0']").prop("id", "jform_levies0" + cloneId);
-      clone.find("input[id='jform_levies1']").prop("id", "jform_levies1" + cloneId);
+        // affiche l'image représentative de l'encoche médiane
+        case 'show_tail_fin_image' :
+              toggleContainer("tail_fin_image");
+              break;
 
-      clone.find("div[id='dead_field']").prop("id", "dead_field" + cloneId);
-      clone.find("div[id='alive_field']").prop("id", "alive_field" + cloneId);
-      clone.find("div[id='tooth_field']").prop("id", "tooth_field" + cloneId);
-      clone.find("div[id='baleen_field']").prop("id", "baleen_field" + cloneId);
-      clone.find("div[id='stockage_location_field']").prop("id", "stockage_location_field" + cloneId);
+        // clonage des blocs
+        case 'new_observation' :
+              while (cloneId < document.getElementById("jform_observation_number").value - 1) {
+                var clone = js("#div_observation_clone").clone(true);
+                // change l'id du bloc
+                clone.id = clone.id + cloneId;
+                // change le nom des inputs (boutons radios) 
+                clone.find("input[name='jform[observation_spaces_identification]']").prop("name", "jform[observation_spaces_identification]" + cloneId);
+                clone.find("input[name='jform[observation_caudal]']").prop("name", "jform[observation_caudal]" + cloneId);
+                clone.find("input[name='jform[observation_tooth_or_baleen_or_defenses]']").prop("name", "jform[observation_tooth_or_baleen_or_defenses]" + cloneId);
+                clone.find("input[name='jform[observation_size_precision]']").prop("name", "jform[observation_size_precision]" + cloneId);
+                clone.find("input[name='jform[observation_sex]']").prop("name", "jform[observation_sex]" + cloneId);
+                clone.find("input[name='jform[observation_abnormalities]']").prop("name", "jform[observation_abnormalities]" + cloneId);
+                clone.find("input[name='jform[observation_capture_traces]']").prop("name", "jform[observation_capture_traces]" + cloneId);
+                clone.find("input[name='jform[levies]']").prop("name", "jform[levies]" + cloneId);
+                clone.find("input[name='jform[photos]']").prop("name", "jform[photos]" + cloneId);
+                clone.find("input[name='jform[observation_dead_or_alive]']").prop("name", "jform[observation_dead_or_alive]" + cloneId);
+                clone.find("input[name='jform[observation_death]']").prop("name", "jform[observation_death]" + cloneId);
+                clone.find("input[name='jform[observation_state_decomposition]']").prop("name", "jform[observation_state_decomposition]" + cloneId);
+                clone.find("input[name='jform[levies_protocole]']").prop("name", "jform[levies_protocole]" + cloneId);
+                // change l'id des inputs
+                clone.find("input[id='jform_observation_dead_or_alive0']").prop("id", "jform_observation_dead_or_alive0" + cloneId);
+                clone.find("input[id='jform_observation_dead_or_alive1']").prop("id", "jform_observation_dead_or_alive1" + cloneId);
+                clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses0']").prop("id", "jform_observation_tooth_or_baleen_or_defenses0" + cloneId);
+                clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses1']").prop("id", "jform_observation_tooth_or_baleen_or_defenses1" + cloneId);
+                clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses2']").prop("id", "jform_observation_tooth_or_baleen_or_defenses2" + cloneId);
+                clone.find("input[id='jform_levies0']").prop("id", "jform_levies0" + cloneId);
+                clone.find("input[id='jform_levies1']").prop("id", "jform_levies1" + cloneId);
+                // change l'id des blocs div 
+                clone.find("div[id='dead_field']").prop("id", "dead_field" + cloneId);
+                clone.find("div[id='alive_field']").prop("id", "alive_field" + cloneId);
+                clone.find("div[id='tooth_field']").prop("id", "tooth_field" + cloneId);
+                clone.find("div[id='baleen_field']").prop("id", "baleen_field" + cloneId);
+                clone.find("div[id='stockage_location_field']").prop("id", "stockage_location_field" + cloneId);
+                clone.find("div[id='tail_fin_image']").prop("id", "tail_fin_image" + cloneId);
+                // change l'id des boutons
+                clone.find("button[name='Tail_Fin_Btn']").prop("name", "Tail_Fin_Btn" + cloneId);
+                // affiche l'image représentative de l'encoche médiane
+                clone.find("button").click(function() {
+                  for(var i = 0; i <= cloneId; i++) {
+                    if(this.name == "Tail_Fin_Btn" + i) {
+                      toggleContainer("tail_fin_image" + i); 
+                    }  
+                  }
+                });
+                // affiche ou pas le block en fonction du choix du user
+                clone.find("input[type='radio']").click(function() {
+                  for(var i = 0; i <= cloneId; i++) {
+                    switch(this.id) {
+                      case 'jform_observation_dead_or_alive0' + i :
+                            displayBlock('dead_field' + i, true);
+                            displayBlock('alive_field' + i, false);
+                            break;
+                      case 'jform_observation_dead_or_alive1' + i :
+                            displayBlock('dead_field' + i, false);
+                            displayBlock('alive_field' + i, true);
+                            break;
+                      case 'jform_observation_tooth_or_baleen_or_defenses0' + i :
+                            displayBlock('tooth_field' + i, true); 
+                            displayBlock('baleen_field' + i, false);
+                            break;
+                      case 'jform_observation_tooth_or_baleen_or_defenses1' + i :
+                            displayBlock('tooth_field' + i, false); 
+                            displayBlock('baleen_field' + i, true);
+                            break;
+                      case 'jform_observation_tooth_or_baleen_or_defenses2' + i :
+                            displayBlock('tooth_field' + i, false); 
+                            displayBlock('baleen_field' + i, false);
+                            break;
+                      case 'jform_levies0' + i :
+                            displayBlock('stockage_location_field' + i, true);
+                            break;
+                      case 'jform_levies1' + i :
+                            displayBlock('stockage_location_field' + i, false);
+                            break;
+                    }
+                  }
+                });
+                cloneId++;
+                clone.appendTo("#new_div_clone");
+              }
+              break;
 
-      clone.find("button[name='Tail_Fin_Btn']").prop("name", "Tail_Fin_Btn" + cloneId);
-      clone.find("div[name='tail_fin_image']").prop("id", "tail_fin_image" + cloneId);
-      js("button[name='Tail_Fin_Btn" + cloneId + "']").click(function() {
-        toggleContainer("tail_fin_image" + cloneId); 
-      });
+        // supprimer des clonages
+        case 'delete_observation' :
 
-      // affiche ou pas le block en fonction du choix du user
-      clone.find("input[type='radio']").click(function() {
-        switch(this.id) {
-          case 'jform_observation_dead_or_alive0' + cloneId :
-                displayBlock('dead_field' + cloneId, true);
-                displayBlock('alive_field' + cloneId, false);
-                break;
-          case 'jform_observation_dead_or_alive1' + cloneId :
-                displayBlock('dead_field' + cloneId, false);
-                displayBlock('alive_field' + cloneId, true);
-                break;
-          case 'jform_observation_tooth_or_baleen_or_defenses0' + cloneId :
-                displayBlock('tooth_field' + cloneId, true); 
-                displayBlock('baleen_field' + cloneId, false);
-                break;
-          case 'jform_observation_tooth_or_baleen_or_defenses1' + cloneId :
-                displayBlock('tooth_field' + cloneId, false); 
-                displayBlock('baleen_field' + cloneId, true);
-                break;
-          case 'jform_observation_tooth_or_baleen_or_defenses2' + cloneId :
-                displayBlock('tooth_field' + cloneId, false); 
-                displayBlock('baleen_field' + cloneId, false);
-                break;
-          case 'jform_levies0' + cloneId :
-                displayBlock('stockage_location_field' + cloneId, true);
-                break;
-          case 'jform_levies1' + cloneId :
-                displayBlock('stockage_location_field' + cloneId, false);
-                break;
-        }
-      });
-
-
-      cloneId++;
-      clone.appendTo("#new_div_clone");
-    });
+      }
+    }); 
   });
 });
-// affiche ou pas le block en fonction du choix du user
-function choixUser(btn,champ1,champ2) { 
-  switch(btn.id) {
-    case 'jform_observation_dead_or_alive0' :
-          display(champ1,true); 
-          display(champ2,false); 
-          break;
-    case 'jform_observation_dead_or_alive1' :
-          display(champ2,true); 
-          display(champ1,false);
-          break;
-    case 'jform_observation_tooth_or_baleen_or_defenses0' :
-          display(champ1,true); 
-          display(champ2,false);
-          break;
-    case 'jform_observation_tooth_or_baleen_or_defenses1' :
-          display(champ2,true); 
-          display(champ1,false);
-          break;
-    case 'jform_observation_tooth_or_baleen_or_defenses2' :
-          display(champ2,false); 
-          display(champ1,false);
-          break;
-    case 'jform_levies0' :
-         display(champ1,true);
-         break; 
-    case 'jform_levies1' :
-          display(champ1,false); 
-          break;
-  }
-}
-// si affiche vraie alors on affiche le block choisi, sinon pas d'affichage
+
+// si 'affiche' est vraie alors on affiche le block choisi, sinon pas d'affichage
 function displayBlock(div, affiche) { 
   document.getElementById(div).style.display = affiche ? 'block' : 'none';
 }
+
 // affiche et masque le block au click
 function toggleContainer(name) {
   var e = document.getElementById(name);// MooTools might not be available ;)
   e.style.display = e.style.display === 'none' ? 'block' : 'none';
 }
 
-// cloner le bloc identification
-/*function add_new_block(nbr) {
-  if(nbr > 1) {
-    for(var i=2; i<=nbr; i++){
-      //var div = document.getElementById("div_observation_clone").innerHTML;
-      var div = document.createElement("DIV");
-      div.id = "new_div_clone"+i;
-      //div = document.getElementById("div_observation_clone").innerHTML;
-      //document.getElementById("form-stranding_admin").appendChild(div);
+// supprimer un bloc clonné
+function supr_field(div, i) { 
+  var Parent; 
+  var Obj = document.getElementById ( div+i); 
 
-      document.getElementById("new_div_clone").appendChild("new_div_clone"+i);
-      //document.getElementById("new_div_clone").innerHTML = div;
-      document.getElementById("jform_id_location").value = i;
-    }
-  }
-  else if(nbr == 1) {
-    document.getElementById("jform_id_location").value = 1;
-  }
-}*/
-
-// ajoute des boutons en fonction du nombre d'animals échoués
-/*function add_new_btn(div, text, nbr) {
-    if(nbr > 1) {
-      // même nombre de boutons que d'animals échoués
-      for(var i=2; i<=nbr; i++) {
-        var btn = document.createElement("BUTTON");
-        var t = document.createTextNode(text+" "+i);
-        // incrémentation de l'id_location
-        document.getElementById("jform_id_location").value = i;
-        btn.appendChild(t);
-        document.getElementById(div).appendChild(btn);
-        btn.onclick = add_new_identification_field();
-      }
-    }
-    else if(nbr == 1) {
-      document.getElementById("jform_id_location").value = 1;
-    }
-}*/
-
-  /*function duplic(element) {
-    clone01 = document.getElementById("spaces_title").cloneNode(true);
-    clone01.id="spaces_title_1";
-    document.getElementById(element).appendChild (clone01);
-    clone1 = document.getElementById("spaces").cloneNode(true);
-    clone1.id="spaces1";
-    document.getElementById(element).appendChild (clone1);
-    clone02 = document.getElementById("spaces_identification_title").cloneNode(true);
-    clone02.id = "spaces_identification_title_1";
-    document.getElementById(element).appendChild (clone02);
-  }*/
-
-  /*Fonction ajout et suppression de champs version 2*/
-  function addDiv(name, field) {
-    var div = document.createElement("div");
-    div.name = name;
-    field.appendChild(div);
-  }
-
-  function addField(name, field) {
-    var div = document.getElementById('identification');
-    addDiv(name, field);
-  }
-
-  function supr_field(i) { 
-    var Parent; 
-    var Obj = document.getElementById ( 'input_'+i); 
-
-    if(Obj)      
-      Parent = Obj.parentNode;      
-    if(Parent) 
-      Obj.removeChild(Obj.childNodes[0]); 
-  }
-
-  function transpo(i) { 
-    document.getElementById('in_'+i).value = document.getElementById('out_'+(i-1)).value; 
-  }
-
+  if(Obj)      
+    Parent = Obj.parentNode;      
+  if(Parent) 
+    Obj.removeChild(Obj.childNodes[0]); 
+}
 </script>
 
 <div class="stranding_admin-edit front-end-edit">
@@ -469,8 +394,6 @@ function toggleContainer(name) {
 </div>
 
 <div id="div_observation_clone">
-  
-
 <!--Identification-->
 <div class="row" id="identification_title">
   <div class="col-lg-12 col-md-12 col-xs-12" id="title_R3"><span class="stranding_admin-title_row"><span class="fa fa-eye fa-2x"><h4><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW3'); ?></h4></span></span></div>
@@ -507,7 +430,7 @@ function toggleContainer(name) {
     <div class="col-lg-6 col-md-6 col-xs-12" name="tail[]">
       <div class="form-group">
         <?php echo $this->form->getLabel('observation_caudal'); ?>
-        <button type="button" name="Tail_Fin_Btn" class="btn btn-light" value="Tail-Fin"><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_SEE_TF_IMAGE'); ?></label></button>
+        <button id="show_tail_fin_image" type="button" name="Tail_Fin_Btn" class="btn btn-light" value="Tail-Fin"><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_SEE_TF_IMAGE'); ?></label></button>
         <div class="col-xs-offset-2 col-xs-10">
           <div class="radio">
             <label><?php echo $this->form->getInput('observation_caudal'); ?></label>
@@ -1192,9 +1115,14 @@ function toggleContainer(name) {
 <div id="new_div_clone">
   
 </div>
-<div id="div_clone_btn" class="row" style="display: none;">
+<div id="div_add_clone_btn" class="row" style="display: none;">
   <div class="col-lg-12 col-md-12 col-xs-12">
     <button type="button" id="new_observation" class="btn btn-primary"><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ADD_FIELDS'); ?></label></button>
+  </div>
+</div>
+<div id="div_delete_clone_btn" class="row" style="display: none;">
+  <div class="col-lg-12 col-md-12 col-xs-12">
+    <button type="button" id="delete_observation" class="btn btn-danger"><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_DELETE_FIELDS'); ?></label></button>
   </div>
 </div>
 <!--Admin validation-->
