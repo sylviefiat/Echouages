@@ -125,16 +125,16 @@ class Stranding_formsModelStranding_adminForm extends JModelForm
 		// Get the id.
 		$id = (!empty($id)) ? $id : (int)$this->getState('stranding_admin.id');
 		// Gte the observation 
-		$id_location = (!empty($id_location)) ? $id_location : (int)$this->getState('stranding_admin.id_location');
+		//$id_location = (!empty($id_location)) ? $id_location : (int)$this->getState('stranding_admin.id_location'); && $id_location
 
-		if ($id && $id_location) {
+		if ($id) {
             
 			// Initialise the table
 			$table = $this->getTable();
 
-			// Attempt to check the row in.
+			// Attempt to check the row in. && !$table->checkin($id_location)
             if (method_exists($table, 'checkin')) {
-                if (!$table->checkin($id) && !$table->checkin($id_location)) {
+                if (!$table->checkin($id)) {
                     $this->setError($table->getError());
                     return false;
                 }
@@ -155,19 +155,19 @@ class Stranding_formsModelStranding_adminForm extends JModelForm
 	{
 		// Get the user id.
 		$id = (!empty($id)) ? $id : (int)$this->getState('stranding_admin.id');
-		// Gte the observation 
-		$id_location = (!empty($id_location)) ? $id_location : (int)$this->getState('stranding_admin.id_location');
-		if ($id && $id_location) {
+		// Get the observation 
+		//$id_location = (!empty($id_location)) ? $id_location : (int)$this->getState('stranding_admin.id_location'); && $id_location
+		if ($id) {
             
 			// Initialise the table
 			$table = $this->getTable();
 
-			// Get the current user object.
+			// Get the current user object.  && !$table->checkout($user->get('id_location'), $id_location)
 			$user = JFactory::getUser();
 
 			// Attempt to check the row out.
             if (method_exists($table, 'checkout')) {
-                if (!$table->checkout($user->get('id'), $id) && !$table->checkout($user->get('id_location'), $id_location)) {
+                if (!$table->checkout($user->get('id'), $id)) {
                     $this->setError($table->getError());
                     return false;
                 }

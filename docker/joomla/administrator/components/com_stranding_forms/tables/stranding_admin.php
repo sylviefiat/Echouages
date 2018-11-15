@@ -34,14 +34,11 @@ class Stranding_formsTableStranding_Admin extends JTable {
      */
     public function bind($array, $ignore = '') {
 
-        
-
         if (isset($array['params']) && is_array($array['params'])) {
             $registry = new JRegistry();
             $registry->loadArray($array['params']);
             $array['params'] = (string) $registry;
         }
-
         if (isset($array['metadata']) && is_array($array['metadata'])) {
             $registry = new JRegistry();
             $registry->loadArray($array['metadata']);
@@ -56,7 +53,7 @@ class Stranding_formsTableStranding_Admin extends JTable {
             }
             $array['rules'] = $this->JAccessRulestoArray($array_jaccess);
         }
-        if (!JFactory::getUser()->authorise('core.admin', 'com_stranding_forms.stranding_admin.' . $array['id_location'])) {
+        /*if (!JFactory::getUser()->authorise('core.admin', 'com_stranding_forms.stranding_admin.' . $array['id_location'])) {
             $actions = JFactory::getACL()->getActions('com_stranding_forms', 'stranding_admin');
             $default_actions = JFactory::getACL()->getAssetRules('com_stranding_forms.stranding_admin.' . $array['id_location'])->getData();
             $array_jaccess = array();
@@ -64,7 +61,7 @@ class Stranding_formsTableStranding_Admin extends JTable {
                 $array_jaccess[$action->name] = $default_actions[$action->name];
             }
             $array['rules'] = $this->JAccessRulestoArray($array_jaccess);
-        }
+        }*/
         //Bind the rules for ACL where supported.
         if (isset($array['rules']) && is_array($array['rules'])) {
             $this->setRules($array['rules']);
