@@ -124,15 +124,17 @@ class Stranding_formsModelStranding_adminForm extends JModelForm
 	{
 		// Get the id.
 		$id = (!empty($id)) ? $id : (int)$this->getState('stranding_admin.id');
+		// Gte the observation 
+		$id_location = (!empty($id_location)) ? $id_location : (int)$this->getState('stranding_admin.id_location');
 
-		if ($id) {
+		if ($id && $id_location) {
             
 			// Initialise the table
 			$table = $this->getTable();
 
 			// Attempt to check the row in.
             if (method_exists($table, 'checkin')) {
-                if (!$table->checkin($id)) {
+                if (!$table->checkin($id) && !$table->checkin($id_location)) {
                     $this->setError($table->getError());
                     return false;
                 }
@@ -153,8 +155,9 @@ class Stranding_formsModelStranding_adminForm extends JModelForm
 	{
 		// Get the user id.
 		$id = (!empty($id)) ? $id : (int)$this->getState('stranding_admin.id');
-
-		if ($id) {
+		// Gte the observation 
+		$id_location = (!empty($id_location)) ? $id_location : (int)$this->getState('stranding_admin.id_location');
+		if ($id && $id_location) {
             
 			// Initialise the table
 			$table = $this->getTable();
@@ -164,7 +167,7 @@ class Stranding_formsModelStranding_adminForm extends JModelForm
 
 			// Attempt to check the row out.
             if (method_exists($table, 'checkout')) {
-                if (!$table->checkout($user->get('id'), $id)) {
+                if (!$table->checkout($user->get('id'), $id) && !$table->checkout($user->get('id_location'), $id_location)) {
                     $this->setError($table->getError());
                     return false;
                 }
