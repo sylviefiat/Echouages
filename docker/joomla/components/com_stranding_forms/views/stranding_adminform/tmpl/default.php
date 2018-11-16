@@ -99,7 +99,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
       }
     });
 
-    // démasque un bouton si nombre de mammifère est > 1
+    // démasque le bouton pour le clonage si nombre > 1
     js("#jform_observation_number").change(function() {
         if(this.value > 1) {
            document.getElementById("div_add_clone_btn").style.display="block";
@@ -279,503 +279,503 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
         // clonage des blocs
         case 'new_observation' :
               //while (cloneId < document.getElementById("jform_observation_number").value - 1) {
-                var clone = js("#div_observation_clone").clone(true);
+              var clone = js("#div_observation_clone").clone(true);
 
-                // change l'id du bloc cloner
-                clone.attr("id", "div_observation_clone" + cloneId);
+              // change l'id du bloc cloner
+              clone.attr("id", "div_observation_clone" + cloneId);
 
-                // change le nom des inputs (boutons radios) 
-                clone.find("input[name='jform[observation_spaces_identification]']").prop("name", "jform[observation_spaces_identification]" + cloneId);
-                clone.find("input[name='jform[observation_caudal]']").prop("name", "jform[observation_caudal]" + cloneId);
-                clone.find("input[name='jform[observation_tooth_or_baleen_or_defenses]']").prop("name", "jform[observation_tooth_or_baleen_or_defenses]" + cloneId);
-                clone.find("input[name='jform[observation_size_precision]']").prop("name", "jform[observation_size_precision]" + cloneId);
-                clone.find("input[name='jform[observation_sex]']").prop("name", "jform[observation_sex]" + cloneId);
-                clone.find("input[name='jform[observation_abnormalities]']").prop("name", "jform[observation_abnormalities]" + cloneId);
-                clone.find("input[name='jform[observation_capture_traces]']").prop("name", "jform[observation_capture_traces]" + cloneId);
-                clone.find("input[name='jform[levies]']").prop("name", "jform[levies]" + cloneId);
-                clone.find("input[name='jform[photos]']").prop("name", "jform[photos]" + cloneId);
-                clone.find("input[name='jform[observation_dead_or_alive]']").prop("name", "jform[observation_dead_or_alive]" + cloneId);
-                clone.find("input[name='jform[observation_death]']").prop("name", "jform[observation_death]" + cloneId);
-                clone.find("input[name='jform[observation_state_decomposition]']").prop("name", "jform[observation_state_decomposition]" + cloneId);
-                clone.find("input[name='jform[levies_protocole]']").prop("name", "jform[levies_protocole]" + cloneId);
+              // change le nom des inputs (boutons radios) 
+              clone.find("input[name='jform[observation_spaces_identification]']").prop("name", "jform[observation_spaces_identification]" + cloneId);
+              clone.find("input[name='jform[observation_caudal]']").prop("name", "jform[observation_caudal]" + cloneId);
+              clone.find("input[name='jform[observation_tooth_or_baleen_or_defenses]']").prop("name", "jform[observation_tooth_or_baleen_or_defenses]" + cloneId);
+              clone.find("input[name='jform[observation_size_precision]']").prop("name", "jform[observation_size_precision]" + cloneId);
+              clone.find("input[name='jform[observation_sex]']").prop("name", "jform[observation_sex]" + cloneId);
+              clone.find("input[name='jform[observation_abnormalities]']").prop("name", "jform[observation_abnormalities]" + cloneId);
+              clone.find("input[name='jform[observation_capture_traces]']").prop("name", "jform[observation_capture_traces]" + cloneId);
+              clone.find("input[name='jform[levies]']").prop("name", "jform[levies]" + cloneId);
+              clone.find("input[name='jform[photos]']").prop("name", "jform[photos]" + cloneId);
+              clone.find("input[name='jform[observation_dead_or_alive]']").prop("name", "jform[observation_dead_or_alive]" + cloneId);
+              clone.find("input[name='jform[observation_death]']").prop("name", "jform[observation_death]" + cloneId);
+              clone.find("input[name='jform[observation_state_decomposition]']").prop("name", "jform[observation_state_decomposition]" + cloneId);
+              clone.find("input[name='jform[levies_protocole]']").prop("name", "jform[levies_protocole]" + cloneId);
 
-                // change l'id de balises a pour les boutons des dates et le nom
-                clone.find("a[id='jform_observation_datetime_death-btn']").prop("id", "jform_observation_datetime_death-btn" + cloneId);
-                clone.find("a[id='jform_observation_datetime_release-btn']").prop("id", "jform_observation_datetime_release-btn" + cloneId);
+              // change l'id de balises a pour les boutons des dates et le nom
+              clone.find("a[id='jform_observation_datetime_death-btn']").prop("id", "jform_observation_datetime_death-btn" + cloneId);
+              clone.find("a[id='jform_observation_datetime_release-btn']").prop("id", "jform_observation_datetime_release-btn" + cloneId);
 
-                clone.find("input[name='jform[observation_datetime_death]']").prop("name", "jform[observation_datetime_death]" + cloneId);
-                clone.find("input[name='jform[observation_datetime_release]']").prop("name", "jform[observation_datetime_release]" + cloneId);
-                
+              clone.find("input[name='jform[observation_datetime_death]']").prop("name", "jform[observation_datetime_death]" + cloneId);
+              clone.find("input[name='jform[observation_datetime_release]']").prop("name", "jform[observation_datetime_release]" + cloneId);
+              
 
-                // change l'id des inputs
-                clone.find("input[id='jform_observation_dead_or_alive0']").prop("id", "jform_observation_dead_or_alive0" + cloneId);
-                clone.find("input[id='jform_observation_dead_or_alive1']").prop("id", "jform_observation_dead_or_alive1" + cloneId);
-                clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses0']").prop("id", "jform_observation_tooth_or_baleen_or_defenses0" + cloneId);
-                clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses1']").prop("id", "jform_observation_tooth_or_baleen_or_defenses1" + cloneId);
-                clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses2']").prop("id", "jform_observation_tooth_or_baleen_or_defenses2" + cloneId);
-                clone.find("input[id='jform_levies0']").prop("id", "jform_levies0" + cloneId);
-                clone.find("input[id='jform_levies1']").prop("id", "jform_levies1" + cloneId);
+              // change l'id des inputs
+              clone.find("input[id='jform_observation_dead_or_alive0']").prop("id", "jform_observation_dead_or_alive0" + cloneId);
+              clone.find("input[id='jform_observation_dead_or_alive1']").prop("id", "jform_observation_dead_or_alive1" + cloneId);
+              clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses0']").prop("id", "jform_observation_tooth_or_baleen_or_defenses0" + cloneId);
+              clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses1']").prop("id", "jform_observation_tooth_or_baleen_or_defenses1" + cloneId);
+              clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses2']").prop("id", "jform_observation_tooth_or_baleen_or_defenses2" + cloneId);
+              clone.find("input[id='jform_levies0']").prop("id", "jform_levies0" + cloneId);
+              clone.find("input[id='jform_levies1']").prop("id", "jform_levies1" + cloneId);
 
-                // change l'id des blocs div 
-                clone.find("div[id='dead_field']").prop("id", "dead_field" + cloneId);
-                clone.find("div[id='alive_field']").prop("id", "alive_field" + cloneId);
-                clone.find("div[id='tooth_field']").prop("id", "tooth_field" + cloneId);
-                clone.find("div[id='baleen_field']").prop("id", "baleen_field" + cloneId);
-                clone.find("div[id='stockage_location_field']").prop("id", "stockage_location_field" + cloneId);
-                clone.find("div[id='tail_fin_image']").prop("id", "tail_fin_image" + cloneId);
-                // blocs div des mesures
-                clone.find("div[id='div_show_cetace_measurements_field']").prop("id", "div_show_cetace_measurements_field" + cloneId);
-                clone.find("div[id='div_show_dugong_measurements_field']").prop("id", "div_show_dugong_measurements_field" + cloneId);
-                clone.find("div[id='cetace_measures']").prop("id", "cetace_measures" + cloneId);
-                clone.find("div[id='dugong_measures']").prop("id", "dugong_measures" + cloneId);
-                // blocs div mesures sur cétacé
-                clone.find("div[id='jform_observation_dolphin_mesures_a_field']").prop("id", "jform_observation_dolphin_mesures_a_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_b_field']").prop("id", "jform_observation_dolphin_mesures_b_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_c_field']").prop("id", "jform_observation_dolphin_mesures_c_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_d_field']").prop("id", "jform_observation_dolphin_mesures_d_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_e_field']").prop("id", "jform_observation_dolphin_mesures_e_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_f_field']").prop("id", "jform_observation_dolphin_mesures_f_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_g_field']").prop("id", "jform_observation_dolphin_mesures_g_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_h_field']").prop("id", "jform_observation_dolphin_mesures_h_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_i_field']").prop("id", "jform_observation_dolphin_mesures_i_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_j_field']").prop("id", "jform_observation_dolphin_mesures_j_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_k_field']").prop("id", "jform_observation_dolphin_mesures_k_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_l_field']").prop("id", "jform_observation_dolphin_mesures_l_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_m_field']").prop("id", "jform_observation_dolphin_mesures_m_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_n_field']").prop("id", "jform_observation_dolphin_mesures_n_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_o_field']").prop("id", "jform_observation_dolphin_mesures_o_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_p_field']").prop("id", "jform_observation_dolphin_mesures_p_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_q_field']").prop("id", "jform_observation_dolphin_mesures_q_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_r_field']").prop("id", "jform_observation_dolphin_mesures_r_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_s_field']").prop("id", "jform_observation_dolphin_mesures_s_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_t_field']").prop("id", "jform_observation_dolphin_mesures_t_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_u_field']").prop("id", "jform_observation_dolphin_mesures_u_field" + cloneId);
-                clone.find("div[id='jform_observation_dolphin_mesures_v_field']").prop("id", "jform_observation_dolphin_mesures_v_field" + cloneId);
-                // blocs div mesures sur dugong
-                clone.find("div[id='jform_observation_dugong_mesures_a_field']").prop("id", "jform_observation_dugong_mesures_a_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_b_field']").prop("id", "jform_observation_dugong_mesures_b_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_c_field']").prop("id", "jform_observation_dugong_mesures_c_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_d_field']").prop("id", "jform_observation_dugong_mesures_d_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_e_field']").prop("id", "jform_observation_dugong_mesures_e_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_f_field']").prop("id", "jform_observation_dugong_mesures_f_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_g_field']").prop("id", "jform_observation_dugong_mesures_g_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_h_field']").prop("id", "jform_observation_dugong_mesures_h_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_i_field']").prop("id", "jform_observation_dugong_mesures_i_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_j_field']").prop("id", "jform_observation_dugong_mesures_j_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_k_field']").prop("id", "jform_observation_dugong_mesures_k_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_l_field']").prop("id", "jform_observation_dugong_mesures_l_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_m_field']").prop("id", "jform_observation_dugong_mesures_m_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_n_field']").prop("id", "jform_observation_dugong_mesures_n_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_o_field']").prop("id", "jform_observation_dugong_mesures_o_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_p_field']").prop("id", "jform_observation_dugong_mesures_p_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_q_field']").prop("id", "jform_observation_dugong_mesures_q_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_r_field']").prop("id", "jform_observation_dugong_mesures_r_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_s_field']").prop("id", "jform_observation_dugong_mesures_s_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_t_field']").prop("id", "jform_observation_dugong_mesures_t_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_u_field']").prop("id", "jform_observation_dugong_mesures_u_field" + cloneId);
-                clone.find("div[id='jform_observation_dugong_mesures_v_field']").prop("id", "jform_observation_dugong_mesures_v_field" + cloneId);
+              // change l'id des blocs div 
+              clone.find("div[id='dead_field']").prop("id", "dead_field" + cloneId);
+              clone.find("div[id='alive_field']").prop("id", "alive_field" + cloneId);
+              clone.find("div[id='tooth_field']").prop("id", "tooth_field" + cloneId);
+              clone.find("div[id='baleen_field']").prop("id", "baleen_field" + cloneId);
+              clone.find("div[id='stockage_location_field']").prop("id", "stockage_location_field" + cloneId);
+              clone.find("div[id='tail_fin_image']").prop("id", "tail_fin_image" + cloneId);
+              // blocs div des mesures
+              clone.find("div[id='div_show_cetace_measurements_field']").prop("id", "div_show_cetace_measurements_field" + cloneId);
+              clone.find("div[id='div_show_dugong_measurements_field']").prop("id", "div_show_dugong_measurements_field" + cloneId);
+              clone.find("div[id='cetace_measures']").prop("id", "cetace_measures" + cloneId);
+              clone.find("div[id='dugong_measures']").prop("id", "dugong_measures" + cloneId);
+              // blocs div mesures sur cétacé
+              clone.find("div[id='jform_observation_dolphin_mesures_a_field']").prop("id", "jform_observation_dolphin_mesures_a_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_b_field']").prop("id", "jform_observation_dolphin_mesures_b_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_c_field']").prop("id", "jform_observation_dolphin_mesures_c_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_d_field']").prop("id", "jform_observation_dolphin_mesures_d_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_e_field']").prop("id", "jform_observation_dolphin_mesures_e_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_f_field']").prop("id", "jform_observation_dolphin_mesures_f_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_g_field']").prop("id", "jform_observation_dolphin_mesures_g_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_h_field']").prop("id", "jform_observation_dolphin_mesures_h_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_i_field']").prop("id", "jform_observation_dolphin_mesures_i_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_j_field']").prop("id", "jform_observation_dolphin_mesures_j_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_k_field']").prop("id", "jform_observation_dolphin_mesures_k_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_l_field']").prop("id", "jform_observation_dolphin_mesures_l_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_m_field']").prop("id", "jform_observation_dolphin_mesures_m_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_n_field']").prop("id", "jform_observation_dolphin_mesures_n_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_o_field']").prop("id", "jform_observation_dolphin_mesures_o_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_p_field']").prop("id", "jform_observation_dolphin_mesures_p_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_q_field']").prop("id", "jform_observation_dolphin_mesures_q_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_r_field']").prop("id", "jform_observation_dolphin_mesures_r_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_s_field']").prop("id", "jform_observation_dolphin_mesures_s_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_t_field']").prop("id", "jform_observation_dolphin_mesures_t_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_u_field']").prop("id", "jform_observation_dolphin_mesures_u_field" + cloneId);
+              clone.find("div[id='jform_observation_dolphin_mesures_v_field']").prop("id", "jform_observation_dolphin_mesures_v_field" + cloneId);
+              // blocs div mesures sur dugong
+              clone.find("div[id='jform_observation_dugong_mesures_a_field']").prop("id", "jform_observation_dugong_mesures_a_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_b_field']").prop("id", "jform_observation_dugong_mesures_b_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_c_field']").prop("id", "jform_observation_dugong_mesures_c_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_d_field']").prop("id", "jform_observation_dugong_mesures_d_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_e_field']").prop("id", "jform_observation_dugong_mesures_e_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_f_field']").prop("id", "jform_observation_dugong_mesures_f_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_g_field']").prop("id", "jform_observation_dugong_mesures_g_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_h_field']").prop("id", "jform_observation_dugong_mesures_h_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_i_field']").prop("id", "jform_observation_dugong_mesures_i_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_j_field']").prop("id", "jform_observation_dugong_mesures_j_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_k_field']").prop("id", "jform_observation_dugong_mesures_k_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_l_field']").prop("id", "jform_observation_dugong_mesures_l_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_m_field']").prop("id", "jform_observation_dugong_mesures_m_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_n_field']").prop("id", "jform_observation_dugong_mesures_n_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_o_field']").prop("id", "jform_observation_dugong_mesures_o_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_p_field']").prop("id", "jform_observation_dugong_mesures_p_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_q_field']").prop("id", "jform_observation_dugong_mesures_q_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_r_field']").prop("id", "jform_observation_dugong_mesures_r_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_s_field']").prop("id", "jform_observation_dugong_mesures_s_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_t_field']").prop("id", "jform_observation_dugong_mesures_t_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_u_field']").prop("id", "jform_observation_dugong_mesures_u_field" + cloneId);
+              clone.find("div[id='jform_observation_dugong_mesures_v_field']").prop("id", "jform_observation_dugong_mesures_v_field" + cloneId);
 
-                // change l'id des boutons
-                clone.find("button[id='show_tail_fin_image']").prop("id", "show_tail_fin_image" + cloneId);
-                // boutons mesures sur cétacé
-                clone.find("button[id='jform_observation_dolphin_mesures_a_btn']").prop("id", "jform_observation_dolphin_mesures_a_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_b_btn']").prop("id", "jform_observation_dolphin_mesures_b_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_c_btn']").prop("id", "jform_observation_dolphin_mesures_c_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_d_btn']").prop("id", "jform_observation_dolphin_mesures_d_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_e_btn']").prop("id", "jform_observation_dolphin_mesures_e_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_f_btn']").prop("id", "jform_observation_dolphin_mesures_f_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_g_btn']").prop("id", "jform_observation_dolphin_mesures_g_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_h_btn']").prop("id", "jform_observation_dolphin_mesures_h_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_i_btn']").prop("id", "jform_observation_dolphin_mesures_i_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_j_btn']").prop("id", "jform_observation_dolphin_mesures_j_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_k_btn']").prop("id", "jform_observation_dolphin_mesures_k_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_l_btn']").prop("id", "jform_observation_dolphin_mesures_l_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_m_btn']").prop("id", "jform_observation_dolphin_mesures_m_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_n_btn']").prop("id", "jform_observation_dolphin_mesures_n_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_o_btn']").prop("id", "jform_observation_dolphin_mesures_o_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_p_btn']").prop("id", "jform_observation_dolphin_mesures_p_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_q_btn']").prop("id", "jform_observation_dolphin_mesures_q_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_r_btn']").prop("id", "jform_observation_dolphin_mesures_r_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_s_btn']").prop("id", "jform_observation_dolphin_mesures_s_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_t_btn']").prop("id", "jform_observation_dolphin_mesures_t_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_u_btn']").prop("id", "jform_observation_dolphin_mesures_u_btn" + cloneId);
-                clone.find("button[id='jform_observation_dolphin_mesures_v_btn']").prop("id", "jform_observation_dolphin_mesures_v_btn" + cloneId);
-                // boutons mesures sur dugong
-                clone.find("button[id='jform_observation_dugong_mesures_a_btn']").prop("id", "jform_observation_dugong_mesures_a_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_b_btn']").prop("id", "jform_observation_dugong_mesures_b_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_c_btn']").prop("id", "jform_observation_dugong_mesures_c_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_d_btn']").prop("id", "jform_observation_dugong_mesures_d_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_e_btn']").prop("id", "jform_observation_dugong_mesures_e_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_f_btn']").prop("id", "jform_observation_dugong_mesures_f_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_g_btn']").prop("id", "jform_observation_dugong_mesures_g_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_h_btn']").prop("id", "jform_observation_dugong_mesures_h_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_i_btn']").prop("id", "jform_observation_dugong_mesures_i_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_j_btn']").prop("id", "jform_observation_dugong_mesures_j_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_k_btn']").prop("id", "jform_observation_dugong_mesures_k_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_l_btn']").prop("id", "jform_observation_dugong_mesures_l_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_m_btn']").prop("id", "jform_observation_dugong_mesures_m_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_n_btn']").prop("id", "jform_observation_dugong_mesures_n_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_o_btn']").prop("id", "jform_observation_dugong_mesures_o_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_p_btn']").prop("id", "jform_observation_dugong_mesures_p_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_q_btn']").prop("id", "jform_observation_dugong_mesures_q_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_r_btn']").prop("id", "jform_observation_dugong_mesures_r_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_s_btn']").prop("id", "jform_observation_dugong_mesures_s_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_t_btn']").prop("id", "jform_observation_dugong_mesures_t_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_u_btn']").prop("id", "jform_observation_dugong_mesures_u_btn" + cloneId);
-                clone.find("button[id='jform_observation_dugong_mesures_v_btn']").prop("id", "jform_observation_dugong_mesures_v_btn" + cloneId);
-                 
-                 /* change les id des champs pour la bdd*/
-                 // l'id des fieldser radios et checkboxes
-                 clone.find("fieldset[id='jform_observation_tissue_removal_dead']").prop("id", "jform_observation_tissue_removal_dead" + cloneId);
-                 clone.find("fieldset[id='jform_observation_tissue_removal_alive']").prop("id", "jform_observation_tissue_removal_alive" + cloneId);
-                 clone.find("fieldset[id='jform_observation_spaces_identification']").prop("id", "jform_observation_spaces_identification" + cloneId);
-                 clone.find("fieldset[id='jform_observation_size_precision']").prop("id", "jform_observation_size_precision" + cloneId);
-                 clone.find("fieldset[id='jform_observation_sex']").prop("id", "jform_observation_sex" + cloneId);
-                 clone.find("fieldset[id='jform_observation_caudal']").prop("id", "jform_observation_caudal" + cloneId);
-                 clone.find("fieldset[id='jform_observation_beak_or_furrows']").prop("id", "jform_observation_beak_or_furrows" + cloneId);
-                 clone.find("fieldset[id='jform_observation_tooth_or_baleen_or_defenses']").prop("id", "jform_observation_tooth_or_baleen_or_defenses" + cloneId);
-                 clone.find("fieldset[id='jform_observation_abnormalities']").prop("id", "jform_observation_abnormalities" + cloneId);
-                 clone.find("fieldset[id='jform_observation_capture_traces']").prop("id", "jform_observation_capture_traces" + cloneId);
-                 clone.find("fieldset[id='jform_observation_dead_or_alive']").prop("id", "jform_observation_dead_or_alive" + cloneId);
-                 clone.find("fieldset[id='jform_observation_death']").prop("id", "jform_observation_death" + cloneId);
-                 clone.find("fieldset[id='jform_observation_state_decomposition']").prop("id", "jform_observation_state_decomposition" + cloneId);
-                 clone.find("fieldset[id='jform_observation_alive']").prop("id", "jform_observation_alive" + cloneId);
-                 clone.find("fieldset[id='jform_levies_protocole']").prop("id", "jform_levies_protocole" + cloneId);
-                 clone.find("fieldset[id='jform_levies']").prop("id", "jform_levies" + cloneId);
-                 clone.find("fieldset[id='jform_photos']").prop("id", "jform_photos" + cloneId);
-                 // l'id des input des boutons radios et checkboxes
-                 clone.find("input[name='jform[observation_tissue_removal_dead][]']").prop("name", "jform[observation_tissue_removal_dead][]" + cloneId);
-                 clone.find("input[id='jform_observation_tissue_removal_dead0']").prop("id", "jform_observation_tissue_removal_dead0" + cloneId);
-                 clone.find("input[id='jform_observation_tissue_removal_dead1']").prop("id", "jform_observation_tissue_removal_dead1" + cloneId);
-                 clone.find("input[id='jform_observation_tissue_removal_dead2']").prop("id", "jform_observation_tissue_removal_dead2" + cloneId);
-                 clone.find("input[id='jform_observation_tissue_removal_dead3']").prop("id", "jform_observation_tissue_removal_dead3" + cloneId);
-                 clone.find("input[id='jform_observation_tissue_removal_dead4']").prop("id", "jform_observation_tissue_removal_dead4" + cloneId);
-                 clone.find("input[id='jform_observation_tissue_removal_dead5']").prop("id", "jform_observation_tissue_removal_dead5" + cloneId);
-                 clone.find("input[id='jform_observation_tissue_removal_dead6']").prop("id", "jform_observation_tissue_removal_dead6" + cloneId);
-                 clone.find("input[id='jform_observation_tissue_removal_dead7']").prop("id", "jform_observation_tissue_removal_dead7" + cloneId);
+              // change l'id des boutons
+              clone.find("button[id='show_tail_fin_image']").prop("id", "show_tail_fin_image" + cloneId);
+              // boutons mesures sur cétacé
+              clone.find("button[id='jform_observation_dolphin_mesures_a_btn']").prop("id", "jform_observation_dolphin_mesures_a_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_b_btn']").prop("id", "jform_observation_dolphin_mesures_b_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_c_btn']").prop("id", "jform_observation_dolphin_mesures_c_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_d_btn']").prop("id", "jform_observation_dolphin_mesures_d_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_e_btn']").prop("id", "jform_observation_dolphin_mesures_e_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_f_btn']").prop("id", "jform_observation_dolphin_mesures_f_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_g_btn']").prop("id", "jform_observation_dolphin_mesures_g_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_h_btn']").prop("id", "jform_observation_dolphin_mesures_h_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_i_btn']").prop("id", "jform_observation_dolphin_mesures_i_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_j_btn']").prop("id", "jform_observation_dolphin_mesures_j_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_k_btn']").prop("id", "jform_observation_dolphin_mesures_k_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_l_btn']").prop("id", "jform_observation_dolphin_mesures_l_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_m_btn']").prop("id", "jform_observation_dolphin_mesures_m_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_n_btn']").prop("id", "jform_observation_dolphin_mesures_n_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_o_btn']").prop("id", "jform_observation_dolphin_mesures_o_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_p_btn']").prop("id", "jform_observation_dolphin_mesures_p_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_q_btn']").prop("id", "jform_observation_dolphin_mesures_q_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_r_btn']").prop("id", "jform_observation_dolphin_mesures_r_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_s_btn']").prop("id", "jform_observation_dolphin_mesures_s_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_t_btn']").prop("id", "jform_observation_dolphin_mesures_t_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_u_btn']").prop("id", "jform_observation_dolphin_mesures_u_btn" + cloneId);
+              clone.find("button[id='jform_observation_dolphin_mesures_v_btn']").prop("id", "jform_observation_dolphin_mesures_v_btn" + cloneId);
+              // boutons mesures sur dugong
+              clone.find("button[id='jform_observation_dugong_mesures_a_btn']").prop("id", "jform_observation_dugong_mesures_a_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_b_btn']").prop("id", "jform_observation_dugong_mesures_b_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_c_btn']").prop("id", "jform_observation_dugong_mesures_c_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_d_btn']").prop("id", "jform_observation_dugong_mesures_d_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_e_btn']").prop("id", "jform_observation_dugong_mesures_e_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_f_btn']").prop("id", "jform_observation_dugong_mesures_f_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_g_btn']").prop("id", "jform_observation_dugong_mesures_g_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_h_btn']").prop("id", "jform_observation_dugong_mesures_h_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_i_btn']").prop("id", "jform_observation_dugong_mesures_i_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_j_btn']").prop("id", "jform_observation_dugong_mesures_j_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_k_btn']").prop("id", "jform_observation_dugong_mesures_k_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_l_btn']").prop("id", "jform_observation_dugong_mesures_l_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_m_btn']").prop("id", "jform_observation_dugong_mesures_m_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_n_btn']").prop("id", "jform_observation_dugong_mesures_n_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_o_btn']").prop("id", "jform_observation_dugong_mesures_o_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_p_btn']").prop("id", "jform_observation_dugong_mesures_p_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_q_btn']").prop("id", "jform_observation_dugong_mesures_q_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_r_btn']").prop("id", "jform_observation_dugong_mesures_r_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_s_btn']").prop("id", "jform_observation_dugong_mesures_s_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_t_btn']").prop("id", "jform_observation_dugong_mesures_t_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_u_btn']").prop("id", "jform_observation_dugong_mesures_u_btn" + cloneId);
+              clone.find("button[id='jform_observation_dugong_mesures_v_btn']").prop("id", "jform_observation_dugong_mesures_v_btn" + cloneId);
+               
+               /* change les id des champs pour la bdd*/
+               // l'id des fieldser radios et checkboxes
+               clone.find("fieldset[id='jform_observation_tissue_removal_dead']").prop("id", "jform_observation_tissue_removal_dead" + cloneId);
+               clone.find("fieldset[id='jform_observation_tissue_removal_alive']").prop("id", "jform_observation_tissue_removal_alive" + cloneId);
+               clone.find("fieldset[id='jform_observation_spaces_identification']").prop("id", "jform_observation_spaces_identification" + cloneId);
+               clone.find("fieldset[id='jform_observation_size_precision']").prop("id", "jform_observation_size_precision" + cloneId);
+               clone.find("fieldset[id='jform_observation_sex']").prop("id", "jform_observation_sex" + cloneId);
+               clone.find("fieldset[id='jform_observation_caudal']").prop("id", "jform_observation_caudal" + cloneId);
+               clone.find("fieldset[id='jform_observation_beak_or_furrows']").prop("id", "jform_observation_beak_or_furrows" + cloneId);
+               clone.find("fieldset[id='jform_observation_tooth_or_baleen_or_defenses']").prop("id", "jform_observation_tooth_or_baleen_or_defenses" + cloneId);
+               clone.find("fieldset[id='jform_observation_abnormalities']").prop("id", "jform_observation_abnormalities" + cloneId);
+               clone.find("fieldset[id='jform_observation_capture_traces']").prop("id", "jform_observation_capture_traces" + cloneId);
+               clone.find("fieldset[id='jform_observation_dead_or_alive']").prop("id", "jform_observation_dead_or_alive" + cloneId);
+               clone.find("fieldset[id='jform_observation_death']").prop("id", "jform_observation_death" + cloneId);
+               clone.find("fieldset[id='jform_observation_state_decomposition']").prop("id", "jform_observation_state_decomposition" + cloneId);
+               clone.find("fieldset[id='jform_observation_alive']").prop("id", "jform_observation_alive" + cloneId);
+               clone.find("fieldset[id='jform_levies_protocole']").prop("id", "jform_levies_protocole" + cloneId);
+               clone.find("fieldset[id='jform_levies']").prop("id", "jform_levies" + cloneId);
+               clone.find("fieldset[id='jform_photos']").prop("id", "jform_photos" + cloneId);
+               // l'id des input des boutons radios et checkboxes
+               clone.find("input[name='jform[observation_tissue_removal_dead][]']").prop("name", "jform[observation_tissue_removal_dead][]" + cloneId);
+               clone.find("input[id='jform_observation_tissue_removal_dead0']").prop("id", "jform_observation_tissue_removal_dead0" + cloneId);
+               clone.find("input[id='jform_observation_tissue_removal_dead1']").prop("id", "jform_observation_tissue_removal_dead1" + cloneId);
+               clone.find("input[id='jform_observation_tissue_removal_dead2']").prop("id", "jform_observation_tissue_removal_dead2" + cloneId);
+               clone.find("input[id='jform_observation_tissue_removal_dead3']").prop("id", "jform_observation_tissue_removal_dead3" + cloneId);
+               clone.find("input[id='jform_observation_tissue_removal_dead4']").prop("id", "jform_observation_tissue_removal_dead4" + cloneId);
+               clone.find("input[id='jform_observation_tissue_removal_dead5']").prop("id", "jform_observation_tissue_removal_dead5" + cloneId);
+               clone.find("input[id='jform_observation_tissue_removal_dead6']").prop("id", "jform_observation_tissue_removal_dead6" + cloneId);
+               clone.find("input[id='jform_observation_tissue_removal_dead7']").prop("id", "jform_observation_tissue_removal_dead7" + cloneId);
 
-                 clone.find("input[name='jform[observation_tissue_removal_alive]']").prop("name", "jform[observation_tissue_removal_alive]" + cloneId);
-                 clone.find("input[id='jform_observation_tissue_removal_alive0']").prop("id", "jform_observation_tissue_removal_alive0" + cloneId);
+               clone.find("input[name='jform[observation_tissue_removal_alive]']").prop("name", "jform[observation_tissue_removal_alive]" + cloneId);
+               clone.find("input[id='jform_observation_tissue_removal_alive0']").prop("id", "jform_observation_tissue_removal_alive0" + cloneId);
 
-                 clone.find("input[id='jform_observation_spaces_identification0']").prop("id", "jform_observation_spaces_identification0" + cloneId);
-                 clone.find("input[id='jform_observation_spaces_identification1']").prop("id", "jform_observation_spaces_identification1" + cloneId);
-                 clone.find("input[id='jform_observation_spaces_identification2']").prop("id", "jform_observation_spaces_identification2" + cloneId);
+               clone.find("input[id='jform_observation_spaces_identification0']").prop("id", "jform_observation_spaces_identification0" + cloneId);
+               clone.find("input[id='jform_observation_spaces_identification1']").prop("id", "jform_observation_spaces_identification1" + cloneId);
+               clone.find("input[id='jform_observation_spaces_identification2']").prop("id", "jform_observation_spaces_identification2" + cloneId);
 
-                 clone.find("input[id='jform_observation_size_precision0']").prop("id", "jform_observation_size_precision0" + cloneId);
-                 clone.find("input[id='jform_observation_size_precision1']").prop("id", "jform_observation_size_precision1" + cloneId);
+               clone.find("input[id='jform_observation_size_precision0']").prop("id", "jform_observation_size_precision0" + cloneId);
+               clone.find("input[id='jform_observation_size_precision1']").prop("id", "jform_observation_size_precision1" + cloneId);
 
-                 clone.find("input[id='jform_observation_sex0']").prop("id", "jform_observation_sex0" + cloneId);
-                 clone.find("input[id='jform_observation_sex1']").prop("id", "jform_observation_sex1" + cloneId);
-                 clone.find("input[id='jform_observation_sex2']").prop("id", "jform_observation_sex2" + cloneId);
+               clone.find("input[id='jform_observation_sex0']").prop("id", "jform_observation_sex0" + cloneId);
+               clone.find("input[id='jform_observation_sex1']").prop("id", "jform_observation_sex1" + cloneId);
+               clone.find("input[id='jform_observation_sex2']").prop("id", "jform_observation_sex2" + cloneId);
 
-                 clone.find("input[id='jform_observation_caudal0']").prop("id", "jform_observation_caudal0" + cloneId);
-                 clone.find("input[id='jform_observation_caudal1']").prop("id", "jform_observation_caudal1" + cloneId);
-                 clone.find("input[id='jform_observation_caudal2']").prop("id", "jform_observation_caudal2" + cloneId);
+               clone.find("input[id='jform_observation_caudal0']").prop("id", "jform_observation_caudal0" + cloneId);
+               clone.find("input[id='jform_observation_caudal1']").prop("id", "jform_observation_caudal1" + cloneId);
+               clone.find("input[id='jform_observation_caudal2']").prop("id", "jform_observation_caudal2" + cloneId);
 
-                 clone.find("input[name='jform[observation_beak_or_furrows][]']").prop("name", "jform[observation_beak_or_furrows][]" + cloneId);
-                 clone.find("input[id='jform_observation_beak_or_furrows0']").prop("id", "jform_observation_beak_or_furrows0" + cloneId);
-                 clone.find("input[id='jform_observation_beak_or_furrows1']").prop("id", "jform_observation_beak_or_furrows1" + cloneId);
+               clone.find("input[name='jform[observation_beak_or_furrows][]']").prop("name", "jform[observation_beak_or_furrows][]" + cloneId);
+               clone.find("input[id='jform_observation_beak_or_furrows0']").prop("id", "jform_observation_beak_or_furrows0" + cloneId);
+               clone.find("input[id='jform_observation_beak_or_furrows1']").prop("id", "jform_observation_beak_or_furrows1" + cloneId);
 
-                 clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses0']").prop("id", "jform_observation_tooth_or_baleen_or_defenses0" + cloneId);
-                 clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses1']").prop("id", "jform_observation_tooth_or_baleen_or_defenses1" + cloneId);
-                 clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses2']").prop("id", "jform_observation_tooth_or_baleen_or_defenses2" + cloneId);
+               clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses0']").prop("id", "jform_observation_tooth_or_baleen_or_defenses0" + cloneId);
+               clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses1']").prop("id", "jform_observation_tooth_or_baleen_or_defenses1" + cloneId);
+               clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses2']").prop("id", "jform_observation_tooth_or_baleen_or_defenses2" + cloneId);
 
-                 clone.find("input[id='jform_observation_abnormalities0']").prop("id", "jform_observation_abnormalities0" + cloneId);
-                 clone.find("input[id='jform_observation_abnormalities1']").prop("id", "jform_observation_abnormalities1" + cloneId);
-                 clone.find("input[id='jform_observation_abnormalities2']").prop("id", "jform_observation_abnormalities2" + cloneId);
+               clone.find("input[id='jform_observation_abnormalities0']").prop("id", "jform_observation_abnormalities0" + cloneId);
+               clone.find("input[id='jform_observation_abnormalities1']").prop("id", "jform_observation_abnormalities1" + cloneId);
+               clone.find("input[id='jform_observation_abnormalities2']").prop("id", "jform_observation_abnormalities2" + cloneId);
 
-                 clone.find("input[id='jform_observation_capture_traces0']").prop("id", "jform_observation_capture_traces0" + cloneId);
-                 clone.find("input[id='jform_observation_capture_traces1']").prop("id", "jform_observation_capture_traces1" + cloneId);
-                 clone.find("input[id='jform_observation_capture_traces2']").prop("id", "jform_observation_capture_traces2" + cloneId);
+               clone.find("input[id='jform_observation_capture_traces0']").prop("id", "jform_observation_capture_traces0" + cloneId);
+               clone.find("input[id='jform_observation_capture_traces1']").prop("id", "jform_observation_capture_traces1" + cloneId);
+               clone.find("input[id='jform_observation_capture_traces2']").prop("id", "jform_observation_capture_traces2" + cloneId);
 
-                 clone.find("input[id='jform_observation_dead_or_alive0']").prop("id", "jform_observation_dead_or_alive0" + cloneId);
-                 clone.find("input[id='jform_observation_dead_or_alive1']").prop("id", "jform_observation_dead_or_alive1" + cloneId);
+               clone.find("input[id='jform_observation_dead_or_alive0']").prop("id", "jform_observation_dead_or_alive0" + cloneId);
+               clone.find("input[id='jform_observation_dead_or_alive1']").prop("id", "jform_observation_dead_or_alive1" + cloneId);
 
-                 clone.find("input[id='jform_observation_death0']").prop("id", "jform_observation_death0" + cloneId);
-                 clone.find("input[id='jform_observation_death1']").prop("id", "jform_observation_death1" + cloneId);
-                 clone.find("input[id='jform_observation_death2']").prop("id", "jform_observation_death2" + cloneId);
+               clone.find("input[id='jform_observation_death0']").prop("id", "jform_observation_death0" + cloneId);
+               clone.find("input[id='jform_observation_death1']").prop("id", "jform_observation_death1" + cloneId);
+               clone.find("input[id='jform_observation_death2']").prop("id", "jform_observation_death2" + cloneId);
 
-                 clone.find("input[id='jform_observation_state_decomposition0']").prop("id", "jform_observation_state_decomposition0" + cloneId);
-                 clone.find("input[id='jform_observation_state_decomposition1']").prop("id", "jform_observation_state_decomposition1" + cloneId);
-                 clone.find("input[id='jform_observation_state_decomposition2']").prop("id", "jform_observation_state_decomposition2" + cloneId);
-                 clone.find("input[id='jform_observation_state_decomposition3']").prop("id", "jform_observation_state_decomposition3" + cloneId);
+               clone.find("input[id='jform_observation_state_decomposition0']").prop("id", "jform_observation_state_decomposition0" + cloneId);
+               clone.find("input[id='jform_observation_state_decomposition1']").prop("id", "jform_observation_state_decomposition1" + cloneId);
+               clone.find("input[id='jform_observation_state_decomposition2']").prop("id", "jform_observation_state_decomposition2" + cloneId);
+               clone.find("input[id='jform_observation_state_decomposition3']").prop("id", "jform_observation_state_decomposition3" + cloneId);
 
-                 clone.find("input[name='jform[observation_alive]']").prop("name", "jform[observation_alive]" + cloneId);
-                 clone.find("input[id='jform_observation_alive0']").prop("id", "jform_observation_alive0" + cloneId);
+               clone.find("input[name='jform[observation_alive]']").prop("name", "jform[observation_alive]" + cloneId);
+               clone.find("input[id='jform_observation_alive0']").prop("id", "jform_observation_alive0" + cloneId);
 
-                 clone.find("input[id='jform_levies_protocole0']").prop("id", "jform_levies_protocole0" + cloneId);
-                 clone.find("input[id='jform_levies_protocole1']").prop("id", "jform_levies_protocole1" + cloneId);
-                 clone.find("input[id='jform_levies_protocole2']").prop("id", "jform_levies_protocole2" + cloneId);
+               clone.find("input[id='jform_levies_protocole0']").prop("id", "jform_levies_protocole0" + cloneId);
+               clone.find("input[id='jform_levies_protocole1']").prop("id", "jform_levies_protocole1" + cloneId);
+               clone.find("input[id='jform_levies_protocole2']").prop("id", "jform_levies_protocole2" + cloneId);
 
-                 clone.find("input[id='jform_levies0']").prop("id", "jform_levies0" + cloneId);
-                 clone.find("input[id='jform_levies1']").prop("id", "jform_levies1" + cloneId);
+               clone.find("input[id='jform_levies0']").prop("id", "jform_levies0" + cloneId);
+               clone.find("input[id='jform_levies1']").prop("id", "jform_levies1" + cloneId);
 
-                 clone.find("input[id='jform_photos0']").prop("id", "jform_photos0" + cloneId);
-                 clone.find("input[id='jform_photos1']").prop("id", "jform_photos1" + cloneId);
+               clone.find("input[id='jform_photos0']").prop("id", "jform_photos0" + cloneId);
+               clone.find("input[id='jform_photos1']").prop("id", "jform_photos1" + cloneId);
 
-                 // les listes
-                 clone.find("select[id='jform_observation_spaces']").prop("id", "jform_observation_spaces" + cloneId);
-                 clone.find("select[id='jform_observation_hours']").prop("id", "jform_observation_hours" + cloneId);
-                 clone.find("select[id='jform_observation_minutes']").prop("id", "jform_observation_minutes" + cloneId);
-                 // les textes et nombre
-                 clone.find("input[id='jform_observation_size']").prop("id", "jform_observation_size" + cloneId);
-                 clone.find("input[id='jform_observation_color']").prop("id", "jform_observation_color" + cloneId);
-                 clone.find("input[id='jform_nb_teeth_upper_right']").prop("id", "jform_nb_teeth_upper_right" + cloneId);
-                 clone.find("input[id='jform_nb_teeth_upper_left']").prop("id", "jform_nb_teeth_upper_left" + cloneId);
-                 clone.find("input[id='jform_nb_teeth_lower_right']").prop("id", "jform_nb_teeth_lower_right" + cloneId);
-                 clone.find("input[id='jform_nb_teeth_lower_left']").prop("id", "jform_nb_teeth_lower_left" + cloneId);
-                 clone.find("input[id='jform_observation_teeth_base_diametre']").prop("id", "jform_observation_teeth_base_diametre" + cloneId);
-                 clone.find("input[id='jform_observation_baleen_color']").prop("id", "jform_observation_baleen_color" + cloneId);
-                 clone.find("input[id='jform_observation_baleen_height']").prop("id", "jform_observation_baleen_height" + cloneId);
-                 clone.find("input[id='jform_observation_baleen_base_height']").prop("id", "jform_observation_baleen_base_height" + cloneId);
-                 clone.find("input[id='jform_catch_indices']").prop("id", "jform_catch_indices" + cloneId);                 
-                 clone.find("input[id='jform_observation_datetime_death']").prop("id", "jform_observation_datetime_death" + cloneId);
-                 clone.find("input[id='jform_observation_datetime_release']").prop("id", "jform_observation_datetime_release" + cloneId);
-                 clone.find("input[id='jform_label_references']").prop("id", "jform_label_references" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_a']").prop("id", "jform_observation_dolphin_mesures_a" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_b']").prop("id", "jform_observation_dolphin_mesures_b" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_c']").prop("id", "jform_observation_dolphin_mesures_c" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_d']").prop("id", "jform_observation_dolphin_mesures_d" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_e']").prop("id", "jform_observation_dolphin_mesures_e" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_f']").prop("id", "jform_observation_dolphin_mesures_f" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_g']").prop("id", "jform_observation_dolphin_mesures_g" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_h']").prop("id", "jform_observation_dolphin_mesures_h" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_i']").prop("id", "jform_observation_dolphin_mesures_i" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_j']").prop("id", "jform_observation_dolphin_mesures_j" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_k']").prop("id", "jform_observation_dolphin_mesures_k" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_l']").prop("id", "jform_observation_dolphin_mesures_l" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_m']").prop("id", "jform_observation_dolphin_mesures_m" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_n']").prop("id", "jform_observation_dolphin_mesures_n" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_o']").prop("id", "jform_observation_dolphin_mesures_o" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_p']").prop("id", "jform_observation_dolphin_mesures_p" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_q']").prop("id", "jform_observation_dolphin_mesures_q" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_r']").prop("id", "jform_observation_dolphin_mesures_r" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_s']").prop("id", "jform_observation_dolphin_mesures_s" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_t']").prop("id", "jform_observation_dolphin_mesures_t" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_u']").prop("id", "jform_observation_dolphin_mesures_u" + cloneId);
-                 clone.find("input[id='jform_observation_dolphin_mesures_v']").prop("id", "jform_observation_dolphin_mesures_v" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_a']").prop("id", "jform_observation_dugong_mesures_a" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_b']").prop("id", "jform_observation_dugong_mesures_b" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_c']").prop("id", "jform_observation_dugong_mesures_c" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_d']").prop("id", "jform_observation_dugong_mesures_d" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_e']").prop("id", "jform_observation_dugong_mesures_e" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_f']").prop("id", "jform_observation_dugong_mesures_f" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_g']").prop("id", "jform_observation_dugong_mesures_g" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_h']").prop("id", "jform_observation_dugong_mesures_h" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_i']").prop("id", "jform_observation_dugong_mesures_i" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_j']").prop("id", "jform_observation_dugong_mesures_j" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_k']").prop("id", "jform_observation_dugong_mesures_k" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_l']").prop("id", "jform_observation_dugong_mesures_l" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_m']").prop("id", "jform_observation_dugong_mesures_m" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_n']").prop("id", "jform_observation_dugong_mesures_n" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_o']").prop("id", "jform_observation_dugong_mesures_o" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_p']").prop("id", "jform_observation_dugong_mesures_p" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_q']").prop("id", "jform_observation_dugong_mesures_q" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_r']").prop("id", "jform_observation_dugong_mesures_r" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_s']").prop("id", "jform_observation_dugong_mesures_s" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_t']").prop("id", "jform_observation_dugong_mesures_t" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_u']").prop("id", "jform_observation_dugong_mesures_u" + cloneId);
-                 clone.find("input[id='jform_observation_dugong_mesures_v']").prop("id", "jform_observation_dugong_mesures_v" + cloneId);
-                 clone.find("input[id='jform_observation_location_stock']").prop("id", "jform_observation_location_stock" + cloneId);
-                 clone.find("input[id='jform_remarks']").prop("id", "jform_remarks" + cloneId);
+               // les listes
+               clone.find("select[id='jform_observation_spaces']").prop("id", "jform_observation_spaces" + cloneId);
+               clone.find("select[id='jform_observation_hours']").prop("id", "jform_observation_hours" + cloneId);
+               clone.find("select[id='jform_observation_minutes']").prop("id", "jform_observation_minutes" + cloneId);
+               // les textes et nombre
+               clone.find("input[id='jform_observation_size']").prop("id", "jform_observation_size" + cloneId);
+               clone.find("input[id='jform_observation_color']").prop("id", "jform_observation_color" + cloneId);
+               clone.find("input[id='jform_nb_teeth_upper_right']").prop("id", "jform_nb_teeth_upper_right" + cloneId);
+               clone.find("input[id='jform_nb_teeth_upper_left']").prop("id", "jform_nb_teeth_upper_left" + cloneId);
+               clone.find("input[id='jform_nb_teeth_lower_right']").prop("id", "jform_nb_teeth_lower_right" + cloneId);
+               clone.find("input[id='jform_nb_teeth_lower_left']").prop("id", "jform_nb_teeth_lower_left" + cloneId);
+               clone.find("input[id='jform_observation_teeth_base_diametre']").prop("id", "jform_observation_teeth_base_diametre" + cloneId);
+               clone.find("input[id='jform_observation_baleen_color']").prop("id", "jform_observation_baleen_color" + cloneId);
+               clone.find("input[id='jform_observation_baleen_height']").prop("id", "jform_observation_baleen_height" + cloneId);
+               clone.find("input[id='jform_observation_baleen_base_height']").prop("id", "jform_observation_baleen_base_height" + cloneId);
+               clone.find("input[id='jform_catch_indices']").prop("id", "jform_catch_indices" + cloneId);                 
+               clone.find("input[id='jform_observation_datetime_death']").prop("id", "jform_observation_datetime_death" + cloneId);
+               clone.find("input[id='jform_observation_datetime_release']").prop("id", "jform_observation_datetime_release" + cloneId);
+               clone.find("input[id='jform_label_references']").prop("id", "jform_label_references" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_a']").prop("id", "jform_observation_dolphin_mesures_a" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_b']").prop("id", "jform_observation_dolphin_mesures_b" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_c']").prop("id", "jform_observation_dolphin_mesures_c" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_d']").prop("id", "jform_observation_dolphin_mesures_d" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_e']").prop("id", "jform_observation_dolphin_mesures_e" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_f']").prop("id", "jform_observation_dolphin_mesures_f" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_g']").prop("id", "jform_observation_dolphin_mesures_g" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_h']").prop("id", "jform_observation_dolphin_mesures_h" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_i']").prop("id", "jform_observation_dolphin_mesures_i" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_j']").prop("id", "jform_observation_dolphin_mesures_j" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_k']").prop("id", "jform_observation_dolphin_mesures_k" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_l']").prop("id", "jform_observation_dolphin_mesures_l" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_m']").prop("id", "jform_observation_dolphin_mesures_m" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_n']").prop("id", "jform_observation_dolphin_mesures_n" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_o']").prop("id", "jform_observation_dolphin_mesures_o" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_p']").prop("id", "jform_observation_dolphin_mesures_p" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_q']").prop("id", "jform_observation_dolphin_mesures_q" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_r']").prop("id", "jform_observation_dolphin_mesures_r" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_s']").prop("id", "jform_observation_dolphin_mesures_s" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_t']").prop("id", "jform_observation_dolphin_mesures_t" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_u']").prop("id", "jform_observation_dolphin_mesures_u" + cloneId);
+               clone.find("input[id='jform_observation_dolphin_mesures_v']").prop("id", "jform_observation_dolphin_mesures_v" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_a']").prop("id", "jform_observation_dugong_mesures_a" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_b']").prop("id", "jform_observation_dugong_mesures_b" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_c']").prop("id", "jform_observation_dugong_mesures_c" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_d']").prop("id", "jform_observation_dugong_mesures_d" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_e']").prop("id", "jform_observation_dugong_mesures_e" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_f']").prop("id", "jform_observation_dugong_mesures_f" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_g']").prop("id", "jform_observation_dugong_mesures_g" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_h']").prop("id", "jform_observation_dugong_mesures_h" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_i']").prop("id", "jform_observation_dugong_mesures_i" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_j']").prop("id", "jform_observation_dugong_mesures_j" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_k']").prop("id", "jform_observation_dugong_mesures_k" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_l']").prop("id", "jform_observation_dugong_mesures_l" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_m']").prop("id", "jform_observation_dugong_mesures_m" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_n']").prop("id", "jform_observation_dugong_mesures_n" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_o']").prop("id", "jform_observation_dugong_mesures_o" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_p']").prop("id", "jform_observation_dugong_mesures_p" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_q']").prop("id", "jform_observation_dugong_mesures_q" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_r']").prop("id", "jform_observation_dugong_mesures_r" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_s']").prop("id", "jform_observation_dugong_mesures_s" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_t']").prop("id", "jform_observation_dugong_mesures_t" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_u']").prop("id", "jform_observation_dugong_mesures_u" + cloneId);
+               clone.find("input[id='jform_observation_dugong_mesures_v']").prop("id", "jform_observation_dugong_mesures_v" + cloneId);
+               clone.find("input[id='jform_observation_location_stock']").prop("id", "jform_observation_location_stock" + cloneId);
+               clone.find("input[id='jform_remarks']").prop("id", "jform_remarks" + cloneId);
 
-                // affiche ou masque les mesures
-                clone.find("div").click(function() {
-                  for(var i = 0; i <= cloneId; i++) {
-                    switch (this.id) {
-                      case 'div_show_cetace_measurements_field' + i:
-                            toggleContainer("cetace_measures" + i);
-                            break;
-                      case 'div_show_dugong_measurements_field' +i :
-                            toggleContainer("dugong_measures" + i);
-                            break;
-                    }
+              // affiche ou masque les mesures
+              clone.find("div").click(function() {
+                for(var i = 0; i <= cloneId; i++) {
+                  switch (this.id) {
+                    case 'div_show_cetace_measurements_field' + i:
+                          toggleContainer("cetace_measures" + i);
+                          break;
+                    case 'div_show_dugong_measurements_field' +i :
+                          toggleContainer("dugong_measures" + i);
+                          break;
                   }
-                });
-
-                // affiche l'image représentative de l'encoche médiane
-                clone.find("button").click(function() {
-                  for(var i = 0; i <= cloneId; i++) {
-                    switch (this.id) {
-                      case "show_tail_fin_image" + i :
-                            toggleContainer("tail_fin_image" + i);
-                      // bouton d'affichage, mesure sur cétacé
-                      case 'jform_observation_dolphin_mesures_a_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_a_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_b_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_b_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_c_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_c_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_d_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_d_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_e_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_e_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_f_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_f_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_g_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_g_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_h_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_h_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_i_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_i_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_j_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_j_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_k_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_k_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_l_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_l_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_m_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_m_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_n_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_n_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_o_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_o_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_p_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_p_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_q_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_q_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_r_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_r_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_s_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_s_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_t_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_t_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_u_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_u_field" + i);
-                            break;
-                      case 'jform_observation_dolphin_mesures_v_btn' + i :
-                            toggleContainer("jform_observation_dolphin_mesures_v_field" + i);
-                            break;
-                      // bouton d'affichage, mesure sur dugong
-                      case 'jform_observation_dugong_mesures_a_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_a_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_b_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_b_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_c_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_c_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_d_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_d_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_e_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_e_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_f_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_f_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_g_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_g_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_h_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_h_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_i_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_i_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_j_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_j_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_k_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_k_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_l_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_l_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_m_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_m_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_n_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_n_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_o_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_o_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_p_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_p_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_q_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_q_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_r_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_r_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_s_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_s_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_t_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_t_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_u_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_u_field" + i);
-                            break;
-                      case 'jform_observation_dugong_mesures_v_btn' + i :
-                            toggleContainer("jform_observation_dugong_mesures_v_field" + i);
-                            break;
-                    } 
-                  }
-                });
-                // affiche ou pas le block en fonction du choix du user
-                clone.find("input[type='radio']").click(function() {
-                  for(var i = 0; i <= cloneId; i++) {
-                    switch(this.id) {
-                      case 'jform_observation_dead_or_alive0' + i :
-                            displayBlock('dead_field' + i, true);
-                            displayBlock('alive_field' + i, false);
-                            break;
-                      case 'jform_observation_dead_or_alive1' + i :
-                            displayBlock('dead_field' + i, false);
-                            displayBlock('alive_field' + i, true);
-                            break;
-                      case 'jform_observation_tooth_or_baleen_or_defenses0' + i :
-                            displayBlock('tooth_field' + i, true); 
-                            displayBlock('baleen_field' + i, false);
-                            break;
-                      case 'jform_observation_tooth_or_baleen_or_defenses1' + i :
-                            displayBlock('tooth_field' + i, false); 
-                            displayBlock('baleen_field' + i, true);
-                            break;
-                      case 'jform_observation_tooth_or_baleen_or_defenses2' + i :
-                            displayBlock('tooth_field' + i, false); 
-                            displayBlock('baleen_field' + i, false);
-                            break;
-                      case 'jform_levies0' + i :
-                            displayBlock('stockage_location_field' + i, true);
-                            break;
-                      case 'jform_levies1' + i :
-                            displayBlock('stockage_location_field' + i, false);
-                            break;
-                    }
-                  }
-                });
-                if(cloneId === document.getElementById("jform_observation_number").value-1){
-                  break;
                 }
-                cloneId++;
-                clone.appendTo("#new_div_clone");
-              //}
-              break;
+              });
+
+              // affiche l'image représentative de l'encoche médiane
+              clone.find("button").click(function() {
+                for(var i = 0; i <= cloneId; i++) {
+                  switch (this.id) {
+                    case "show_tail_fin_image" + i :
+                          toggleContainer("tail_fin_image" + i);
+                    // bouton d'affichage, mesure sur cétacé
+                    case 'jform_observation_dolphin_mesures_a_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_a_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_b_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_b_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_c_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_c_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_d_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_d_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_e_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_e_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_f_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_f_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_g_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_g_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_h_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_h_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_i_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_i_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_j_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_j_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_k_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_k_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_l_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_l_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_m_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_m_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_n_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_n_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_o_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_o_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_p_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_p_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_q_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_q_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_r_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_r_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_s_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_s_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_t_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_t_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_u_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_u_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_v_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_v_field" + i);
+                          break;
+                    // bouton d'affichage, mesure sur dugong
+                    case 'jform_observation_dugong_mesures_a_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_a_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_b_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_b_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_c_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_c_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_d_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_d_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_e_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_e_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_f_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_f_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_g_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_g_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_h_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_h_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_i_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_i_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_j_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_j_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_k_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_k_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_l_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_l_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_m_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_m_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_n_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_n_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_o_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_o_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_p_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_p_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_q_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_q_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_r_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_r_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_s_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_s_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_t_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_t_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_u_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_u_field" + i);
+                          break;
+                    case 'jform_observation_dugong_mesures_v_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_v_field" + i);
+                          break;
+                  } 
+                }
+              });
+              // affiche ou pas le block en fonction du choix du user
+              clone.find("input[type='radio']").click(function() {
+                for(var i = 0; i <= cloneId; i++) {
+                  switch(this.id) {
+                    case 'jform_observation_dead_or_alive0' + i :
+                          displayBlock('dead_field' + i, true);
+                          displayBlock('alive_field' + i, false);
+                          break;
+                    case 'jform_observation_dead_or_alive1' + i :
+                          displayBlock('dead_field' + i, false);
+                          displayBlock('alive_field' + i, true);
+                          break;
+                    case 'jform_observation_tooth_or_baleen_or_defenses0' + i :
+                          displayBlock('tooth_field' + i, true); 
+                          displayBlock('baleen_field' + i, false);
+                          break;
+                    case 'jform_observation_tooth_or_baleen_or_defenses1' + i :
+                          displayBlock('tooth_field' + i, false); 
+                          displayBlock('baleen_field' + i, true);
+                          break;
+                    case 'jform_observation_tooth_or_baleen_or_defenses2' + i :
+                          displayBlock('tooth_field' + i, false); 
+                          displayBlock('baleen_field' + i, false);
+                          break;
+                    case 'jform_levies0' + i :
+                          displayBlock('stockage_location_field' + i, true);
+                          break;
+                    case 'jform_levies1' + i :
+                          displayBlock('stockage_location_field' + i, false);
+                          break;
+                  }
+                }
+              });
+              if(cloneId === document.getElementById("jform_observation_number").value-1){
+                break;
+              }
+              cloneId++;
+              clone.appendTo("#new_div_clone");
+            //}
+            break;
 
         // supprimer les blocs cloner
         case 'delete_observation' :
