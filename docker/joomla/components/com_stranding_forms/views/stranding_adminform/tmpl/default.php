@@ -104,13 +104,15 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
         if(this.value > 1) {
            document.getElementById("div_add_clone_btn").style.display="block";
            document.getElementById("div_delete_clone_btn").style.display="block";
-           for(var i = 2; i <= this.value; i++){
+           for(var i = 1; i <= this.value; i++){
             // incrémente la référence
             document.getElementById("jform_id_location").value = i;
+            document.getElementById("jform_id_location").submit();
            }
         }
         else if(this.value == 1) {
           document.getElementById("jform_id_location").value = 1;
+          document.getElementById("jform_id_location").submit();
         }
     });
 
@@ -127,6 +129,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
     });
    
     var cloneId = 0; // incrémenté en fonction du clonage
+    var obervation_cptr = 1; // pour l'affichage
     var cptr = document.getElementById("jform_observation_number").value-2; // pour la suppression
     js("button").click(function() {
 
@@ -766,7 +769,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                     }
                   }
                 });
-                if(cloneId == document.getElementById("jform_observation_number").value-1){
+                if(cloneId === document.getElementById("jform_observation_number").value-1){
                   break;
                 }
                 cloneId++;
@@ -974,8 +977,8 @@ function supr_bloc(div, i) {
 
 <div id="div_observation_clone">
 <!--Identification-->
-<div class="row" id="identification_title">
-  <div class="col-lg-12 col-md-12 col-xs-12" id="title_R3"><span class="stranding_admin-title_row"><span class="fa fa-eye fa-2x"><h4><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW3'); ?></h4></span></span></div>
+<div class="row" id="div_identification_title">
+  <div class="col-lg-12 col-md-12 col-xs-12" id="title_R3"><span class="stranding_admin-title_row"><span class="fa fa-eye fa-2x"><h4 id="identification_title"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW3'); ?></h4></span></span></div>
 </div>
 <div class="row" id="identification">
   <!--Spaces-->
@@ -1123,8 +1126,8 @@ function supr_bloc(div, i) {
 </div>
 </div>
 <!--Animal-->
-<div class="row" id="animal_title">
-  <div class="col-lg-12 col-md-12 col-xs-12" id="title_R4"><span class="stranding_admin-title_row"><span class="fa fa-shield fa-2x"><h4><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW4'); ?></h4></span></span></div>
+<div class="row" id="div_animal_title">
+  <div class="col-lg-12 col-md-12 col-xs-12" id="title_R4"><span class="stranding_admin-title_row"><span class="fa fa-shield fa-2x"><h4 id="animal_title"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW4'); ?></h4></span></span></div>
 </div>
 <div class="row" id="animal">
   <!--Size-->
@@ -1350,8 +1353,8 @@ function supr_bloc(div, i) {
 </div>
 </div>
 <!--Measurements-->
-<div class="row" id="measurements_title">
-  <div class="col-lg-12 col-md-12 col-xs-12" id="title_R5"><span class="stranding_admin-title_row"><span class="fa fa-arrows-h fa-2x"><h4><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW5'); ?></h4></span></span></div>
+<div class="row" id="div_measurements_title">
+  <div class="col-lg-12 col-md-12 col-xs-12" id="title_R5"><span class="stranding_admin-title_row"><span class="fa fa-arrows-h fa-2x"><h4 id="measurements_title"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW5'); ?></h4></span></span></div>
 </div>
 <div id="measurements">
   <div class="row" id="com_stranding_forms_measurements_info">
