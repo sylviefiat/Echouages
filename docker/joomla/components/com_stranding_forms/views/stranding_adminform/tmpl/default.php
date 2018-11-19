@@ -104,6 +104,11 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
         if(this.value > 1) {
            document.getElementById("div_add_clone_btn").style.display="block";
            document.getElementById("div_delete_clone_btn").style.display="block";
+        
+           create_element("SPAN", "1", "identification_title", false);
+           create_element("SPAN", "1", "animal_title", false);
+           create_element("SPAN", "1", "measurements_title", false);
+           
            for(var i = 1; i <= this.value; i++){
             // incrémente la référence
             document.getElementById("jform_id_location").value = i;
@@ -284,6 +289,21 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               // change l'id du bloc cloner
               clone.attr("id", "div_observation_clone" + cloneId);
 
+              // changer l'id des titres des blocs
+              clone.find("h4[id='identification_title']").prop("id", "identification_title" + cloneId);
+              clone.find("h4[id='animal_title']").prop("id", "animal_title" + cloneId);
+              clone.find("h4[id='measurements_title']").prop("id", "measurements_title" + cloneId);
+
+              //clone.find("h4").nodeValue = cloneId;
+              for(var i = 0; i < cloneId; i++) {
+                //clone.find("h4:span").nodeValue = i;
+                create_element("SPAN", i+1, "identification_title" + i, true);
+                create_element("SPAN", i+1, "animal_title" + i, true);
+                create_element("SPAN", i+1, "measurements_title" + i, true);
+              }
+              
+
+
               // change le nom des inputs (boutons radios) 
               clone.find("input[name='jform[observation_spaces_identification]']").prop("name", "jform[observation_spaces_identification]" + cloneId);
               clone.find("input[name='jform[observation_caudal]']").prop("name", "jform[observation_caudal]" + cloneId);
@@ -300,12 +320,8 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               clone.find("input[name='jform[levies_protocole]']").prop("name", "jform[levies_protocole]" + cloneId);
 
               // change l'id et le nom des balises a pour les boutons des dates
-              
-
               clone.find("a[id='jform_observation_datetime_death-btn']").prop("id", "jform_observation_datetime_death-btn" + cloneId);
               clone.find("a[id='jform_observation_datetime_release-btn']").prop("id", "jform_observation_datetime_release-btn" + cloneId);
-
-
 
               clone.find("input[name='jform[observation_datetime_death]']").prop("name", "jform[observation_datetime_death]" + cloneId);
               clone.find("input[name='jform[observation_datetime_release]']").prop("name", "jform[observation_datetime_release]" + cloneId);
@@ -534,7 +550,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                clone.find("input[id='jform_observation_baleen_base_height']").prop("id", "jform_observation_baleen_base_height" + cloneId);
                clone.find("input[id='jform_catch_indices']").prop("id", "jform_catch_indices" + cloneId);
 
-               clone.find(".form-calendar").datepicker();
+               //clone.find(".form-calendar").datepicker();
 
                clone.find("input[id='jform_observation_datetime_death']").prop("id", "jform_observation_datetime_death" + cloneId);
                clone.find("input[id='jform_observation_datetime_release']").prop("id", "jform_observation_datetime_release" + cloneId);
@@ -831,6 +847,23 @@ function supr_bloc(div, i) {
   if(Parent) 
     Obj.removeChild(Obj.childNodes[0]); 
 }
+
+// créer une élément avec du text sur un parent spécifique
+function create_element(element, text, parent, clone) {
+  var x = document.createElement(element);
+  var t;
+  if(!clone) {
+    t = document.createTextNode(text);
+  }
+  else {
+     t = document.createTextNode(text);
+  } 
+  x.appendChild(t);
+  var x1 = document.getElementById(parent);
+  x1.appendChild(x);  
+}
+
+
 </script>
 
 <div class="stranding_admin-edit front-end-edit">
@@ -992,7 +1025,7 @@ function supr_bloc(div, i) {
 <div id="div_observation_clone">
 <!--Identification-->
 <div class="row" id="div_identification_title">
-  <div class="col-lg-12 col-md-12 col-xs-12" id="title_R3"><span class="stranding_admin-title_row"><span class="fa fa-eye fa-2x"><h4 id="identification_title"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW3'); ?></h4></span></span></div>
+  <div class="col-lg-12 col-md-12 col-xs-12" id="title_R3"><span class="stranding_admin-title_row"><span class="fa fa-eye fa-2x"><h4 id="identification_title"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW3');?> </h4></span></span></div>
 </div>
 <div class="row" id="identification">
   <!--Spaces-->
@@ -1141,7 +1174,7 @@ function supr_bloc(div, i) {
 </div>
 <!--Animal-->
 <div class="row" id="div_animal_title">
-  <div class="col-lg-12 col-md-12 col-xs-12" id="title_R4"><span class="stranding_admin-title_row"><span class="fa fa-shield fa-2x"><h4 id="animal_title"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW4'); ?></h4></span></span></div>
+  <div class="col-lg-12 col-md-12 col-xs-12" id="title_R4"><span class="stranding_admin-title_row"><span class="fa fa-shield fa-2x"><h4 id="animal_title"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW4'); ?> </h4></span></span></div>
 </div>
 <div class="row" id="animal">
   <!--Size-->
@@ -1368,7 +1401,7 @@ function supr_bloc(div, i) {
 </div>
 <!--Measurements-->
 <div class="row" id="div_measurements_title">
-  <div class="col-lg-12 col-md-12 col-xs-12" id="title_R5"><span class="stranding_admin-title_row"><span class="fa fa-arrows-h fa-2x"><h4 id="measurements_title"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW5'); ?></h4></span></span></div>
+  <div class="col-lg-12 col-md-12 col-xs-12" id="title_R5"><span class="stranding_admin-title_row"><span class="fa fa-arrows-h fa-2x"><h4 id="measurements_title"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW5'); ?> </h4></span></span></div>
 </div>
 <div id="measurements">
   <div class="row" id="com_stranding_forms_measurements_info">
