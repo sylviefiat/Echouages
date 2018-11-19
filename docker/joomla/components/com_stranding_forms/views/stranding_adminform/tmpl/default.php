@@ -105,9 +105,9 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
            document.getElementById("div_add_clone_btn").style.display="block";
            document.getElementById("div_delete_clone_btn").style.display="block";
         
-           create_element("SPAN", "1", "identification_title", false);
-           create_element("SPAN", "1", "animal_title", false);
-           create_element("SPAN", "1", "measurements_title", false);
+           create_element("SPAN", "1", "", "identification_title", false);
+           create_element("SPAN", "1", "", "animal_title", false);
+           create_element("SPAN", "1", "", "measurements_title", false);
            
            for(var i = 1; i <= this.value; i++){
             // incrémente la référence
@@ -295,12 +295,15 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               clone.find("h4[id='measurements_title']").prop("id", "measurements_title" + cloneId);
 
               //clone.find("h4").nodeValue = cloneId;
-              for(var i = 0; i < cloneId; i++) {
-                //clone.find("h4:span").nodeValue = i;
-                create_element("SPAN", i+1, "identification_title" + i, true);
-                create_element("SPAN", i+1, "animal_title" + i, true);
-                create_element("SPAN", i+1, "measurements_title" + i, true);
+              while (cloneId <= document.getElementById("jform_observation_number").value) {
+                for(var i = 0; i <= cloneId; i++) {
+                  //clone.find("h4:span").nodeValue = i;
+                  create_element("SPAN", "", i+2, "identification_title" + i, true);
+                  create_element("SPAN", "", i+2, "animal_title" + i, true);
+                  create_element("SPAN", "", i+2, "measurements_title" + i, true);
+                }
               }
+              
               
 
 
@@ -849,18 +852,30 @@ function supr_bloc(div, i) {
 }
 
 // créer une élément avec du text sur un parent spécifique
-function create_element(element, text, parent, clone) {
+function create_element(element, text, textClone, parent, clone) {
   var x = document.createElement(element);
-  var t;
+  x.className = "block_indices"
+  var t = document.createTextNode(text);
   if(!clone) {
-    t = document.createTextNode(text);
+    x.appendChild(t);
   }
   else {
-     t = document.createTextNode(text);
+    //var t = document.createTextNode(textClone);
+    //var t1 = document.createTextNode(textClone);
+    x.nodeValue = document.createTextNode(textClone);
+    //x.appendChild(t1);
   } 
-  x.appendChild(t);
+  //x.appendChild(t);
   var x1 = document.getElementById(parent);
   x1.appendChild(x);  
+}
+
+// change la valeur présente dans l'élément
+function change_node_value(element, node) {
+  var e = document.getElementsByClassName(element);
+  for(var i = 0; i < e.length; i++) {
+    e[i].nodeValue = node;
+  }
 }
 
 
