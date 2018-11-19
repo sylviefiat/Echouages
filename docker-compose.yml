@@ -1,49 +1,47 @@
-	
-	version: '3.1'
+version: '3.1'
 
-	services:
-	############################
-	# Setup the Joomla container
-	############################
-	  joomla:
-	    container_name: docker_joomla
-	    image: joomla
-	    #restart: always
-	    links:
-	      - joomladb:mysql
-	    ports:
-	      - 80:80
-	    volumes:
-	      - ./docker/joomla:/var/www/html
-	    environment:
-	      JOOMLA_DB_HOST: joomladb
-	      JOOMLA_DB_PASSWORD: 12345678
-	      JOOMLA_DB_NAME: operation_cetace
+services:
+############################
+# Setup the Joomla container
+############################
+  joomla:
+    container_name: docker_joomla
+    image: joomla
+    #restart: always
+    links:
+      - joomladb:mysql
+    ports:
+      - 80:80
+    volumes:
+      - ./docker/joomla:/var/www/html
+    environment:
+      JOOMLA_DB_HOST: joomladb
+      JOOMLA_DB_PASSWORD: 12345678
+      JOOMLA_DB_NAME: operation_cetace
 
+######################################
+# Setup the Database (Mysql) container
+######################################
+  joomladb:
+    container_name: docker_mysql
+    image: mysql:5.6
+    #restart: always
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: operation_cetace
 
-	######################################
-	# Setup the Database (Mysql) container
-	######################################
-	  joomladb:
-	    container_name: docker_mysql
-	    image: mysql:5.6
-	    #restart: always
-	    volumes:
-	      - ./docker/mysql:/var/lib/mysql
-	    environment:
-	      MYSQL_ROOT_PASSWORD: 12345678
-	      MYSQL_DATABASE: operation_cetace
-
-	########################################
-	# Setup the Geoserver container
-	#######################################
-	  geoserver:
-	    container_name: docker_geoserver
-	    image: sylviefiat/docker-geoserver
-	    ports:
-	      - 8080:8080
-	    links:
-	      - joomladb
-	    volumes:
-	      - ./docker/geoserver:/usr/local/tomcat/webapps/geoserver
-	      #- /var/run/docker.sock:/var/run/docker.sock
+########################################
+# Setup the Geoserver container
+#######################################
+  geoserver:
+    container_name: docker_geoserver
+    image: sylviefiat/docker-geoserver
+    ports:
+      - 8080:8080
+    links:
+      - joomladb
+    volumes:
+      - ./docker/geoserver:/usr/local/tomcat/webapps/geoserver
+      #- /var/run/docker.sock:/var/run/docker.sock

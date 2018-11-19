@@ -107,12 +107,12 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
            for(var i = 1; i <= this.value; i++){
             // incrémente la référence
             document.getElementById("jform_id_location").value = i;
-            document.getElementById("jform_id_location").submit();
+            //document.getElementById("jform_id_location").submit();
            }
         }
         else if(this.value == 1) {
           document.getElementById("jform_id_location").value = 1;
-          document.getElementById("jform_id_location").submit();
+          //document.getElementById("jform_id_location").submit();
         }
     });
 
@@ -299,9 +299,13 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               clone.find("input[name='jform[observation_state_decomposition]']").prop("name", "jform[observation_state_decomposition]" + cloneId);
               clone.find("input[name='jform[levies_protocole]']").prop("name", "jform[levies_protocole]" + cloneId);
 
-              // change l'id de balises a pour les boutons des dates et le nom
+              // change l'id et le nom des balises a pour les boutons des dates
+              
+
               clone.find("a[id='jform_observation_datetime_death-btn']").prop("id", "jform_observation_datetime_death-btn" + cloneId);
               clone.find("a[id='jform_observation_datetime_release-btn']").prop("id", "jform_observation_datetime_release-btn" + cloneId);
+
+
 
               clone.find("input[name='jform[observation_datetime_death]']").prop("name", "jform[observation_datetime_death]" + cloneId);
               clone.find("input[name='jform[observation_datetime_release]']").prop("name", "jform[observation_datetime_release]" + cloneId);
@@ -528,9 +532,13 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                clone.find("input[id='jform_observation_baleen_color']").prop("id", "jform_observation_baleen_color" + cloneId);
                clone.find("input[id='jform_observation_baleen_height']").prop("id", "jform_observation_baleen_height" + cloneId);
                clone.find("input[id='jform_observation_baleen_base_height']").prop("id", "jform_observation_baleen_base_height" + cloneId);
-               clone.find("input[id='jform_catch_indices']").prop("id", "jform_catch_indices" + cloneId);                 
+               clone.find("input[id='jform_catch_indices']").prop("id", "jform_catch_indices" + cloneId);
+
+               clone.find(".form-calendar").datepicker();
+
                clone.find("input[id='jform_observation_datetime_death']").prop("id", "jform_observation_datetime_death" + cloneId);
                clone.find("input[id='jform_observation_datetime_release']").prop("id", "jform_observation_datetime_release" + cloneId);
+
                clone.find("input[id='jform_label_references']").prop("id", "jform_label_references" + cloneId);
                clone.find("input[id='jform_observation_dolphin_mesures_a']").prop("id", "jform_observation_dolphin_mesures_a" + cloneId);
                clone.find("input[id='jform_observation_dolphin_mesures_b']").prop("id", "jform_observation_dolphin_mesures_b" + cloneId);
@@ -732,6 +740,12 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                           break;
                     case 'jform_observation_dugong_mesures_v_btn' + i :
                           toggleContainer("jform_observation_dugong_mesures_v_field" + i);
+                          break;
+                    case 'jform_observation_datetime_death-btn' + i :
+                          clone.clone().appendTo("#new_div_clone").find(".form-calendar").datepicker();
+                          break;
+                    case 'jform_observation_datetime_release-btn' + i :
+                          clone.clone().appendTo("#new_div_clone").find(".form-calendar").datepicker();
                           break;
                   } 
                 }
