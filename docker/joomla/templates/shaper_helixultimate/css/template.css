@@ -288,6 +288,13 @@ ul {
 #div_add_clone_btn {
   margin-right: 5px;
 }
+#measurements button {
+  margin-bottom: 10px; 
+  margin-top: 10px;
+}
+#measurements div {
+  margin-top: 0; 
+}
 
  /* FIN DE MON CODE*/
 

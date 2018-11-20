@@ -709,7 +709,6 @@
 	<!--Levies-->
 	<field name="levies"
 			alias="levies"
-			class="btn-group"
 			label="LEVIES"
 			description="LEVIES_DESC"
 			type="radio"
@@ -721,7 +720,6 @@
 	<!--Photos-->
 	<field name="photos"
 			alias="photos"
-			class="btn-group"
 			label="PHOTOS"
 			description="PHOTOS_DESC"
 			type="radio"
@@ -730,7 +728,16 @@
 			<option value="Non">PHOTOS_B</option>
 	</field>
 
-<!--Tissue removal alive-->
+	<!--Upload photos-->
+	<field name="upload_photos"
+		  	alias="upload_photos"
+		  	label="UPLOAD_PHOTOS"
+		  	description="UPLOAD_PHOTOS_DESC"
+		  	type="file"
+		  	accept="image/*"/>
+
+
+	<!--Tissue removal alive-->
 	<field name="observation_tissue_removal_alive"
 			alias="observation_tissue_removal_alive"
 			

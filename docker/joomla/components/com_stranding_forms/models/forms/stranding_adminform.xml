@@ -797,7 +797,8 @@
 			class="btn-group"
 			label="LEVIES"
 			description="LEVIES_DESC"
-			type="radio">
+			type="radio"
+			required="true">
 			<option value="Oui" >JYES</option>
 			<option value="Non" >JNO</option>
 	</field>
@@ -814,11 +815,13 @@
 			<option value="Non">JNO</option>
 	</field>
 
-	<field name="uploade_photos"
-		  	alias="uploade_photos"
+	<!--Upload photos-->
+	<field name="upload_photos"
+		  	alias="upload_photos"
 		  	class="form-control"
-		  	label="UPLOADE_PHOTOS"
-		  	description="UPLOADE_PHOTOS_DESC"
+		  	labelclass="control-label"
+		  	label="UPLOAD_PHOTOS"
+		  	description="UPLOAD_PHOTOS_DESC"
 		  	type="file"
 		  	accept="image/*"/>
 

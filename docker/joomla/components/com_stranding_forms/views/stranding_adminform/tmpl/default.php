@@ -92,15 +92,17 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               break;
         case 'jform_levies0' :
               displayBlock('stockage_location_field',true);
+              displayBlock('label_references_field',true);
               break;
         case 'jform_levies1' :
               displayBlock('stockage_location_field',false);
+              displayBlock('label_references_field',false);
               break;
         case 'jform_photos0':
-              displayBlock('uploade_photos_field',true);
+              displayBlock('upload_photos_field',true);
               break;
         case 'jform_photos1':
-              displayBlock('uploade_photos_field',false);
+              displayBlock('upload_photos_field',false);
               break;
       }       
     });
@@ -111,20 +113,20 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
            document.getElementById("div_add_clone_btn").style.display="block";
            document.getElementById("div_delete_clone_btn").style.display="block";
         
-           create_element("SPAN", "1", "", "identification_title", false);
-           create_element("SPAN", "1", "", "animal_title", false);
-           create_element("SPAN", "1", "", "measurements_title", false);
+           create_element("SPAN", "1", "identification_title");
+           create_element("SPAN", "1", "animal_title");
+           create_element("SPAN", "1", "measurements_title");
            
-           for(var i = 1; i <= this.value; i++){
+           /*for(var i = 1; i <= this.value; i++){
             // incrémente la référence
             document.getElementById("jform_id_location").value = i;
             //document.getElementById("jform_id_location").submit();
-           }
+           }*/
         }
-        else if(this.value == 1) {
+        /*else if(this.value == 1) {
           document.getElementById("jform_id_location").value = 1;
           //document.getElementById("jform_id_location").submit();
-        }
+        }*/
     });
 
     // affiche ou masque les mesures
@@ -301,17 +303,12 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               clone.find("h4[id='measurements_title']").prop("id", "measurements_title" + cloneId);
 
               //clone.find("h4").nodeValue = cloneId;
-              while (cloneId <= document.getElementById("jform_observation_number").value) {
-                for(var i = 0; i <= cloneId; i++) {
-                  //clone.find("h4:span").nodeValue = i;
-                  create_element("SPAN", "", i+2, "identification_title" + i, true);
-                  create_element("SPAN", "", i+2, "animal_title" + i, true);
-                  create_element("SPAN", "", i+2, "measurements_title" + i, true);
-                }
+              for(var i = 0; i <= cloneId; i++) {
+                //clone.find("h4:span").nodeValue = i;
+                create_element("SPAN", "", i+2, "identification_title" + i, true);
+                create_element("SPAN", "", i+2, "animal_title" + i, true);
+                create_element("SPAN", "", i+2, "measurements_title" + i, true);
               }
-              
-              
-
 
               // change le nom des inputs (boutons radios) 
               clone.find("input[name='jform[observation_spaces_identification]']").prop("name", "jform[observation_spaces_identification]" + cloneId);
@@ -342,8 +339,10 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses0']").prop("id", "jform_observation_tooth_or_baleen_or_defenses0" + cloneId);
               clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses1']").prop("id", "jform_observation_tooth_or_baleen_or_defenses1" + cloneId);
               clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses2']").prop("id", "jform_observation_tooth_or_baleen_or_defenses2" + cloneId);
-              clone.find("input[id='jform_levies0']").prop("id", "jform_levies0" + cloneId);
-              clone.find("input[id='jform_levies1']").prop("id", "jform_levies1" + cloneId);
+              //clone.find("input[id='jform_levies0']").prop("id", "jform_levies0" + cloneId);
+              //clone.find("input[id='jform_levies1']").prop("id", "jform_levies1" + cloneId);
+              //clone.find("input[id='jform_photos0']").prop("id", "jform_photos0" + cloneId);
+              //clone.find("input[id='jform_photos1']").prop("id", "jform_photos1" + cloneId);
 
               // change l'id des blocs div 
               clone.find("div[id='dead_field']").prop("id", "dead_field" + cloneId);
@@ -351,6 +350,8 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               clone.find("div[id='tooth_field']").prop("id", "tooth_field" + cloneId);
               clone.find("div[id='baleen_field']").prop("id", "baleen_field" + cloneId);
               clone.find("div[id='stockage_location_field']").prop("id", "stockage_location_field" + cloneId);
+              clone.find("div[id='label_references_field']").prop("id", "label_references_field" + cloneId);
+              clone.find("div[id='upload_photos_field']").prop("id", "upload_photos_field" + cloneId);
               clone.find("div[id='tail_fin_image']").prop("id", "tail_fin_image" + cloneId);
               // blocs div des mesures
               clone.find("div[id='div_show_cetace_measurements_field']").prop("id", "div_show_cetace_measurements_field" + cloneId);
@@ -482,63 +483,47 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                clone.find("input[id='jform_observation_tissue_removal_dead5']").prop("id", "jform_observation_tissue_removal_dead5" + cloneId);
                clone.find("input[id='jform_observation_tissue_removal_dead6']").prop("id", "jform_observation_tissue_removal_dead6" + cloneId);
                clone.find("input[id='jform_observation_tissue_removal_dead7']").prop("id", "jform_observation_tissue_removal_dead7" + cloneId);
-
                clone.find("input[name='jform[observation_tissue_removal_alive]']").prop("name", "jform[observation_tissue_removal_alive]" + cloneId);
                clone.find("input[id='jform_observation_tissue_removal_alive0']").prop("id", "jform_observation_tissue_removal_alive0" + cloneId);
-
                clone.find("input[id='jform_observation_spaces_identification0']").prop("id", "jform_observation_spaces_identification0" + cloneId);
                clone.find("input[id='jform_observation_spaces_identification1']").prop("id", "jform_observation_spaces_identification1" + cloneId);
                clone.find("input[id='jform_observation_spaces_identification2']").prop("id", "jform_observation_spaces_identification2" + cloneId);
-
                clone.find("input[id='jform_observation_size_precision0']").prop("id", "jform_observation_size_precision0" + cloneId);
                clone.find("input[id='jform_observation_size_precision1']").prop("id", "jform_observation_size_precision1" + cloneId);
-
                clone.find("input[id='jform_observation_sex0']").prop("id", "jform_observation_sex0" + cloneId);
                clone.find("input[id='jform_observation_sex1']").prop("id", "jform_observation_sex1" + cloneId);
                clone.find("input[id='jform_observation_sex2']").prop("id", "jform_observation_sex2" + cloneId);
-
                clone.find("input[id='jform_observation_caudal0']").prop("id", "jform_observation_caudal0" + cloneId);
                clone.find("input[id='jform_observation_caudal1']").prop("id", "jform_observation_caudal1" + cloneId);
                clone.find("input[id='jform_observation_caudal2']").prop("id", "jform_observation_caudal2" + cloneId);
-
                clone.find("input[name='jform[observation_beak_or_furrows][]']").prop("name", "jform[observation_beak_or_furrows][]" + cloneId);
                clone.find("input[id='jform_observation_beak_or_furrows0']").prop("id", "jform_observation_beak_or_furrows0" + cloneId);
                clone.find("input[id='jform_observation_beak_or_furrows1']").prop("id", "jform_observation_beak_or_furrows1" + cloneId);
-
                clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses0']").prop("id", "jform_observation_tooth_or_baleen_or_defenses0" + cloneId);
                clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses1']").prop("id", "jform_observation_tooth_or_baleen_or_defenses1" + cloneId);
                clone.find("input[id='jform_observation_tooth_or_baleen_or_defenses2']").prop("id", "jform_observation_tooth_or_baleen_or_defenses2" + cloneId);
-
                clone.find("input[id='jform_observation_abnormalities0']").prop("id", "jform_observation_abnormalities0" + cloneId);
                clone.find("input[id='jform_observation_abnormalities1']").prop("id", "jform_observation_abnormalities1" + cloneId);
                clone.find("input[id='jform_observation_abnormalities2']").prop("id", "jform_observation_abnormalities2" + cloneId);
-
                clone.find("input[id='jform_observation_capture_traces0']").prop("id", "jform_observation_capture_traces0" + cloneId);
                clone.find("input[id='jform_observation_capture_traces1']").prop("id", "jform_observation_capture_traces1" + cloneId);
                clone.find("input[id='jform_observation_capture_traces2']").prop("id", "jform_observation_capture_traces2" + cloneId);
-
                clone.find("input[id='jform_observation_dead_or_alive0']").prop("id", "jform_observation_dead_or_alive0" + cloneId);
                clone.find("input[id='jform_observation_dead_or_alive1']").prop("id", "jform_observation_dead_or_alive1" + cloneId);
-
                clone.find("input[id='jform_observation_death0']").prop("id", "jform_observation_death0" + cloneId);
                clone.find("input[id='jform_observation_death1']").prop("id", "jform_observation_death1" + cloneId);
                clone.find("input[id='jform_observation_death2']").prop("id", "jform_observation_death2" + cloneId);
-
                clone.find("input[id='jform_observation_state_decomposition0']").prop("id", "jform_observation_state_decomposition0" + cloneId);
                clone.find("input[id='jform_observation_state_decomposition1']").prop("id", "jform_observation_state_decomposition1" + cloneId);
                clone.find("input[id='jform_observation_state_decomposition2']").prop("id", "jform_observation_state_decomposition2" + cloneId);
                clone.find("input[id='jform_observation_state_decomposition3']").prop("id", "jform_observation_state_decomposition3" + cloneId);
-
                clone.find("input[name='jform[observation_alive]']").prop("name", "jform[observation_alive]" + cloneId);
                clone.find("input[id='jform_observation_alive0']").prop("id", "jform_observation_alive0" + cloneId);
-
                clone.find("input[id='jform_levies_protocole0']").prop("id", "jform_levies_protocole0" + cloneId);
                clone.find("input[id='jform_levies_protocole1']").prop("id", "jform_levies_protocole1" + cloneId);
                clone.find("input[id='jform_levies_protocole2']").prop("id", "jform_levies_protocole2" + cloneId);
-
                clone.find("input[id='jform_levies0']").prop("id", "jform_levies0" + cloneId);
                clone.find("input[id='jform_levies1']").prop("id", "jform_levies1" + cloneId);
-
                clone.find("input[id='jform_photos0']").prop("id", "jform_photos0" + cloneId);
                clone.find("input[id='jform_photos1']").prop("id", "jform_photos1" + cloneId);
 
@@ -801,9 +786,17 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                           break;
                     case 'jform_levies0' + i :
                           displayBlock('stockage_location_field' + i, true);
+                          displayBlock('label_references_field' + i,true);
                           break;
                     case 'jform_levies1' + i :
                           displayBlock('stockage_location_field' + i, false);
+                          displayBlock('label_references_field' + i, false);
+                          break;
+                    case 'jform_photos0' + i:
+                           displayBlock('upload_photos_field' + i, true);
+                           break;
+                    case 'jform_photos1' + i:
+                          displayBlock('upload_photos_field' + i, false);
                           break;
                   }
                 }
@@ -811,6 +804,8 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               if(cloneId === document.getElementById("jform_observation_number").value-1){
                 break;
               }
+              document.getElementById("jform_id_location").value = cloneId + 1;
+              //document.getElementById("jform_id_location").submit();
               cloneId++;
               clone.appendTo("#new_div_clone");
             //}
@@ -858,20 +853,11 @@ function supr_bloc(div, i) {
 }
 
 // créer une élément avec du text sur un parent spécifique
-function create_element(element, text, textClone, parent, clone) {
+function create_element(element, text, parent) {
   var x = document.createElement(element);
   x.className = "block_indices"
   var t = document.createTextNode(text);
-  if(!clone) {
-    x.appendChild(t);
-  }
-  else {
-    //var t = document.createTextNode(textClone);
-    //var t1 = document.createTextNode(textClone);
-    x.nodeValue = document.createTextNode(textClone);
-    //x.appendChild(t1);
-  } 
-  //x.appendChild(t);
+  x.appendChild(t);
   var x1 = document.getElementById(parent);
   x1.appendChild(x);  
 }
@@ -1279,24 +1265,32 @@ function change_node_value(element, node) {
       </div>
     </div>
   </div>
-  <!--Uploade photos-->
-  <div id="uploade_photos_field" class="col-lg-12 col-md-12 col-xs-12" style="display: none;">
-  <?php echo $this->form->getLabel('uploade_photos'); ?>
-    <div class="input-group">
-      <span class="input-group-addon"><span class="fa fa-picture-o "></span></span>
-    <?php echo $this->form->getInput('uploade_photos'); ?>
-    </div>
-  </div>
   <!--Stockage location-->
- <div id="stockage_location_field" class="col-lg-12 col-md-12 col-xs-12" style="display: none;">
-  <?php echo $this->form->getLabel('observation_location_stock'); ?>
+  <div id="stockage_location_field" class="col-lg-6 col-md-6 col-xs-12" style="display: none;">
+    <?php echo $this->form->getLabel('observation_location_stock'); ?>
     <div class="input-group">
       <span class="input-group-addon"><span class="fa fa-archive "></span></span>
-    <?php echo $this->form->getInput('observation_location_stock'); ?>
+      <?php echo $this->form->getInput('observation_location_stock'); ?>
     </div>
   </div>
+  <!--Label references-->
+  <div id="label_references_field" class="col-lg-6 col-md-6 col-xs-12" style="display: none;">
+    <?php echo $this->form->getLabel('label_references'); ?>
+    <div class="input-group">
+      <span class="input-group-addon"><span class="fa fa-tag"></span></span>
+      <?php echo $this->form->getInput('label_references'); ?>
+    </div>
+  </div>&nbsp;
+  <!--Upload photos-->
+  <div id="upload_photos_field" class="col-lg-6 col-md-6 col-xs-12" style="display: none;">
+    <?php echo $this->form->getLabel('upload_photos'); ?>
+    <div class="input-group">
+      <span class="input-group-addon"><span class="fa fa-picture-o "></span></span>
+      <?php echo $this->form->getInput('upload_photos'); ?>
+    </div>
+  </div>&nbsp;
   <!--Dead or Alive-->
-  <div class="col-lg-6 col-md-6 col-xs-12">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="form-group">
       <?php echo $this->form->getLabel('observation_dead_or_alive'); ?>
       <div class="col-xs-offset-2 col-xs-10">
@@ -1333,13 +1327,12 @@ function change_node_value(element, node) {
         <div class="input-group form-inline">
           <span class="input-group-addon"><span class="fa fa-clock-o"></span>
         </span>
-        <?php echo $this->form->getInput('observation_hours'); ?>&nbsp;
-        <label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_HM_SEPARATOR'); ?></label>&nbsp;
+        <?php echo $this->form->getInput('observation_hours'); ?>
+        <label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_HM_SEPARATOR'); ?></label>
         <?php echo $this->form->getInput('observation_minutes'); ?>
       </div>
     </div>
-  </div>
-  &nbsp;&nbsp;&nbsp;
+  </div>&nbsp;
   <!--State decomposition-->
   <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('observation_state_decomposition'); ?></div>
   <div class="col-lg-8 col-md-8 col-xs-12">
@@ -1362,14 +1355,6 @@ function change_node_value(element, node) {
     </div>
   </div>
 </div>
-<!--Label references-->
-<div class="col-lg-6 col-md-6 col-xs-12" id="label_ref">
-  <?php echo $this->form->getLabel('label_references'); ?>
-  <div class="input-group">
-    <span class="input-group-addon"><span class="fa fa-tag"></span></span>
-    <?php echo $this->form->getInput('label_references'); ?>
-  </div>
-</div>&nbsp;&nbsp;&nbsp;
 <!--Tissue removal dead-->
 <div class="col-lg-6 col-md-6 col-xs-12">
   <div class="form-group">
@@ -1409,12 +1394,12 @@ function change_node_value(element, node) {
       <div class="input-group form-inline">
         <span class="input-group-addon"><span class="fa fa-clock-o"></span>
       </span>
-      <?php echo $this->form->getInput('observation_hours'); ?>&nbsp;
-      <label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_HM_SEPARATOR'); ?></label>&nbsp;
+      <?php echo $this->form->getInput('observation_hours'); ?>
+      <label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_HM_SEPARATOR'); ?></label>
       <?php echo $this->form->getInput('observation_minutes'); ?>
     </div>
   </div>
-</div>&nbsp;&nbsp;&nbsp;
+</div>&nbsp;
 <!--Tissue removal alive-->
 <div class="col-lg-6 col-md-6 col-xs-12">
   <div class="form-group">
@@ -1435,7 +1420,7 @@ function change_node_value(element, node) {
 <div id="measurements">
   <div class="row" id="com_stranding_forms_measurements_info">
     <div class="col-lg-12 col-md-12 col-xs-12" id="mesures_info">
-      <span class="fa fa-info-circle">&nbsp;&nbsp;<label class="info-mesurements"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_MESURES_INFO_1');?>
+      <span class="fa fa-info-circle"><label class="info-mesurements"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_MESURES_INFO_1');?>
       <strong style="color: red;"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_MESURES_INFO_RED');?></strong>
       <?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_MESURES_INFO_2');?>
     </label></span>
@@ -1460,68 +1445,68 @@ function change_node_value(element, node) {
           <?php echo $this->form->getLabel('observation_dolphin_mesures_a'); ?></button>
      <div id="jform_observation_dolphin_mesures_a_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_a'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dolphin_mesures_b_btn" type="button" class="btn btn-danger btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dolphin_mesures_b'); ?></button>
      <div id="jform_observation_dolphin_mesures_b_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_b'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dolphin_mesures_c_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dolphin_mesures_c'); ?></button>
      <div id="jform_observation_dolphin_mesures_c_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_c'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dolphin_mesures_d_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dolphin_mesures_d'); ?></button>
      <div id="jform_observation_dolphin_mesures_d_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_d'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dolphin_mesures_e_btn" type="button" class="btn btn-danger btn-lg btn-block"><?php echo $this->form->getLabel('observation_dolphin_mesures_e'); ?></button>
      <div id="jform_observation_dolphin_mesures_e_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_e'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dolphin_mesures_f_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dolphin_mesures_f'); ?></button>
      <div id="jform_observation_dolphin_mesures_f_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_f'); ?>
-    </div>&nbsp;
+    </div>
   </div>
 <div class="col-lg-3 col-md-3 col-xs-3">
      <button id="jform_observation_dolphin_mesures_g_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dolphin_mesures_g'); ?></button>
      <div id="jform_observation_dolphin_mesures_g_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_g'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dolphin_mesures_h_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dolphin_mesures_h'); ?></button>
      <div id="jform_observation_dolphin_mesures_h_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_h'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dolphin_mesures_i_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dolphin_mesures_i'); ?></button>
      <div id="jform_observation_dolphin_mesures_i_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_i'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dolphin_mesures_j_btn" type="button" class="btn btn-danger btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dolphin_mesures_j'); ?></button>
      <div id="jform_observation_dolphin_mesures_j_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_j'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dolphin_mesures_k_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dolphin_mesures_k'); ?></button>
      <div id="jform_observation_dolphin_mesures_k_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_k'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dolphin_mesures_l_btn" type="button" class="btn btn-danger btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dolphin_mesures_l'); ?></button>
      <div id="jform_observation_dolphin_mesures_l_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_l'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dolphin_mesures_m_btn" type="button" class="btn btn-danger btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dolphin_mesures_m'); ?></button>
      <div id="jform_observation_dolphin_mesures_m_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_m'); ?>
-    </div>&nbsp;
+    </div>
    </div>
  </div>
 <!--Dolphin member-->
@@ -1536,12 +1521,12 @@ function change_node_value(element, node) {
           <?php echo $this->form->getLabel('observation_dolphin_mesures_n'); ?></button>
      <div id="jform_observation_dolphin_mesures_n_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_n'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dolphin_mesures_o_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dolphin_mesures_o'); ?></button>
      <div id="jform_observation_dolphin_mesures_o_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_o'); ?>
-    </div>&nbsp;
+    </div>
    </div>
      
    <div class="col-lg-3 col-md-3 col-xs-12" id="cetace_measures_position2">
@@ -1554,12 +1539,12 @@ function change_node_value(element, node) {
           <?php echo $this->form->getLabel('observation_dolphin_mesures_p'); ?></button>
      <div id="jform_observation_dolphin_mesures_p_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_p'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dolphin_mesures_q_btn" type="button" class="btn btn-danger btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dolphin_mesures_q'); ?></button>
      <div id="jform_observation_dolphin_mesures_q_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_q'); ?>
-    </div>&nbsp;
+    </div>
    </div>
    <div class="col-lg-3 col-md-3 col-xs-12" id="cetace_measures_position3">
       <p>
@@ -1571,12 +1556,12 @@ function change_node_value(element, node) {
           <?php echo $this->form->getLabel('observation_dolphin_mesures_r'); ?></button>
      <div id="jform_observation_dolphin_mesures_r_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_r'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dolphin_mesures_s_btn" type="button" class="btn btn-danger btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dolphin_mesures_s'); ?></button>
      <div id="jform_observation_dolphin_mesures_s_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_s'); ?>
-    </div>&nbsp;
+    </div>
    </div>
    <div class="col-lg-3 col-md-3 col-xs-12" id="cetace_measures_position4">
       <p>
@@ -1587,15 +1572,15 @@ function change_node_value(element, node) {
      <button id="jform_observation_dolphin_mesures_t_btn" type="button" class="btn btn-secondary btn-lg btn-block"><?php echo $this->form->getLabel('observation_dolphin_mesures_t'); ?></button>
      <div id="jform_observation_dolphin_mesures_t_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_t'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dolphin_mesures_u_btn" type="button" class="btn btn-secondary btn-lg btn-block"><?php echo $this->form->getLabel('observation_dolphin_mesures_u'); ?></button>
      <div id="jform_observation_dolphin_mesures_u_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_u'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dolphin_mesures_v_btn" type="button" class="btn btn-secondary btn-lg btn-block"><?php echo $this->form->getLabel('observation_dolphin_mesures_v'); ?></button>
      <div id="jform_observation_dolphin_mesures_v_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_v'); ?>
-    </div>&nbsp;
+    </div>
    </div>
  </div>
 </div>
@@ -1618,68 +1603,68 @@ function change_node_value(element, node) {
           <?php echo $this->form->getLabel('observation_dugong_mesures_a'); ?></button>
      <div id="jform_observation_dugong_mesures_a_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_a'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dugong_mesures_b_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_b'); ?></button>
      <div id="jform_observation_dugong_mesures_b_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_b'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dugong_mesures_c_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_c'); ?></button>
      <div id="jform_observation_dugong_mesures_c_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_c'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dugong_mesures_d_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_d'); ?></button>
      <div id="jform_observation_dugong_mesures_d_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_d'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dugong_mesures_e_btn" type="button" class="btn btn-secondary btn-lg btn-block"><?php echo $this->form->getLabel('observation_dugong_mesures_e'); ?></button>
      <div id="jform_observation_dugong_mesures_e_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_e'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dugong_mesures_f_btn" type="button" class="btn btn-danger btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_f'); ?></button>
      <div id="jform_observation_dugong_mesures_f_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_f'); ?>
-    </div>&nbsp;
+    </div>
   </div>
 <div class="col-lg-3 col-md-3 col-xs-3">
      <button id="jform_observation_dugong_mesures_g_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_g'); ?></button>
      <div id="jform_observation_dugong_mesures_g_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_g'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dugong_mesures_h_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_h'); ?></button>
      <div id="jform_observation_dugong_mesures_h_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_h'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dugong_mesures_i_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_i'); ?></button>
      <div id="jform_observation_dugong_mesures_i_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_i'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dugong_mesures_j_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_j'); ?></button>
      <div id="jform_observation_dugong_mesures_j_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_j'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dugong_mesures_k_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_k'); ?></button>
      <div id="jform_observation_dugong_mesures_k_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_k'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dugong_mesures_l_btn" type="button" class="btn btn-danger btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_l'); ?></button>
      <div id="jform_observation_dugong_mesures_l_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_l'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dugong_mesures_m_btn" type="button" class="btn btn-danger btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_m'); ?></button>
      <div id="jform_observation_dugong_mesures_m_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_m'); ?>
-    </div>&nbsp;
+    </div>
    </div>
  </div>
 <!--Dugong member-->
@@ -1694,12 +1679,12 @@ function change_node_value(element, node) {
           <?php echo $this->form->getLabel('observation_dugong_mesures_n'); ?></button>
      <div id="jform_observation_dugong_mesures_n_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_n'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dugong_mesures_o_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_o'); ?></button>
      <div id="jform_observation_dugong_mesures_o_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_o'); ?>
-    </div>&nbsp;
+    </div>
    </div>
      
      <div class="col-lg-3 col-md-3 col-xs-12" id="dugong_measures_position1">
@@ -1712,12 +1697,12 @@ function change_node_value(element, node) {
           <?php echo $this->form->getLabel('observation_dugong_mesures_p'); ?></button>
      <div id="jform_observation_dugong_mesures_p_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_p'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dugong_mesures_q_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_q'); ?></button>
      <div id="jform_observation_dugong_mesures_q_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_q'); ?>
-    </div>&nbsp;
+    </div>
    </div>
    <div class="col-lg-3 col-md-3 col-xs-12" id="dugong_measures_position3">
       <p>
@@ -1729,12 +1714,12 @@ function change_node_value(element, node) {
           <?php echo $this->form->getLabel('observation_dugong_mesures_r'); ?></button>
      <div id="jform_observation_dugong_mesures_r_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_r'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dugong_mesures_s_btn" type="button" class="btn btn-danger btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_s'); ?></button>
      <div id="jform_observation_dugong_mesures_s_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_s'); ?>
-    </div>&nbsp;
+    </div>
    </div>
    <div class="col-lg-3 col-md-3 col-xs-12" id="dugong_measures_position4">
       <p>
@@ -1745,15 +1730,15 @@ function change_node_value(element, node) {
      <button id="jform_observation_dugong_mesures_t_btn" type="button" class="btn btn-secondary btn-lg btn-block"><?php echo $this->form->getLabel('observation_dugong_mesures_t'); ?></button>
      <div id="jform_observation_dugong_mesures_t_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_t'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dugong_mesures_u_btn" type="button" class="btn btn-secondary btn-lg btn-block"><?php echo $this->form->getLabel('observation_dugong_mesures_u'); ?></button>
      <div id="jform_observation_dugong_mesures_u_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_u'); ?>
-    </div>&nbsp;
+    </div>
      <button id="jform_observation_dugong_mesures_v_btn" type="button" class="btn btn-secondary btn-lg btn-block"><?php echo $this->form->getLabel('observation_dugong_mesures_v'); ?></button>
      <div id="jform_observation_dugong_mesures_v_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_v'); ?>
-    </div>&nbsp;
+    </div>
    </div>
  </div>
 </div>
@@ -1806,8 +1791,8 @@ function change_node_value(element, node) {
     </div>
   </div>
 </div>-->
-<button type="submit" class="validate"><span><?php echo JText::_('JSUBMIT'); ?></span></button>&nbsp;&nbsp;&nbsp;
-<label><?php echo JText::_('OR'); ?></label>&nbsp;&nbsp;&nbsp;
+<button type="submit" class="validate"><span><?php echo JText::_('JSUBMIT'); ?></span></button>
+<label><?php echo JText::_('OR'); ?></label>
 <a href="<?php echo JRoute::_('index.php?option=com_stranding_forms&task=stranding_adminform.cancel'); ?>" title="<?php echo JText::_('JCANCEL'); ?>"><?php echo JText::_('JCANCEL'); ?></a>
 <input type="hidden" name="option" value="com_stranding_forms" />
 <input type="hidden" name="task" value="stranding_adminform.save" />

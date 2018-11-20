@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `#__stranding_admin` (
 	`levies_protocole` VARCHAR(100) NOT NULL,
 	`levies` VARCHAR(100) NOT NULL,
 	`photos` VARCHAR(100) NOT NULL,
+	`upload_photos` TEXT NOT NULL,
 	`label_references` VARCHAR(250) NOT NULL,
 	`observation_tissue_removal_dead` VARCHAR(200) NOT NULL,
 	`observation_tissue_removal_alive` VARCHAR(100) NOT NULL,
@@ -115,7 +116,7 @@ FOR EACH ROW SET NEW.localisation = GeomFromText( CONCAT('POINT(', NEW.observati
 CREATE TRIGGER `#__trig_stranding_admin_update` BEFORE UPDATE ON `#__stranding_admin`
 FOR EACH ROW SET NEW.localisation = GeomFromText( CONCAT('POINT(', NEW.observation_longitude, ' ', NEW.observation_latitude, ')' ));
 
-/*CREATE TRIGGER `#__trig_stranding_admin_icrement_observation_insert` AFTER INSERT ON `#__extensions`
+/*CREATE TRIGGER `#__trig_stranding_admin_icrement_observation_insert` AFTER INSERT ON `#__users`
 FOR EACH ROW
 BEGIN
 	DECLARE x INTEGER;
@@ -130,7 +131,7 @@ BEGIN
 	END IF;
 END;
 
-CREATE TRIGGER `#__trig_stranding_admin_icrement_observation_update` AFTER UPDATE ON `#__extensions`
+CREATE TRIGGER `#__trig_stranding_admin_icrement_observation_update` AFTER UPDATE ON `#__users`
 FOR EACH ROW
 BEGIN
 	DECLARE x INTEGER;
