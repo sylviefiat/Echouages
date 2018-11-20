@@ -96,7 +96,13 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
         case 'jform_levies1' :
               displayBlock('stockage_location_field',false);
               break;
-      }
+        case 'jform_photos0':
+              displayBlock('uploade_photos_field',true);
+              break;
+        case 'jform_photos1':
+              displayBlock('uploade_photos_field',false);
+              break;
+      }       
     });
 
     // démasque le bouton pour le clonage si nombre > 1
@@ -1271,6 +1277,14 @@ function change_node_value(element, node) {
           <label><?php echo $this->form->getInput('photos'); ?></label>
         </div>
       </div>
+    </div>
+  </div>
+  <!--Uploade photos-->
+  <div id="uploade_photos_field" class="col-lg-12 col-md-12 col-xs-12" style="display: none;">
+  <?php echo $this->form->getLabel('uploade_photos'); ?>
+    <div class="input-group">
+      <span class="input-group-addon"><span class="fa fa-picture-o "></span></span>
+    <?php echo $this->form->getInput('uploade_photos'); ?>
     </div>
   </div>
   <!--Stockage location-->
