@@ -25,6 +25,16 @@
 			readonly="true"
 			type="cktext"/>
 
+	<!--Observation_ID-->
+	<field name="id_observation"
+			alias="id_observation"
+			class="form-control"
+			label="ID_OBSERVATION"
+			filter="INT"
+			description="ID_OBSERVATION_DESC"
+			readonly="true"
+			type="cktext"/>
+
 	<!--Observer contacts-->
 	<field 	name="observer_name"
 			alias="observer_name"

@@ -109,7 +109,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
 
     // démasque le bouton pour le clonage si nombre > 1
     js("#jform_observation_number").change(function() {
-        if(this.value > 1) {
+        if(this.value >= 1) {
            document.getElementById("div_add_clone_btn").style.display="block";
            document.getElementById("div_delete_clone_btn").style.display="block";
         
@@ -117,16 +117,8 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
            create_element("SPAN", "1", "animal_title");
            create_element("SPAN", "1", "measurements_title");
            
-           /*for(var i = 1; i <= this.value; i++){
-            // incrémente la référence
-            document.getElementById("jform_id_location").value = i;
-            //document.getElementById("jform_id_location").submit();
-           }*/
+           document.getElementById("jform_id_observation").value = 1;
         }
-        /*else if(this.value == 1) {
-          document.getElementById("jform_id_location").value = 1;
-          //document.getElementById("jform_id_location").submit();
-        }*/
     });
 
     // affiche ou masque les mesures
@@ -297,18 +289,41 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               // change l'id du bloc cloner
               clone.attr("id", "div_observation_clone" + cloneId);
 
+              // change l'id de l'observation
+              clone.find("input[id='jform_id_observation']").prop("id", "jform_id_observation" +cloneId);
+              clone.find("input[type='text']").each(function() {
+                 for(var i = 0; i <= cloneId; i++) {
+                  if(this.id == 'jform_id_observation' + i) {
+                       this.value = i+2;
+                  }
+                }
+              });
+             
+
               // changer l'id des titres des blocs
               clone.find("h4[id='identification_title']").prop("id", "identification_title" + cloneId);
               clone.find("h4[id='animal_title']").prop("id", "animal_title" + cloneId);
               clone.find("h4[id='measurements_title']").prop("id", "measurements_title" + cloneId);
 
-              //clone.find("h4").nodeValue = cloneId;
-              for(var i = 0; i <= cloneId; i++) {
-                //clone.find("h4:span").nodeValue = i;
-                create_element("SPAN", "", i+2, "identification_title" + i, true);
-                create_element("SPAN", "", i+2, "animal_title" + i, true);
-                create_element("SPAN", "", i+2, "measurements_title" + i, true);
+              /*clone.find("span").each(function() {
+                for(var i = 0; i <= cloneId; i++) {
+
+                }
+              });*/
+
+
+              cloneId === 0 ? change_node_value("block_indices", cloneId+2) : change_node_value("block_indices", (cloneId+2)-1);
+
+              /*if(cloneId === 0 ) {
+                change_node_value("block_indices", i+2);
               }
+              else
+                change_node_value("block_indices", (i+2)-1);*/
+              //clone.find("h4").nodeValue = cloneId;
+              /*for(var i = 0; i <= cloneId; i++) {
+                //clone.find("h4:span").nodeValue = i;
+                change_node_value("block_indices", i+1);
+              }*/
 
               // change le nom des inputs (boutons radios) 
               clone.find("input[name='jform[observation_spaces_identification]']").prop("name", "jform[observation_spaces_identification]" + cloneId);
@@ -531,7 +546,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                clone.find("select[id='jform_observation_spaces']").prop("id", "jform_observation_spaces" + cloneId);
                clone.find("select[id='jform_observation_hours']").prop("id", "jform_observation_hours" + cloneId);
                clone.find("select[id='jform_observation_minutes']").prop("id", "jform_observation_minutes" + cloneId);
-               // les textes et nombre
+               // les input textes et nombre
                clone.find("input[id='jform_observation_size']").prop("id", "jform_observation_size" + cloneId);
                clone.find("input[id='jform_observation_color']").prop("id", "jform_observation_color" + cloneId);
                clone.find("input[id='jform_nb_teeth_upper_right']").prop("id", "jform_nb_teeth_upper_right" + cloneId);
@@ -804,8 +819,8 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               if(cloneId === document.getElementById("jform_observation_number").value-1){
                 break;
               }
-              document.getElementById("jform_id_location").value = cloneId + 1;
-              //document.getElementById("jform_id_location").submit();
+              //cloneId === 0 ? document.getElementById("jform_id_observation").value = cloneId + 2 : document.getElementById("jform_id_observation").value = cloneId + 1 
+              //document.getElementById("jform_id_observation").submit();
               cloneId++;
               clone.appendTo("#new_div_clone");
             //}
@@ -855,7 +870,7 @@ function supr_bloc(div, i) {
 // créer une élément avec du text sur un parent spécifique
 function create_element(element, text, parent) {
   var x = document.createElement(element);
-  x.className = "block_indices"
+  x.className = "block_indices";
   var t = document.createTextNode(text);
   x.appendChild(t);
   var x1 = document.getElementById(parent);
@@ -1024,12 +1039,12 @@ function change_node_value(element, node) {
     <div class="input-group">
       <span class="input-group-addon"><span class="fa fa-tachometer"></span></span>
       <?php echo $this->form->getInput('observation_number'); ?>
-      <span style="display:none;" ><?php echo $this->form->getInput('id_location'); ?></span>
     </div>
   </div>
 </div>
-
+<!--New observation clone-->
 <div id="div_observation_clone">
+<span><?php echo $this->form->getInput('id_observation'); ?></span>
 <!--Identification-->
 <div class="row" id="div_identification_title">
   <div class="col-lg-12 col-md-12 col-xs-12" id="title_R3"><span class="stranding_admin-title_row"><span class="fa fa-eye fa-2x"><h4 id="identification_title"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW3');?> </h4></span></span></div>

@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS `#__stranding_admin` (
 	`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`id_location` INT(12) NOT NULL,
+	`id_observation` INT(12) NOT NULL,
 	`observer_name` VARCHAR(100)  NOT NULL,
 	`observer_address` VARCHAR(250) NOT NULL,
 	`observer_tel` VARCHAR(100)  NOT NULL,
@@ -115,6 +116,12 @@ FOR EACH ROW SET NEW.localisation = GeomFromText( CONCAT('POINT(', NEW.observati
 
 CREATE TRIGGER `#__trig_stranding_admin_update` BEFORE UPDATE ON `#__stranding_admin`
 FOR EACH ROW SET NEW.localisation = GeomFromText( CONCAT('POINT(', NEW.observation_longitude, ' ', NEW.observation_latitude, ')' ));
+
+CREATE TRIGGER `#__trig_stranding_admin_icrement_observation_location_insert` AFTER INSERT ON `#__stranding_admin`
+FOR EACH ROW SET NEW.id_location = NEW.id_location + 1;
+
+CREATE TRIGGER `#__trig_stranding_admin_icrement_observation_location_update` AFTER UPDATE ON `#__stranding_admin`
+FOR EACH ROW SET NEW.id_location = NEW.id_location + 1;
 
 /*CREATE TRIGGER `#__trig_stranding_admin_icrement_observation_insert` AFTER INSERT ON `#__users`
 FOR EACH ROW
