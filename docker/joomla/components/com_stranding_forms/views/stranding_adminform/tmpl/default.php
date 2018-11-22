@@ -283,36 +283,46 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
 
         // clonage des blocs
         case 'new_observation' :
-              //var clone = js("#div_observation_clone1").clone(true);
+              // Cloner le bloc   
               var clone = js("#div_observation_clone1").clone().attr("id", "div_observation_clone" + cloneId);
-
-              clone.children().each(function() {
-
-                
+              // Changer les id et les name des blocs
+              clone.find('div[id]').each(function() {
+                this.id = this.id + cloneId;
+              });
+              clone.find('input[name][id]').each(function() {
                 this.id = this.id + cloneId;
                 this.name = this.name + '[' + cloneId + ']';
-                
-
-                
-                // var $elem = js(elem);
-                // $elem.attr('id', $elem.attr('id') + cloneId);
-                //var $elem = clone.find('id').attr('id', clone.find('id').attr('id') + cloneId);
-                //$elem.attr('id', $elem.attr('id') + cloneId);
-                //var ename  = $elem.attr('name');
-                //var ename = clone.find('name').attr('name');
-                //if(ename) {
-                  //$elem.attr('name', ename.replace('jform['']', 'jform['']['+ cloneId +']'));
-                //}
+              });
+              clone.find('button[id]').each(function() {
+                this.id = this.id + cloneId;
               });
 
+              clone.find('fieldset[id]').each(function() {
+                this.id = this.id + cloneId;
+              });
+              clone.find('label[id]').each(function() {
+                this.id = this.id + cloneId;
+              });
+               clone.find('select[id][name]').each(function() {
+                this.id = this.id + cloneId;
+                this.name = this.name + '[' + cloneId + ']';
+              });
+               // Incrémenter les titres des blocs
+               clone.find("span[class='block_indices']").each(function() {
+                  this.className = this.className + cloneId;
+                  for(var i = 0; i <= cloneId; i++) {
+                    this.nodeValue = i;
+                  }
+               });
+              // Incrémenter l'id de l'animal
               clone.find("input[type='text']").each(function() {
                  for(var i = 0; i <= cloneId; i++) {
                   if(this.id == 'jform_id_observation' + i) {
-                       this.value = i+2;
+                       this.value = i;
                   }
                 }
               });
-              // affiche ou masque les mesures
+              // Affiche ou masque les mesures
               clone.find("div").click(function() {
                 for(var i = 0; i <= cloneId; i++) {
                   switch (this.id) {
@@ -325,13 +335,13 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                   }
                 }
               });
-              // affiche l'image représentative de l'encoche médiane
+              // Affiche l'image représentative de l'encoche médiane
               clone.find("button").click(function() {
                 for(var i = 0; i <= cloneId; i++) {
                   switch (this.id) {
                     case "show_tail_fin_image" + i :
                           toggleContainer("tail_fin_image" + i);
-                    // bouton d'affichage, mesure sur cétacé
+                    // Bouton d'affichage, mesure sur cétacé
                     case 'jform_observation_dolphin_mesures_a_btn' + i :
                           toggleContainer("jform_observation_dolphin_mesures_a_field" + i);
                           break;
@@ -398,7 +408,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                     case 'jform_observation_dolphin_mesures_v_btn' + i :
                           toggleContainer("jform_observation_dolphin_mesures_v_field" + i);
                           break;
-                    // bouton d'affichage, mesure sur dugong
+                    // Bouton d'affichage, mesure sur dugong
                     case 'jform_observation_dugong_mesures_a_btn' + i :
                           toggleContainer("jform_observation_dugong_mesures_a_field" + i);
                           break;
@@ -474,7 +484,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                   } 
                 }
               });
-              // affiche ou pas le block en fonction du choix du user
+              // Affiche ou pas le block en fonction du choix du user
               clone.find("input[type='radio']").click(function() {
                 for(var i = 0; i <= cloneId; i++) {
                   switch(this.id) {
@@ -515,74 +525,50 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                   }
                 }
               });
-              if(cloneId == document.getElementById("jform_observation_number").value){
-                break;
-              }
 
               js('#add_animal').before(clone);
-              js('#delete_animal' + cloneId).html('<p id="rem_field"><a href="#"><span><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_DELETE_FIELDS'); ?></label></span></a></p>');
-
-              cloneId++;
-
+              // Création du lien de suppression
+              js('#delete_animal' + cloneId).html('<p id="rem_field"><a href="#"><span><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_DELETE_FIELDS'); ?> ' + cloneId + '</label></span></a></p>');
+              //Supprimer le bloc de l'animal
               js('p#rem_field').on('click', function() {
-                  js(this).parents('div').remove();
+                  js(this).parent('div').parent('div').remove();
+                  cloneId = (cloneId - 1) +1;
                   return false;
               });
-              
+              // Incrémente le numéro du clone
+              cloneId++;
               //cloneId === 0 ? document.getElementById("jform_id_observation").value = cloneId + 2 : document.getElementById("jform_id_observation").value = cloneId + 1 
-              //document.getElementById("jform_id_observation").submit();
-              
-              //clone.appendTo("#new_div_clone");
-            //}
             break;
-             
       }
-      
     }); 
    
   });
 });
-// si 'affiche' est vraie alors on affiche le block choisi, sinon pas d'affichage
+// Si 'affiche' est vraie alors on affiche le block choisi, sinon pas d'affichage
 function displayBlock(div, affiche) { 
   document.getElementById(div).style.display = affiche ? 'block' : 'none';
 }
-
-// affiche et masque le block au click
+// Affiche et masque le block au click
 function toggleContainer(name) {
   var e = document.getElementById(name);// MooTools might not be available ;)
   e.style.display = e.style.display === 'none' ? 'block' : 'none';
 }
-
-// supprimer un bloc clonné
-function supr_bloc(div, i) { 
-  var Parent; 
-  var Obj = document.getElementById ( div+i); 
-
-  if(Obj)      
-    Parent = Obj.parentNode;      
-  if(Parent) 
-    Obj.removeChild(Obj.childNodes[0]); 
-}
-
-// créer une élément avec du text sur un parent spécifique
+// Créer une élément avec du text sur un parent spécifique
 function create_element(element, text, parent) {
   var x = document.createElement(element);
   x.className = "block_indices";
-  var t = document.createTextNode(text);
-  x.appendChild(t);
+  /*var t = document.createTextNode(text);
+  x.appendChild(t);*/
   var x1 = document.getElementById(parent);
   x1.appendChild(x);  
 }
-
-// change la valeur présente dans l'élément
+// Change la valeur présente dans l'élément
 function change_node_value(element, node) {
   var e = document.getElementsByClassName(element);
   for(var i = 0; i < e.length; i++) {
     e[i].nodeValue = node;
   }
 }
-
-
 </script>
 
 <div class="stranding_admin-edit front-end-edit">
@@ -749,10 +735,10 @@ function change_node_value(element, node) {
 <div class="row" id="identification">
   <!--Spaces-->
   <div class="col-lg-6 col-md-6 col-xs-12" name="espece[]">
-    <?php echo $this->form->getLabel('observation_spaces'); ?>
+    <?php echo $this->form->getLabel('observation_spaces_common_name'); ?>
     <div class="input-group">
       <span class="input-group-addon"><span class="fa fa-eye"></span></span>
-      <?php echo $this->form->getInput('observation_spaces'); ?>
+      <?php echo $this->form->getInput('observation_spaces_common_name'); ?>
     </div>
   </div>
   <!--Spaces identification-->
@@ -1129,7 +1115,7 @@ function change_node_value(element, node) {
 <div class="row" id="div_measurements_title">
   <div class="col-lg-12 col-md-12 col-xs-12" id="title_R5"><span class="stranding_admin-title_row"><span class="fa fa-arrows-h fa-2x"><h4 id="measurements_title"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW5'); ?> </h4></span></span></div>
 </div>
-<div id="measurements">
+<div id="measurements" class="animal_measures_field">
   <div class="row" id="com_stranding_forms_measurements_info">
     <div class="col-lg-12 col-md-12 col-xs-12" id="mesures_info">
       <span class="fa fa-info-circle"><label class="info-mesurements"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_MESURES_INFO_1');?>
