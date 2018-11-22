@@ -67,8 +67,9 @@ fieldset.radio label{
 getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function() {
   js = jQuery.noConflict();
   js(document).ready(function() {
-    // affiche ou pas le block en fonction du choix du user
-    js("input[type='radio']").click(function() {
+
+    // Affiche ou pas le block en fonction du choix du user
+    js("input[type='radio']").on('click', function() {
       switch(this.id) {
         case 'jform_observation_dead_or_alive0' :
               displayBlock('dead_field', true);
@@ -107,11 +108,10 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
       }       
     });
 
-    // démasque le bouton pour le clonage si nombre > 1
-    js("#jform_observation_number").change(function() {
+    // Démasque le bouton pour le clonage si nombre > 1
+    js("#jform_observation_number").on('change',function() {
         if(this.value >= 1) {
            document.getElementById("add_animal").style.display="block";
-           //document.getElementById("div_delete_clone_btn").style.display="block";
         
            create_element("SPAN", "1", "identification_title");
            create_element("SPAN", "1", "animal_title");
@@ -121,8 +121,8 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
         }
     });
 
-    // affiche ou masque les mesures
-    js("div").click(function(){
+    // Affiche ou masque les mesures
+    js("div").on('click',function(){
       switch (this.id) {
         case 'div_show_cetace_measurements_field' :
               toggleContainer("cetace_measures");
@@ -133,19 +133,18 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
       }
     });
    
-    var cloneId = 2; // incrémenté en fonction du clonage
-    var obervation_cptr = 1; // pour l'affichage
-    var cptr = document.getElementById("jform_observation_number").value-2; // pour la suppression
-    js("button").click(function() {
+    var cloneId = 2; // Incrémenté en fonction du clonage
+
+    js("button").on('click', function() {
 
       switch (this.id) {
 
-        // affiche l'image représentative de l'encoche médiane
+        // Affiche l'image représentative de l'encoche médiane
         case 'show_tail_fin_image' :
               toggleContainer("tail_fin_image");
               break;
 
-        // bouton d'affichage, mesure sur cétacé
+        // Bouton d'affichage, mesure sur cétacé
         case 'jform_observation_dolphin_mesures_a_btn' :
               toggleContainer("jform_observation_dolphin_mesures_a_field");
               break;
@@ -213,7 +212,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               toggleContainer("jform_observation_dolphin_mesures_v_field");
               break;
 
-        // bouton d'affichage, mesure sur dugong
+        // Bouton d'affichage, mesure sur dugong
         case 'jform_observation_dugong_mesures_a_btn' :
               toggleContainer("jform_observation_dugong_mesures_a_field");
               break;
@@ -281,10 +280,12 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               toggleContainer("jform_observation_dugong_mesures_v_field");
               break;
 
-        // clonage des blocs
+        // Clonage des blocs
         case 'new_observation' :
+
               // Cloner le bloc   
               var clone = js("#div_observation_clone1").clone().attr("id", "div_observation_clone" + cloneId);
+
               // Changer les id et les name des blocs
               clone.find('div[id]').each(function() {
                 this.id = this.id + cloneId;
@@ -292,21 +293,28 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               clone.find('input[name][id]').each(function() {
                 this.id = this.id + cloneId;
                 this.name = this.name + '[' + cloneId + ']';
+                /*switch(this.name) {
+                  case 'jform[observation_spaces_identification]' :
+                        this.name = 'jform[observation_spaces_identification' + cloneId +']';
+                        break;
+                }*/
+                //this.name = this.name + '[' + cloneId + ']'; //.replace('jform[ ]', 'jform[ '+ cloneId + ']'); 
               });
               clone.find('button[id]').each(function() {
                 this.id = this.id + cloneId;
               });
-
               clone.find('fieldset[id]').each(function() {
                 this.id = this.id + cloneId;
               });
-              clone.find('label[id]').each(function() {
+              clone.find('label[id][for]').each(function() {
                 this.id = this.id + cloneId;
+                this.for = this.for + cloneId;
               });
                clone.find('select[id][name]').each(function() {
                 this.id = this.id + cloneId;
                 this.name = this.name + '[' + cloneId + ']';
               });
+
                // Incrémenter les titres des blocs
                clone.find("span[class='block_indices']").each(function() {
                   this.className = this.className + cloneId;
@@ -314,6 +322,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                     this.nodeValue = i;
                   }
                });
+
               // Incrémenter l'id de l'animal
               clone.find("input[type='text']").each(function() {
                  for(var i = 0; i <= cloneId; i++) {
@@ -322,8 +331,9 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                   }
                 }
               });
+
               // Affiche ou masque les mesures
-              clone.find("div").click(function() {
+              clone.find("div").on('click',function() {
                 for(var i = 0; i <= cloneId; i++) {
                   switch (this.id) {
                     case 'div_show_cetace_measurements_field' + i:
@@ -335,8 +345,9 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                   }
                 }
               });
+
               // Affiche l'image représentative de l'encoche médiane
-              clone.find("button").click(function() {
+              clone.find("button").on('click', function() {
                 for(var i = 0; i <= cloneId; i++) {
                   switch (this.id) {
                     case "show_tail_fin_image" + i :
@@ -484,8 +495,9 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                   } 
                 }
               });
+
               // Affiche ou pas le block en fonction du choix du user
-              clone.find("input[type='radio']").click(function() {
+              clone.find("input[type='radio']").on('click', function() {
                 for(var i = 0; i <= cloneId; i++) {
                   switch(this.id) {
                     case 'jform_observation_dead_or_alive0' + i :
@@ -527,33 +539,41 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               });
 
               js('#add_animal').before(clone);
+
               // Création du lien de suppression
               js('#delete_animal' + cloneId).html('<p id="rem_field"><a href="#"><span><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_DELETE_FIELDS'); ?> ' + cloneId + '</label></span></a></p>');
-              //Supprimer le bloc de l'animal
+              
+              // Supprimer le bloc de l'animal
               js('p#rem_field').on('click', function() {
                   js(this).parent('div').parent('div').remove();
-                  cloneId = (cloneId - 1) +1;
+                  //alert("Suprression de l'animal " + (cloneId-1) + " réussit");
+                  cloneId = 2;//(cloneId - 1) +1;
+                  //cloneId++;
                   return false;
               });
+
               // Incrémente le numéro du clone
               cloneId++;
-              //cloneId === 0 ? document.getElementById("jform_id_observation").value = cloneId + 2 : document.getElementById("jform_id_observation").value = cloneId + 1 
+
             break;
       }
     }); 
    
   });
 });
+
 // Si 'affiche' est vraie alors on affiche le block choisi, sinon pas d'affichage
 function displayBlock(div, affiche) { 
   document.getElementById(div).style.display = affiche ? 'block' : 'none';
 }
+
 // Affiche et masque le block au click
 function toggleContainer(name) {
   var e = document.getElementById(name);// MooTools might not be available ;)
   e.style.display = e.style.display === 'none' ? 'block' : 'none';
 }
-// Créer une élément avec du text sur un parent spécifique
+
+// Créer une élément avec du text dans un bloc parent spécifique
 function create_element(element, text, parent) {
   var x = document.createElement(element);
   x.className = "block_indices";
@@ -562,6 +582,7 @@ function create_element(element, text, parent) {
   var x1 = document.getElementById(parent);
   x1.appendChild(x);  
 }
+
 // Change la valeur présente dans l'élément
 function change_node_value(element, node) {
   var e = document.getElementsByClassName(element);
@@ -735,10 +756,10 @@ function change_node_value(element, node) {
 <div class="row" id="identification">
   <!--Spaces-->
   <div class="col-lg-6 col-md-6 col-xs-12" name="espece[]">
-    <?php echo $this->form->getLabel('observation_spaces_common_name'); ?>
+    <?php echo $this->form->getLabel('observation_spaces'); ?>
     <div class="input-group">
       <span class="input-group-addon"><span class="fa fa-eye"></span></span>
-      <?php echo $this->form->getInput('observation_spaces_common_name'); ?>
+      <?php echo $this->form->getInput('observation_spaces'); ?>
     </div>
   </div>
   <!--Spaces identification-->

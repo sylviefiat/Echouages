@@ -122,7 +122,8 @@ FOR EACH ROW SET OLD.id_location = OLD.id_location + 1;
 
 CREATE TRIGGER `#__trig_stranding_admin_icrement_observation_location_update` AFTER UPDATE ON `#__stranding_admin`
 FOR EACH ROW SET OLD.id_location = OLD.id_location + 1;
-
+*/
+/*
 CREATE TRIGGER `#__trig_stranding_admin_icrement_observation_insert` AFTER INSERT ON `#__users`
 FOR EACH ROW
 BEGIN
