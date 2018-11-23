@@ -110,14 +110,43 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
 
     // Démasque le bouton pour le clonage si nombre > 1
     js("#jform_observation_number").on('change',function() {
-        if(this.value >= 1) {
+        if(this.value > 1) {
            document.getElementById("add_animal").style.display="block";
         
            create_element("SPAN", "1", "identification_title");
            create_element("SPAN", "1", "animal_title");
            create_element("SPAN", "1", "measurements_title");
-           
-           document.getElementById("jform_id_observation").value = 1;
+
+           var parentClone = js("#div_observation_clone0");
+
+           // Passage type String a Array (name)
+           parentClone.find("input[type='radio']").each(function() {
+              this.name = this.name + '[0]';
+           });
+           parentClone.find("input[type='text']").each(function() {
+              this.name = this.name + '[0]';
+           });
+           parentClone.find("input[type='number']").each(function() {
+              this.name = this.name + '[0]';
+           });
+           parentClone.find("select").each(function() {
+              this.name = this.name + '[0]';
+           });
+           parentClone.find("textarea").each(function() {
+              this.name = this.name + '[0]';
+           });
+
+           parentClone.find("input[type='checkbox']").each(function(index, elem) {
+              var $elem = js(elem);
+              //$elem.attr('id', $elem.attr('id') + cloneId);
+              var ename = $elem.attr('name');
+              if (ename) {
+                $elem.attr('name', ename.replace('[]','[0]'));
+              }
+           });
+        }
+        else if(this.value == 1){
+          document.getElementById("jform_id_observation").value = 1;
         }
     });
 
@@ -133,7 +162,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
       }
     });
    
-    var cloneId = 2; // Incrémenté en fonction du clonage
+    var cloneId = 1; // Incrémenté en fonction du clonage
 
     js("button").on('click', function() {
 
@@ -284,57 +313,87 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
         case 'new_observation' :
 
               // Cloner le bloc   
-              var clone = js("#div_observation_clone1").clone().attr("id", "div_observation_clone" + cloneId);
+              var clone = js("#div_observation_clone0").clone().attr("id", "div_observation_clone" + cloneId);
 
-              // Changer les id et les name des blocs
-              clone.find('div[id]').each(function() {
-                this.id = this.id + cloneId;
+              // Changer les id des blocs div
+              clone.find('div[id]').each(function(index, elem) {
+                js(elem).attr('id', js(elem).attr('id') + cloneId);
+                //this.id = this.id + cloneId;
               });
-              clone.find('input[name][id]').each(function() {
-                this.id = this.id + cloneId;
-                this.name = this.name + '[' + cloneId + ']';
-                /*switch(this.name) {
-                  case 'jform[observation_spaces_identification]' :
-                        this.name = 'jform[observation_spaces_identification' + cloneId +']';
-                        break;
-                }*/
-                //this.name = this.name + '[' + cloneId + ']'; //.replace('jform[ ]', 'jform[ '+ cloneId + ']'); 
+
+              // Changer l'id et le nom des input
+              clone.find('input[id][name]').each(function(index, elem) {
+                var $elem = js(elem);
+                $elem.attr('id', $elem.attr('id') + cloneId);
+                var ename = $elem.attr('name');
+                if (ename) {
+                  $elem.attr('name', ename.replace('[0]','['+cloneId+']'));
+                }
               });
-              clone.find('button[id]').each(function() {
-                this.id = this.id + cloneId;
+
+              // Changer l'id et le nom des textarea
+              clone.find('textarea').each(function(index, elem) {
+                var $elem = js(elem);
+                $elem.attr('id', $elem.attr('id') + cloneId);
+                var ename = $elem.attr('name');
+                if (ename) {
+                  $elem.attr('name', ename.replace('[0]','['+cloneId+']'));
+                }
               });
-              clone.find('fieldset[id]').each(function() {
-                this.id = this.id + cloneId;
+
+              // Changer l'id des boutons
+              clone.find('button[id]').each(function(index, elem) {
+                js(elem).attr('id', js(elem).attr('id') + cloneId);
+                //this.id = this.id + cloneId;
               });
-              clone.find('label[id][for]').each(function() {
-                this.id = this.id + cloneId;
-                this.for = this.for + cloneId;
+
+              // Changer l'id des fieldset
+              clone.find('fieldset[id]').each(function(index, elem) {
+                js(elem).attr('id', js(elem).attr('id') + cloneId);
+                //this.id = this.id + cloneId;
               });
-               clone.find('select[id][name]').each(function() {
-                this.id = this.id + cloneId;
-                this.name = this.name + '[' + cloneId + ']';
+
+              // Changer l'id des labels
+              clone.find('label[id]').each(function(index, elem) {
+                js(elem).attr('id', js(elem).attr('id') + cloneId);
+                //this.id = this.id + cloneId;
+                js(elem).attr('for', js(elem).attr('id'));
+              });
+
+              clone.find('fieldset').each(function(index, elem) {
+                  js(elem).attr('for', js(elem).attr('id') + cloneId);
+              });
+
+              // Changer l'id et le nom des selects
+              clone.find('select[id][name]').each(function(index, elem) {
+                var $elem = js(elem);
+                $elem.attr('id', $elem.attr('id') + cloneId);
+                var ename = $elem.attr('name');
+                if (ename) {
+                  $elem.attr('name', ename.replace('[0]','['+cloneId+']'));
+                }
               });
 
                // Incrémenter les titres des blocs
                clone.find("span[class='block_indices']").each(function() {
                   this.className = this.className + cloneId;
-                  for(var i = 0; i <= cloneId; i++) {
+                  for(var i = 1; i <= cloneId; i++) {
                     this.nodeValue = i;
                   }
                });
 
               // Incrémenter l'id de l'animal
               clone.find("input[type='text']").each(function() {
-                 for(var i = 0; i <= cloneId; i++) {
+                 for(var i = 1; i <= cloneId; i++) {
                   if(this.id == 'jform_id_observation' + i) {
-                       this.value = i;
+                       this.value = i+1;
                   }
                 }
               });
 
               // Affiche ou masque les mesures
               clone.find("div").on('click',function() {
-                for(var i = 0; i <= cloneId; i++) {
+                for(var i = 1; i <= cloneId; i++) {
                   switch (this.id) {
                     case 'div_show_cetace_measurements_field' + i:
                           toggleContainer("cetace_measures" + i);
@@ -348,7 +407,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
 
               // Affiche l'image représentative de l'encoche médiane
               clone.find("button").on('click', function() {
-                for(var i = 0; i <= cloneId; i++) {
+                for(var i = 1; i <= cloneId; i++) {
                   switch (this.id) {
                     case "show_tail_fin_image" + i :
                           toggleContainer("tail_fin_image" + i);
@@ -487,10 +546,10 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                           toggleContainer("jform_observation_dugong_mesures_v_field" + i);
                           break;
                     case 'jform_observation_datetime_death-btn' + i :
-                          clone.clone().appendTo("#new_div_clone").find(".form-calendar").datepicker();
+                          //clone.clone().appendTo("#new_div_clone").find(".form-calendar").datepicker();
                           break;
                     case 'jform_observation_datetime_release-btn' + i :
-                          clone.clone().appendTo("#new_div_clone").find(".form-calendar").datepicker();
+                          //clone.clone().appendTo("#new_div_clone").find(".form-calendar").datepicker();
                           break;
                   } 
                 }
@@ -498,7 +557,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
 
               // Affiche ou pas le block en fonction du choix du user
               clone.find("input[type='radio']").on('click', function() {
-                for(var i = 0; i <= cloneId; i++) {
+                for(var i = 1; i <= cloneId; i++) {
                   switch(this.id) {
                     case 'jform_observation_dead_or_alive0' + i :
                           displayBlock('dead_field' + i, true);
@@ -547,7 +606,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               js('p#rem_field').on('click', function() {
                   js(this).parent('div').parent('div').remove();
                   //alert("Suprression de l'animal " + (cloneId-1) + " réussit");
-                  cloneId = 2;//(cloneId - 1) +1;
+                  cloneId = 1;//(cloneId - 1) +1;
                   //cloneId++;
                   return false;
               });
@@ -577,8 +636,8 @@ function toggleContainer(name) {
 function create_element(element, text, parent) {
   var x = document.createElement(element);
   x.className = "block_indices";
-  /*var t = document.createTextNode(text);
-  x.appendChild(t);*/
+  var t = document.createTextNode(text);
+  x.appendChild(t);
   var x1 = document.getElementById(parent);
   x1.appendChild(x);  
 }
@@ -601,6 +660,16 @@ function change_node_value(element, node) {
     <?php endif; ?>
 
     <form id="form-stranding_admin" action="<?php echo JRoute::_('index.php?option=com_stranding_forms&task=stranding_admin.save'); ?>" method="post" class="form-validate" enctype="multipart/form-data">
+      <!--Show the absolute path-->
+      <div class="row" style="display: none;">
+        <div class="clo-lg-12 col-md-12 col-xs-12">
+          <?php 
+            $path = getcwd();
+            echo "Your Absolute Path is: ";
+            echo $path;
+          ?>
+        </div>
+      </div>
       <!--Contacts-->
       <div class="row">
         <div class="col-lg-12 col-md-12 col-xs-12"><span class="stranding_admin-title_row"><span class="fa fa-user fa-2x"><h4><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW1'); ?></h4></span></span></div>
@@ -747,7 +816,7 @@ function change_node_value(element, node) {
   </div>
 </div>
 <!--New observation clone-->
-<div id="div_observation_clone1">
+<div id="div_observation_clone0">
 <span style="display: none;"><?php echo $this->form->getInput('id_observation'); ?></span>
 <!--Identification-->
 <div class="row" id="div_identification_title">
@@ -1474,12 +1543,10 @@ function change_node_value(element, node) {
 </div>
 <!--Delete animal-->
 <div id="delete_animal">
-  <!--<div class="col-lg-12 col-md-12 col-xs-12">
-    <button type="button" id="delete_observation" class="btn btn-danger"><label><?php //echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_DELETE_FIELDS'); ?></label></button>
-  </div>-->
+ 
+</div>
 </div>
 
-</div>
   <div id="add_animal" class="row" style="display: none;">
   <div class="col-lg-12 col-md-12 col-xs-12">
     <button type="button" id="new_observation" class="btn btn-primary"><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ADD_FIELDS'); ?></label></button>
@@ -1505,10 +1572,10 @@ Ce bloc contiendra les clones
 <?php } ?>
 <!--Captcha
 <div class="row">
-  <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('captcha'); ?></div>
+  <div class="col-lg-12 col-md-12 col-xs-12"><?php //echo $this->form->getLabel('captcha'); ?></div>
   <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="input-group">
-      <?php echo $this->form->getInput('captcha'); ?>
+      <?php //echo $this->form->getInput('captcha'); ?>
     </div>
   </div>
 </div>-->
