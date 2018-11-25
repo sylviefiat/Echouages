@@ -600,16 +600,21 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               js('#add_animal').before(clone);
 
               // Création du lien de suppression
-              js('#delete_animal' + cloneId).html('<p id="rem_field"><a href="#"><span><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_DELETE_FIELDS'); ?> ' + cloneId + '</label></span></a></p>');
+              js('#delete_animal' + cloneId).html('<p id="rem_field"><a href="#"><span><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_DELETE_FIELDS'); ?> ' + (cloneId+1) + '</label></span></a></p>');
               
               // Supprimer le bloc de l'animal
               js('p#rem_field').on('click', function() {
                   js(this).parent('div').parent('div').remove();
                   //alert("Suprression de l'animal " + (cloneId-1) + " réussit");
-                  cloneId = 1;//(cloneId - 1) +1;
+                  document.getElementById('jform_observation_number').value = cloneId-1;
+                  //cloneId = 1;//(cloneId - 1) +1;
                   //cloneId++;
                   return false;
               });
+
+              if(cloneId > document.getElementById('jform_observation_number').value-1) {
+                document.getElementById('jform_observation_number').value = cloneId+1;
+              }
 
               // Incrémente le numéro du clone
               cloneId++;
