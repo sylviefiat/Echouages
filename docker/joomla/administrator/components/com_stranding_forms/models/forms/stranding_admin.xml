@@ -296,7 +296,7 @@
 			max="500"
 			required="true"/>
 
-	<!--Spaces general-->
+	<!--Spaces general
 	 <field name="observation_spaces"
 			 alias="observation_spaces"
 			 label="OBSERVATION_SPACES_LABEL"
@@ -333,7 +333,7 @@
 			 <option value="Baleine à bosse (Megaptera novaeangliae)">SPACES_27</option>
 			 <option value="Dugong ou vache marine (Dugong dugon)">SPACES_28</option>
 			 <option value="Otarie à fourrure de Nouvelle-Zélande (Arctophoca australis forsteri)">SPACES_29</option>
-	</field>
+	</field>-->
 
 	<!--Spaces common name-->
 	 <field name="observation_spaces_common_name"
@@ -416,7 +416,7 @@
 			
 	</field>
 
-	<!--Spaces spaces
+	<!--Spaces spaces-->
 	 <field name="observation_spaces"
 			 alias="observation_spaces"
 			 label="OBSERVATION_SPACES_LABEL"
@@ -454,7 +454,7 @@
 			 <option value="dugon">SPACES_28</option>
 			 <option value="australis forsteri)">SPACES_29</option>
 			
-	</field>-->
+	</field>
 
 
  	<!--Spaces identification-->

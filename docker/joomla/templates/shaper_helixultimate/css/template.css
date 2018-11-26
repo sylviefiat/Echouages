@@ -264,7 +264,7 @@ div.cetaces_dugongs_measurements_title {
     text-align: center;
     font-size: 20px;
 }
-div.cetaces_dugongs_measurements_title, div#stockage_location_field{
+div.cetaces_dugongs_measurements_title, div.stck_loca_field{
   margin-bottom: 15px;
 }
 fieldset {

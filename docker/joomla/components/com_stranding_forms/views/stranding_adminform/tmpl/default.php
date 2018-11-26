@@ -161,6 +161,165 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               break;
       }
     });
+
+    // Liste déroulate des espèces liées
+    js("#jform_observation_spaces_common_name").on('change', function() {
+      var i = this.selectedIndex;
+      if(i == 0) {
+        return;
+      }
+      switch(i) {
+        case 1 : 
+          var txt1 = new Array('SPACES_UNKNOWN');
+          var txt2 = new Array('SPACES_UNKNOWN'); 
+          break;
+
+        case 2 :
+          var txt1 = new Array('SPACES_KIND_1');
+          var txt2 = new Array('SPACES_1'); 
+          break;
+
+        case 3 :
+          var txt1 = new Array('SPACES_KIND_2'); 
+          var txt2 = new Array('SPACES_2'); 
+          break;
+          
+        case 4 :
+          var txt1 = new Array('SPACES_KIND_2');
+          var txt2 = new Array('SPACES_3'); 
+          break;
+          
+        case 5 :
+          var txt1 = new Array('SPACES_KIND_3'); 
+          var txt2 = new Array('SPACES_4'); 
+          break;
+          
+        case 6 :
+          var txt1 = new Array('SPACES_KIND_4');
+          var txt2 = new Array('SPACES_5');
+          break;
+          
+        case 7 :
+          var txt1 = new Array('SPACES_KIND_5');
+          var txt2 = new Array('SPACES_6'); 
+          break;
+          
+        case 8 :
+          var txt1 = new Array('SPACES_KIND_6');
+          var txt2 = new Array('SPACES_7'); 
+          break;
+          
+        case 9 :
+          var txt1 = new Array('SPACES_KIND_7');
+          var txt2 = new Array('SPACES_8'); 
+          break;
+          
+        case 10 :
+          var txt1 = new Array('SPACES_KIND_8');
+          var txt2 = new Array('SPACES_9'); 
+          break;
+          
+        case 11 :
+          var txt1 = new Array('SPACES_KIND_9');
+          var txt2 = new Array('SPACES_10'); 
+          break;
+          
+        case 12 :
+          var txt1 = new Array('SPACES_KIND_10');
+          var txt2 = new Array('SPACES_11'); 
+          break;
+          
+        case 13 :
+          var txt1 = new Array('SPACES_KIND_12');
+          var txt2 = new Array('SPACES_13'); 
+          break;
+          
+        case 14 :
+          var txt1 = new Array('SPACES_KIND_13');
+          var txt2 = new Array('SPACES_14'); 
+          break;
+          
+        case 15 :
+          var txt1 = new Array('SPACES_KIND_13');
+          var txt2 = new Array('SPACES_15'); 
+          break;
+          
+        case 16 :
+          var txt1 = new Array('SPACES_KIND_14');
+          var txt2 = new Array('SPACES_16'); 
+          break;
+          
+        case 17 :
+          var txt1 = new Array('SPACES_KIND_15');
+          var txt2 = new Array('SPACES_17'); 
+          break;
+          
+        case 18 :
+          var txt1 = new Array('SPACES_KIND_15');
+          var txt2 = new Array('SPACES_18'); 
+          break;
+          
+        case 19 :
+          var txt1 = new Array('SPACES_KIND_16');
+          var txt2 = new Array('SPACES_19'); 
+          break;
+          
+        case 20 :
+          var txt1 = new Array('SPACES_KIND_17');
+          var txt2 = new Array('SPACES_20'); 
+          break;
+          
+        case 21 :
+          var txt1 = new Array('SPACES_KIND_17');
+          var txt2 = new Array('SPACES_21'); 
+          break;
+          
+        case 22 :
+          var txt1 = new Array('SPACES_KIND_17');
+          var txt2 = new Array('SPACES_22'); 
+          break;
+          
+        case 23 :
+          var txt1 = new Array('SPACES_KIND_17');
+          var txt2 = new Array('SPACES_23'); 
+          break;
+          
+        case 24 :
+          var txt1 = new Array('SPACES_KIND_17');
+          var txt2 = new Array('SPACES_24'); 
+          break;
+          
+        case 25 :
+          var txt1 = new Array('SPACES_KIND_17');
+          var txt2 = new Array('SPACES_25'); 
+          break;
+          
+        case 26 :
+          var txt1 = new Array('SPACES_KIND_17');
+          var txt2 = new Array('SPACES_26'); 
+          break;
+          
+        case 27 :
+          var txt1 = new Array('SPACES_KIND_18');
+          var txt2 = new Array('SPACES_27'); 
+          break;
+          
+        case 28 :
+          var txt1 = new Array('SPACES_KIND_19');
+          var txt2 = new Array('SPACES_28'); 
+          break;
+          
+        case 29 :
+          var txt1 = new Array('SPACES_KIND_20');
+          var txt2 = new Array('SPACES_29'); 
+          break;
+      }
+      this.selectedIndex = 0;
+      for(var i = 0; i < 10; I++) {
+        js("#jform_observation_spaces_kind").options[i+1].text = text1[i];
+        js("#jform_observation_spaces").options[i+1].text = text2[i];
+      }
+    });
    
     var cloneId = 1; // Incrémenté en fonction du clonage
 
@@ -686,7 +845,6 @@ function change_node_value(element, node) {
         <div class="input-group">
           <span class="input-group-addon exergue"><span class="fa fa-user"></span></span>
           <?php echo $this->form->getInput('observer_name'); ?>
-          <span style="display:none;" ><?php echo $this->form->getInput('id'); ?></span>
         </div>
       </div>
       <div class="col-lg-3 col-md-6 col-xs-12">
@@ -817,11 +975,13 @@ function change_node_value(element, node) {
     <div class="input-group">
       <span class="input-group-addon"><span class="fa fa-tachometer"></span></span>
       <?php echo $this->form->getInput('observation_number'); ?>
+      <span style="display:none;" ><?php echo $this->form->getInput('id'); ?></span>
     </div>
   </div>
 </div>
 <!--New observation clone-->
 <div id="div_observation_clone0">
+<!--<span style="display:none;" ><?php //echo $this->form->getInput('id'); ?></span>-->
 <span style="display: none;"><?php echo $this->form->getInput('id_observation'); ?></span>
 <!--Identification-->
 <div class="row" id="div_identification_title">
@@ -829,7 +989,24 @@ function change_node_value(element, node) {
 </div>
 <div class="row" id="identification">
   <!--Spaces-->
-  <div class="col-lg-6 col-md-6 col-xs-12" name="espece[]">
+  <!--Common name-->
+  <div class="col-lg-6 col-md-6 col-xs-12">
+    <?php echo $this->form->getLabel('observation_spaces_common_name'); ?>
+    <div class="input-group">
+      <span class="input-group-addon"><span class="fa fa-eye"></span></span>
+      <?php echo $this->form->getInput('observation_spaces_common_name'); ?>
+    </div>
+  </div>
+  <!--Kind-->
+  <div class="col-lg-6 col-md-6 col-xs-12">
+    <?php echo $this->form->getLabel('observation_spaces_kind'); ?>
+    <div class="input-group">
+      <span class="input-group-addon"><span class="fa fa-eye"></span></span>
+      <?php echo $this->form->getInput('observation_spaces_kind'); ?>
+    </div>
+  </div>
+   <!--Spaces-->
+  <div class="col-lg-6 col-md-6 col-xs-12" >
     <?php echo $this->form->getLabel('observation_spaces'); ?>
     <div class="input-group">
       <span class="input-group-addon"><span class="fa fa-eye"></span></span>
@@ -837,7 +1014,7 @@ function change_node_value(element, node) {
     </div>
   </div>
   <!--Spaces identification-->
-  <div class="col-lg-6 col-md-6 col-xs-12 sp_id" name="id_espece[]">
+  <div class="col-lg-6 col-md-6 col-xs-12 sp_id">
     <div class="form-group">
       <?php echo $this->form->getLabel('observation_spaces_identification'); ?>
       <div class="col-xs-offset-6 col-xs-12">
@@ -848,7 +1025,7 @@ function change_node_value(element, node) {
     </div>
   </div>
   <!--Color-->
-  <div class="col-lg-6 col-md-6 col-xs-12" name="couleur[]">
+  <div class="col-lg-6 col-md-6 col-xs-12">
     <?php echo $this->form->getLabel('observation_color'); ?>
     <div class="input-group">
       <span class="input-group-addon"><span class="fa fa-adjust"></span><stpan></span>
@@ -856,7 +1033,7 @@ function change_node_value(element, node) {
       </div>
     </div>
     <!--Tail fin-->
-    <div class="col-lg-6 col-md-6 col-xs-12" name="tail[]">
+    <div class="col-lg-6 col-md-6 col-xs-12">
       <div class="form-group">
         <?php echo $this->form->getLabel('observation_caudal'); ?>
         <button id="show_tail_fin_image" type="button" name="Tail_Fin_Btn" class="btn btn-light" value="Tail-Fin"><label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_SEE_TF_IMAGE'); ?></label></button>
@@ -873,7 +1050,7 @@ function change_node_value(element, node) {
     </p>
   </div>
   <!--Beak or furrows-->
-  <div class="col-lg-12 col-md-12 col-xs-12" name="beak_or_furrows[]">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="form-group">
       <?php echo $this->form->getLabel('observation_beak_or_furrows'); ?>
       <div class="col-xs-offset-6 col-xs-12">
@@ -884,7 +1061,7 @@ function change_node_value(element, node) {
     </div>
   </div>
   <!--Other caracteristques-->
-  <div class="col-lg-12 col-md-12 col-xs-12" name="other_crctrstk[]">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <div class="form-group">
       <?php echo $this->form->getLabel('observation_tooth_or_baleen_or_defenses'); ?>
       <div class="col-xs-offset-2 col-xs-10">
@@ -1059,7 +1236,7 @@ function change_node_value(element, node) {
     </div>
   </div>
   <!--Stockage location-->
-  <div id="stockage_location_field" class="col-lg-6 col-md-6 col-xs-12" style="display: none;">
+  <div id="stockage_location_field" class="col-lg-6 col-md-6 col-xs-12 stck_loca_field" style="display: none;">
     <?php echo $this->form->getLabel('observation_location_stock'); ?>
     <div class="input-group">
       <span class="input-group-addon"><span class="fa fa-archive "></span></span>
