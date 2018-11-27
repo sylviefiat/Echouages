@@ -163,8 +163,8 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
     });
 
     // Liste déroulate des espèces liées
-    js("#jform_observation_spaces_common_name").on('change', function() {
-      var i = this.selectedIndex;
+    /*js("#jform_observation_spaces_common_name").on('change', function() {
+      var i = this.name.selectedIndex;
       if(i == 0) {
         return;
       }
@@ -314,12 +314,12 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
           var txt2 = new Array('SPACES_29'); 
           break;
       }
-      this.selectedIndex = 0;
-      for(var i = 0; i < 10; I++) {
-        js("#jform_observation_spaces_kind").options[i+1].text = text1[i];
-        js("#jform_observation_spaces").options[i+1].text = text2[i];
+      this.name.selectedIndex = 0;
+      for(var i = 0; i < 9; i++) {
+        js("#jform_observation_spaces_kind").name.options[i+1].text = text1[i];
+        js("#jform_observation_spaces").name.options[i+1].text = text2[i];
       }
-    });
+    });*/
    
     var cloneId = 1; // Incrémenté en fonction du clonage
 
@@ -518,7 +518,6 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                 //this.id = this.id + cloneId;
                 js(elem).attr('for', js(elem).attr('id'));
               });
-
               clone.find('fieldset').each(function(index, elem) {
                   js(elem).attr('for', js(elem).attr('id') + cloneId);
               });
@@ -980,6 +979,23 @@ function change_node_value(element, node) {
   </div>
 </div>
 <!--New observation clone-->
+
+<!--Spaces kind & Spaces spaces
+  <div class="col-lg-6 col-md-6 col-xs-12">
+    <?php echo $this->form->getLabel('observation_spaces_kind'); ?>
+    <div class="input-group">
+      <span class="input-group-addon"><span class="fa fa-eye"></span></span>
+      <?php echo $this->form->getInput('observation_spaces_kind'); ?>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-xs-12" >
+    <?php echo $this->form->getLabel('observation_spaces'); ?>
+    <div class="input-group">
+      <span class="input-group-addon"><span class="fa fa-eye"></span></span>
+      <?php echo $this->form->getInput('observation_spaces'); ?>
+    </div>
+  </div>-->
+
 <div id="div_observation_clone0">
 <!--<span style="display:none;" ><?php //echo $this->form->getInput('id'); ?></span>-->
 <span style="display: none;"><?php echo $this->form->getInput('id_observation'); ?></span>
@@ -988,29 +1004,12 @@ function change_node_value(element, node) {
   <div class="col-lg-12 col-md-12 col-xs-12" id="title_R3"><span class="stranding_admin-title_row"><span class="fa fa-eye fa-2x"><h4 id="identification_title"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW3');?> </h4></span></span></div>
 </div>
 <div class="row" id="identification">
-  <!--Spaces-->
-  <!--Common name-->
+  <!-- Spaces common name-->
   <div class="col-lg-6 col-md-6 col-xs-12">
     <?php echo $this->form->getLabel('observation_spaces_common_name'); ?>
     <div class="input-group">
       <span class="input-group-addon"><span class="fa fa-eye"></span></span>
       <?php echo $this->form->getInput('observation_spaces_common_name'); ?>
-    </div>
-  </div>
-  <!--Kind-->
-  <div class="col-lg-6 col-md-6 col-xs-12">
-    <?php echo $this->form->getLabel('observation_spaces_kind'); ?>
-    <div class="input-group">
-      <span class="input-group-addon"><span class="fa fa-eye"></span></span>
-      <?php echo $this->form->getInput('observation_spaces_kind'); ?>
-    </div>
-  </div>
-   <!--Spaces-->
-  <div class="col-lg-6 col-md-6 col-xs-12" >
-    <?php echo $this->form->getLabel('observation_spaces'); ?>
-    <div class="input-group">
-      <span class="input-group-addon"><span class="fa fa-eye"></span></span>
-      <?php echo $this->form->getInput('observation_spaces'); ?>
     </div>
   </div>
   <!--Spaces identification-->

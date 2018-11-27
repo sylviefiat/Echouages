@@ -386,20 +386,19 @@
 			 description="OBSERVATION_SPACES_COMMON_NAME_DESC"
 			 hint="OBSERVATION_SPACES_COMMON_NAME"
 			 labelclass="control-label"
-			 type="groupedlist">
+			 trigger="true"
+			 content-type="choices"
+			 type="groupedlist"
+			 target="observation_spaces_kind">
 			 <option value="">SPACES_COMMON_NAME_0</option>
 			 <option value="inconnu">SPACES_UNKNOWN</option>
-			 <group label="SPACES_COMMON_NAME_SPERM_WHALE">
+			 <group label="SPACES_COMMON_NAME_CETACES_ODONTOCETES">
 				 <option value="Cachalot">SPACES_COMMON_NAME_1</option>
 				 <option value="Cachalot pygmée">SPACES_COMMON_NAME_2</option>
 				 <option value="Cachalot nain">SPACES_COMMON_NAME_3</option>
-			 </group>
-			 <group label="SPACES_COMMON_NAME_BEAKED_WHALE">
 				 <option value="Baleine à bec de Blainville">SPACES_COMMON_NAME_4</option>
 				 <option value="Baleine à bec de longman">SPACES_COMMON_NAME_5</option>
 				 <option value="Baleine à bec de Cuvier">SPACES_COMMON_NAME_6</option>
-			 </group>
-			 <group label="SPACES_COMMON_NAME_DOLPHIN">
 			 	 <option value="Orque">SPACES_COMMON_NAME_7</option>
 				 <option value="Fausse orque">SPACES_COMMON_NAME_8</option>
 				 <option value="Globicéphale tropical">SPACES_COMMON_NAME_9</option>
@@ -414,7 +413,7 @@
 				 <option value="Dauphin tacheté pantropical">SPACES_COMMON_NAME_18</option>
 				 <option value="Dauphin de Fraser">SPACES_COMMON_NAME_19</option>
 			 </group>
-			 <group label="SPACES_COMMON_NAME_BALEEN_WHALE">
+			 <group label="SPACES_COMMON_NAME_CETACE_MYSTICETES">
 				 <option value="Baleine bleue pygmée">SPACES_COMMON_NAME_20</option>
 				 <option value="Rorqual commun">SPACES_COMMON_NAME_21</option>
 				 <option value="Rorqual boréal ou rorqual de Rudolphi">SPACES_COMMON_NAME_22</option>
@@ -423,9 +422,13 @@
 				 <option value="Petit rorqual antarctique">SPACES_COMMON_NAME_25</option>
 				 <option value="Petit rorqual pygmée">SPACES_COMMON_NAME_26</option>
 				 <option value="Baleine à bosse">SPACES_COMMON_NAME_27</option>
-			 </group>
-			 <option value="Dugong ou vache marine">SPACES_COMMON_NAME_28</option>
-			 <option value="Otarie à fourrure de Nouvelle-Zélande">SPACES_COMMON_NAME_29</option>		
+			</group>
+			<group label="SPACES_COMMON_NAME_DUGONG">
+			 	 <option value="Dugong ou vache marine">SPACES_COMMON_NAME_28</option>
+			</group>
+			<group label="SPACES_COMMON_NAME_SEA_LION">
+				<option value="Otarie à fourrure de Nouvelle-Zélande">SPACES_COMMON_NAME_29</option>
+			</group>	
 	</field>
 
 	<!--Spaces kind-->
@@ -439,7 +442,7 @@
 			 type="list">
 			 <option value="">SPACES_KIND_0</option>
 			 <option value="inconnu">SPACES_UNKNOWN</option>
-			 <option value="Physeter">SPACES_KIND_1</option>
+			 <option value="Physeter" references="Cachalot">SPACES_KIND_1</option>
 			 <option value="Kogia">SPACES_KIND_2</option>
 			 <option value="Mesoplodon">SPACES_KIND_3</option>
 			 <option value="Indopacetus">SPACES_KIND_4</option>
@@ -459,7 +462,6 @@
 			 <option value="Megaptera">SPACES_KIND_18</option>
 			 <option value="Dugong">SPACES_KIND_19</option>
 			 <option value="Arctophoca">SPACES_KIND_20</option>
-			
 	</field>
 
 	<!--Spaces spaces-->
@@ -501,8 +503,7 @@
 			 <option value="acutorostrata subspecies">SPACES_26</option>
 			 <option value="novaeangliae">SPACES_27</option>
 			 <option value="dugon">SPACES_28</option>
-			 <option value="australis forsteri)">SPACES_29</option>
-			
+			 <option value="australis forsteri">SPACES_29</option>
 	</field>
 
 	<!--Spaces identification-->
