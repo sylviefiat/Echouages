@@ -68,6 +68,18 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
   js = jQuery.noConflict();
   js(document).ready(function() {
 
+    // Conversion des latitudes et longitudes en format degré minute décimal
+    js("input[type='text']").on('change', function() {
+      switch(this.id) {
+        case 'jform_observation_latitude' :
+              this.value = convert_Lat_DMD(this.value);
+              break;
+        case 'jform_observation_longitude' :
+              this.value = convert_Long_DMD(this.value);
+              break;
+      }
+    });
+
     // Affiche ou pas le block en fonction du choix du user
     js("input[type='radio']").on('click', function() {
       switch(this.id) {
@@ -160,7 +172,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               toggleContainer("dugong_measures");
               break;
       }
-    });
+    }); 
 
     js("#jform_observation_spaces_common_name").on('change', function(index, elem) {
         var option = js(elem).find('option');
@@ -829,6 +841,28 @@ function change_node_value(element, node) {
   for(var i = 0; i < e.length; i++) {
     e[i].nodeValue = node;
   }
+}
+
+// Fonction de conversion latitude en degré minute décimal
+function convert_Lat_DMD(lat) {
+  var lat_dir, lat_deg, lat_min;
+  lat_dir = lat >= 0 ? 'N' : 'S';
+  // Garde la partie entière
+  lat_deg = ( abs( ( int ) lat ) );
+  lat_min = ( abs( ( abs( lat ) - lat_deg ) * 60 ) );
+  //    176 code ascci du degré. Ne garde que 3 décimales
+  return lat_deg +  '&deg;' + number_format(lat_min, 3) + '&apos;' + lat_dir;
+}
+
+// Fonction de conversion longitude en degré minute décimal
+function convert_Long_DMD(long){
+  var long_dir, long_deg, long_min;
+  long_dir = long >= 0 ? 'E' : 'W';
+  // Garde la partie entière
+  long_deg = ( abs( ( int ) long ) );
+  long_min = ( abs( ( abs( long ) - long_deg ) * 60 ) );
+  //    176 code ascci du degré. Ne garde que 3 décimales
+  return long_deg + '&deg;' + number_format(long_min, 3) +  '&apos;' + long_dir;
 }
 </script>
 
