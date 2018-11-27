@@ -162,6 +162,24 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
       }
     });
 
+    js("#jform_observation_spaces_common_name").on('change', function(index, elem) {
+        var option = js(elem).find('option');
+        switch(option.value) {
+          case '' || 'inconnu':
+                break;
+
+          case 'Cachalot' || 'Cachalot pygmée' || 'Cachalot nain' || 'Baleine à bec de Blainville' || 'Baleine à bec de longman' || 'Baleine à bec de Cuvier' || 'Orque' || 'Fausse orque' || 'Globicéphale tropical' || 'Dauphin de Risso' || 'Orque Pygmée' || 'Péponocéphale ou dauphin d’Electre' || 'Sténo ou dauphin à bec étroit' || 'Grand dauphin commun' || 'Grand dauphin de l’Indo-Pacifique' || 'Dauphin commun' || 'Dauphin à long bec' || 'Dauphin tacheté pantropical' || 'Dauphin de Fraser' || 'Baleine bleue pygmée' || 'Rorqual commun' || 'Rorqual boréal ou rorqual de Rudolphi' || 'Rorqual tropical ou rorqual de Bryde' || 'Rorqual de Omura' || 'Petit rorqual antarctique' || 'Petit rorqual pygmée' || 'Baleine à bosse' :
+                displayBlock('cetace_measures', true);
+                displayBlock('dugong_measures', false);
+                break;
+
+          case 'Dugong ou vache marine' || 'Otarie à fourrure de Nouvelle-Zélande' :
+                displayBlock('cetace_measures', false);
+                displayBlock('dugong_measures', true);
+                break;
+        }
+    });
+
     // Liste déroulate des espèces liées
     /*js("#jform_observation_spaces_common_name").on('change', function() {
       var i = this.name.selectedIndex;
@@ -979,23 +997,6 @@ function change_node_value(element, node) {
   </div>
 </div>
 <!--New observation clone-->
-
-<!--Spaces kind & Spaces spaces
-  <div class="col-lg-6 col-md-6 col-xs-12">
-    <?php echo $this->form->getLabel('observation_spaces_kind'); ?>
-    <div class="input-group">
-      <span class="input-group-addon"><span class="fa fa-eye"></span></span>
-      <?php echo $this->form->getInput('observation_spaces_kind'); ?>
-    </div>
-  </div>
-  <div class="col-lg-6 col-md-6 col-xs-12" >
-    <?php echo $this->form->getLabel('observation_spaces'); ?>
-    <div class="input-group">
-      <span class="input-group-addon"><span class="fa fa-eye"></span></span>
-      <?php echo $this->form->getInput('observation_spaces'); ?>
-    </div>
-  </div>-->
-
 <div id="div_observation_clone0">
 <!--<span style="display:none;" ><?php //echo $this->form->getInput('id'); ?></span>-->
 <span style="display: none;"><?php echo $this->form->getInput('id_observation'); ?></span>
@@ -1023,6 +1024,21 @@ function change_node_value(element, node) {
       </div>
     </div>
   </div>
+  <!--Spaces kind & Spaces spaces
+  <div class="col-lg-6 col-md-6 col-xs-12">
+    <?php echo $this->form->getLabel('observation_spaces_kind'); ?>
+    <div class="input-group">
+      <span class="input-group-addon"><span class="fa fa-eye"></span></span>
+      <?php echo $this->form->getInput('observation_spaces_kind'); ?>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-xs-12" >
+    <?php echo $this->form->getLabel('observation_spaces'); ?>
+    <div class="input-group">
+      <span class="input-group-addon"><span class="fa fa-eye"></span></span>
+      <?php echo $this->form->getInput('observation_spaces'); ?>
+    </div>
+  </div>-->
   <!--Color-->
   <div class="col-lg-6 col-md-6 col-xs-12">
     <?php echo $this->form->getLabel('observation_color'); ?>
