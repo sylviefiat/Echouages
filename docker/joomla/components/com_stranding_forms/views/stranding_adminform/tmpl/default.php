@@ -189,7 +189,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                 displayBlock('cetace_measures', false);
                 displayBlock('dugong_measures', true);
                 break;
-        }
+        }   
     });
 
     // Liste déroulate des espèces liées
