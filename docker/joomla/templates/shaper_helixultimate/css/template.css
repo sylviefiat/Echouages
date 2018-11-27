@@ -4,8 +4,6 @@
  * @copyright Copyright (c) 2010 - 2018 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
-
-
  /* DEBUT DE MON CODE*/
 #form-stranding_admin{
   /*content: " ";*/
@@ -303,6 +301,9 @@ ul {
 
 
 
+
+
+ 
 /*body {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -344,6 +345,9 @@ a {
 }
 a, a:hover, a:focus, a:active {
   text-decoration: none;
+}
+label {
+  font-weight: normal;
 }
 legend {
   padding-bottom: 10px;

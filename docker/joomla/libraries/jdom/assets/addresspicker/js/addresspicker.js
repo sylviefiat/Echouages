@@ -132,6 +132,7 @@ if(!bg){
                 $lng = $(".longitude");
                 if($lat != null && $lng != null){
                     that.geocodeLookup($lat.val()+","+$lng.val(), false, 'latLng', true);
+                    //that.geocodeLookup( that.convertDMS($lat.val(), $lng.val() ) , false, 'latLng', true);
                 } else {
                     that.geocodeLookup(that.$element.val(), false, '', true);
                 }
@@ -189,12 +190,14 @@ if(!bg){
                     return val.toFixed(6);
                 });
               that.geocodeLookup(coord[1]+","+coord[0], false, 'latLng', true);
+              //that.geocodeLookup(that.convertDMS( coord[1], coord[0] ), false, 'latLng', true);
             });
 
             if(that.exist){
                 var $lat = $(".latitude");
                 var $lng = $(".longitude");
                 if($lat != null && $lng != null){
+                    //var coord  = that.convertDMS($lat, $lng);
                     var coord = ol.proj.fromLonLat([Number($lng.val()),Number($lat.val())]).map(value => {
                         return value;
                     });
@@ -261,7 +264,22 @@ if(!bg){
                     that.updater(json,query);
                 }
             })
-        }       
+        },
+
+        convertDMS : function ( lat , lng ) {
+            var convertLat = Math.abs(lat);
+            var latDeg = Math.floor(convertLat);
+            var latMin = (Math.floor(convertLat - latDeg) * 60);
+            var latCardinal = ((lat > 0) ? "N" : "S");
+
+            var convertLng = Math.abs(lng);
+            var lngDeg = Math.floor(convertLng);
+            var lngMin = (Math.floor(convertLng - lngDeg) * 60);
+            var lngcardinal = ((lng > 0) ? "E" : "W");
+
+            return latDeg + latCardinal + latMin + "," + lngDeg + lngcardinal + lngMin;
+        }
+
     };
 
     var main = function (method) {

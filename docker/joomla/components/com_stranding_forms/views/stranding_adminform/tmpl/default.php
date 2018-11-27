@@ -69,7 +69,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
   js(document).ready(function() {
 
     // Conversion des latitudes et longitudes en format degré minute décimal
-    js("input[type='text']").on('change', function() {
+    /*js("input[type='text']").on('change', function() {
       switch(this.id) {
         case 'jform_observation_latitude' :
               this.value = convert_Lat_DMD(this.value);
@@ -78,6 +78,14 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               this.value = convert_Long_DMD(this.value);
               break;
       }
+    });*/
+
+    js('#jform_observation_latitude').on('change', function() {
+      this.value = convert_Lat_DMD(this.value);
+    });
+
+     js('#jform_observation_longitude').on('change', function() {
+      this.value = convert_Long_DMD(this.value);
     });
 
     // Affiche ou pas le block en fonction du choix du user
@@ -848,10 +856,10 @@ function convert_Lat_DMD(lat) {
   var lat_dir, lat_deg, lat_min;
   lat_dir = lat >= 0 ? 'N' : 'S';
   // Garde la partie entière
-  lat_deg = ( abs( ( int ) lat ) );
-  lat_min = ( abs( ( abs( lat ) - lat_deg ) * 60 ) );
+  lat_deg = ( Math.abs( parseInt( lat ) ) );
+  lat_min = ( Math.abs( ( Math.abs( lat ) - lat_deg ) * 60 ) );
   //    176 code ascci du degré. Ne garde que 3 décimales
-  return lat_deg +  '&deg;' + number_format(lat_min, 3) + '&apos;' + lat_dir;
+  return lat_deg +  '&deg;' + lat_min.toFixed(3) + '&apos;' + lat_dir;
 }
 
 // Fonction de conversion longitude en degré minute décimal
@@ -859,10 +867,10 @@ function convert_Long_DMD(long){
   var long_dir, long_deg, long_min;
   long_dir = long >= 0 ? 'E' : 'W';
   // Garde la partie entière
-  long_deg = ( abs( ( int ) long ) );
-  long_min = ( abs( ( abs( long ) - long_deg ) * 60 ) );
+  long_deg = ( Math.abs( parseInt( long ) ) );
+  long_min = ( Math.abs( ( Math.abs( long ) - long_deg ) * 60 ) );
   //    176 code ascci du degré. Ne garde que 3 décimales
-  return long_deg + '&deg;' + number_format(long_min, 3) +  '&apos;' + long_dir;
+  return long_deg + '&deg;' + long_min.toFixed(3) +  '&apos;' + long_dir;
 }
 </script>
 
