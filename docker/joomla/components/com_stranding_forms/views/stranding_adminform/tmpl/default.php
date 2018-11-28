@@ -69,24 +69,34 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
   js(document).ready(function() {
 
     // Conversion des latitudes et longitudes en format degré minute décimal
-    /*js("input[type='text']").on('change', function() {
+    js("input[type='text']").on('change', function() {
+      var lat = document.getElementById('jform_observation_latitude').innerText;
+      var lng = document.getElementById('jform_observation_longitude').innerText;
+
+      var lat_dmd = document.getElementById('jform_observation_latitude_dmd').value;
+      var lng_dmd = document.getElementById('jform_observation_longitude_dmd').value;
+
       switch(this.id) {
         case 'jform_observation_latitude' :
-              this.value = convert_Lat_DMD(this.value);
+              if( !isNaN( parseFloat(lat) ) ) {
+                lat_dmd = convert_Lat_DMD( parseFloat(lat) ); 
+              }
               break;
+
         case 'jform_observation_longitude' :
-              this.value = convert_Long_DMD(this.value);
+              if(!isNaN( parseFloat(lng) )) {
+                lng_dmd = convert_Long_DMD( parseFloat(lng) );
+              }
               break;
       }
+    });
+
+    /*js('#jform_observation_country').on('change', function() {
+      var lat = document.getElementById('jform_observation_latitude').value;
+      var lng = document.getElementById('jform_observation_longitude').value;
+      lat = convert_Lat_DMD(lat);
+      lng = convert_Long_DMD(lng);
     });*/
-
-    js('#jform_observation_latitude').on('change', function() {
-      this.value = convert_Lat_DMD(this.value);
-    });
-
-     js('#jform_observation_longitude').on('change', function() {
-      this.value = convert_Long_DMD(this.value);
-    });
 
     // Affiche ou pas le block en fonction du choix du user
     js("input[type='radio']").on('click', function() {
@@ -995,10 +1005,16 @@ function convert_Long_DMD(long){
       <?php echo $this->form->getInput('observation_region'); ?>
     </div>
   </div>
-  <div class="col-md-6 col-md-6 col-xs-12">
+  <div id="lat" class="col-md-6 col-md-6 col-xs-12">
     <div class="input-group">
       <span class="input-group-addon"></span>
       <?php echo $this->form->getInput('observation_latitude'); ?>
+    </div>
+  </div>
+  <div id="lat_dmd" class="col-md-6 col-md-6 col-xs-12">
+    <div class="input-group">
+      <span class="input-group-addon"></span>
+      <?php echo $this->form->getInput('observation_latitude_dmd'); ?>
     </div>
   </div>
 </div>
@@ -1009,10 +1025,16 @@ function convert_Long_DMD(long){
     <?php echo $this->form->getInput('observation_country'); ?>
   </div>
 </div>
-<div class="col-md-6 col-md-6 col-xs-12">
+<div id="lng" class="col-md-6 col-md-6 col-xs-12">
   <div class="input-group">
     <span class="input-group-addon"></span>
     <?php echo $this->form->getInput('observation_longitude'); ?>
+  </div>
+</div>
+<div id="lng_dmd" class="col-md-6 col-md-6 col-xs-12">
+  <div class="input-group">
+    <span class="input-group-addon"></span>
+    <?php echo $this->form->getInput('observation_longitude_dmd'); ?>
   </div>
 </div>
 </div>

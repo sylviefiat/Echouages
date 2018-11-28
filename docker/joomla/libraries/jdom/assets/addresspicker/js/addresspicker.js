@@ -189,8 +189,9 @@ if(!bg){
                 var coord = ol.proj.toLonLat(e.coordinate).map(function(val) {
                     return val.toFixed(6);
                 });
+
               that.geocodeLookup(coord[1]+","+coord[0], false, 'latLng', true);
-              //that.geocodeLookup(that.convertDMS( coord[1], coord[0] ), false, 'latLng', true);
+              //that.geocodeLookup(that.convertLatDMS( coord[1] ) +","+ that.convertLngDMS( coord[0] ), false, 'latLng', true);
             });
 
             if(that.exist){
@@ -265,19 +266,21 @@ if(!bg){
                 }
             })
         },
-
-        convertDMS : function ( lat , lng ) {
-            var convertLat = Math.abs(lat);
+        convertLatDMS : function ( lat ) {
+            var convertLat = Math.abs( lat );
             var latDeg = Math.floor(convertLat);
             var latMin = (Math.floor(convertLat - latDeg) * 60);
             var latCardinal = ((lat > 0) ? "N" : "S");
 
-            var convertLng = Math.abs(lng);
+            return latDeg + latCardinal + latMin ;
+        },
+        convertLngDMS : function ( lng ) {
+            var convertLng = Math.abs( lng );
             var lngDeg = Math.floor(convertLng);
             var lngMin = (Math.floor(convertLng - lngDeg) * 60);
             var lngcardinal = ((lng > 0) ? "E" : "W");
 
-            return latDeg + latCardinal + latMin + "," + lngDeg + lngcardinal + lngMin;
+            return lngDeg + lngcardinal + lngMin;
         }
 
     };

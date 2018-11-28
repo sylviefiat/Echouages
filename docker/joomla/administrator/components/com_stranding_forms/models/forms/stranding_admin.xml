@@ -265,6 +265,13 @@
 			filter="FLOAT"
 			class="latitude"
 			type="cktext"/>
+	<field name="observation_latitude_dmd"
+			alias="latitude_dmd"
+			label="OBSERVATION_LATITUDE_DMD"
+			description="OBSERVATION_LATITUDE_DMD_DESC"
+			filter="FLOAT"
+			class="latitude_dmd form-control"
+			type="text"/>
 	<field 	name="observation_longitude"
 			alias="longitude"
 			label="OBSERVATION_LONGITUDE"
@@ -272,6 +279,13 @@
 			filter="FLOAT"
 			class="longitude"
 			type="cktext"/>
+	<field name="observation_longitude_dmd"
+			alias="longitude_dmd"
+			label="OBSERVATION_LONGITUDE_DMD"
+			description="OBSERVATION_LONGITUDE_DMD_DESC"
+			filter="FLOAT"
+			class="longitude_dmd form-control"
+			type="text"/>
 
 	<!--Stranding type-->
 	<field 	name="observation_stranding_type"
