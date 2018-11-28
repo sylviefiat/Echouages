@@ -4,311 +4,11 @@
  * @copyright Copyright (c) 2010 - 2018 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
- /* DEBUT DE MON CODE*/
-#form-stranding_admin{
-  /*content: " ";*/
-  /*display: table;*/
-}
-#identification {
-  content: " ";
-  padding: 10px;
-}
-html {
-  display: block;
-  font-family:sans-serif;
-  -ms-text-size-adjust:100%;
-  -webkit-text-size-adjust:100%
-}
 body {
-    margin:0;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #333333;
-    background-color: #ffffff;
-    display: block;
-    padding-top: 80px;
-}
-.form-control {
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555555;
-    background-color: #ffffff;
-    background-image: none;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-}
-.input-group-addon {
-    padding: 6px 12px;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1;
-    color: #555555;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    vertical-align: middle;
-}
-.stranding_admin-title_row {
-  width: 1%;
-  white-space: nowrap;
-  vertical-align: middle;
-  position: relative;
-  display: table;
-  border-collapse: separate;
-  display: table-cell;
-  padding: 6px 12px;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1;
-  color: #555555;
-  text-align: center;
-  background-color: #eeeeee;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  vertical-align: middle;
-}
-.input-group-addon, .input-group-btn {
-    white-space: nowrap;
-    vertical-align: middle;
-}
-.input-group-addon, .input-group-btn, .input-group .form-control {
-    display: table-cell;
-}
-.included {
-  display: table;
-  width: 100%;
-  margin-bottom: 0;
-  border-radius-left: 0;
-}
-.input-group {
-    position: relative;
-    border-right: 0;
-    border-collapse: separate;
-}
-.btn-group {
-    width: 100%;
-}
-.btn-group, .btn-group-vertical {
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-}
-.row {
-  margin-bottom: 10px;
-  margin-left: -15px;
-  margin-right: -15px;
-}
-h1 {
-    display: block;
-    font-size: 2em;
-    margin-block-start: 0.67em;
-    margin-block-end: 0.67em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
-}
-p {
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-}
-label, .nav-pills li {
-    display: inline !important;
-}
-label {
-    display: inline-block;
-    max-width: 100%;
-    margin-bottom: 5px;
-    font-weight: bold;
-    cursor: default;
-    margin-top: 10px;
-}
-label.invalid {
-    color: #ff0000;
-}
-.invalid {
-    border-color: #ff0000;
-}
-div {
-    display: block;
-}
-#form-cot_admin .row {
-    margin-bottom: 10px;
-}
-.col-xs-12 {
-    width: 100%;  
-}
-
-textarea.form-control {
-    height: auto;
-}
-.fa {
-  display:inline-block;
-  position: relative;
-}
-.fa-comment, .fa-location-arrow{
-  margin-top: 15px;
-}
-.fa-clock-o {
-  margin-top: 5px;
-}
-input[type="radio"] {
-    background-color: transparent;
-    border: none;
-    margin: 10px;
-}
-.radio, .checkbox {
-    position: relative;
-    display: block;
-    margin-right: 10px;
-    margin-left: -10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-.radio label, .checkbox label {
-    min-height: 10px;
-    padding-left: 10px;
-    margin-bottom: 0;
-    font-weight: normal;
-    cursor: pointer;
-}
-.btn {
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: normal;
-    text-align: center;
-    vertical-align: middle;
-    touch-action: manipulation;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    border-radius: 4px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-#form-stranding_admin a.btn{
-    position: absolute;
-    margin-top: -10%;
-    z-index: 10000;
-    height: 100%;
-    width: 100%;
-    border-radius: 0;
-    display: block;
-    color: transparent;
-    -webkit-appearance: none;
-}
-#jform_observation_localisation {
-  width: 100%;
-  height: 100%;
-}
-.info-mesurements, .fa-info-circle {
-  font-size: 20px;
-}
-.info-mesurements {
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-}
-.important_mesures {
-  background-color: rgb(246, 142, 118);
-  border:red;
-}
-.input-group-addon:first-child {
-    border-right: 0;
-}
-.input-group .form-control:first-child, .input-group-addon:first-child, 
-.input-group-btn:first-child > .btn, .input-group-btn:first-child > 
-.btn-group > .btn, .input-group-btn:first-child > .dropdown-toggle, 
-.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle), 
-.input-group-btn:last-child > .btn-group:not(:last-child) > .btn {
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-}
-.com_stranding_forms_localisation .form-control {
-    float: left;
-}
-.com_stranding_forms_date {
-  border-bottom-right-radius: 0;
-  margin-right: -20px; 
-}
-fieldset {
-    display: block;
-    margin-inline-start: 2px;
-    margin-inline-end: 2px;
-    padding-block-start: 0.35em;
-    padding-inline-start: 0.75em;
-    padding-inline-end: 0.75em;
-    padding-block-end: 0.625em;
-}
-div.cetaces_dugongs_measurements_title {
-    background-color: #ddd;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    margin-left: initial;
-    margin-right: initial;
-    text-align: center;
-    font-size: 20px;
-}
-div.cetaces_dugongs_measurements_title, div.stck_loca_field{
-  margin-bottom: 15px;
-}
-fieldset {
-    padding: 0;
-    margin: 0;
-    border: 0;
-    min-width: 0;
-}
-ul, ol {
-    margin-top: 0;
-    margin-bottom: 10px;
-    margin-left: -10px;
-    display: inline-block;
-}
-ul {
-  text-decoration-color: transparent;
-}
-.jform_tooth_baleen .col-lg-12{
-  padding: 10px;
-}
-.animal_measures_field button {
-  margin-bottom: 10px; 
-  margin-top: 10px;
-}
-.animal_measures_field div {
-  margin-top: 0; 
-}
-#rem_field label {
-  color: red;
-}
- /* FIN DE MON CODE*/
-
-
-
-
-
- 
-/*body {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}*/
+}
 body.helix-ultimate-preloader {
   overflow: hidden;
 }
@@ -1833,3 +1533,301 @@ body.ltr .offcanvas-menu .offcanvas-inner .sp-module ul > li ul {
     transform: rotate(360deg);
   }
 }
+
+
+
+ /* DEBUT DE MON CODE*/
+
+#form-stranding_admin{
+  /*content: " ";*/
+  /*display: table;*/
+}
+#identification {
+  content: " ";
+  padding: 10px;
+}
+html {
+  display: block;
+  font-family:sans-serif;
+  -ms-text-size-adjust:100%;
+  -webkit-text-size-adjust:100%
+}
+body {
+    margin:0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333333;
+    background-color: #ffffff;
+    display: block;
+    padding-top: 80px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555555;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.input-group-addon {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    color: #555555;
+    text-align: center;
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+.stranding_admin-title_row {
+  width: 1%;
+  white-space: nowrap;
+  vertical-align: middle;
+  position: relative;
+  display: table;
+  border-collapse: separate;
+  display: table-cell;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  color: #555555;
+  text-align: center;
+  background-color: #eeeeee;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+.input-group-addon, .input-group-btn {
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.input-group-addon, .input-group-btn, .input-group .form-control {
+    display: table-cell;
+}
+.included {
+  display: table;
+  width: 100%;
+  margin-bottom: 0;
+  border-radius-left: 0;
+}
+.input-group {
+    position: relative;
+    border-right: 0;
+    border-collapse: separate;
+}
+.btn-group {
+    width: 100%;
+}
+.btn-group, .btn-group-vertical {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+.row {
+  margin-bottom: 10px;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+label, .nav-pills li {
+    display: inline !important;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    cursor: default;
+    margin-top: 10px;
+}
+label.invalid {
+    color: #ff0000;
+}
+.invalid {
+    border-color: #ff0000;
+}
+div {
+    display: block;
+}
+#form-cot_admin .row {
+    margin-bottom: 10px;
+}
+.col-xs-12 {
+    width: 100%;  
+}
+
+textarea.form-control {
+    height: auto;
+}
+.fa {
+  display:inline-block;
+  position: relative;
+}
+.fa-comment, .fa-location-arrow{
+  margin-top: 15px;
+}
+.fa-clock-o {
+  margin-top: 5px;
+}
+input[type="radio"] {
+    background-color: transparent;
+    border: none;
+    margin: 10px;
+}
+.radio, .checkbox {
+    position: relative;
+    display: block;
+    margin-right: 10px;
+    margin-left: -10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.radio label, .checkbox label {
+    min-height: 10px;
+    padding-left: 10px;
+    margin-bottom: 0;
+    font-weight: normal;
+    cursor: pointer;
+}
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#form-stranding_admin a.btn{
+    position: absolute;
+    margin-top: -10%;
+    z-index: 10000;
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+    display: block;
+    color: transparent;
+    -webkit-appearance: none;
+}
+#jform_observation_localisation {
+  width: 100%;
+  height: 100%;
+}
+.info-mesurements, .fa-info-circle {
+  font-size: 20px;
+}
+.info-mesurements {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.important_mesures {
+  background-color: rgb(246, 142, 118);
+  border:red;
+}
+.input-group-addon:first-child {
+    border-right: 0;
+}
+.input-group .form-control:first-child, .input-group-addon:first-child, 
+.input-group-btn:first-child > .btn, .input-group-btn:first-child > 
+.btn-group > .btn, .input-group-btn:first-child > .dropdown-toggle, 
+.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle), 
+.input-group-btn:last-child > .btn-group:not(:last-child) > .btn {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+.com_stranding_forms_localisation .form-control {
+    float: left;
+}
+.com_stranding_forms_date {
+  border-bottom-right-radius: 0;
+  margin-right: -20px; 
+}
+fieldset {
+    display: block;
+    margin-inline-start: 2px;
+    margin-inline-end: 2px;
+    padding-block-start: 0.35em;
+    padding-inline-start: 0.75em;
+    padding-inline-end: 0.75em;
+    padding-block-end: 0.625em;
+}
+div.cetaces_dugongs_measurements_title {
+    background-color: #ddd;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-left: initial;
+    margin-right: initial;
+    text-align: center;
+    font-size: 20px;
+}
+div.cetaces_dugongs_measurements_title, div.stck_loca_field{
+  margin-bottom: 15px;
+}
+fieldset {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    min-width: 0;
+}
+ul, ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+    margin-left: -10px;
+    display: inline-block;
+}
+ul {
+  text-decoration-color: transparent;
+}
+.jform_tooth_baleen .col-lg-12{
+  padding: 10px;
+}
+.animal_measures_field button {
+  margin-bottom: 10px; 
+  margin-top: 10px;
+}
+.animal_measures_field div {
+  margin-top: 0; 
+}
+#rem_field label {
+  color: red;
+}
+ /* FIN DE MON CODE*/

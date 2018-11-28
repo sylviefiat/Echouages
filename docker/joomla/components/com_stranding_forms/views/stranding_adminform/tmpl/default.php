@@ -54,8 +54,8 @@ fieldset.radio label{
     // Attach handlers for all browsers
     script.onload = script.onreadystatechange = function() {
       if (!done && (!this.readyState
-        || this.readyState == 'loaded'
-        || this.readyState == 'complete')) {
+        , this.readyState == 'loaded'
+        , this.readyState == 'complete')) {
         done = true;
       success();
       script.onload = script.onreadystatechange = null;
@@ -69,9 +69,9 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
   js(document).ready(function() {
 
     // Conversion des latitudes et longitudes en format degré minute décimal
-    js("input[type='text']").on('change', function() {
-      var lat = document.getElementById('jform_observation_latitude').innerText;
-      var lng = document.getElementById('jform_observation_longitude').innerText;
+    /*js("input[type='text']").on('change', function() {
+      var lat = document.getElementById('jform_observation_latitude').value;
+      var lng = document.getElementById('jform_observation_longitude').value;
 
       var lat_dmd = document.getElementById('jform_observation_latitude_dmd').value;
       var lng_dmd = document.getElementById('jform_observation_longitude_dmd').value;
@@ -89,14 +89,28 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               }
               break;
       }
+    });*/
+
+    js('#jform_observation_latitude').on('change',function() {
+
+      //var lat = document.getElementById('jform_observation_latitude').value;
+      //var lat_dmd = document.getElementById('jform_observation_latitude_dmd').value;
+
+      //var lat_dmd = js('#jform_observation_latitude_dmd').value;
+
+      //lat_dmd = convert_Lat_DMD(lat);
+
+      //document.getElementById('jform_observation_latitude_dmd').value = this.value;
+
     });
 
-    /*js('#jform_observation_country').on('change', function() {
-      var lat = document.getElementById('jform_observation_latitude').value;
+    js('#jform_observation_longitude').on('change', function() {
+
       var lng = document.getElementById('jform_observation_longitude').value;
-      lat = convert_Lat_DMD(lat);
-      lng = convert_Long_DMD(lng);
-    });*/
+      var lng_dmd = document.getElementById('jform_observation_longitude_dmd').value;
+
+      lng_dmd = convert_Long_DMD(lng);
+    });
 
     // Affiche ou pas le block en fonction du choix du user
     js("input[type='radio']").on('click', function() {
@@ -192,22 +206,43 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
       }
     }); 
 
-    js("#jform_observation_spaces_common_name").on('change', function(index, elem) {
-        var option = js(elem).find('option');
-        switch(option.value) {
-          case '' || 'inconnu':
-                break;
+    js("#jform_observation_spaces_common_name").on('change', function() {
+        var unknow = ['','inconnu'];
 
-          case 'Cachalot' || 'Cachalot pygmée' || 'Cachalot nain' || 'Baleine à bec de Blainville' || 'Baleine à bec de longman' || 'Baleine à bec de Cuvier' || 'Orque' || 'Fausse orque' || 'Globicéphale tropical' || 'Dauphin de Risso' || 'Orque Pygmée' || 'Péponocéphale ou dauphin d’Electre' || 'Sténo ou dauphin à bec étroit' || 'Grand dauphin commun' || 'Grand dauphin de l’Indo-Pacifique' || 'Dauphin commun' || 'Dauphin à long bec' || 'Dauphin tacheté pantropical' || 'Dauphin de Fraser' || 'Baleine bleue pygmée' || 'Rorqual commun' || 'Rorqual boréal ou rorqual de Rudolphi' || 'Rorqual tropical ou rorqual de Bryde' || 'Rorqual de Omura' || 'Petit rorqual antarctique' || 'Petit rorqual pygmée' || 'Baleine à bosse' :
+        var cetace = ['Cachalot' , 'Cachalot pygmée' , 'Cachalot nain' , 'Baleine à bec de Blainville' , 'Baleine à bec de longman' , 'Baleine à bec de Cuvier' , 'Orque' , 'Fausse orque' , 'Globicéphale tropical' , 'Dauphin de Risso' , 'Orque Pygmée' , 'Péponocéphale ou dauphin d’Electre' , 'Sténo ou dauphin à bec étroit' , 'Grand dauphin commun' , 'Grand dauphin de l’Indo-Pacifique' , 'Dauphin commun' , 'Dauphin à long bec' , 'Dauphin tacheté pantropical' , 'Dauphin de Fraser' , 'Baleine bleue pygmée' , 'Rorqual commun' , 'Rorqual boréal ou rorqual de Rudolphi' , 'Rorqual tropical ou rorqual de Bryde' , 'Rorqual de Omura' , 'Petit rorqual antarctique' , 'Petit rorqual pygmée' , 'Baleine à bosse'];
+
+        var dugong = ['Dugong ou vache marine' , 'Otarie à fourrure de Nouvelle-Zélande'];
+
+        /*for(var i = 0; i < unknow.length; i++) {
+          if(unknow[i] == this.value) {
+            return;
+          }
+        }
+
+        for(var i = 0; i < cetace.length; i++) {
+          if(cetace[i] == this.value) {
+            return;
+          }
+        }
+
+        for(var i = 0; i < dugong.length; i++) {
+          if(dugong[i] == this.value) {
+            return;
+          }
+        }*/
+
+        if( inArray(this.value, unknow) != -1 ) {
+          return;
+        }
+        else if( inArray(this.value, cetace) != -1 ) {
                 displayBlock('cetace_measures', true);
                 displayBlock('dugong_measures', false);
-                break;
-
-          case 'Dugong ou vache marine' || 'Otarie à fourrure de Nouvelle-Zélande' :
+        }
+        else if( inArray(this.value, dugong) != -1 ) {
                 displayBlock('cetace_measures', false);
                 displayBlock('dugong_measures', true);
-                break;
-        }   
+        }
+
     });
 
     // Liste déroulate des espèces liées
@@ -536,6 +571,11 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                 if (ename) {
                   $elem.attr('name', ename.replace('[0]','['+cloneId+']'));
                 }
+              });
+
+              // Changer l'id des boutons des dates
+              clone.find("a[type=button]").each(function(index, elem) {
+                js(elem).attr('id', js(elem).attr('id').replace('-btn', cloneId+'-btn'));
               });
 
               // Changer l'id et le nom des textarea
@@ -893,16 +933,6 @@ function convert_Long_DMD(long){
     <?php endif; ?>
 
     <form id="form-stranding_admin" action="<?php echo JRoute::_('index.php?option=com_stranding_forms&task=stranding_admin.save'); ?>" method="post" class="form-validate" enctype="multipart/form-data">
-      <!--Show the absolute path-->
-      <div class="row" style="display: none;">
-        <div class="clo-lg-12 col-md-12 col-xs-12">
-          <?php 
-            $path = getcwd();
-            echo "Your Absolute Path is: ";
-            echo $path;
-          ?>
-        </div>
-      </div>
       <!--Contacts-->
       <div class="row">
         <div class="col-lg-12 col-md-12 col-xs-12"><span class="stranding_admin-title_row"><span class="fa fa-user fa-2x"><h4><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW1'); ?></h4></span></span></div>
@@ -935,15 +965,10 @@ function convert_Long_DMD(long){
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-xs-12">
-        <label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_INFORMANT_CONTACT');?></label>
-        <button type="button" name="informantBtn" class="btn btn-primary" value="informateur" onclick="toggleContainer('informant_field')"><label><?php echo JText::_('RIGHT_HERE'); ?></label></button>
-      </div>
-    </div>
     <!--Informant contacts-->
-    <div class="row" id="informant_field" style="display: none;">
-      <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('informant_name'); ?></div>
+    <div id="informant_field" style="display: none;">
+      <div class="row" >
+        <div class="col-lg-12 col-md-12 col-xs-12"><?php echo $this->form->getLabel('informant_name'); ?></div>
       <div class="col-lg-3 col-md-6 col-xs-12">
         <div class="input-group">
           <span class="input-group-addon exergue"><span class="fa fa-user"></span></span>
@@ -967,6 +992,14 @@ function convert_Long_DMD(long){
           <span class="input-group-addon exergue"><span class="fa fa-envelope"></span></span>
           <?php echo $this->form->getInput('informant_email'); ?>
         </div>
+      </div>
+      </div>
+    </div>
+     <!--To display informant field-->
+     <div class="row">
+      <div class="col-lg-12 col-md-12 col-xs-12">
+        <label><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_INFORMANT_CONTACT');?></label>
+        <button type="button" name="informantBtn" class="btn btn-primary" value="informateur" onclick="toggleContainer('informant_field')"><label><?php echo JText::_('RIGHT_HERE'); ?></label></button>
       </div>
     </div>
     <!--Circonstance de l'échouage-->
