@@ -207,11 +207,12 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
     }); 
 
     js("#jform_observation_spaces_common_name").on('change', function() {
-        var unknow = ['','inconnu'];
+        
+        /*var unknow = ['','inconnu'];
 
         var cetace = ['Cachalot' , 'Cachalot pygmée' , 'Cachalot nain' , 'Baleine à bec de Blainville' , 'Baleine à bec de longman' , 'Baleine à bec de Cuvier' , 'Orque' , 'Fausse orque' , 'Globicéphale tropical' , 'Dauphin de Risso' , 'Orque Pygmée' , 'Péponocéphale ou dauphin d’Electre' , 'Sténo ou dauphin à bec étroit' , 'Grand dauphin commun' , 'Grand dauphin de l’Indo-Pacifique' , 'Dauphin commun' , 'Dauphin à long bec' , 'Dauphin tacheté pantropical' , 'Dauphin de Fraser' , 'Baleine bleue pygmée' , 'Rorqual commun' , 'Rorqual boréal ou rorqual de Rudolphi' , 'Rorqual tropical ou rorqual de Bryde' , 'Rorqual de Omura' , 'Petit rorqual antarctique' , 'Petit rorqual pygmée' , 'Baleine à bosse'];
 
-        var dugong = ['Dugong ou vache marine' , 'Otarie à fourrure de Nouvelle-Zélande'];
+        var dugong = ['Dugong ou vache marine' , 'Otarie à fourrure de Nouvelle-Zélande'];*/
 
         /*for(var i = 0; i < unknow.length; i++) {
           if(unknow[i] == this.value) {
@@ -231,7 +232,20 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
           }
         }*/
 
-        if( inArray(this.value, unknow) != -1 ) {
+        /*if( unknow.includes(this.value) ) {
+          return;
+        }
+        else if( cetace.includes(this.value) ) {
+                displayBlock('cetace_measures', true);
+                displayBlock('dugong_measures', false);
+        }
+        else if( dugong.includes(this.value) ) {
+                displayBlock('cetace_measures', false);
+                displayBlock('dugong_measures', true);
+        }*/
+
+
+        /*if( inArray(this.value, unknow) != -1 ) {
           return;
         }
         else if( inArray(this.value, cetace) != -1 ) {
@@ -241,7 +255,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
         else if( inArray(this.value, dugong) != -1 ) {
                 displayBlock('cetace_measures', false);
                 displayBlock('dugong_measures', true);
-        }
+        }*/
 
     });
 
