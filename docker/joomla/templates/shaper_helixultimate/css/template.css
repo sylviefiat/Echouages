@@ -1830,4 +1830,12 @@ ul {
 #rem_field label {
   color: red;
 }
+
+.important_measurements span {
+
+  background-color: rgb(246, 142, 118);
+}
+
+
+
  /* FIN DE MON CODE*/
