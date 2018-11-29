@@ -79,7 +79,6 @@ getScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',fun
       //lat_dmd = convert_Lat_DMD(lat);
 
       //document.getElementById('jform_observation_latitude_dmd').value = this.value;
-
       //document.getElementById('jform_observation_latitude_dmd').text() = this.text();
 
     });
@@ -828,7 +827,7 @@ function convert_Long_DMD(long){
 <!--New observation clone-->
 <div id="div_observation_clone0">
 <!--<span style="display:none;" ><?php //echo $this->form->getInput('id'); ?></span>-->
-<span><?php echo $this->form->getInput('id_observation'); ?></span>
+<span style="display: none;"><?php echo $this->form->getInput('id_observation'); ?></span>
 <!--Identification-->
 <div class="row" id="div_identification_title">
   <div class="col-lg-12 col-md-12 col-xs-12" id="title_R3"><span class="stranding_admin-title_row"><span class="fa fa-eye fa-2x"><h4 id="identification_title"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW3');?> </h4></span></span></div>

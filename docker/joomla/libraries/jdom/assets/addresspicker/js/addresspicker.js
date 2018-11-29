@@ -106,8 +106,7 @@ if(!bg){
                     '.region': 'city',
                     '.latitude': 'latt',
                     '.longitude': 'longt',
-                    '.formatted_address': 'city',
-                    '.latitude_dmd': 'latt'
+                    '.formatted_address': 'city'
                 },
                 
                 // internationalization
@@ -133,7 +132,6 @@ if(!bg){
                 $lng = $(".longitude");
                 if($lat != null && $lng != null){
                     that.geocodeLookup($lat.val()+","+$lng.val(), false, 'latLng', true);
-                    //that.geocodeLookup( that.convertDMS($lat.val(), $lng.val() ) , false, 'latLng', true);
                 } else {
                     that.geocodeLookup(that.$element.val(), false, '', true);
                 }
@@ -190,19 +188,14 @@ if(!bg){
                 var coord = ol.proj.toLonLat(e.coordinate).map(function(val) {
                     return val.toFixed(6);
                 });
-
               that.geocodeLookup(coord[1]+","+coord[0], false, 'latLng', true);
-              //that.geocodeLookup(that.convertLatDMS( coord[1] ) +","+ that.convertLngDMS( coord[0] ), false, 'latLng', true);
-            
+              //alert(coord[1]+' , '+coord[0]);
             });
-
-           
 
             if(that.exist){
                 var $lat = $(".latitude");
                 var $lng = $(".longitude");
                 if($lat != null && $lng != null){
-                    //var coord  = that.convertDMS($lat, $lng);
                     var coord = ol.proj.fromLonLat([Number($lng.val()),Number($lat.val())]).map(value => {
                         return value;
                     });
@@ -254,12 +247,15 @@ if(!bg){
             if(type == 'latLng'){
                 if (typeof query == "string") {
                     query = query.split(",");
+                    //that.convertLatDMS(query[1]);
+                    //that.convertLngDMS(query[0]);
                 }
                 request.latLng = query;
             } else {
                 request.address = query + that.settings.appendToAddressString;
             }
             fetch('https://geocode.xyz/' + query[0] + ',' + query[1] + '?json=1').then(function(response) {
+                //alert( query[0] + ',' + query[1]);
                 return response.json();
             }).then(function(json) {
                 if (typeof callback == 'function') {
@@ -285,8 +281,7 @@ if(!bg){
             var lngcardinal = ((lng > 0) ? "E" : "W");
 
             return lngDeg + lngcardinal + lngMin;
-        }
-
+        }       
     };
 
     var main = function (method) {
