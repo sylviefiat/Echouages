@@ -107,6 +107,7 @@ if(!bg){
                     '.latitude': 'latt',
                     '.longitude': 'longt',
                     '.formatted_address': 'city',
+                    '.latitude_dmd': 'latt'
                 },
                 
                 // internationalization
@@ -193,8 +194,6 @@ if(!bg){
               that.geocodeLookup(coord[1]+","+coord[0], false, 'latLng', true);
               //that.geocodeLookup(that.convertLatDMS( coord[1] ) +","+ that.convertLngDMS( coord[0] ), false, 'latLng', true);
             
-               //$(".latitude_dmd").val() = that.convertLatDMS($(".latitude").val() );
-               //$(".longitude_dmd").val() = that.convertLngDMS($(".longitude").val() );
             });
 
            

@@ -54,8 +54,8 @@ fieldset.radio label{
     // Attach handlers for all browsers
     script.onload = script.onreadystatechange = function() {
       if (!done && (!this.readyState
-        , this.readyState == 'loaded'
-        , this.readyState == 'complete')) {
+        || this.readyState == 'loaded'
+        || this.readyState == 'complete')) {
         done = true;
       success();
       script.onload = script.onreadystatechange = null;
@@ -64,36 +64,14 @@ fieldset.radio label{
   };
   head.appendChild(script);
 }
-getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function() {
+getScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function() {
   js = jQuery.noConflict();
   js(document).ready(function() {
-
-    // Conversion des latitudes et longitudes en format degré minute décimal
-    /*js("input[type='text']").on('change', function() {
-      var lat = document.getElementById('jform_observation_latitude').value;
-      var lng = document.getElementById('jform_observation_longitude').value;
-
-      var lat_dmd = document.getElementById('jform_observation_latitude_dmd').value;
-      var lng_dmd = document.getElementById('jform_observation_longitude_dmd').value;
-
-      switch(this.id) {
-        case 'jform_observation_latitude' :
-              if( !isNaN( parseFloat(lat) ) ) {
-                lat_dmd = convert_Lat_DMD( parseFloat(lat) ); 
-              }
-              break;
-
-        case 'jform_observation_longitude' :
-              if(!isNaN( parseFloat(lng) )) {
-                lng_dmd = convert_Long_DMD( parseFloat(lng) );
-              }
-              break;
-      }
-    });*/
 
     js('#jform_observation_latitude').on('change',function() {
 
       //var lat = document.getElementById('jform_observation_latitude').value;
+      //var lat = this.value;
       //var lat_dmd = document.getElementById('jform_observation_latitude_dmd').value;
 
       //var lat_dmd = js('#jform_observation_latitude_dmd').value;
@@ -102,11 +80,14 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
 
       //document.getElementById('jform_observation_latitude_dmd').value = this.value;
 
+      //document.getElementById('jform_observation_latitude_dmd').text() = this.text();
+
     });
 
     js('#jform_observation_longitude').on('change', function() {
 
-      var lng = document.getElementById('jform_observation_longitude').value;
+      //var lng = document.getElementById('jform_observation_longitude').value;
+      var lng = this.value;
       var lng_dmd = document.getElementById('jform_observation_longitude_dmd').value;
 
       lng_dmd = convert_Long_DMD(lng);
@@ -153,8 +134,8 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
     });
 
     // Démasque le bouton pour le clonage si nombre > 1
-    js("#jform_observation_number").on('change',function() {
-        if(this.value > 1) {
+    js('#jform_observation_number').on('change',function() {
+        if(this.value >= 1) {
            document.getElementById("add_animal").style.display="block";
         
            create_element("SPAN", "1", "identification_title");
@@ -188,14 +169,15 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                 $elem.attr('name', ename.replace('[]','[0]'));
               }
            });
+           document.getElementById("jform_id_observation").value = 1;
         }
-        else if(this.value == 1){
+        /*else if(this.value == 1){
           document.getElementById("jform_id_observation").value = 1;
-        }
+        }*/
     });
 
     // Affiche ou masque les mesures
-    js("div").on('click',function(){
+    js('div').on('click',function(){
       switch (this.id) {
         case 'div_show_cetace_measurements_field' :
               toggleContainer("cetace_measures");
@@ -206,33 +188,15 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
       }
     }); 
 
-    js("#jform_observation_spaces_common_name").on('change', function() {
-        
-        /*var unknow = ['','inconnu'];
+    js('#jform_observation_spaces_common_name').on('change', function() {
 
-        var cetace = ['Cachalot' , 'Cachalot pygmée' , 'Cachalot nain' , 'Baleine à bec de Blainville' , 'Baleine à bec de longman' , 'Baleine à bec de Cuvier' , 'Orque' , 'Fausse orque' , 'Globicéphale tropical' , 'Dauphin de Risso' , 'Orque Pygmée' , 'Péponocéphale ou dauphin d’Electre' , 'Sténo ou dauphin à bec étroit' , 'Grand dauphin commun' , 'Grand dauphin de l’Indo-Pacifique' , 'Dauphin commun' , 'Dauphin à long bec' , 'Dauphin tacheté pantropical' , 'Dauphin de Fraser' , 'Baleine bleue pygmée' , 'Rorqual commun' , 'Rorqual boréal ou rorqual de Rudolphi' , 'Rorqual tropical ou rorqual de Bryde' , 'Rorqual de Omura' , 'Petit rorqual antarctique' , 'Petit rorqual pygmée' , 'Baleine à bosse'];
+        var unknow = ['','inconnu'];
 
-        var dugong = ['Dugong ou vache marine' , 'Otarie à fourrure de Nouvelle-Zélande'];*/
+        var cetace = ['Cachalot','Cachalot pygmée','Cachalot nain','Baleine à bec de Blainville','Baleine à bec de longman','Baleine à bec de Cuvier','Orque', 'Fausse orque','Globicéphale tropical','Dauphin de Risso' , 'Orque Pygmée', 'Péponocéphale ou dauphin d’Electre' , 'Sténo ou dauphin à bec étroit','Grand dauphin commun','Grand dauphin de l’Indo-Pacifique','Dauphin commun', 'Dauphin à long bec','Dauphin tacheté pantropical','Dauphin de Fraser','Baleine bleue pygmée','Rorqual commun','Rorqual boréal ou rorqual de Rudolphi','Rorqual tropical ou rorqual de Bryde','Rorqual de Omura','Petit rorqual antarctique','Petit rorqual pygmée','Baleine à bosse'];
 
-        /*for(var i = 0; i < unknow.length; i++) {
-          if(unknow[i] == this.value) {
-            return;
-          }
-        }
-
-        for(var i = 0; i < cetace.length; i++) {
-          if(cetace[i] == this.value) {
-            return;
-          }
-        }
-
-        for(var i = 0; i < dugong.length; i++) {
-          if(dugong[i] == this.value) {
-            return;
-          }
-        }*/
-
-        /*if( unknow.includes(this.value) ) {
+        var dugong = ['Dugong ou vache marine','Otarie à fourrure de Nouvelle-Zélande'];
+        // Vérifie si la valeur courante du champs est dans un des array
+        if( unknow.includes(this.value) ) {
           return;
         }
         else if( cetace.includes(this.value) ) {
@@ -242,185 +206,14 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
         else if( dugong.includes(this.value) ) {
                 displayBlock('cetace_measures', false);
                 displayBlock('dugong_measures', true);
-        }*/
-
-
-        /*if( inArray(this.value, unknow) != -1 ) {
-          return;
         }
-        else if( inArray(this.value, cetace) != -1 ) {
-                displayBlock('cetace_measures', true);
-                displayBlock('dugong_measures', false);
-        }
-        else if( inArray(this.value, dugong) != -1 ) {
-                displayBlock('cetace_measures', false);
-                displayBlock('dugong_measures', true);
-        }*/
 
     });
 
-    // Liste déroulate des espèces liées
-    /*js("#jform_observation_spaces_common_name").on('change', function() {
-      var i = this.name.selectedIndex;
-      if(i == 0) {
-        return;
-      }
-      switch(i) {
-        case 1 : 
-          var txt1 = new Array('SPACES_UNKNOWN');
-          var txt2 = new Array('SPACES_UNKNOWN'); 
-          break;
-
-        case 2 :
-          var txt1 = new Array('SPACES_KIND_1');
-          var txt2 = new Array('SPACES_1'); 
-          break;
-
-        case 3 :
-          var txt1 = new Array('SPACES_KIND_2'); 
-          var txt2 = new Array('SPACES_2'); 
-          break;
-          
-        case 4 :
-          var txt1 = new Array('SPACES_KIND_2');
-          var txt2 = new Array('SPACES_3'); 
-          break;
-          
-        case 5 :
-          var txt1 = new Array('SPACES_KIND_3'); 
-          var txt2 = new Array('SPACES_4'); 
-          break;
-          
-        case 6 :
-          var txt1 = new Array('SPACES_KIND_4');
-          var txt2 = new Array('SPACES_5');
-          break;
-          
-        case 7 :
-          var txt1 = new Array('SPACES_KIND_5');
-          var txt2 = new Array('SPACES_6'); 
-          break;
-          
-        case 8 :
-          var txt1 = new Array('SPACES_KIND_6');
-          var txt2 = new Array('SPACES_7'); 
-          break;
-          
-        case 9 :
-          var txt1 = new Array('SPACES_KIND_7');
-          var txt2 = new Array('SPACES_8'); 
-          break;
-          
-        case 10 :
-          var txt1 = new Array('SPACES_KIND_8');
-          var txt2 = new Array('SPACES_9'); 
-          break;
-          
-        case 11 :
-          var txt1 = new Array('SPACES_KIND_9');
-          var txt2 = new Array('SPACES_10'); 
-          break;
-          
-        case 12 :
-          var txt1 = new Array('SPACES_KIND_10');
-          var txt2 = new Array('SPACES_11'); 
-          break;
-          
-        case 13 :
-          var txt1 = new Array('SPACES_KIND_12');
-          var txt2 = new Array('SPACES_13'); 
-          break;
-          
-        case 14 :
-          var txt1 = new Array('SPACES_KIND_13');
-          var txt2 = new Array('SPACES_14'); 
-          break;
-          
-        case 15 :
-          var txt1 = new Array('SPACES_KIND_13');
-          var txt2 = new Array('SPACES_15'); 
-          break;
-          
-        case 16 :
-          var txt1 = new Array('SPACES_KIND_14');
-          var txt2 = new Array('SPACES_16'); 
-          break;
-          
-        case 17 :
-          var txt1 = new Array('SPACES_KIND_15');
-          var txt2 = new Array('SPACES_17'); 
-          break;
-          
-        case 18 :
-          var txt1 = new Array('SPACES_KIND_15');
-          var txt2 = new Array('SPACES_18'); 
-          break;
-          
-        case 19 :
-          var txt1 = new Array('SPACES_KIND_16');
-          var txt2 = new Array('SPACES_19'); 
-          break;
-          
-        case 20 :
-          var txt1 = new Array('SPACES_KIND_17');
-          var txt2 = new Array('SPACES_20'); 
-          break;
-          
-        case 21 :
-          var txt1 = new Array('SPACES_KIND_17');
-          var txt2 = new Array('SPACES_21'); 
-          break;
-          
-        case 22 :
-          var txt1 = new Array('SPACES_KIND_17');
-          var txt2 = new Array('SPACES_22'); 
-          break;
-          
-        case 23 :
-          var txt1 = new Array('SPACES_KIND_17');
-          var txt2 = new Array('SPACES_23'); 
-          break;
-          
-        case 24 :
-          var txt1 = new Array('SPACES_KIND_17');
-          var txt2 = new Array('SPACES_24'); 
-          break;
-          
-        case 25 :
-          var txt1 = new Array('SPACES_KIND_17');
-          var txt2 = new Array('SPACES_25'); 
-          break;
-          
-        case 26 :
-          var txt1 = new Array('SPACES_KIND_17');
-          var txt2 = new Array('SPACES_26'); 
-          break;
-          
-        case 27 :
-          var txt1 = new Array('SPACES_KIND_18');
-          var txt2 = new Array('SPACES_27'); 
-          break;
-          
-        case 28 :
-          var txt1 = new Array('SPACES_KIND_19');
-          var txt2 = new Array('SPACES_28'); 
-          break;
-          
-        case 29 :
-          var txt1 = new Array('SPACES_KIND_20');
-          var txt2 = new Array('SPACES_29'); 
-          break;
-      }
-      this.name.selectedIndex = 0;
-      for(var i = 0; i < 9; i++) {
-        js("#jform_observation_spaces_kind").name.options[i+1].text = text1[i];
-        js("#jform_observation_spaces").name.options[i+1].text = text2[i];
-      }
-    });*/
    
     var cloneId = 1; // Incrémenté en fonction du clonage
 
-    js("button").on('click', function() {
+    js('button').on('click', function() {
 
       switch (this.id) {
 
@@ -638,7 +431,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
                clone.find("span[class='block_indices']").each(function() {
                   this.className = this.className + cloneId;
                   for(var i = 1; i <= cloneId; i++) {
-                    this.nodeValue = i;
+                    
                   }
                });
 
@@ -666,7 +459,7 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
               });
 
               // Affiche l'image représentative de l'encoche médiane
-              clone.find("button").on('click', function() {
+              clone.find('button').on('click', function() {
                 for(var i = 1; i <= cloneId; i++) {
                   switch (this.id) {
                     case "show_tail_fin_image" + i :
@@ -882,7 +675,6 @@ getScript('//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',function(
             break;
       }
     }); 
-   
   });
 });
 
@@ -1110,7 +902,7 @@ function convert_Long_DMD(long){
 <!--New observation clone-->
 <div id="div_observation_clone0">
 <!--<span style="display:none;" ><?php //echo $this->form->getInput('id'); ?></span>-->
-<span style="display: none;"><?php echo $this->form->getInput('id_observation'); ?></span>
+<span><?php echo $this->form->getInput('id_observation'); ?></span>
 <!--Identification-->
 <div class="row" id="div_identification_title">
   <div class="col-lg-12 col-md-12 col-xs-12" id="title_R3"><span class="stranding_admin-title_row"><span class="fa fa-eye fa-2x"><h4 id="identification_title"><?php echo JText::_('COM_STRANDING_FORMS_EDIT_ITEM_ROW3');?> </h4></span></span></div>
