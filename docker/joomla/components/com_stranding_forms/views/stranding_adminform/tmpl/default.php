@@ -190,6 +190,7 @@ getScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',fun
       }
     }); 
 
+    // Affiche en fonction de l'espèce choisie
     js('#jform_observation_spaces_common_name').on('change', function() {
 
         //
@@ -217,6 +218,174 @@ getScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',fun
                 displayBlock('dugong_measures', true);
                 displayBlock('div_show_cetace_measurements_field', false);
                 displayBlock('div_show_dugong_measurements_field', true);
+        }
+        // Array du genre Kogia
+        var kogia_kind = ['Cachalot pygmée','Cachalot nain'];
+
+        // Array du genre Tursiops
+        var tursiops_kind = ['Grand dauphin commun','Grand dauphin de l’Indo-Pacifique'];
+
+        // Array du genre Stenella
+        var stenella_kind = ['Dauphin à long bec','Dauphin tacheté pantropical'];
+
+        // Array du genre Balaenoptera
+        var balaenoptera_kind = ['Baleine bleue pygmée','Rorqual commun','Rorqual boréal ou rorqual de Rudolphi','Rorqual tropical ou rorqual de Bryde','Rorqual de Omura','Petit rorqual antarctique','Petit rorqual pygmée'];
+
+        if( kogia_kind.includes(this.value) ) {
+          document.getElementById('jform_observation_spaces_kind').value = 'Kogia';
+          switch (this.value) {
+
+            case 'Cachalot pygmée' :
+                  document.getElementById('jform_observation_spaces').value = 'Breviceps';
+                  break;
+
+            case 'Cachalot nain' :
+                  document.getElementById('jform_observation_spaces').value = 'Sima';
+                  break;
+          }
+        }
+        else if( tursiops_kind.includes(this.value) ) {
+          document.getElementById('jform_observation_spaces_kind').value = 'Tursiops';
+          switch (this.value) {
+
+            case 'Grand dauphin commun' :
+                  document.getElementById('jform_observation_spaces').value = 'Truncatus';
+                  break;
+
+            case 'Grand dauphin de l’Indo-Pacifique' :
+                  document.getElementById('jform_observation_spaces').value = 'Aduncus';
+                  break;
+          }
+        }
+        else if( stenella_kind.includes(this.value) ) {
+          document.getElementById('jform_observation_spaces_kind').value = 'Stenella';
+          switch (this.value) {
+
+            case 'Dauphin à long bec' :
+                  document.getElementById('jform_observation_spaces').value = 'Longirostris';
+                  break;
+
+            case 'Dauphin tacheté pantropical' :
+                  document.getElementById('jform_observation_spaces').value = 'Attenuata';
+                  break;
+          }
+        }
+        else if( balaenoptera_kind.includes(this.value) ) {
+          document.getElementById('jform_observation_spaces_kind').value = 'Balaenoptera';
+
+          switch( this.value ) {
+
+            case 'Baleine bleue pygmée' :
+                 document.getElementById('jform_observation_spaces').value = 'Musculus brevicauda';
+                 break;
+
+            case 'Rorqual commun' :
+                 document.getElementById('jform_observation_spaces').value = 'Physalus';
+                 break;
+
+            case 'Rorqual boréal ou rorqual de Rudolphi' :
+                 document.getElementById('jform_observation_spaces').value = 'Borealis';
+                 break;
+
+            case 'Rorqual tropical ou rorqual de Bryde' :
+                 document.getElementById('jform_observation_spaces').value = 'Edeni';
+                 break;
+
+            case 'Rorqual de Omura' :
+                 document.getElementById('jform_observation_spaces').value = 'Omurai';
+                 break;
+
+            case 'Petit rorqual antarctique' :
+                 document.getElementById('jform_observation_spaces').value = 'Bonaerensis';
+                 break;
+
+            case 'Petit rorqual pygmée' :
+                 document.getElementById('jform_observation_spaces').value = 'Acutorostrata subspecies';
+                 break;
+
+          }
+        }
+
+        switch (this.value) {
+          case 'Cachalot' : 
+                document.getElementById('jform_observation_spaces_kind').value = 'Physeter';
+                document.getElementById('jform_observation_spaces').value = 'Macrocephalus';
+                break;
+
+          case 'Baleine à bec de Blainville' : 
+                document.getElementById('jform_observation_spaces_kind').value = 'Mesoplodon';
+                document.getElementById('jform_observation_spaces').value = 'Densirostris';
+                break;
+
+          case 'Baleine à bec de longman' : 
+                document.getElementById('jform_observation_spaces_kind').value = 'Indopacetus';
+                document.getElementById('jform_observation_spaces').value = 'Pacificus';
+                break;
+
+          case 'Baleine à bec de Cuvier' : 
+                document.getElementById('jform_observation_spaces_kind').value = 'Ziphius';
+                document.getElementById('jform_observation_spaces').value = 'Cavirostris';
+                break;
+
+          case 'Orque' : 
+                document.getElementById('jform_observation_spaces_kind').value = 'Orcinus';
+                document.getElementById('jform_observation_spaces').value = 'Orca';
+                break;
+
+          case 'Fausse orque' : 
+                document.getElementById('jform_observation_spaces_kind').value = 'Pseudorca';
+                document.getElementById('jform_observation_spaces').value = 'Crassidens';
+                break;
+
+          case 'Globicéphale tropical' : 
+                document.getElementById('jform_observation_spaces_kind').value = 'Globicephala';
+                document.getElementById('jform_observation_spaces').value = 'Macrorhynchus';
+                break;
+
+          case 'Dauphin de Risso' : 
+                document.getElementById('jform_observation_spaces_kind').value = 'Grampus';
+                document.getElementById('jform_observation_spaces').value = 'Griseus';
+                break;
+
+          case 'Orque Pygmée' : 
+                document.getElementById('jform_observation_spaces_kind').value = 'Feresa';
+                document.getElementById('jform_observation_spaces').value = 'Attenuata';
+                break;
+
+          case 'Péponocéphale ou dauphin d’Electre' : 
+                document.getElementById('jform_observation_spaces_kind').value = 'Peponocephala';
+                document.getElementById('jform_observation_spaces').value = 'Electra';
+                break;
+
+          case 'Sténo ou dauphin à bec étroit' : 
+                document.getElementById('jform_observation_spaces_kind').value = 'Steno';
+                document.getElementById('jform_observation_spaces').value = 'Bredanensis';
+                break;
+
+          case 'Dauphin commun' : 
+                document.getElementById('jform_observation_spaces_kind').value = 'Delphinus';
+                document.getElementById('jform_observation_spaces').value = 'Delphis';
+                break;
+
+          case 'Dauphin de Fraser' : 
+                document.getElementById('jform_observation_spaces_kind').value = 'Lagenodelphis';
+                document.getElementById('jform_observation_spaces').value = 'Hosei';
+                break;
+
+          case 'Baleine à bosse' : 
+                document.getElementById('jform_observation_spaces_kind').value = 'Megaptera';
+                document.getElementById('jform_observation_spaces').value = 'Novaeangliae';
+                break;
+
+          case 'Dugong ou vache marine' : 
+                document.getElementById('jform_observation_spaces_kind').value = 'Dugong';
+                document.getElementById('jform_observation_spaces').value = 'Dugong';
+                break;
+
+          case 'Otarie à fourrure de Nouvelle-Zélande' : 
+                document.getElementById('jform_observation_spaces_kind').value = 'Arctophoca';
+                document.getElementById('jform_observation_spaces').value = 'Australis forsteri';
+                break;
         }
 
     });
@@ -576,6 +745,211 @@ getScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',fun
                 }
               });
 
+              clone.find('select').on('change', function() {
+
+                for(var i = 1; i <= cloneId; i++) {
+
+                  if( this.id == 'jform_observation_spaces_common_name' + i) {
+
+                    //
+                    var unknow = ['','inconnu'];
+
+                    // Array pour les cétacés
+                    var cetace = ['Cachalot','Cachalot pygmée','Cachalot nain','Baleine à bec de Blainville','Baleine à bec de longman','Baleine à bec de Cuvier','Orque', 'Fausse orque','Globicéphale tropical','Dauphin de Risso' , 'Orque Pygmée', 'Péponocéphale ou dauphin d’Electre' , 'Sténo ou dauphin à bec étroit','Grand dauphin commun','Grand dauphin de l’Indo-Pacifique','Dauphin commun', 'Dauphin à long bec','Dauphin tacheté pantropical','Dauphin de Fraser','Baleine bleue pygmée','Rorqual commun','Rorqual boréal ou rorqual de Rudolphi','Rorqual tropical ou rorqual de Bryde','Rorqual de Omura','Petit rorqual antarctique','Petit rorqual pygmée','Baleine à bosse'];
+
+                    // Array pour les dugongs et otaries
+                    var dugong = ['Dugong ou vache marine','Otarie à fourrure de Nouvelle-Zélande'];
+
+                    // Vérifie si la valeur courante du champs est dans l'un des array
+                    if( unknow.includes(this.value) ) {
+                      return;
+                    }
+                    else if( cetace.includes(this.value) ) {
+                            displayBlock('cetace_measures' + i, true);
+                            displayBlock('dugong_measures'+ i, false);
+                            displayBlock('div_show_cetace_measurements_field' + i, true);
+                            displayBlock('div_show_dugong_measurements_field' + i, false);
+                            
+                    }
+                    else if( dugong.includes(this.value) ) {
+                            displayBlock('cetace_measures' + i, false);
+                            displayBlock('dugong_measures' + i, true);
+                            displayBlock('div_show_cetace_measurements_field' + i, false);
+                            displayBlock('div_show_dugong_measurements_field' + i, true);
+                    }
+                    // Array du genre Kogia
+                    var kogia_kind = ['Cachalot pygmée','Cachalot nain'];
+
+                    // Array du genre Tursiops
+                    var tursiops_kind = ['Grand dauphin commun','Grand dauphin de l’Indo-Pacifique '];
+
+                    // Array du genre Stenella
+                    var stenella_kind = ['Dauphin à long bec','Dauphin tacheté pantropical'];
+
+                    // Array du genre Balaenoptera
+                    var balaenoptera_kind = ['Baleine bleue pygmée','Rorqual commun','Rorqual boréal ou rorqual de Rudolphi','Rorqual tropical ou rorqual de Bryde','Rorqual de Omura','Petit rorqual antarctique','Petit rorqual pygmée'];
+
+                    if( kogia_kind.includes(this.value) ) {
+                      document.getElementById('jform_observation_spaces_kind' + i).value = 'Kogia';
+                      switch (this.value) {
+
+                        case 'Cachalot pygmée' :
+                              document.getElementById('jform_observation_spaces' + i).value = 'Breviceps';
+                              break;
+
+                        case 'Cachalot nain' :
+                              document.getElementById('jform_observation_spaces' + i).value = 'Sima';
+                              break;
+                      }
+                    }
+                    else if( tursiops_kind.includes(this.value) ) {
+                      document.getElementById('jform_observation_spaces_kind' + i).value = 'Tursiops';
+                      switch (this.value) {
+
+                        case 'Grand dauphin commun' :
+                              document.getElementById('jform_observation_spaces' + i).value = 'Truncatus';
+                              break;
+
+                        case 'Grand dauphin de l’Indo-Pacifique' :
+                              document.getElementById('jform_observation_spaces' + i).value = 'Aduncus';
+                              break;
+                      }
+                    }
+                    else if( stenella_kind.includes(this.value) ) {
+                      document.getElementById('jform_observation_spaces_kind' + i).value = 'Stenella';
+                      switch (this.value) {
+
+                        case 'Dauphin à long bec' :
+                              document.getElementById('jform_observation_spaces' + i).value = 'Longirostris';
+                              break;
+
+                        case 'Dauphin tacheté pantropical' :
+                              document.getElementById('jform_observation_spaces' + i).value = 'Attenuata';
+                              break;
+                      }
+                    }
+                    else if( balaenoptera_kind.includes(this.value) ) {
+                      document.getElementById('jform_observation_spaces_kind' + i).value = 'Balaenoptera';
+
+                      switch( this.value ) {
+
+                        case 'Baleine bleue pygmée' :
+                             document.getElementById('jform_observation_spaces' + i).value = 'Musculus brevicauda';
+                             break;
+
+                        case 'Rorqual commun' :
+                             document.getElementById('jform_observation_spaces' + i).value = 'Physalus';
+                             break;
+
+                        case 'Rorqual boréal ou rorqual de Rudolphi' :
+                             document.getElementById('jform_observation_spaces' + i).value = 'Borealis';
+                             break;
+
+                        case 'Rorqual tropical ou rorqual de Bryde' :
+                             document.getElementById('jform_observation_spaces' + i).value = 'Edeni';
+                             break;
+
+                        case 'Rorqual de Omura' :
+                             document.getElementById('jform_observation_spaces' + i).value = 'Omurai';
+                             break;
+
+                        case 'Petit rorqual antarctique' :
+                             document.getElementById('jform_observation_spaces' + i).value = 'Bonaerensis';
+                             break;
+
+                        case 'Petit rorqual pygmée' :
+                             document.getElementById('jform_observation_spaces' + i).value = 'Acutorostrata subspecies';
+                             break;
+
+                      }
+                    }
+
+                    switch (this.value) {
+                      case 'Cachalot' : 
+                            document.getElementById('jform_observation_spaces_kind' + i).value = 'Physeter';
+                            document.getElementById('jform_observation_spaces' + i).value = 'Macrocephalus';
+                            break;
+
+                      case 'Baleine à bec de Blainville' : 
+                            document.getElementById('jform_observation_spaces_kind' + i).value = 'Mesoplodon';
+                            document.getElementById('jform_observation_spaces' + i).value = 'Densirostris';
+                            break;
+
+                      case 'Baleine à bec de longman' : 
+                            document.getElementById('jform_observation_spaces_kind' + i).value = 'Indopacetus';
+                            document.getElementById('jform_observation_spaces' + i).value = 'Pacificus';
+                            break;
+
+                      case 'Baleine à bec de Cuvier' : 
+                            document.getElementById('jform_observation_spaces_kind' + i).value = 'Ziphius';
+                            document.getElementById('jform_observation_spaces' + i).value = 'Cavirostris';
+                            break;
+
+                      case 'Orque' : 
+                            document.getElementById('jform_observation_spaces_kind' + i).value = 'Orcinus';
+                            document.getElementById('jform_observation_spaces' + i).value = 'Orca';
+                            break;
+
+                      case 'Fausse orque' : 
+                            document.getElementById('jform_observation_spaces_kind' + i).value = 'Pseudorca';
+                            document.getElementById('jform_observation_spaces' + i).value = 'Crassidens';
+                            break;
+
+                      case 'Globicéphale tropical' : 
+                            document.getElementById('jform_observation_spaces_kind' + i).value = 'Globicephala';
+                            document.getElementById('jform_observation_spaces' + i).value = 'Macrorhynchus';
+                            break;
+
+                      case 'Dauphin de Risso' : 
+                            document.getElementById('jform_observation_spaces_kind' + i).value = 'Grampus';
+                            document.getElementById('jform_observation_spaces' + i).value = 'Griseus';
+                            break;
+
+                      case 'Orque Pygmée' : 
+                            document.getElementById('jform_observation_spaces_kind' + i).value = 'Feresa'; 
+                            document.getElementById('jform_observation_spaces' + i).value = 'Attenuata';
+                            break;
+
+                      case 'Péponocéphale ou dauphin d’Electre' : 
+                            document.getElementById('jform_observation_spaces_kind' + i).value = 'Peponocephala';
+                            document.getElementById('jform_observation_spaces' + i).value = 'Electra';
+                            break;
+
+                      case 'Sténo ou dauphin à bec étroit' : 
+                            document.getElementById('jform_observation_spaces_kind' + i).value = 'Steno';
+                            document.getElementById('jform_observation_spaces' + i).value = 'Bredanensis';
+                            break;
+
+                      case 'Dauphin commun' : 
+                            document.getElementById('jform_observation_spaces_kind' + i).value = 'Delphinus';
+                            document.getElementById('jform_observation_spaces' + i).value = 'Delphis';
+                            break;
+
+                      case 'Dauphin de Fraser' : 
+                            document.getElementById('jform_observation_spaces_kind' + i).value = 'Lagenodelphis';
+                            document.getElementById('jform_observation_spaces' + i).value = 'Hosei';
+                            break;
+
+                      case 'Baleine à bosse' : 
+                            document.getElementById('jform_observation_spaces_kind' + i).value = 'Megaptera';
+                            document.getElementById('jform_observation_spaces' + i).value = 'Novaeangliae';
+                            break;
+
+                      case 'Dugong ou vache marine' : 
+                            document.getElementById('jform_observation_spaces_kind' + i).value = 'Dugong';
+                            document.getElementById('jform_observation_spaces' + i).value = 'Dugong';
+                            break;
+
+                      case 'Otarie à fourrure de Nouvelle-Zélande' : 
+                            document.getElementById('jform_observation_spaces_kind' + i).value = 'Arctophoca';
+                            document.getElementById('jform_observation_spaces' + i).value = 'Australis forsteri';
+                            break;
+                    }
+                }
+              }
+
+              });
+                
               js('#add_animal').before(clone);
 
               // Création du lien de suppression
@@ -834,11 +1208,27 @@ function convert_Long_DMD(long){
 </div>
 <div class="row" id="identification">
   <!-- Spaces common name-->
-  <div class="col-lg-6 col-md-6 col-xs-12">
+  <div class="col-lg-12 col-md-12 col-xs-12">
     <?php echo $this->form->getLabel('observation_spaces_common_name'); ?>
+  </div>
+  <div class="col-lg-6 col-md-6 col-xs-12">
     <div class="input-group">
       <span class="input-group-addon"><span class="fa fa-eye"></span></span>
       <?php echo $this->form->getInput('observation_spaces_common_name'); ?>
+    </div>
+  </div>
+  <!--Spaces kind-->
+  <div class="col-lg-3 col-md-3 col-xs-3">
+    <div class="input-group">
+      <span class="input-group-addon"><span class="fa fa-eye"></span></span>
+      <?php echo $this->form->getInput('observation_spaces_kind'); ?>
+    </div>
+  </div>
+  <!--Spaces spaces-->
+  <div class="col-lg-3 col-md-3 col-xs-3" >
+    <div class="input-group">
+      <span class="input-group-addon"><span class="fa fa-eye"></span></span>
+      <?php echo $this->form->getInput('observation_spaces'); ?>
     </div>
   </div>
   <!--Spaces identification-->
@@ -852,21 +1242,6 @@ function convert_Long_DMD(long){
       </div>
     </div>
   </div>
-  <!--Spaces kind & Spaces spaces
-  <div class="col-lg-6 col-md-6 col-xs-12">
-    <?php echo $this->form->getLabel('observation_spaces_kind'); ?>
-    <div class="input-group">
-      <span class="input-group-addon"><span class="fa fa-eye"></span></span>
-      <?php echo $this->form->getInput('observation_spaces_kind'); ?>
-    </div>
-  </div>
-  <div class="col-lg-6 col-md-6 col-xs-12" >
-    <?php echo $this->form->getLabel('observation_spaces'); ?>
-    <div class="input-group">
-      <span class="input-group-addon"><span class="fa fa-eye"></span></span>
-      <?php echo $this->form->getInput('observation_spaces'); ?>
-    </div>
-  </div>-->
   <!--Color-->
   <div class="col-lg-6 col-md-6 col-xs-12">
     <?php echo $this->form->getLabel('observation_color'); ?>

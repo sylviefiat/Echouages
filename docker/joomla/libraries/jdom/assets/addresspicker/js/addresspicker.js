@@ -106,7 +106,8 @@ if(!bg){
                     '.region': 'city',
                     '.latitude': 'latt',
                     '.longitude': 'longt',
-                    '.formatted_address': 'city'
+                    '.formatted_address': 'city',
+                    '.latitude_dmd' : that.convertLatDMS('latt')
                 },
                 
                 // internationalization
@@ -188,6 +189,19 @@ if(!bg){
                 var coord = ol.proj.toLonLat(e.coordinate).map(function(val) {
                     return val.toFixed(6);
                 });
+                //var coord_dmd = ol.proj.toLonLat(e.coordinate)
+
+                var lat_dmd, lng_dmd;
+                lat_dmd = that.convertLatDMS( coord[1] );
+                lng_dmd = that.convertLngDMS( coord[0] );
+
+                //alert( lat_dmd+' , '+lng_dmd );
+
+                $(".latitude_dmd").value = lat_dmd;
+                $(".longitude_dmd").value = lng_dmd;
+
+                alert($(".latitude_dmd").value+' , '+$(".longitude_dmd").value );
+
               that.geocodeLookup(coord[1]+","+coord[0], false, 'latLng', true);
               //alert(coord[1]+' , '+coord[0]);
             });
@@ -266,21 +280,23 @@ if(!bg){
                 }
             })
         },
-        convertLatDMS : function ( lat ) {
-            var convertLat = Math.abs( lat );
-            var latDeg = Math.floor(convertLat);
-            var latMin = (Math.floor(convertLat - latDeg) * 60);
-            var latCardinal = ((lat > 0) ? "N" : "S");
-
-            return latDeg + latCardinal + latMin ;
+        convertLatDMS: function ( lat ) {
+          var lat_dir, lat_deg, lat_min;
+          lat_dir = lat >= 0 ? 'N' : 'S';
+          // Garde la partie entière
+          lat_deg = ( Math.abs( parseInt( lat ) ) );
+          lat_min = ( Math.abs( ( Math.abs( lat ) - lat_deg ) * 60 ) );
+          //    176 code ascci du degré. Ne garde que 3 décimales
+          return lat_deg +  '°' + lat_min.toFixed(3) + "'" + lat_dir;
         },
-        convertLngDMS : function ( lng ) {
-            var convertLng = Math.abs( lng );
-            var lngDeg = Math.floor(convertLng);
-            var lngMin = (Math.floor(convertLng - lngDeg) * 60);
-            var lngcardinal = ((lng > 0) ? "E" : "W");
-
-            return lngDeg + lngcardinal + lngMin;
+        convertLngDMS: function ( lng ) {
+           var long_dir, long_deg, long_min;
+            long_dir = lng >= 0 ? 'E' : 'W';
+            // Garde la partie entière
+            long_deg = ( Math.abs( parseInt( lng ) ) );
+            long_min = ( Math.abs( ( Math.abs( lng ) - long_deg ) * 60 ) );
+            //    176 code ascci du degré. Ne garde que 3 décimales
+            return long_deg + '°' + long_min.toFixed(3) +  "'" + long_dir;
         }       
     };
 
