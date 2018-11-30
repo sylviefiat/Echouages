@@ -200,7 +200,7 @@ if(!bg){
                 $(".latitude_dmd").value = lat_dmd;
                 $(".longitude_dmd").value = lng_dmd;
 
-                alert($(".latitude_dmd").value+' , '+$(".longitude_dmd").value );
+                //alert($(".latitude_dmd").value+' , '+$(".longitude_dmd").value );
 
               that.geocodeLookup(coord[1]+","+coord[0], false, 'latLng', true);
               //alert(coord[1]+' , '+coord[0]);

@@ -412,23 +412,26 @@ getScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',fun
         case 'jform_observation_dolphin_mesures_f_btn' :
               toggleContainer("jform_observation_dolphin_mesures_f_field");
               break;
-        case 'jform_observation_dolphin_mesures_g_btn' :
-              toggleContainer("jform_observation_dolphin_mesures_g_field");
-              break;
         case 'jform_observation_dolphin_mesures_h_btn' :
               toggleContainer("jform_observation_dolphin_mesures_h_field");
               break;
-        case 'jform_observation_dolphin_mesures_i_btn' :
-              toggleContainer("jform_observation_dolphin_mesures_i_field");
-              break;
         case 'jform_observation_dolphin_mesures_k_btn' :
               toggleContainer("jform_observation_dolphin_mesures_k_field");
+              break;
+         case 'jform_observation_dolphin_mesures_l_btn' :
+              toggleContainer("jform_observation_dolphin_mesures_l_field");
+              break;
+         case 'jform_observation_dolphin_mesures_m_btn' :
+              toggleContainer("jform_observation_dolphin_mesures_m_field");
               break;
         case 'jform_observation_dolphin_mesures_o_btn' :
               toggleContainer("jform_observation_dolphin_mesures_o_field");
               break;
         case 'jform_observation_dolphin_mesures_r_btn' :
               toggleContainer("jform_observation_dolphin_mesures_r_field");
+              break;
+        case 'jform_observation_dolphin_mesures_s_btn' :
+              toggleContainer("jform_observation_dolphin_mesures_s_field");
               break;
         case 'jform_observation_dolphin_mesures_t_btn' :
               toggleContainer("jform_observation_dolphin_mesures_t_field");
@@ -453,20 +456,20 @@ getScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',fun
         case 'jform_observation_dugong_mesures_e_btn' :
               toggleContainer("jform_observation_dugong_mesures_e_field");
               break;
+        case 'jform_observation_dugong_mesures_f_btn' :
+              toggleContainer("jform_observation_dugong_mesures_f_field");
+              break;
         case 'jform_observation_dugong_mesures_g_btn' :
               toggleContainer("jform_observation_dugong_mesures_g_field");
-              break;
-        case 'jform_observation_dugong_mesures_h_btn' :
-              toggleContainer("jform_observation_dugong_mesures_h_field");
-              break;
-        case 'jform_observation_dugong_mesures_i_btn' :
-              toggleContainer("jform_observation_dugong_mesures_i_field");
               break;
         case 'jform_observation_dugong_mesures_j_btn' :
               toggleContainer("jform_observation_dugong_mesures_j_field");
               break;
-        case 'jform_observation_dugong_mesures_k_btn' :
-              toggleContainer("jform_observation_dugong_mesures_k_field");
+        case 'jform_observation_dugong_mesures_l_btn' :
+              toggleContainer("jform_observation_dugong_mesures_l_field");
+              break;
+        case 'jform_observation_dugong_mesures_m_btn' :
+              toggleContainer("jform_observation_dugong_mesures_m_field");
               break;
         case 'jform_observation_dugong_mesures_n_btn' :
               toggleContainer("jform_observation_dugong_mesures_n_field");
@@ -477,8 +480,8 @@ getScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',fun
         case 'jform_observation_dugong_mesures_p_btn' :
               toggleContainer("jform_observation_dugong_mesures_p_field");
               break;
-        case 'jform_observation_dugong_mesures_q_btn' :
-              toggleContainer("jform_observation_dugong_mesures_q_field");
+        case 'jform_observation_dugong_mesures_s_btn' :
+              toggleContainer("jform_observation_dugong_mesures_s_field");
               break;
         case 'jform_observation_dugong_mesures_r_btn' :
               toggleContainer("jform_observation_dugong_mesures_r_field");
@@ -619,23 +622,23 @@ getScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',fun
                     case 'jform_observation_dolphin_mesures_f_btn' + i :
                           toggleContainer("jform_observation_dolphin_mesures_f_field" + i);
                           break;
-                    case 'jform_observation_dolphin_mesures_g_btn' + i :
-                          toggleContainer("jform_observation_dolphin_mesures_g_field" + i);
-                          break;
                     case 'jform_observation_dolphin_mesures_h_btn' + i :
                           toggleContainer("jform_observation_dolphin_mesures_h_field" + i);
-                          break;
-                    case 'jform_observation_dolphin_mesures_i_btn' + i :
-                          toggleContainer("jform_observation_dolphin_mesures_i_field" + i);
                           break;
                     case 'jform_observation_dolphin_mesures_k_btn' + i :
                           toggleContainer("jform_observation_dolphin_mesures_k_field" + i);
                           break;
+                    case 'jform_observation_dolphin_mesures_l_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_l_field" + i);
+                          break;
+                    case 'jform_observation_dolphin_mesures_m_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_m_field" + i);
+                          break;
                     case 'jform_observation_dolphin_mesures_o_btn' + i :
                           toggleContainer("jform_observation_dolphin_mesures_o_field" + i);
                           break;
-                    case 'jform_observation_dolphin_mesures_r_btn' + i :
-                          toggleContainer("jform_observation_dolphin_mesures_r_field" + i);
+                    case 'jform_observation_dolphin_mesures_s_btn' + i :
+                          toggleContainer("jform_observation_dolphin_mesures_s_field" + i);
                           break;
                     case 'jform_observation_dolphin_mesures_t_btn' + i :
                           toggleContainer("jform_observation_dolphin_mesures_t_field" + i);
@@ -660,21 +663,21 @@ getScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',fun
                     case 'jform_observation_dugong_mesures_e_btn' + i :
                           toggleContainer("jform_observation_dugong_mesures_e_field" + i);
                           break;
+                    case 'jform_observation_dugong_mesures_f_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_f_field" + i);
+                          break;
                     case 'jform_observation_dugong_mesures_g_btn' + i :
                           toggleContainer("jform_observation_dugong_mesures_g_field" + i);
                           break;
-                    case 'jform_observation_dugong_mesures_h_btn' + i :
-                          toggleContainer("jform_observation_dugong_mesures_h_field" + i);
-                          break;
-                    case 'jform_observation_dugong_mesures_i_btn' + i :
-                          toggleContainer("jform_observation_dugong_mesures_i_field" + i);
                           break;
                     case 'jform_observation_dugong_mesures_j_btn' + i :
                           toggleContainer("jform_observation_dugong_mesures_j_field" + i);
                           break;
-                    case 'jform_observation_dugong_mesures_k_btn' + i :
-                          toggleContainer("jform_observation_dugong_mesures_k_field" + i);
+                    case 'jform_observation_dugong_mesures_l_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_l_field" + i);
                           break;
+                    case 'jform_observation_dugong_mesures_m_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_m_field" + i);
                     case 'jform_observation_dugong_mesures_n_btn' + i :
                           toggleContainer("jform_observation_dugong_mesures_n_field" + i);
                           break;
@@ -684,8 +687,8 @@ getScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',fun
                     case 'jform_observation_dugong_mesures_p_btn' + i :
                           toggleContainer("jform_observation_dugong_mesures_p_field" + i);
                           break;
-                    case 'jform_observation_dugong_mesures_q_btn' + i :
-                          toggleContainer("jform_observation_dugong_mesures_q_field" + i);
+                    case 'jform_observation_dugong_mesures_s_btn' + i :
+                          toggleContainer("jform_observation_dugong_mesures_s_field" + i);
                           break;
                     case 'jform_observation_dugong_mesures_r_btn' + i :
                           toggleContainer("jform_observation_dugong_mesures_r_field" + i);
@@ -1149,7 +1152,7 @@ function convert_Long_DMD(long){
       <?php echo $this->form->getInput('observation_latitude'); ?>
     </div>
   </div>
-  <div id="lat_dmd" class="col-md-6 col-md-6 col-xs-12">
+  <div id="lat_dmd" class="col-md-6 col-md-6 col-xs-12" style="display: none;">
     <div class="input-group">
       <span class="input-group-addon"></span>
       <?php echo $this->form->getInput('observation_latitude_dmd'); ?>
@@ -1169,7 +1172,7 @@ function convert_Long_DMD(long){
     <?php echo $this->form->getInput('observation_longitude'); ?>
   </div>
 </div>
-<div id="lng_dmd" class="col-md-6 col-md-6 col-xs-12">
+<div id="lng_dmd" class="col-md-6 col-md-6 col-xs-12" style="display: none;">
   <div class="input-group">
     <span class="input-group-addon"></span>
     <?php echo $this->form->getInput('observation_longitude_dmd'); ?>
@@ -1648,25 +1651,24 @@ function convert_Long_DMD(long){
           <?php echo $this->form->getInput('observation_dolphin_mesures_e'); ?>
         </div>
       </div>&nbsp;
+      <div id="jform_observation_dolphin_mesures_g_field" class="important_measurements">
+        <div class="input-group">
+          <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dolphin_mesures_g'); ?></span></span>
+          <?php echo $this->form->getInput('observation_dolphin_mesures_g'); ?>
+        </div>
+      </div>&nbsp;
+      <div id="jform_observation_dolphin_mesures_i_field" class="important_measurements">
+        <div class="input-group">
+          <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dolphin_mesures_i'); ?></span></span>
+          <?php echo $this->form->getInput('observation_dolphin_mesures_i'); ?>
+        </div>
+      </div>&nbsp;
       <div id="jform_observation_dolphin_mesures_j_field" class="important_measurements">
         <div class="input-group">
           <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dolphin_mesures_j'); ?></span></span>
           <?php echo $this->form->getInput('observation_dolphin_mesures_j'); ?>
         </div>
       </div>&nbsp;
-      <div id="jform_observation_dolphin_mesures_l_field" class="important_measurements">
-        <div class="input-group">
-          <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dolphin_mesures_l'); ?></span></span>
-          <?php echo $this->form->getInput('observation_dolphin_mesures_l'); ?>
-        </div>
-      </div>&nbsp;
-      <div id="jform_observation_dolphin_mesures_m_field" class="important_measurements">
-        <div class="input-group">
-          <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dolphin_mesures_m'); ?></span></span>
-          <?php echo $this->form->getInput('observation_dolphin_mesures_m'); ?>
-        </div>
-      </div>&nbsp;
-     
   </div>
 <div class="col-lg-3 col-md-3 col-xs-3">
     <button id="jform_observation_dolphin_mesures_c_btn" type="button" class="btn btn-secondary btn-lg btn-block">
@@ -1685,25 +1687,26 @@ function convert_Long_DMD(long){
      <div id="jform_observation_dolphin_mesures_f_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_f'); ?>
     </div>
-     <button id="jform_observation_dolphin_mesures_g_btn" type="button" class="btn btn-secondary btn-lg btn-block">
-          <?php echo $this->form->getLabel('observation_dolphin_mesures_g'); ?></button>
-     <div id="jform_observation_dolphin_mesures_g_field"  style="display: none;">
-          <?php echo $this->form->getInput('observation_dolphin_mesures_g'); ?>
-    </div>
+     
      <button id="jform_observation_dolphin_mesures_h_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dolphin_mesures_h'); ?></button>
      <div id="jform_observation_dolphin_mesures_h_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_h'); ?>
     </div>
-     <button id="jform_observation_dolphin_mesures_i_btn" type="button" class="btn btn-secondary btn-lg btn-block">
-          <?php echo $this->form->getLabel('observation_dolphin_mesures_i'); ?></button>
-     <div id="jform_observation_dolphin_mesures_i_field"  style="display: none;">
-          <?php echo $this->form->getInput('observation_dolphin_mesures_i'); ?>
-    </div>
      <button id="jform_observation_dolphin_mesures_k_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dolphin_mesures_k'); ?></button>
      <div id="jform_observation_dolphin_mesures_k_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dolphin_mesures_k'); ?>
+    </div>
+    <button id="jform_observation_dolphin_mesures_l_btn" type="button" class="btn btn-secondary btn-lg btn-block">
+          <?php echo $this->form->getLabel('observation_dolphin_mesures_l'); ?></button>
+     <div id="jform_observation_dolphin_mesures_l_field"  style="display: none;">
+          <?php echo $this->form->getInput('observation_dolphin_mesures_l'); ?>
+    </div>
+    <button id="jform_observation_dolphin_mesures_m_btn" type="button" class="btn btn-secondary btn-lg btn-block">
+          <?php echo $this->form->getLabel('observation_dolphin_mesures_m'); ?></button>
+     <div id="jform_observation_dolphin_mesures_m_field"  style="display: none;">
+          <?php echo $this->form->getInput('observation_dolphin_mesures_m'); ?>
     </div>
    </div>
  </div>
@@ -1739,10 +1742,10 @@ function convert_Long_DMD(long){
           <?php echo $this->form->getInput('observation_dolphin_mesures_p'); ?>
         </div>
     </div>&nbsp;
-    <div id="jform_observation_dolphin_mesures_q_field" class="important_measurements">
+    <div id="jform_observation_dolphin_mesures_r_field" class="important_measurements">
         <div class="input-group">
-          <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dolphin_mesures_q'); ?></span></span>
-          <?php echo $this->form->getInput('observation_dolphin_mesures_q'); ?>
+          <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dolphin_mesures_r'); ?></span></span>
+          <?php echo $this->form->getInput('observation_dolphin_mesures_r'); ?>
         </div>
     </div>
    </div>
@@ -1752,17 +1755,18 @@ function convert_Long_DMD(long){
      </p>
    </div>
    <div class="col-lg-3 col-md-3 col-xs-3">
-     <button id="jform_observation_dolphin_mesures_r_btn" type="button" class="btn btn-secondary btn-lg btn-block">
-          <?php echo $this->form->getLabel('observation_dolphin_mesures_r'); ?></button>
-     <div id="jform_observation_dolphin_mesures_r_field"  style="display: none;">
-          <?php echo $this->form->getInput('observation_dolphin_mesures_r'); ?>
-    </div>
-    <div id="jform_observation_dolphin_mesures_s_field" class="important_measurements">
+    <div id="jform_observation_dolphin_mesures_q_field" class="important_measurements">
         <div class="input-group">
-          <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dolphin_mesures_s'); ?></span></span>
-          <?php echo $this->form->getInput('observation_dolphin_mesures_s'); ?>
+          <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dolphin_mesures_q'); ?></span></span>
+          <?php echo $this->form->getInput('observation_dolphin_mesures_q'); ?>
         </div>
     </div>
+     <button id="jform_observation_dolphin_mesures_s_btn" type="button" class="btn btn-secondary btn-lg btn-block">
+          <?php echo $this->form->getLabel('observation_dolphin_mesures_s'); ?></button>
+     <div id="jform_observation_dolphin_mesures_s_field"  style="display: none;">
+          <?php echo $this->form->getInput('observation_dolphin_mesures_s'); ?>
+    </div>
+    
    </div>
    <div class="col-lg-3 col-md-3 col-xs-12" id="cetace_measures_position4">
       <p>
@@ -1806,24 +1810,24 @@ function convert_Long_DMD(long){
           <?php echo $this->form->getInput('observation_dugong_mesures_a'); ?>
         </div>
     </div>&nbsp;
-    <div id="jform_observation_dugong_mesures_f_field" class="important_measurements">
+    <div id="jform_observation_dugong_mesures_h_field" class="important_measurements">
         <div class="input-group">
-          <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dugong_mesures_f'); ?></span></span>
-          <?php echo $this->form->getInput('observation_dugong_mesures_f'); ?>
+          <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dugong_mesures_h'); ?></span></span>
+          <?php echo $this->form->getInput('observation_dugong_mesures_h'); ?>
         </div>
     </div>&nbsp;
-    <div id="jform_observation_dugong_mesures_l_field" class="important_measurements">
+    <div id="jform_observation_dugong_mesures_i_field" class="important_measurements">
         <div class="input-group">
-          <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dugong_mesures_l'); ?></span></span>
-          <?php echo $this->form->getInput('observation_dugong_mesures_l'); ?>
+          <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dugong_mesures_i'); ?></span></span>
+          <?php echo $this->form->getInput('observation_dugong_mesures_i'); ?>
         </div>
     </div>&nbsp;
-    <div id="jform_observation_dugong_mesures_m_field" class="important_measurements">
+    <div id="jform_observation_dugong_mesures_k_field" class="important_measurements">
         <div class="input-group">
-          <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dugong_mesures_m'); ?></span></span>
-          <?php echo $this->form->getInput('observation_dugong_mesures_m'); ?>
+          <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dugong_mesures_k'); ?></span></span>
+          <?php echo $this->form->getInput('observation_dugong_mesures_k'); ?>
         </div>
-    </div>
+    </div>&nbsp;
      <button id="jform_observation_dugong_mesures_b_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_b'); ?></button>
      <div id="jform_observation_dugong_mesures_b_field"  style="display: none;">
@@ -1845,30 +1849,30 @@ function convert_Long_DMD(long){
      <div id="jform_observation_dugong_mesures_e_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_e'); ?>
     </div>
+    <button id="jform_observation_dugong_mesures_f_btn" type="button" class="btn btn-secondary btn-lg btn-block">
+          <?php echo $this->form->getLabel('observation_dugong_mesures_f'); ?></button>
+     <div id="jform_observation_dugong_mesures_f_field"  style="display: none;">
+          <?php echo $this->form->getInput('observation_dugong_mesures_f'); ?>
+    </div>
      <button id="jform_observation_dugong_mesures_g_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_g'); ?></button>
      <div id="jform_observation_dugong_mesures_g_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_g'); ?>
-    </div>
-     <button id="jform_observation_dugong_mesures_h_btn" type="button" class="btn btn-secondary btn-lg btn-block">
-          <?php echo $this->form->getLabel('observation_dugong_mesures_h'); ?></button>
-     <div id="jform_observation_dugong_mesures_h_field"  style="display: none;">
-          <?php echo $this->form->getInput('observation_dugong_mesures_h'); ?>
-    </div>
-     <button id="jform_observation_dugong_mesures_i_btn" type="button" class="btn btn-secondary btn-lg btn-block">
-          <?php echo $this->form->getLabel('observation_dugong_mesures_i'); ?></button>
-     <div id="jform_observation_dugong_mesures_i_field"  style="display: none;">
-          <?php echo $this->form->getInput('observation_dugong_mesures_i'); ?>
     </div>
      <button id="jform_observation_dugong_mesures_j_btn" type="button" class="btn btn-secondary btn-lg btn-block">
           <?php echo $this->form->getLabel('observation_dugong_mesures_j'); ?></button>
      <div id="jform_observation_dugong_mesures_j_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_j'); ?>
     </div>
-     <button id="jform_observation_dugong_mesures_k_btn" type="button" class="btn btn-secondary btn-lg btn-block">
-          <?php echo $this->form->getLabel('observation_dugong_mesures_k'); ?></button>
-     <div id="jform_observation_dugong_mesures_k_field"  style="display: none;">
-          <?php echo $this->form->getInput('observation_dugong_mesures_k'); ?>
+     <button id="jform_observation_dugong_mesures_l_btn" type="button" class="btn btn-secondary btn-lg btn-block">
+          <?php echo $this->form->getLabel('observation_dugong_mesures_l'); ?></button>
+     <div id="jform_observation_dugong_mesures_l_field"  style="display: none;">
+          <?php echo $this->form->getInput('observation_dugong_mesures_l'); ?>
+    </div>
+    <button id="jform_observation_dugong_mesures_m_btn" type="button" class="btn btn-secondary btn-lg btn-block">
+          <?php echo $this->form->getLabel('observation_dugong_mesures_m'); ?></button>
+     <div id="jform_observation_dugong_mesures_m_field"  style="display: none;">
+          <?php echo $this->form->getInput('observation_dugong_mesures_m'); ?>
     </div>
    </div>
  </div>
@@ -1903,11 +1907,13 @@ function convert_Long_DMD(long){
      <div id="jform_observation_dugong_mesures_p_field"  style="display: none;">
           <?php echo $this->form->getInput('observation_dugong_mesures_p'); ?>
     </div>
-     <button id="jform_observation_dugong_mesures_q_btn" type="button" class="btn btn-secondary btn-lg btn-block">
-          <?php echo $this->form->getLabel('observation_dugong_mesures_q'); ?></button>
-     <div id="jform_observation_dugong_mesures_q_field"  style="display: none;">
-          <?php echo $this->form->getInput('observation_dugong_mesures_q'); ?>
+    <button id="jform_observation_dugong_mesures_r_btn" type="button" class="btn btn-secondary btn-lg btn-block">
+          <?php echo $this->form->getLabel('observation_dugong_mesures_r'); ?></button>
+     <div id="jform_observation_dugong_mesures_r_field"  style="display: none;">
+          <?php echo $this->form->getInput('observation_dugong_mesures_r'); ?>
     </div>
+
+     
    </div>
    <div class="col-lg-3 col-md-3 col-xs-12" id="dugong_measures_position3">
       <p>
@@ -1915,16 +1921,16 @@ function convert_Long_DMD(long){
      </p>
    </div>
    <div class="col-lg-3 col-md-3 col-xs-3">
-     <button id="jform_observation_dugong_mesures_r_btn" type="button" class="btn btn-secondary btn-lg btn-block">
-          <?php echo $this->form->getLabel('observation_dugong_mesures_r'); ?></button>
-     <div id="jform_observation_dugong_mesures_r_field"  style="display: none;">
-          <?php echo $this->form->getInput('observation_dugong_mesures_r'); ?>
-    </div>
-    <div id="jform_observation_dugong_mesures_s_field" class="important_measurements">
+    <div id="jform_observation_dugong_mesures_q_field" class="important_measurements">
         <div class="input-group">
-          <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dugong_mesures_s'); ?></span></span>
-          <?php echo $this->form->getInput('observation_dugong_mesures_s'); ?>
+          <span class="input-group-addon exergue"><span><?php echo $this->form->getLabel('observation_dugong_mesures_q'); ?></span></span>
+          <?php echo $this->form->getInput('observation_dugong_mesures_q'); ?>
         </div>
+    </div>
+    <button id="jform_observation_dugong_mesures_s_btn" type="button" class="btn btn-secondary btn-lg btn-block">
+          <?php echo $this->form->getLabel('observation_dugong_mesures_s'); ?></button>
+     <div id="jform_observation_dugong_mesures_s_field"  style="display: none;">
+          <?php echo $this->form->getInput('observation_dugong_mesures_s'); ?>
     </div>
    </div>
    <div class="col-lg-3 col-md-3 col-xs-12" id="dugong_measures_position4">
