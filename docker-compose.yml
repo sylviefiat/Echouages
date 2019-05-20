@@ -9,15 +9,16 @@ services:
     image: joomla
     #restart: always
     links:
-      - joomladb:mysql
+      - rescuejoomladb:rescuejoomladb
     ports:
       - 80:80
     volumes:
       - ./rescuejoomla_data:/var/www/html
+      - /usr/lib/sendmail:/usr/lib/sendmail
     environment:
-      JOOMLA_DB_HOST: joomladb
+      JOOMLA_DB_HOST: rescuejoomladb
       JOOMLA_DB_PASSWORD: 12345678
-      JOOMLA_DB_NAME: operation_cetace
+      JOOMLA_DB_NAME: rescue
 
 ######################################
 # Setup the Database (Mysql) container
@@ -26,11 +27,13 @@ services:
     container_name: rescue_mysql
     image: mysql:5.6
     #restart: always
+    ports:
+      - 3306:3306
     volumes:
       - ./rescuejoomladb_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: 12345678
-      MYSQL_DATABASE: operation_cetace
+      MYSQL_DATABASE: rescue
 
 ########################################
 # Setup the Geoserver container
@@ -41,7 +44,7 @@ services:
     ports:
       - 8080:8080
     links:
-      - joomladb
+      - rescuejoomladb
     volumes:
       - ./rescuegeoserver_data:/usr/local/tomcat/webapps/geoserver
       #- /var/run/docker.sock:/var/run/docker.sock
